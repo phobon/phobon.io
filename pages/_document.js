@@ -7,6 +7,14 @@ const NextStyles = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+
+  body {
+    font-family: 'Karla', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik', sans-serif;
+  }
 `;
 
 export default class MyDocument extends Document {
@@ -23,6 +31,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {this.props.styleTags}
+          <link href="https://fonts.googleapis.com/css?family=Karla|Rubik" rel="stylesheet" /> 
         </Head>
         <body>
           <Main />
