@@ -11,7 +11,8 @@ export default ({ children, ...props }) => (
     fullWidth
     gridTemplateRows="auto 1fr auto"
     gridTemplateColumns="1fr"
-    alignItems="flex-start">
+    alignItems="flex-start"
+    bg="background">
     {children}
   </LayoutContainer>
 );

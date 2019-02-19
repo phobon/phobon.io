@@ -5,7 +5,8 @@ import headlines from '../static/data.json';
 
 export default () => (
   <React.Fragment>
-    <Heading.H1 mb={6} color="grayscale.3">Hi, I'm Ben. I really like design, development and dogs</Heading.H1>
+    <Heading.H1 mb={3} color="grayscale.2">Hi, I'm Ben</Heading.H1>
+    <Heading.H2 mb={6} color="grayscale.3">I really like design, development and dogs</Heading.H2>
 
     <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
       <Heading.H5 color="accent.3" fontWeight="bold">Currently</Heading.H5>
@@ -22,6 +23,5 @@ export default () => (
         <BoxListItem>UX Engineer, <ExternalLink ml={1}>acQuire</ExternalLink></BoxListItem>
       </BoxList>
     </Box>
-    
   </React.Fragment>
 );
