@@ -6,11 +6,10 @@ import { animated, useTransition, config } from 'react-spring';
 
 import { Header, Footer, Layout } from '../components';
 
-const Animated = ({ Component, pageProps }) => {
-  const timeout = 3000;
+const Animated = ({ component }) => {
   const config = { tension: 125, friction: 20, precision: 0.1 };
 
-  const transitions = useTransition(<Component {...pageProps} />, null, {
+  const transitions = useTransition(component, null, {
     from: { opacity: 0 },
     enter: item => async next =>
         await next({ opacity: 1 }),
@@ -18,7 +17,7 @@ const Animated = ({ Component, pageProps }) => {
       await next({ opacity: 0 });
     },
     config: (item, state) =>
-      state === 'leave' ? [{ duration: timeout }, config] : config,
+      state === 'leave' ? config : config,
   });
 
   return (
@@ -51,8 +50,8 @@ export default class MyApp extends App {
         <ThemeProvider theme={theme}>
           <Layout>
             <Header gridArea="1 / 1 / span 1 / span 1" />
-            <Box fullWidth p={6} justifyContent="flex-start" alignItems="flex-start" flexDirection="column" gridArea="2 / 1 / span 1 / span 1" >
-              <Component {...pageProps} />
+            <Box fullWidth px={5} py={6} justifyContent="flex-start" alignItems="flex-start" flexDirection="column" gridArea="2 / 1 / span 1 / span 1" >
+              <Animated component={<Component {...pageProps} />} />
             </Box>
             <Footer gridArea="3 / 1 / span 1 / span 1" />
           </Layout>

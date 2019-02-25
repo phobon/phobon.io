@@ -1,18 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Grid } from 'base';
+import React, { useEffect } from 'react';
+import { Grid, useAccent } from 'base';
 
-const LayoutContainer = styled(Grid)`
-`;
+export default ({ children, ...props }) => {
+  const [accent, setAccent] = useAccent();
 
-export default ({ children, ...props }) => (
-  <LayoutContainer
-    fullHeight
-    fullWidth
-    gridTemplateRows="auto 1fr auto"
-    gridTemplateColumns="1fr"
-    alignItems="flex-start"
-    bg="background">
-    {children}
-  </LayoutContainer>
-);
+  useEffect(() => {
+    const accents = ['reds', 'blues', 'purples', 'greens', 'oranges'];
+    setAccent(accents[Math.floor(Math.random() * accents.length)]);
+  }, []);
+
+  return (
+    <Grid
+      fullHeight
+      fullWidth
+      gridTemplateRows="auto 1fr auto"
+      gridTemplateColumns="1fr"
+      alignItems="flex-start"
+      bg="background">
+      {children}
+    </Grid>
+  );
+};

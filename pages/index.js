@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from 'next/link'
 import { Box, Heading, BoxList, BoxListItem, Link as ExternalLink, Flex } from 'base';
-import headlines from '../static/data.json';
+import { headlines, currently, projects } from '../static/data.json';
+import Headline from '../components/Headline';
 
-export default () => (
-  <React.Fragment>
-    <Heading.H1 mb={3} color="grayscale.2">Hi, I'm Ben</Heading.H1>
-    <Heading.H2 mb={6} color="grayscale.3">I really like design, development and dogs</Heading.H2>
+export default () => {
+  const [headline, setHeadline] = useState(null);
 
-    <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
-      <Heading.H5 color="accent.3" fontWeight="bold">Currently</Heading.H5>
-      <BoxList flexDirection="column" alignItems="flex-start">
-        <BoxListItem>Senior UX Engineer, <ExternalLink ml={1}>Agworld</ExternalLink></BoxListItem>
-        <BoxListItem>Designer, <ExternalLink ml={1}>The Studio</ExternalLink></BoxListItem>
-        <BoxListItem>Proud dog dad of <ExternalLink ml={1}>Kodi</ExternalLink></BoxListItem>
-      </BoxList>
-    </Box>
+  useEffect(() => {
+    setHeadline(headlines[Math.floor(Math.random() * headlines.length)]);
+  }, []);
 
-    <Box as="section" flexDirection="column" alignItems="flex-start">
-      <Heading.H5 color="accent.3" fontWeight="bold" fontFamily="KArla, sans-serif">Previously</Heading.H5>
-      <BoxList flexDirection="column" alignItems="flex-start">
-        <BoxListItem>UX Engineer, <ExternalLink ml={1}>acQuire</ExternalLink></BoxListItem>
-      </BoxList>
-    </Box>
-  </React.Fragment>
-);
+  const current = currently.map(c => (
+    <BoxListItem key={c.target} fontSize={2}>{c.title}, <ExternalLink fontSize="inherit" ml={1} href={c.url}>{c.target}</ExternalLink></BoxListItem>
+  ));
+
+  return (
+    <React.Fragment>
+      <Heading.H1 mb={3} color="grayscale.2">Hi, I'm Ben from Perth</Heading.H1>
+      <Headline {...headline} mb={6} color="grayscale.3" />
+
+      <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
+        <Heading.H5 color="accent.3" fontWeight="bold">Currently</Heading.H5>
+        <BoxList flexDirection="column" alignItems="flex-start">
+          {current}
+        </BoxList>
+      </Box>
+    </React.Fragment>
+  );
+};

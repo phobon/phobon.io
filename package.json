@@ -4,7 +4,7 @@
     "@now/next": "^0.0.83",
     "@zeit/next-mdx": "^1.2.0",
     "babel-plugin-styled-components": "^1.10.0",
-    "base": "https://github.com/phobon/base.git#v1.0.1",
+    "base": "https://github.com/phobon/base.git#v1.1.0",
     "mdx": "^0.3.1",
     "next": "^7.0.2",
     "prop-types": "^15.6.2",
