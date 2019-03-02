@@ -3,5 +3,6 @@ const withMDX = require('@zeit/next-mdx')({
 })
 
 module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx']
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  target: 'serverless'
 })

@@ -53,21 +53,15 @@
   "projects": [
     {
       "title": "Signal",
-      "description": "This is a description about Signal",
+      "description": "a design system",
       "image": "",
       "url": "http://signal.agworld.com"
     },
     {
-      "title": "The Studio",
-      "description": "This is a description about The Studio",
-      "image": "",
-      "url": "https://thestudiophysio.com"
-    },
-    {
       "title": "Canvas",
-      "description": "This is a description about Canvas",
+      "description": "a clinical notes app",
       "image": "",
-      "url": ""
+      "url": "https://dribbble.com/shots/4520199-Canvas-Dashboard-WIP"
     }
   ],
   "links": [

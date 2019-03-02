@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, BoxList, BoxListItem, Link } from 'base';
-import { links } from '../static/data.json';
+import { Box, BoxList, BoxListItem } from 'base';
+import SlideLink from './SlideLink';
+import { links } from '../pages/data.json';
 
 export default () => {
   const linkSet = links.map(l => (
     <BoxListItem mr={2} key={l.label}>
-      <Link href={l.url}>{l.label}</Link>
+      <SlideLink href={l.url}>{l.label}</SlideLink>
     </BoxListItem>
   ));
 
