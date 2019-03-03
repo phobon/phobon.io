@@ -1,5 +1,6 @@
-import React from 'react'
-import App, { Container } from 'next/app'
+import React from 'react';
+import App, { Container } from 'next/app';
+import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'base';
 
@@ -21,6 +22,9 @@ export default class MyApp extends App {
 
     return (
       <Container>
+        <Head>
+          <title>phbn</title>
+        </Head>
         <ThemeProvider theme={theme}>
           <Layout pathname={router.pathname}>
             <Component {...pageProps} key={router.pathname} />
