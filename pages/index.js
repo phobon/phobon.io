@@ -16,10 +16,10 @@ export default () => {
   ));
   const project = projects.map(c => (
     <BoxListItem
-      key={c.target}
+      key={c.title}
       fontSize={2}
       flexWrap="wrap">
-      <SlideLink fontSize="inherit" ml={1} href={c.url}>{c.title}</SlideLink>,
+      <SlideLink fontSize="inherit" href={c.url}>{c.title}</SlideLink>,
       <span css={{ marginLeft: '0.5rem' }}>{c.description}</span>
      </BoxListItem>
   ));

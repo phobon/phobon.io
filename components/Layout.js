@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { Grid, Flex, Box, useAccent } from 'base';
 import { animated, useTransition, config } from 'react-spring'; 
 
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children, config, ...props }) => {
+const Animated = styled(animated.div)`
+  position: absolute;
+  left: ${props => props.theme.space[5]}px;
+  right: ${props => props.theme.space[5]}px;
+  top: ${props => props.theme.space[6]}px;
+  bottom: ${props => props.theme.space[6]}px;
+`;
+
+const Layout = ({ pathname, children, config, ...props }) => {
   const [accent, setAccent] = useAccent();
 
   useEffect(() => {
@@ -14,10 +23,9 @@ const Layout = ({ children, config, ...props }) => {
   }, []);
 
   const transitions = useTransition(children, c => c.key, {
-    from: { position: 'absolute', opacity: 0 },
+    from: { opacity: 0 },
     enter: item => async next => {
         await next({ opacity: 1 });
-        await next({ position: 'unset' });
     },
     leave: item => async (next, cancel) => {
       await next({ opacity: 0 });
@@ -28,9 +36,9 @@ const Layout = ({ children, config, ...props }) => {
 
   const mappedTransitions = transitions.map(({ key, item, props: { ...style } }) => {
     return (item && (
-      <animated.div key={key} style={style}>
+      <Animated key={key} style={style}>
         {item}
-      </animated.div>
+      </Animated>
     ));
   });
 
@@ -41,8 +49,8 @@ const Layout = ({ children, config, ...props }) => {
       bg="background"
       flexDirection="column"
       css={{ minHeight: '100%' }}>
-      <Header />
-      <Flex fullWidth px={5} py={6} justifyContent="flex-start" alignItems="flex-start" flexDirection="column" overflow="none">
+      <Header pathname={pathname} />
+      <Flex fullWidth justifyContent="flex-start" alignItems="flex-start" flexDirection="column" overflow="none" position="relative">
         {mappedTransitions}
       </Flex>
       <Footer />

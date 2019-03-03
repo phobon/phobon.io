@@ -11,7 +11,7 @@ export default () => {
   ));
 
   return (
-    <Box as="footer" fullWidth px={5} pb={5}>
+    <Box as="footer" bg="background" fullWidth px={5} pb={5} pt={5} css={{ position: 'fixed', bottom: 0, zIndex: 1 }}>
       <BoxList flexWrap="wrap" fullWidth justifyContent="flex-start">
         {linkSet}
       </BoxList>

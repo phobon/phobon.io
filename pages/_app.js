@@ -22,7 +22,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <ThemeProvider theme={theme}>
-          <Layout>
+          <Layout pathname={router.pathname}>
             <Component {...pageProps} key={router.pathname} />
           </Layout>
         </ThemeProvider>

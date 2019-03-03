@@ -11,7 +11,23 @@ const AccentVector = styled(Vector)`
   }
 `;
 
-export default () => {
+// const nav = [
+//   { pathname: '/', label: 'Home' },
+//   { pathname: '/thoughts/test', label: 'Thoughts' },
+// ];
+// Enable this when the blog is set up.
+const nav = [
+];
+
+export default ({ pathname }) => {
+  const navItems = nav.map(n => (
+    <BoxListItem ml={3} key={n.pathname}>
+      <Link href={n.pathname} passHref>
+        <SlideLink className={n.pathname === pathname ? 'current' : ''}>{n.label}</SlideLink>
+      </Link>
+    </BoxListItem>
+  ));
+
   return (
     <Box as="header" px={5} pt={5} pb={3} bg="background" justifyContent="space-between" fullWidth css={{ position: 'sticky', top: 0, zIndex: 1 }}>
       <AccentVector width={32} height={32} viewBox="0 0 16 16" color="grayscale.3">
@@ -22,16 +38,7 @@ export default () => {
       </AccentVector>
 
       <BoxList as="nav">
-        <BoxListItem mr={3}>
-          <Link href="/" passHref>
-            <SlideLink className="current">Home</SlideLink>
-          </Link>
-        </BoxListItem>
-        <BoxListItem>
-          <Link href="thoughts/test" passHref>
-            <SlideLink>Thoughts</SlideLink>
-          </Link>
-        </BoxListItem>
+        {navItems}
       </BoxList>
     </Box>
   );
