@@ -3,7 +3,7 @@ import { Heading } from 'base';
 import SlideLink from './SlideLink';
 
 const Headline = ({ lead, target, url, ...props }) => (
-  <Heading.H2 {...props} css={{ verticalAlign: 'bottom' }}>
+  <Heading.H2 {...props} css={{ verticalAlign: 'bottom' }} lineHeight="inherit">
     <span css={{ verticalAlign: 'inherit', marginRight: '1rem' }}>{lead}</span>
     <SlideLink fontSize="inherit" href={url}>{target}</SlideLink>
   </Heading.H2>
