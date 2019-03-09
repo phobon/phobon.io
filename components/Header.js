@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, Vector, BoxList, BoxListItem } from 'base';
+import { Box, Vector, BoxList, BoxListItem } from '@phobon/base';
 import Link from 'next/link';
 
 import SlideLink from './SlideLink';

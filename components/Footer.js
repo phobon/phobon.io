@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, BoxList, BoxListItem } from 'base';
+import { Box, BoxList, BoxListItem } from '@phobon/base';
 import SlideLink from './SlideLink';
 import { links } from '../pages/data.json';
 

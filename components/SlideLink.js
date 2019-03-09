@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { space } from 'styled-system';
-import { Text } from 'base';
+import { Text } from '@phobon/base';
 
 const SlideLinkContainer = styled.span`
   ${space}

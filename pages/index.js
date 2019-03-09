@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, BoxList, BoxListItem } from 'base';
+import { Box, Heading, BoxList, BoxListItem } from '@phobon/base';
 import { headlines, currently, projects } from './data.json';
 import Headline from '../components/Headline';
 import { SlideLink } from '../components';

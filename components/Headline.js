@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from 'base';
+import { Heading } from '@phobon/base';
 import SlideLink from './SlideLink';
 
 const Headline = ({ lead, target, url, ...props }) => (

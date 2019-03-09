@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Grid, Flex, Box, useAccent } from 'base';
+import { Grid, Flex, Box, useAccent } from '@phobon/base';
 import { animated, useTransition, config } from 'react-spring'; 
 
 import Header from './Header';
