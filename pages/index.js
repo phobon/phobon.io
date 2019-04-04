@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, BoxList, BoxListItem } from '@phobon/base';
+import { Box, Heading, BoxList, BoxListItem, Image } from '@phobon/base';
 import { headlines, currently, projects } from './data.json';
 import Headline from '../components/Headline';
 import { SlideLink } from '../components';
@@ -26,8 +26,10 @@ export default () => {
 
   return (
     <React.Fragment>
-      <Heading.H1 mb={3} color="grayscale.2">Hi, I'm Ben</Heading.H1>
-      <Headline {...headline} mb={6} color="grayscale.3" />
+      <Heading.H1 mb={2} color="grayscale.2" fontWeight="bold">Hi, I'm Ben</Heading.H1>
+      <Headline {...headline} mb={8} color="grayscale.4" />
+
+      <Image responsive fullWidth src="https://source.unsplash.com/random/1280x800" mb={8} />
 
       <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
         <Heading.H5 color="accent.3" fontWeight="bold">Currently</Heading.H5>

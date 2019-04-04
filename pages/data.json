@@ -45,7 +45,10 @@
       "title": "Signal",
       "description": "a design system",
       "image": "",
-      "url": "http://signal.agworld.com"
+      "url": "http://signal.agworld.com",
+      "tags": [
+        "Identity", ""
+      ]
     },
     {
       "title": "Canvas",
