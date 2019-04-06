@@ -10,11 +10,11 @@ const Layout = ({ pathname, children, ...props }) => (
     bg="background"
     minHeight="100%">
     <Flex flexDirection="column" fullHeight maxWidth={1280}>
-      <Header pathname={pathname} px={6} />
-      <Flex fullWidth py={8} px={6} flexDirection="column" alignItems="flex-start">
+      <Header pathname={pathname} px={[4, 6]} />
+      <Flex fullWidth py={[5, 10]} px={[4, 6]} flexDirection="column" alignItems="flex-start">
         {children}
       </Flex>
-      <Footer px={6} />
+      <Footer px={[4, 6]} />
     </Flex>
   </Box>
 );

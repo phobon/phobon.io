@@ -8,7 +8,7 @@ const SlideLinkContainer = styled.span`
   position: relative;
   overflow: hidden;
   z-index: 0;
-  display: inline-block;
+  display: inline-flex;
   line-height: inherit;
   vertical-align: inherit;
 

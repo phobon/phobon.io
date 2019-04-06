@@ -843,10 +843,10 @@
     hoist-non-react-statics "^2.5.5"
     prop-types "^15.6.1"
 
-"@now/build-utils@^0.4.38":
-  version "0.4.38"
-  resolved "https://registry.yarnpkg.com/@now/build-utils/-/build-utils-0.4.38.tgz#459bd955317c9815466f0e078d3f33d2ccb5c20b"
-  integrity sha512-ib5ziR5eO30Wr1fLxkywui5Th/EAVWvumJuA22iyV+mQ3OKKb5Mqq6imPLm128nmFgN7beu00nzIR6MpBUqULA==
+"@now/build-utils@^0.4.39":
+  version "0.4.39"
+  resolved "https://registry.yarnpkg.com/@now/build-utils/-/build-utils-0.4.39.tgz#5f935dbdbd01bdd3e47d282035bac0f919a569a4"
+  integrity sha512-EKkHEbecPXO9ShIMxD6/BA+L0aAR1Qtu7/GcC/L+E/zbC/SWTwOMe0/DgBpnSsfZYUK4nMhTAJ2+URU3MtYwDQ==
   dependencies:
     async-retry "1.2.3"
     async-sema "2.1.4"
@@ -874,10 +874,10 @@
   resolved "https://registry.yarnpkg.com/@now/node-bridge/-/node-bridge-1.0.1.tgz#19fcc03494c1276dabee752d9a3e0aac72f56fd6"
   integrity sha512-ooXyOw9C+sgtwZZZfs0vQ7zgiyI8d56HTYfrUqW96naYHFGlpqCPaypYGk27S0hG/SWdTH5Lpslyx4Vt7v7UVQ==
 
-"@phobon/base@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-1.6.2.tgz#28652248989d335be970bfbeeb25fad35d42c2a2"
-  integrity sha512-oxQvzvFJYXD8rp1GE/+XyUAA+tUIyLe5Ph2UeTPN+/ZhOdtV8JQfVMJbBKLl5E0tTRhtHfnI7CCLUfOhReevdw==
+"@phobon/base@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-1.6.3.tgz#58cc0d760ac096f74705a40fbf90ac631bd573e2"
+  integrity sha512-NlAEEKoaZCIomaFonLrArcgM/j12kHBymE0T56gL90rnteyFPnDBhD5MCm1rKptUAPrrzRyBfDcCjgYl320rLw==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.4.3"
 

@@ -1,21 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet, createGlobalStyle } from 'styled-components';
-import { Normalize } from '@phobon/base';
-
-const NextStyles = createGlobalStyle`
-  #__next {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  body {
-    font-family: 'Karla', sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Rubik', sans-serif;
-  }
-`;
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static getInitialProps ({ renderPage }) {
@@ -31,13 +15,12 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link href="https://fonts.googleapis.com/css?family=Karla|Rubik" rel="stylesheet" />
+          <link rel="icon" href="/static/favicon.ico" />
           {this.props.styleTags}
         </Head>
         <body>
           <Main />
           <NextScript />
-          <Normalize />
-          <NextStyles />
         </body>
       </html>
     )

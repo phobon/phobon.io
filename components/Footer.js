@@ -1,21 +1,25 @@
 import React from 'react';
-import { Box, BoxList, BoxListItem } from '@phobon/base';
+import { Grid } from '@phobon/base';
 import SlideLink from './SlideLink';
 import { links } from '../pages/data.json';
 
 const Footer = props => {
   const linkSet = links.map(l => (
-    <BoxListItem mr={2} key={l.label}>
-      <SlideLink href={l.url}>{l.label}</SlideLink>
-    </BoxListItem>
+    <SlideLink key={l.label} href={l.url}>{l.label}</SlideLink>
   ));
 
   return (
-    <Box as="footer" fullWidth py={5} {...props}>
-      <BoxList flexWrap="wrap" fullWidth justifyContent="flex-start">
-        {linkSet}
-      </BoxList>
-    </Box>
+    <Grid
+      as="footer"
+      alignSelf="flex-start"
+      py={5}
+      fontSize={5}
+      gridTemplateRows="1fr"
+      gridTemplateColumns={`repeat(${links.length}, auto)`}
+      gridGap={6}
+      {...props}>
+      {linkSet}
+    </Grid>
   );
 };
 

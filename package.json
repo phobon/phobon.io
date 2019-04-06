@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@now/build-utils": "^0.4.38",
+    "@now/build-utils": "^0.4.39",
     "@now/next": "^0.1.2",
-    "@phobon/base": "^1.6.2",
+    "@phobon/base": "^1.6.3",
     "@zeit/next-mdx": "^1.2.0",
     "babel-plugin-styled-components": "^1.10.0",
     "mdx": "^0.3.1",
