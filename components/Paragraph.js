@@ -6,7 +6,7 @@ const Paragraph = styled(Text).attrs(() => ({
 }))``;
 
 Paragraph.defaultProps = {
-  fontSize: 5,
+  fontSize: [4, 5],
   lineHeight: 1.8,
   color: 'grayscale.2',
 };

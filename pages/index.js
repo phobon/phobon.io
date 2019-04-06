@@ -8,8 +8,8 @@ import ArrowDownward from 'rmdi/lib/ArrowDownward';
 export default () => (
   <React.Fragment>
     <Heading.H1 fontSize={[6, 10]} mb={[7, 9]} lineHeight={[2, 3]} color="foreground">Hello. I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben McCormick</SlideLink>, a <Span color="greens.5">Developer</Span> & <Span color="accent.5">Product Designer</Span> based in Perth.</Heading.H1>
-    <Box fullWidth justifyContent="space-between" alignItems="flex-start" mb={10}>
-      <ArrowDownward color="grayscale.4" size={32} mt={2} display={['none', 'initial']}/>
+    <Box fullWidth justifyContent="space-between" alignItems="flex-start" mb={[7, 10]}>
+      <ArrowDownward color="grayscale.4" size={32} mt={2} display={['none', 'initial']} />
 
       <Box flexDirection="column" width={['100%', 3 / 5]} alignItems="flex-end">
         <Paragraph mb={5}>
@@ -25,7 +25,6 @@ export default () => (
       </Box>
     </Box>
 
-    {/* Projects */}
     <Projects projects={projects} />
   </React.Fragment>
 );

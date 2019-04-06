@@ -29,7 +29,7 @@ export default ({ pathname, ...props }) => {
   return (
     <Box
       as="header"
-      py={5}
+      py={[4, 5]}
       bg="background"
       justifyContent="space-between"
       fullWidth
