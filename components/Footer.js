@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxList, BoxListItem } from '@phobon/base';
+import { Box, BoxList, BoxListItem } from '@phobon/base';
 import SlideLink from './SlideLink';
 import { links } from '../pages/data.json';
 
@@ -11,19 +11,23 @@ const Footer = props => {
   ));
 
   return (
-    <BoxList
+    <Box
       as="footer"
-      flexDirection={['column', 'row']}
-      justifyContent="flex-start"
+      fullWidth
       alignItems="flex-start"
-      alignSelf="flex-start"
-      pt={5}
-      pb={3}
-      fontSize={5}
-      gridGap={[3, 6]}
-      {...props}>
-      {linkSet}
-    </BoxList>
+      justifyContent="flex-start">
+      <BoxList
+        flexDirection={['column', 'row']}
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        pt={5}
+        pb={3}
+        fontSize={[3, 5]}
+        gridGap={[3, 6]}
+        {...props}>
+        {linkSet}
+      </BoxList>
+    </Box>
   );
 };
 

@@ -20,11 +20,10 @@ const Project = ({ project, ...props }) => {
       <BoxList flexWrap="wrap" justifyContent="flex-start">
         {tags.map(t => (
           <BoxListItem key={t} mr={3}>
-            <Text fontSize={[2, 3]} color="grayscale.3">{t}</Text>
+            <Text fontSize={[2, 3]} color="grayscale.2">{t}</Text>
           </BoxListItem>
         ))}
       </BoxList>
-
     </Box>
   );
 };

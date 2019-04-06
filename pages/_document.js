@@ -11,10 +11,10 @@ export default class MyDocument extends Document {
 
   render () {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link href="https://fonts.googleapis.com/css?family=Karla|Rubik" rel="stylesheet" />
+          <meta name="Description" content="Personal website for developer and product designer, Ben McCormick." />
           <link rel="icon" href="/static/favicon.ico" />
           {this.props.styleTags}
         </Head>
