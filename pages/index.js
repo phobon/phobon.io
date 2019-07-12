@@ -1,47 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { Box, Heading, BoxList, BoxListItem } from '@phobon/base';
-import { headlines, currently, projects } from './data.json';
-import Headline from '../components/Headline';
-import { SlideLink } from '../components';
+import React from "react";
+import { Box, Heading } from '@phobon/base';
+import { projects } from './data.json';
+import { SlideLink, Paragraph, Span, Projects } from '../components';
 
-export default () => {
-  const [headline, setHeadline] = useState(null);
+import ArrowDownward from 'rmdi/lib/ArrowDownward';
 
-  useEffect(() => {
-    setHeadline(headlines[Math.floor(Math.random() * headlines.length)]);
-  }, []);
+export default () => (
+  <React.Fragment>
+    <Heading.H1 fontSize={[6, 10]} mb={[7, 9]} lineHeight={[2, 3]} color="foreground">Hello. I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben McCormick</SlideLink>, a <Span color="greens.5">Developer</Span> & <Span color="accent.5">Product Designer</Span> based in Perth.</Heading.H1>
+    <Box fullWidth justifyContent="space-between" alignItems="flex-start" mb={[7, 10]}>
+      <ArrowDownward color="grayscale.4" size={32} mt={2} display={['none', 'initial']} />
 
-  const current = currently.map(c => (
-    <BoxListItem key={c.target} fontSize={2}>{c.title}, <SlideLink fontSize="inherit" ml={1} href={c.url}>{c.target}</SlideLink></BoxListItem>
-  ));
-  const project = projects.map(c => (
-    <BoxListItem
-      key={c.title}
-      fontSize={2}
-      flexWrap="wrap">
-      <SlideLink fontSize="inherit" href={c.url}>{c.title}</SlideLink>,
-      <span css={{ marginLeft: '0.5rem' }}>{c.description}</span>
-     </BoxListItem>
-  ));
+      <Box flexDirection="column" width={['100%', 3 / 5]} alignItems="flex-end">
+        <Paragraph mb={5}>
+          I've been <Span color="accent.5">designing</Span> & <Span color="greens.5">making</Span> interesting things my entire life, & have really found my passion building products that make a positive difference to the world.
+        </Paragraph>
+        <Paragraph mb={5}>
+          Currently, I'm working as a UX Engineer at <SlideLink href="https://agworld.com">Agworld</SlideLink>, helping drive & scale their design effort through making <SlideLink href="http://signal.agworld.com/">Design Systems</SlideLink>; designing thoughtful, accessible digital experiences; & mentoring others in design & front-end development.
+        </Paragraph>
 
-  return (
-    <React.Fragment>
-      <Heading.H1 mb={3} color="grayscale.2">Hi, I'm Ben</Heading.H1>
-      <Headline {...headline} mb={6} color="grayscale.3" />
-
-      <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
-        <Heading.H5 color="accent.3" fontWeight="bold">Currently</Heading.H5>
-        <BoxList flexDirection="column" alignItems="flex-start">
-          {current}
-        </BoxList>
+        <Paragraph>
+          You'll often find me enjoying time with my <SlideLink href="https://www.instagram.com/thestudiophysio/">amazing partner</SlideLink>, along with my <SlideLink href="https://www.instagram.com/kodi_lab/">best friend</SlideLink>.
+        </Paragraph>
       </Box>
+    </Box>
 
-      <Box as="section" flexDirection="column" alignItems="flex-start" mb={5}>
-        <Heading.H5 color="accent.3" fontWeight="bold">Things I'm doing</Heading.H5>
-        <BoxList flexDirection="column" alignItems="flex-start">
-          {project}
-        </BoxList>
-      </Box>
-    </React.Fragment>
-  );
-};
+    <Projects projects={projects} />
+  </React.Fragment>
+);

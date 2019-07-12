@@ -1,21 +1,4 @@
 {
-  "headlines": [
-    {
-      "lead": "I'm really into design, dev and",
-      "target": "dogs",
-      "url": "https://www.instagram.com/kodi_lab/"
-    },
-    {
-      "lead": "I like to make really",
-      "target": "cool stuff",
-      "url": "http://signal.agworld.com"
-    },
-    {
-      "lead": "Trying to make up for past misdeeds in",
-      "target": "scrolljacking",
-      "url": "http://phobon.github.io"
-    }
-  ],
   "currently": [
     {
       "title": "Senior UX Engineer",
@@ -26,11 +9,6 @@
       "title": "Co-founder & Design",
       "target": "The Studio",
       "url": "https://thestudiophysio.com"
-    },
-    {
-      "title": "Proud dog person",
-      "target": "Kodi",
-      "url": "https://www.instagram.com/kodi_lab/"
     }
   ],
   "previously": [
@@ -42,16 +20,34 @@
   ],
   "projects": [
     {
-      "title": "Signal",
-      "description": "a design system",
+      "name": "Signal",
+      "status": "Live",
+      "description": "A scalable design system built with styled-components and styled-system.",
       "image": "",
-      "url": "http://signal.agworld.com"
+      "url": "http://signal.agworld.com",
+      "tags": [
+        "Product Design", "Front-End Development", "Accessibility", "Identity"
+      ]
     },
     {
-      "title": "Canvas",
-      "description": "a clinical notes app",
+      "name": "The Studio",
+      "status": "Live",
+      "description": "A physiotherapy and clinical pilates studio based in Perth.",
       "image": "",
-      "url": "https://dribbble.com/shots/4520199-Canvas-Dashboard-WIP"
+      "url": "https://thestudiophysio.com",
+      "tags": [
+        "Founder", "Identity", "Photography"
+      ]
+    },
+    {
+      "name": "Canvas",
+      "status": "In Development",
+      "description": "A clinical note-taking app to help people get their lives back.",
+      "image": "",
+      "url": "https://dribbble.com/shots/4520199-Canvas-Dashboard-WIP",
+      "tags": [
+        "Founder", "Identity", "Front-End Development", "Product Design"
+      ]
     }
   ],
   "links": [

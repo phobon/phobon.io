@@ -3,18 +3,32 @@ import { Box, BoxList, BoxListItem } from '@phobon/base';
 import SlideLink from './SlideLink';
 import { links } from '../pages/data.json';
 
-export default () => {
+const Footer = props => {
   const linkSet = links.map(l => (
-    <BoxListItem mr={2} key={l.label}>
+    <BoxListItem key={l.label} mr={5} mb={3}>
       <SlideLink href={l.url}>{l.label}</SlideLink>
     </BoxListItem>
   ));
 
   return (
-    <Box as="footer" bg="background" fullWidth px={5} pb={5} pt={5} css={{ position: 'fixed', bottom: 0, zIndex: 1 }}>
-      <BoxList flexWrap="wrap" fullWidth justifyContent="flex-start">
+    <Box
+      as="footer"
+      fullWidth
+      alignItems="flex-start"
+      justifyContent="flex-start">
+      <BoxList
+        flexDirection={['column', 'row']}
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        pt={5}
+        pb={3}
+        fontSize={[3, 5]}
+        gridGap={[3, 6]}
+        {...props}>
         {linkSet}
       </BoxList>
     </Box>
   );
 };
+
+export default Footer;
