@@ -1,19 +1,20 @@
 {
+  "name": "phobon.io",
+  "version": "3.0.0",
   "dependencies": {
-    "@now/build-utils": "^0.4.39",
-    "@now/next": "^0.1.2",
-    "@phobon/base": "^1.6.3",
-    "@zeit/next-mdx": "^1.2.0",
-    "babel-plugin-styled-components": "^1.10.0",
-    "mdx": "^0.3.1",
-    "next": "^8.0.4",
-    "prop-types": "^15.7.2",
+    "@mdx-js/loader": "^1.1.0",
+    "@next/mdx": "^9.0.2",
+    "@phobon/base": "^2.2.11",
+    "framer-motion": "^1.2.2",
+    "next": "latest",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-spring": "^8.0.19",
     "rmdi": "^1.0.1",
-    "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0"
+    "styled-components": "^5.0.0-beta.8",
+    "styled-system": "^5.0.12"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.6"
   },
   "scripts": {
     "dev": "next",

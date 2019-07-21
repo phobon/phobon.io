@@ -1,8 +1,7 @@
-const withMDX = require('@zeit/next-mdx')({
-  extension: /.mdx?$/
-})
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/
+});
 
 module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  target: 'serverless'
-})
+  pageExtensions: ['js', 'jsx', 'md', 'mdx']
+});

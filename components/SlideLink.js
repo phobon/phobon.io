@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { space, fontSize } from 'styled-system';
 import { Text } from '@phobon/base';
 
 const SlideLinkContainer = styled.span`
   ${space}
+  ${fontSize}
   position: relative;
   overflow: hidden;
   z-index: 0;
