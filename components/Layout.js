@@ -5,13 +5,13 @@ import Header from './Header';
 import Footer from './Footer';
 
 const Layout = ({ pathname, children }) => (
-  <Flex flexDirection="column" maxWidth={1280}>
-    <Header pathname={pathname} px={[4, 6]} />
+  <React.Fragment>
+    <Header pathname={pathname} px={[4, 6]} maxWidth={1280} />
     <Flex fullWidth py={[5, 10]} px={[4, 6]} flexDirection="column" alignItems="flex-start">
       {children}
     </Flex>
     <Footer px={[4, 6]} />
-  </Flex>
+  </React.Fragment>
 );
 
 export default Layout;

@@ -90,7 +90,6 @@ export default class MyApp extends App {
             padding: 0;
         
             font-size: 8px;
-            overflow-x: hidden;
             background-color: var(--c-background, hsl(221, 20%, 22%));
           }
         
@@ -100,11 +99,6 @@ export default class MyApp extends App {
             font-style: normal;
             font-weight: 400;
             line-height: 1.43;
-        
-            // Specific layout resets.
-            display: flex;
-            flex: none;
-            flex-direction: column;
           }
         
           *, ::before, ::after {
