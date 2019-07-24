@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Box, Vector, BoxList, BoxListItem } from '@phobon/base';
+import { Box, Vector, Stack, useTheme } from '@phobon/base';
 import Link from 'next/link';
+
+import Toggle from './Toggle';
+import { getTheme } from '../hooks';
 
 import SlideLink from './SlideLink';
 
@@ -12,18 +15,19 @@ const AccentVector = styled(Vector)`
 `;
 
 const nav = [
+  { pathname: '/', label: 'Home' },
   { pathname: '/projects', label: 'Projects' },
-  { pathname: '/about', label: 'About' },
   { pathname: '/thoughts/test', label: 'Thoughts' },
 ];
 
-export default ({ pathname, ...props }) => {
+const Header = ({ pathname, ...props }) => {
+  const [theme, setTheme] = useTheme('light', getTheme);
+  const toggleTheme = useCallback(() => setTheme(theme === 'light' ? 'dark' : 'light'), [theme]);
+  
   const navItems = nav.map(n => (
-    <BoxListItem ml={3} key={n.pathname}>
-      <Link href={n.pathname} passHref>
-        <SlideLink className={n.pathname === pathname ? 'current' : ''}>{n.label}</SlideLink>
-      </Link>
-    </BoxListItem>
+    <Link href={n.pathname} passHref key={n.pathname}>
+      <SlideLink fontSize={2} className={n.pathname === pathname ? 'current' : ''}>{n.label}</SlideLink>
+    </Link>
   ));
 
   return (
@@ -46,9 +50,12 @@ export default ({ pathname, ...props }) => {
         </Box>
       </Link>
 
-      {/* <BoxList as="nav">
-        {navItems}
-      </BoxList> */}
+      <Stack as="nav" flexDirection="row" space={3}>
+        {/* {navItems} */}
+        <Toggle toggled={theme === 'dark'} onClick={toggleTheme} />
+      </Stack>
     </Box>
   );
 };
+
+export default Header;
