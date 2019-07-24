@@ -5,7 +5,7 @@ import Project from './Project';
 import Apps from 'rmdi/lib/Apps';
 
 const Projects = ({ projects, ...props }) => (
-  <Box fullWidth justifyContent="space-between" alignItems="flex-start">
+  <Box fullWidth justifyContent="space-between" alignItems="flex-start" {...props}>
     <Box display={['none', 'flex']}>
       <Apps color="grayscale.4"  />
     </Box>

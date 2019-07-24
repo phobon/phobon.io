@@ -9,6 +9,7 @@ Paragraph.defaultProps = {
   fontSize: [4, 5],
   lineHeight: 1.8,
   color: 'grayscale.2',
+  mb: [2, 4],
 };
 
 export default Paragraph;

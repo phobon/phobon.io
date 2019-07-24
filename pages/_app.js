@@ -3,10 +3,11 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@phobon/base';
+import { MDXProvider } from '@mdx-js/react';
 
-import { Layout } from '../components';
+import { Layout, markdown } from '../components';
 
-theme.colors.accent = [...theme.colors.oranges];
+theme.colors.accent = [...theme.colors.purples];
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -158,8 +159,6 @@ export default class MyApp extends App {
           pre,
           form,
           fieldset {
-            margin: 0;
-            padding: 0;
           }
         
           img,
@@ -181,7 +180,9 @@ export default class MyApp extends App {
         `}</style>
         <ThemeProvider theme={theme}>
           <Layout pathname={router.pathname}>
-            <Component {...pageProps} key={router.pathname} />
+            <MDXProvider components={markdown}>
+              <Component {...pageProps} key={router.pathname} />
+            </MDXProvider>
           </Layout>
         </ThemeProvider>
       </Container>
