@@ -7,18 +7,6 @@ import { theme } from '@phobon/base';
 import { Layout } from '../components';
 
 theme.colors.accent = [...theme.colors.oranges];
-theme.colors.grayscale = [
-  'hsl(228, 29%, 90%)',
-  'hsl(229, 25%, 86%)',
-  'hsl(230, 20%, 77%)',
-  'hsl(228, 16%, 64%)',
-  'hsl(227, 13%, 48%)',
-  'hsl(225, 17%, 35%)',
-  'hsl(221, 20%, 28%)',
-  'hsl(215, 22%, 26%)',
-];
-theme.colors.foreground = 'hsl(228, 62%, 95%)';
-theme.colors.background = 'hsl(221, 20%, 22%)';
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -93,17 +81,16 @@ export default class MyApp extends App {
             font-display: fallback;
             src: local('Rubik'), local('Rubik-Regular'), url(https://fonts.gstatic.com/s/rubik/v8/iJWKBXyIfDnIV7nBrXyw023e.woff2) format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-          }          
+          }
 
           :root, body {
             width: 100vw;
-            min-height: 100vh;
         
             margin: 0;
             padding: 0;
         
             font-size: 8px;
-            overflow-x: hidden;
+            background-color: var(--c-background, hsl(221, 20%, 22%));
           }
         
           body {
@@ -112,11 +99,6 @@ export default class MyApp extends App {
             font-style: normal;
             font-weight: 400;
             line-height: 1.43;
-        
-            // Specific layout resets.
-            display: flex;
-            flex: none;
-            flex-direction: column;
           }
         
           *, ::before, ::after {
@@ -187,7 +169,6 @@ export default class MyApp extends App {
 
           #__next {
             width: 100vw;
-            height: 100vh;
           }
         
           body {

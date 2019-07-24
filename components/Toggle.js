@@ -1,58 +1,78 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import {
-  space,
-  borderRadius,
-  position,
-  zIndex,
-  gridColumn,
-  gridRow,
-  gridArea,
-  top,
-  left,
-  bottom,
-  right,
-  themeGet,
-} from 'styled-system';
+import { compose, space, borderRadius, position } from 'styled-system';
+import propTypes from '@styled-system/prop-types';
+import themeGet from '@styled-system/theme-get';
+import { focus, Vector, gridPosition } from '@phobon/base';
 
-import Check from 'rmdi/lib/Check';
-import Close from 'rmdi/lib/Close';
+const toggleSize = props => {
+  const sizes = {
+    s: css`
+      width: ${props.theme.space[5]}px;
+      height: ${props.theme.space[3]}px;
+      padding-right: 4px;
 
-const ToggleButton = styled.button.attrs(props => ({
-  disabled: props.isDisabled,
-}))`
+      &::before {
+        width: 10px;
+        height: 10px;
+      }
+
+      &[aria-checked="true"] {
+        &::before {
+          transform: translateX(16px);
+        }
+      }
+    `,
+    m: css`
+      width: ${props.theme.space[6]}px;
+      height: ${props.theme.space[4]}px;
+      padding-right: 6px;
+
+      &::before {
+        width: 18px;
+        height: 18px;
+      }
+
+      &[aria-checked="true"] {
+        &::before {
+          transform: translateX(24px);
+        }
+      }
+    `,
+  };
+
+  return sizes[props.size];
+};
+
+const toggleButtonStyles = compose(space, borderRadius, position);
+
+const ToggleButton = styled.button`
   display: flex;
   box-sizing: border-box;
-  align-items: center;
   position: relative;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0;
   border: 0;
+
   cursor: pointer;
 
   transition:
-    opacity 180ms ease-out,
-    background-color 180ms ease-out;
+    opacity 120ms ease-out,
+    background-color 120ms ease-out;
 
-  ${space}
-  ${borderRadius}
-  ${position}
-  ${zIndex}
-  ${gridColumn}
-  ${gridRow}
-  ${gridArea}
-  ${top}
-  ${left}
-  ${bottom}
-  ${right}
+  svg {
+    fill: white;
+  }
 
-  width: 48px;
-  height: 24px;
-  color: ${props => props.theme.colors.background};
+  ${toggleButtonStyles}
+  ${gridPosition}
+
+  ${toggleSize}
 
   &::before {
     content: '';
-    width: 18px;
-    height: 18px;
     border-radius: 50%;
     background-color: ${props => props.theme.colors.background};
     position: absolute;
@@ -62,86 +82,76 @@ const ToggleButton = styled.button.attrs(props => ({
   }
 
   &[aria-checked="true"] {
-    background-color: ${props => themeGet('colors.' + props.toggledBg[0])(props)};
-    justify-content: flex-start;
+    background-color: ${props => themeGet(`colors.${props.bg[0]}`)(props)};
+
     &:hover {
-      background-color: ${props => themeGet('colors.' + props.toggledBg[1])(props)};
-    }
-    &::before {
-      transform: translateX(24px);
+      background-color: ${props => themeGet(`colors.${props.bg[1]}`)(props)};
     }
   }
 
   &[aria-checked="false"] {
-    background-color: ${props => props.theme.colors.grayscale[3]};
-    justify-content: flex-end;
+    background-color: ${props => props.theme.colors.grayscale[4]};
+
     &:hover {
-      background-color: ${props => props.theme.colors.grayscale[2]};
+      background-color: ${props => props.theme.colors.grayscale[3]};
     }
+
     &::before {
       transform: translateX(0);
     }
   }
 
-  &:focus {
-    outline: 0;
-    &::after {
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      content: "";
-      box-shadow: 0 0 0 2px ${props => props.theme.colors.guidance.focus};
-      border-radius: ${props => props.theme.radii[props.borderRadius]}px;
-      pointer-events: none;
-      z-index: 1;
-    }
-  }
+  ${focus}
 
   &:disabled {
     opacity: 0.5;
+
+    svg {
+      fill: ${props => props.theme.colors.grayscale[4]};
+    }
+
     background-color: ${props => props.theme.colors.grayscale[6]};
+
     &::before {
       background-color: ${props => props.theme.colors.grayscale[5]};
     }
-    color: ${props => props.theme.colors.grayscale[3]};
+
     pointer-events: none;
   }
 `;
 
-const Toggle = ({ isToggled, isDisabled, ...props }) => (
+const Toggle = ({ toggled, disabled, size, ...props }) => (
   <ToggleButton
-    aria-checked={isToggled}
-    aria-readonly={isDisabled}
-    isDisabled={isDisabled}
+    aria-checked={toggled}
+    aria-readonly={disabled}
+    disabled={disabled}
     borderRadius={5}
+    size={size}
     role="switch"
     {...props}>
-    {isToggled ? <Check color="inherit" size="16" /> : <Close color="inherit" size="16" />}
+    {!toggled && (
+      <Vector width={size === 'm' ? 12 : 8} height={size === 'm' ? 12 : 8} viewBox="0 0 16 16">
+        <path d="M15.9999 1.77777L14.2222 0L7.99999 6.22219L1.7778 0L2.46126e-05 1.77777L6.22222 7.99996L0 14.2222L1.77777 16L7.99999 9.77774L14.2222 16L16 14.2222L9.77776 7.99996L15.9999 1.77777Z" />
+      </Vector>
+    )}
   </ToggleButton>
 );
 
 Toggle.propTypes = {
-  ...space.propTypes,
-  ...borderRadius.propTypes,
-  ...position.propTypes,
-  ...zIndex.propTypes,
-  ...gridColumn.propTypes,
-  ...gridRow.propTypes,
-  ...gridArea.propTypes,
-  ...top.propTypes,
-  ...left.propTypes,
-  ...bottom.propTypes,
-  ...right.propTypes,
+  ...propTypes.space,
+  ...propTypes.borderRadius,
+  ...propTypes.position,
+  ...gridPosition.propTypes,
 
-  isToggled: PropTypes.bool,
-  toggledBg: PropTypes.arrayOf(PropTypes.string),
+  size: PropTypes.oneOf(['s', 'm']),
+  toggled: PropTypes.bool,
+  bg: PropTypes.arrayOf(PropTypes.string),
 };
 
 Toggle.defaultProps = {
-  isToggled: false,
-  toggledBg: ['greens.3', 'greens.2'],
+  size: 'm',
+  toggled: false,
+  bg: ['greens.6', 'greens.5'],
 };
 
 Toggle.displayName = 'Toggle';
