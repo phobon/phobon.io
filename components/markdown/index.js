@@ -1,5 +1,4 @@
-import { Table } from '@phobon/base';
-
+import Table from './Table';
 import Paragraph from './Paragraph';
 import { H1, H2, H3 } from './Headings';
 import Code from './Code';

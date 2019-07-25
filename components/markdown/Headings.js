@@ -2,10 +2,11 @@ import React from 'react';
 import { Text } from '@phobon/base';
 
 const defaultProps = {
-  color: 'grayscale.1',
+  color: 'foreground',
   fontWeight: 'light',
   lineHeight: 0,
-  mb: [2, 4],
+  mt: 0,
+  mb: 3,
 };
 
 const H1 = props => <Text as="h1" fontSize={[8, 10]} {...defaultProps} {...props} />;

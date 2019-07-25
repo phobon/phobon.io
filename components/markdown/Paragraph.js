@@ -8,8 +8,9 @@ const Paragraph = styled(Text).attrs(() => ({
 Paragraph.defaultProps = {
   fontSize: [4, 5],
   lineHeight: 1.8,
-  color: 'grayscale.2',
-  mb: [2, 4],
+  color: 'foreground',
+  mt: 0,
+  mb: 5,
 };
 
 export default Paragraph;

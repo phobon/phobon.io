@@ -12,13 +12,14 @@ const Pre = styled(Text).attrs(() => ({
 `;
 
 Pre.defaultProps = {
-  fontSize: [4, 5],
+  fontSize: [3, 4],
   lineHeight: 1.8,
-  mb: [2, 4],
-  bg: 'grayscale.8',
-  color: 'grayscale.3',
+  mt: 0,
+  mb: 5,
+  bg: 'grayscale.1',
+  color: 'grayscale.9',
   px: 3,
-  py: 3,
+  py: 2,
 };
 
 export default Pre;

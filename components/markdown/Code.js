@@ -5,10 +5,10 @@ const Code = props => (
     as="span"
     textStyle="monospace"
     display="inline"
-    fontSize="inherit"
+    fontSize={[3, 4]}
     lineHeight="inherit"
     bg="grayscale.8"
-    color="grayscale.3"
+    color="grayscale.1"
     px={2}
     py={1}
     css={{ borderRadius: 8 }}
