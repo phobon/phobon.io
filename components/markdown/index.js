@@ -3,6 +3,9 @@ import Paragraph from './Paragraph';
 import { H1, H2, H3 } from './Headings';
 import Code from './Code';
 import Pre from './Pre';
+import Hr from './Hr';
+
+import { Ul, Li } from './Lists';
 
 export default {
   p: Paragraph,
@@ -12,4 +15,7 @@ export default {
   table: Table,
   inlineCode: Code,
   pre: Pre,
+  ul: Ul,
+  li: Li,
+  hr: Hr,
 }

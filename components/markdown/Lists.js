@@ -1,0 +1,34 @@
+import React from 'react';
+import { BoxList, BoxListItem, Text } from '@phobon/base';
+
+const Ul = props => <BoxList {...props} />;
+
+Ul.defaultProps = {
+  mb: 5,
+  alignItems: 'flex-start',
+};
+
+const Li = ({ children, ...props }) => (
+  <BoxListItem
+    {...props}
+    css={`
+      position: relative;
+      padding-left: 5rem;
+      &::before {
+        position: absolute;
+        left: 0;
+        top: 2rem;
+        content: "";
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: hsl(216, 10%, 90%);
+        border-radius: 4px;
+      }
+    `}>
+    <Text fontSize={[4, 5]} lineHeight={1.8} maxWidth="80ch" color="grayscale.4">{children}</Text>
+  </BoxListItem>
+);
+
+export {
+  Ul, Li,
+};

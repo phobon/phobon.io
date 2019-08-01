@@ -7,7 +7,7 @@ import { MDXProvider } from '@mdx-js/react';
 
 import { Layout, markdown } from '../components';
 
-theme.colors.accent = [...theme.colors.purples];
+theme.colors.accent = [...theme.colors.oranges];
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -115,7 +115,6 @@ export default class MyApp extends App {
           ul {
             margin: 0;
             padding: 0;
-            list-style-type: none;
           }
         
           code,
@@ -168,6 +167,10 @@ export default class MyApp extends App {
 
           #__next {
             width: 100vw;
+            display: flex;
+            flex: none;
+            flex-direction: column;
+            align-items: center;
           }
         
           body {

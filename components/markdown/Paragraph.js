@@ -11,6 +11,7 @@ Paragraph.defaultProps = {
   color: 'foreground',
   mt: 0,
   mb: 5,
+  maxWidth: '80ch',
 };
 
 export default Paragraph;
