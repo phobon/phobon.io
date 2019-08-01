@@ -1,7 +1,14 @@
 import React from 'react';
 import { Box, BoxList, BoxListItem } from '@phobon/base';
 import SlideLink from './SlideLink';
-import { links } from '../pages/data.json';
+
+const links = [
+  { label: "Dribbble", url: "https://dribbble.com/thenoumenon" },
+  { label: "Github", url: "https://github.com/phobon" },
+  { label: "Instagram", url: "http://instagram.com/thenoumenon" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/ben-mccormick-a373304/" },
+  { label: "Twitter", url: "https://twitter.com/thenoumenon" }
+];
 
 const Footer = props => {
   const linkSet = links.map(l => (

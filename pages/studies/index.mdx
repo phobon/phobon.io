@@ -1,0 +1,97 @@
+# Aligning Agworld's different Platform Experiences
+
+One of the first projects I was involved with at Agworld was to help align the overall Agworld product experience between web and mobile.
+
+## Problem Background
+
+Agworld's mobile apps are extremely popular, and widely adopted, so the business was interested in exploring ways to leverage what had been learned that would improve engagement and conversion.
+
+Agworld's web app has several years of technical and design debt accrued while exploring market fit, and the business is heavily invested in improving and paying back that debt.
+
+This debt had raised some questions around how we might better design systems and processes that scale to a growing business.
+
+## Hypothesis
+
+If we create closer alignment between the experiences on web and mobile, more farmers will engage with data that will improve their position and performance during the season. Specifically, we were looking to:
+
+- Increase the visibility of jobs to be done on a farm
+- Improve the number of trial users who successfully create an activity (a key engagement metric; currently sitting at 3%)
+- Increase the amount of time that farmers spend creating and converting activities from the map screen
+
+## My Specific Goals
+
+In my role as a designer and front-end developer for the project; I had some specific goals that I wanted to achieve as part of this process, including:
+
+- Drastically improving performance for a key experience in the product (specifically improving time to first interactive, payload size, loading times and response time for interactions)
+- Improve accessibility and inclusivity within the experience (specifically improving screen-readability, keyboard navigation, and contrast)
+- Improve the consistency of experience with clear, systemic direction
+- A proof-of-concept for an internally-developed design system, made to best serve the needs of Agworld's users, and to provide a vastly improved developer experience
+
+### Timeframe
+
+10 weeks between June and August 2018
+
+### Team
+
+- Product: David Jeffries
+- Development: Andrew Macgregor, Ethan Crawford, Bruce Hearder, Michael Holmes, Konstantin Gunbin, Stephanie Dumonteil
+- Design & Development: Ben McCormick
+
+## The Challenge of Dealing with Legacy
+
+The many years of legacy and debt accrued in both tech and design were an incredibly significant challenge to overcome. During my time on the project, I learned that we implement 3 different versions of Bootstrap across various parts of the system, including a legacy design system based on Bootstrap 4 that hadn't been maintained for several years.
+
+Digging deeper, the front-end architecture - based on an older version of React - was heavily built around inheritance rather than composition; meaning that significant parts of the system were shared in ways that make it very difficult to maintain or refactor.
+
+Unfortunately, the way the product is architected, meant that even for this small slice of the product; many different, often completely disparate parts of the product were influenced, making testing deployment very difficult.
+
+Because this was only a slice of what the product offered, making any deviations from existing styling would likely lead to an even more fractured user experience, particularly for our audience; so it was really important to ensure some aesthetic consistency, even if this meant adopting legacy styles for the time being.
+
+## The Process
+
+- Initial research and investigation to audit our current web and mobile experiences showed some clear patterns that could be leveraged to at least create a familiar through-line between the web and mobile products
+
+[img][img][img]
+  + The iPad product allowed for some excellent ergonomics, putting information at the extremeties of the device to allow for _thumb-only_ access to all the information farmers need
+  + The `farm / field` metaphor is a very strong one, so maintaining and hilighting this context is a very powerful tool to ensure some familiarity with farmers
+  + A key take-away from research was that _"farmers know what their fields look like"_, so making this pattern consistent was very important
+
+- The initial proof of concept involved: high-level design, research, architecture and development, starting with sketching on paper, whiteboards, and higher-level concepts developed with Product Managers and Developers
+
+[img][img][img]
+  + Working through higher-level concepts and sketches individually and collaboratively with the team
+
+- One of my key focuses in my role is to produce working prototypes and designs within context; to help facilitate conversation; improve usability testing; and to help scale the development effort with clear guidance and mentoring
+- The next phase involved rapid-prototyping to ensure concepts were realised quickly and able to be tested as soon as possible
+
+[img][img][img]
+  + Some early, in-context work that actually shipped incrementally as part of the process
+  + Production-quality results were achieved through collaboration with developers and close work with quality assurance
+
+- The final phase involved implementation and refactoring using the new design system's primitives and components, and architecture. This phase saw drastic improvement to the experience's actual and perceived performance; accessibility via screen-readability and keyboard-navigation; as well as improved contrast for different scenarios
+- Extracting and inlining critical-path CSS that appears across several different layouts
+- This also involved a subtle shift in aesthetic sensibilities for the experience, giving rise to a more modern, contemporary aesthetic; emphasising a clear hierarchy and white-space
+
+[img][img][img]
+  + Insetting the panels, so they don't attach to the extremities of the map gives the illusion of space. Even though the panels are actually larger, they appear to float, reducing their impact on the overall experience
+
+### A Note about Scaling
+
+I've always felt that producing these artefacts actually increases siloing in software development; and does not scale particularly well, creating bottlenecks on design and on product (who have often relied on static mockups to serve as acceptance criteria).
+
+So it was really important to me to ensure that this project produced systems and processes that could scale, as well as provide mentoring in design and development to others to help bridge the gap between design and development; between product and engineering. I believe that everyone can build beautiful, accessible designs with the right guidance and systems, and it's not simply the realm of _designers_.
+
+## Results and Improving how we Measure
+
+Overall, this project was successful in increasing the visibility of jobs to be done on a farm, and aligning the experience between web and mobile products.
+
+Initially, the reception for the change was lukewarm; with customer success decrying that "No one has complained about the change, so that means it's a great success!", which is not exactly scientific; but as time passes, the overwhelming majority of feedback has been positive.
+
+A goal from this project has been to improve and codefy how we measure, record and disseminate qualitative data. Something that is improving to this day.
+
+Quantitatively, we increased the number of trial users who successfully create an activity by 30%, and increased the amount of time that farmers spend creating and converting activities from the map screen by 100%
+
+[img]
+On the performance side, we improved the time to first interactive from 10s to 30s in some scenarios to ~4
+
+From a systems perspective, a clear proof-of-concept and early embedding of a design system that is still scaling and improving almost 18 months later with excellent adoption across the development team

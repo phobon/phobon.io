@@ -31,7 +31,7 @@ const SlideLinkContainer = styled.span`
   }
 
   &::before {
-    background-color: ${props => props.theme.colors.grayscale[6]};
+    background-color: ${props => props.theme.colors.grayscale[7]};
   }
 
   &:hover {
