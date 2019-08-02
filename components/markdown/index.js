@@ -7,6 +7,9 @@ import Hr from './Hr';
 
 import { Ul, Li } from './Lists';
 
+import Figure from './Figure';
+import FigureGrid from './FigureGrid';
+
 export default {
   p: Paragraph,
   h1: H1,
@@ -19,3 +22,6 @@ export default {
   li: Li,
   hr: Hr,
 }
+
+// Named export for Figure and FigureGrid as we shouldn't use it in the default export.
+export { Figure, FigureGrid };

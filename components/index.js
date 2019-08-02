@@ -6,8 +6,13 @@ import { Project, Projects } from './Projects';
 import Span from './Span';
 import Toggle from './Toggle';
 
-import markdown from './markdown';
+import markdownComponents, { Figure, FigureGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
+
+const markdown = {
+  ...markdownComponents,
+  a: SlideLink,
+};
 
 export {
   Header,
@@ -20,4 +25,6 @@ export {
   Paragraph,
   Toggle,
   markdown,
+  Figure,
+  FigureGrid,
 };

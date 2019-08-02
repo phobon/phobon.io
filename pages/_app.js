@@ -165,6 +165,13 @@ export default class MyApp extends App {
             border: 0;
           }
 
+          figure {
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+          }
+
           #__next {
             width: 100vw;
             display: flex;
