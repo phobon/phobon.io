@@ -1,7 +1,7 @@
 import React from 'react';
 import { BoxList, BoxListItem, Text } from '@phobon/base';
 
-const Ul = props => <BoxList {...props} />;
+const Ul = props => <BoxList {...props} space={2} />;
 
 Ul.defaultProps = {
   mb: 5,
@@ -11,9 +11,9 @@ Ul.defaultProps = {
 const Li = ({ children, ...props }) => (
   <BoxListItem
     {...props}
+    pl={[4, 6]}
     css={`
       position: relative;
-      padding-left: 5rem;
       &::before {
         position: absolute;
         left: 0;
