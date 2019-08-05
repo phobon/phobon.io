@@ -1,5 +1,5 @@
 import { Image, Grid } from '@phobon/base';
-import { Figure, FigureGrid } from '../../components';
+import { Figure, FigureGrid } from '../../../components';
 
 # Aligning [Agworld's](https://agworld.com)<br />Platform Experience
 
@@ -36,20 +36,24 @@ When working in a legacy codebase, I believe it's really important to ensure tha
 
 Starting with research and investigation into Agworld's current products; we found some clear patterns - particularly in the mobile apps - to leverage and create a consistent through-line between the different platform experiences. A key take-away from qualitative research was that _"farmers know what their fields look like"_.
 
-<FigureGrid caption="The farm and field metaphor is a very strong one, so maintaining and hilighting this context is a very powerful tool to ensure some familiarity with farmers">
-  <Image src="/static/studies/01/01.jpeg" alt="Whiteboard concepts" />
-  <Image src="/static/studies/01/02.png" alt="Original concepts mockup" />
-  <Image src="/static/studies/01/03.png" alt="Paddock inspector mockup" />
+<FigureGrid
+  gridTemplateColumns="1fr"
+  caption="The farm and field metaphor is a very strong one, so maintaining and hilighting this context is a very powerful tool to ensure some familiarity with farmers">
+  <Image width={['100%', 'auto']} src={require('./images/ipad.png')} alt="Agworld on the iPad" />
+  <Image width="100%" src={require('./images/web.jpg')} alt="Agworld on web" />
 </FigureGrid>
 
 ---
 
 The initial proof of concept involved: `high-level design`, `research`, `architecture` and `development`, starting with `sketching on paper`, `whiteboards`, and higher-level concepts developed with Product Managers and Developers
 
-<FigureGrid caption="Working through higher-level concepts and sketches individually and collaboratively with the team">
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
+<FigureGrid
+  caption="Working through higher-level concepts and sketches individually and collaboratively with the team"
+  gridTemplateColumns={["1fr", "repeat(2, 1fr)"]}
+  gridTemplateRows={["auto", "repeat(2, auto)"]}>
+  <Image width="100%" src={require('./images/01.png')} alt="Whiteboard concepts" gridArea={["auto", "1 / 1 / span 1 / span 2"]} />
+  <Image width="100%" src={require('./images/02.png')} alt="Original concepts mockup" gridArea={["auto", "2 / 1 / span 1 / span 1"]} />
+  <Image width="100%" src={require('./images/03.png')} alt="Paddock inspector mockup" gridArea={["auto", "2 / 2 / span 1 / span 1"]} />
 </FigureGrid>
 
 ---
@@ -59,9 +63,8 @@ One of my strengths is to product `working prototypes and designs` within contex
 The next phase involved rapid-prototyping to ensure concepts were realised quickly and able to be tested as soon as possible. Production-quality results were achieved through collaboration with development and quality assurance.
 
 <FigureGrid caption="Some early, in-context work that actually shipped incrementally as part of the process">
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
+  <Image width="100%" src={require('./images/04.jpg')} alt="Jobs on maps" />
+  <Image width="100%" src={require('./images/05.jpg')} alt="Financial snapshot" />
 </FigureGrid>
 
 ---
@@ -72,10 +75,12 @@ This phase saw drastic improvement to the `actual` and `perceived performance` o
 
 Aesthetically, it was a subtle shift for the experience; paying respect to existing styles to ensure consistency, but also creating a pathway forward with a more modern, contemporary aesthetic; emphasising a clear hierarchy and improving white-space.
 
-<FigureGrid caption="Insetting the panels, so they don't attach to the extremities of the map gives the illusion of space. Even though the panels are actually larger, they appear to float, reducing their impact on the overall experience">
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
-  <Image src="/static/doggo.png" alt="Doggo" />
+<FigureGrid
+  caption="Insetting the panels, so they don't attach to the extremities of the map gives the illusion of space. Even though the panels are actually larger, they appear to float, reducing their impact on the overall experience"
+  gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}>
+  <Image width="100%" src={require('./images/06.png')} alt="The final result" gridArea={['auto', '1 / 1 / span 1 / span 2']} />
+  <Image width="100%" src={require('./images/07.png')} alt="Detail of the paddock selector" />
+  <Image width="100%" src={require('./images/08.png')} alt="Detail of the paddock inspector" />
 </FigureGrid>
 
 ### Scaling and My Design Philosophy

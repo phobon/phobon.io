@@ -9,7 +9,7 @@ const FigureGrid = ({ children, caption, ...props }) => (
       {...props}
       css={`
         > img {
-          width: 100%;
+          justify-self: center;
         }
       `}
       fullWidth>
