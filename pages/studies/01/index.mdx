@@ -3,7 +3,7 @@ import { Picture, Figure, FigureGrid } from '../../../components';
 
 # Aligning [Agworld's](https://agworld.com)<br />Platform Experience
 
-Agworld offers a variety of different products; from a fully-featured website, to highly-rated and widely-adopted mobile apps. The mobile apps are very popular, so the business was interested in exploring ways to leverage what had been learned there and applying them to the web product to improve engagement and conversion.
+Agworld offers a variety of different products; from a fully-featured website, to highly-rated and widely-adopted mobile apps. The mobile apps are very popular, so the business was interested in exploring ways to leverage what had been learned there. To take those learnings and apply them to the web product to improve engagement and conversion.
 
 Taking place over the course of 10 weeks between June and August 2018, this was one of the first projects I was involved with at Agworld. I was given the opportunity to aid in creating this alignment, as well as help to understand and shape how efforts in design and development could be scaled more effectively across the business.
 
@@ -17,34 +17,38 @@ If we create closer alignment between the experiences on web and mobile, more fa
 
 ## My Role on the Team
 
-In my role in design and development for the project; I had some specific goals that I wanted to achieve as part of this project, including:
+In my unique role; I had some specific goals that I wanted to achieve as part of this project, including:
 
 - Improve performance for a key experience in the product
 - Improve accessibility and inclusivity within the experience
-- Improve the consistency of experience with clear, systemic direction
+- Improve the consistency of experience with clear, systemic design direction
 - A proof-of-concept for an internally-developed design system
 
 ## 10 Years of Legacy
 
 Any mature product that has achieved market fit is likely to harbor technical and design debt. It's an understandable result of moving quickly to respond to user needs as rapidly as possible. However, that can be really challenging to integrate with, or overcome. 
 
-Agworld's products are extremely successful, but suffer from some of these trappings; which presented a difficult landscape to work in, but also gave a fascinating glimpse into the legacy and genesis of the product.
+Agworld's products are successful, but suffer from some of these trappings; which presented a difficult landscape to work in, but also gave a fascinating glimpse into the legacy and genesis of the product.
 
 When working in a legacy codebase, I believe it's really important to ensure that you respect the decisions that were made, while enabling and inspiring a path forward; and this was no exception. Decisions in design, architecture and development needed to integrate with existing features and experiences, while ensuring there was a direction to move forward in.
 
 ## The Process
 
-Starting with research and investigation into Agworld's current products; we found some clear patterns - particularly in the mobile apps - to leverage and create a consistent through-line between the different platform experiences. A key take-away from qualitative research was that _"farmers know what their fields look like"_.
+Starting with research and investigation into Agworld's current products; we found some clear patterns - particularly in the mobile apps - to leverage and create a consistent through-line between the different platform experiences. A key take-away from qualitative research that was referenced throughout the project was: _"farmers know what their fields look like"_.
 
 <FigureGrid
   gridTemplateColumns="1fr"
-  caption="The farm and field metaphor is a very strong one, so maintaining and hilighting this context is a very powerful tool to ensure some familiarity with farmers">
+  caption="The farm and field metaphor is critical to Agworld's users; so hilighting this context is a very powerful tool to aid discoverability">
   <picture>
     <source srcSet={require('./images/ipad.png?webp')} type="image/webp" />
     <source srcSet={require('./images/ipad.png')} type="image/png" />
     <Image width={['100%', 'auto']} src={require('./images/ipad.png')} alt="Agworld on the iPad" />
   </picture>
-  <Image width="100%" src={require('./images/web.jpg')} alt="Agworld on web" />
+  <picture>
+    <source srcSet={require('./images/web.jpg?webp')} type="image/webp" />
+    <source srcSet={require('./images/web.jpg')} type="image/jpg" />
+    <Image width="100%" src={require('./images/web.jpg')} alt="Agworld on web" />
+  </picture>
 </FigureGrid>
 
 ---
@@ -62,20 +66,28 @@ The initial proof of concept involved: `high-level design`, `research`, `archite
 
 ---
 
-One of my strengths is to product `working prototypes and designs` within context. This helps facilitate conversation, improve usability testing, and helps to scale development and design effort.
+One of my strengths is to produce `working prototypes and designs` within a technological context. This helps `facilitate conversation`, `improve usability testing`, and helps to `scale development and design effort`.
 
 The next phase involved rapid-prototyping to ensure concepts were realised quickly and able to be tested as soon as possible. Production-quality results were achieved through collaboration with development and quality assurance.
 
 <FigureGrid caption="Some early, in-context work that actually shipped incrementally as part of the process">
-  <Image width="100%" src={require('./images/04.jpg')} alt="Jobs on maps" />
-  <Image width="100%" src={require('./images/05.jpg')} alt="Financial snapshot" />
+  <picture>
+    <source srcSet={require('./images/04.jpg?webp')} type="image/webp" />
+    <source srcSet={require('./images/04.jpg')} type="image/jpg" />
+    <Image width="100%" src={require('./images/04.jpg')} alt="Jobs on maps" />
+  </picture>
+  <picture>
+    <source srcSet={require('./images/05.jpg?webp')} type="image/webp" />
+    <source srcSet={require('./images/05.jpg')} type="image/jpg" />
+    <Image width="100%" src={require('./images/05.jpg')} alt="Financial snapshot" />
+  </picture>
 </FigureGrid>
 
 ---
 
 The final phase involved implementation and refacting using a newly created design system's primitives, components, and architecture.
 
-This phase saw drastic improvement to the `actual` and `perceived performance` of the experience, as well as dramatically improved `accessibility` via screen-readability and keyboard-navigation, as well as improved contrast for different scenarios.
+This phase saw drastic improvement to the `actual and perceived performance` of the experience, as well as dramatically improved `accessibility` via screen-readability,  keyboard-navigation, and improved contrast for different scenarios.
 
 Aesthetically, it was a subtle shift for the experience; paying respect to existing styles to ensure consistency, but also creating a pathway forward with a more modern, contemporary aesthetic; emphasising a clear hierarchy and improving white-space.
 
@@ -89,7 +101,7 @@ Aesthetically, it was a subtle shift for the experience; paying respect to exist
 
 ### Scaling and My Design Philosophy
 
-I've always felt that producing static artefacts as part of a software design and development process increases siloing. I've always felt that it creates a `handoff` culture, reduces collaboration, and creates bottlenecks in the process.
+I've always felt that producing static artefacts as part of a software design and development process increases siloing. This can create a `handoff culture`, that reduces collaboration and creates bottlenecks.
 
 So, it was really important to me to ensure that this project produced systems, processes, and artefacts that specifically can scale; as well as provide mentoring to others to help bridge the gap between design and development; between project and engineering.
 
@@ -101,6 +113,6 @@ Overall, this project was successful in increasing the visibility of jobs to be 
 
 One of the key highlights from this project was that we need to improve and codefy how we measure, record and distribute qualitative and quantitative data. This has been taken on as a key goal in all product delivery projects from this point.
 
-Quantitatively, we increased the number of trial users who successfully create an activity by 30%, and increased the amount of time that farmers spend creating and converting activities from the map screen by 100%, as well as improving the site's time to first interactive from 10-30s in some scenarios to under 3.
+Quantitatively, we `increased the number of trial users who successfully create an activity by 30%`, and `increased the amount of time that farmers spend creating and converting activities from the map screen by 100%`, as well as `improving the site's time to first interactive from 10-30s in some scenarios to under 3s`.
 
 From a systems perspective, a clear proof-of-concept and early embedding of a design system that is still scaling and improving almost 18 months later with excellent adoption across the development team.
