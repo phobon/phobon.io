@@ -1,5 +1,5 @@
 import { Image, Grid } from '@phobon/base';
-import { Figure, FigureGrid } from '../../../components';
+import { Picture, Figure, FigureGrid } from '../../../components';
 
 # Aligning [Agworld's](https://agworld.com)<br />Platform Experience
 
@@ -39,7 +39,11 @@ Starting with research and investigation into Agworld's current products; we fou
 <FigureGrid
   gridTemplateColumns="1fr"
   caption="The farm and field metaphor is a very strong one, so maintaining and hilighting this context is a very powerful tool to ensure some familiarity with farmers">
-  <Image width={['100%', 'auto']} src={require('./images/ipad.png')} alt="Agworld on the iPad" />
+  <picture>
+    <source srcSet={require('./images/ipad.png?webp')} type="image/webp" />
+    <source srcSet={require('./images/ipad.png')} type="image/png" />
+    <Image width={['100%', 'auto']} src={require('./images/ipad.png')} alt="Agworld on the iPad" />
+  </picture>
   <Image width="100%" src={require('./images/web.jpg')} alt="Agworld on web" />
 </FigureGrid>
 

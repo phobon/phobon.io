@@ -5,6 +5,7 @@ import SlideLink from './SlideLink';
 import { Project, Projects } from './Projects';
 import Span from './Span';
 import Toggle from './Toggle';
+import Picture from './Picture';
 
 import markdownComponents, { Figure, FigureGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
@@ -27,4 +28,5 @@ export {
   markdown,
   Figure,
   FigureGrid,
+  Picture,
 };
