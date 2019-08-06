@@ -11,4 +11,4 @@ Built using my favourite stack to build stuff these days:
 - [Styled System](https://styled-system.com/)
 - [MDX](https://mdxjs.com/)
 
-Deployments using [Now(https://zeit.co/now)
+Deployments using [Now](https://zeit.co/now)
