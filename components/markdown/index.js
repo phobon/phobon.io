@@ -4,6 +4,7 @@ import { H1, H2, H3 } from './Headings';
 import Code from './Code';
 import Pre from './Pre';
 import Hr from './Hr';
+import Blockquote from './Blockquote';
 
 import { Ul, Li } from './Lists';
 
@@ -21,6 +22,7 @@ export default {
   ul: Ul,
   li: Li,
   hr: Hr,
+  blockquote: Blockquote,
 }
 
 // Named export for Figure and FigureGrid as we shouldn't use it in the default export.
