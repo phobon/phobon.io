@@ -1,3 +1,4 @@
 import getTheme from './getTheme';
+import useApi from './useApi';
 
-export { getTheme };
+export { getTheme, useApi };

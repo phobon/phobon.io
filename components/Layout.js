@@ -6,8 +6,8 @@ import Footer from './Footer';
 
 const Layout = ({ pathname, children }) => (
   <React.Fragment>
-    <Header pathname={pathname} px={[4, 6]} maxWidth={1280} />
-    <Flex fullWidth py={[5, 10]} px={[4, 6]} flexDirection="column" alignItems="flex-start">
+    <Header pathname={pathname} px={[4, 6]} />
+    <Flex as="main" maxWidth={1280} py={[5, 10]} px={[4, 6]} flexDirection="column" alignItems="flex-start">
       {children}
     </Flex>
     <Footer px={[4, 6]} />

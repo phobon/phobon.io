@@ -1,0 +1,21 @@
+{
+  "currently": [
+    {
+      "title": "Senior UX Engineer",
+      "target": "Agworld",
+      "url": "https://agworld.com"
+    },
+    {
+      "title": "Co-founder & Design",
+      "target": "The Studio",
+      "url": "https://thestudiophysio.com"
+    }
+  ],
+  "previously": [
+    {
+      "title": "Full Stack, UX Engineer",
+      "target": "acQuire",
+      "url": "https://acquire.com.au"
+    }
+  ]
+}
