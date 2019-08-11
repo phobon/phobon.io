@@ -1,15 +1,15 @@
 import { Image, Grid } from '@phobon/base';
 import { Picture, Figure, FigureGrid } from '../../../components';
 
-# Aligning [Agworld's](https://agworld.com)<br />Platform Experience
+# Aligning [Agworld's](https://agworld.com) Platform Experiences
 
-One of my first projects at Agworld was to improve their existing web product based off the success of the company's highly rated and widely-adopted mobile apps. The aim was to bring the web up to the same level of engagement as the mobile apps, unify the user experience across both platforms, and help define and implement processes to improve future efforts in design and development.
+One of my first projects at Agworld was to improve their existing web product based off the success of the company's highly rated and widely-adopted mobile apps. The aim was to bring the web app up to the same level of engagement as the mobile apps, unify the user experience across both platforms, and help define and implement processes to improve future efforts in design and development.
 
 ## Hypothesis
 
-If we create closer alignment between the experiences on web and mobile, more farmers will engage with data that will improve their position and performance during the season.
+> If we create closer alignment between the experiences on web and mobile, more farmers will engage with data that will improve their position and performance during the season.
 
-More specifically, we wanted to increase engagement for trial users. One key engagement metric we wanted to optimise was the proportion of trial users who created an activity - an Agworld term referring to any job to be done on a farm; like planting seed, or spraying crops - which sat at 3%.
+More specifically, we wanted to increase engagement for trial users. One key engagement metric we wanted to optimise was the `proportion of trial users who created an activity` - a concept referring to any job to be done on a farm; like planting seed, or spraying crops - which sat at 3%.
 
 As part of this exercise, we also wanted to achieve the following goals:
 
@@ -20,79 +20,85 @@ As part of this exercise, we also wanted to achieve the following goals:
 
 ## 10 Years of Legacy
 
-Agworld's web app has been around since 2009, and during that time, the company has grown from 3 to almost 60. Like many mature products that have achieved market fit, the Agworld web app horboured significant technical and design debt - an understandable result of moving quickly to respond to user needs as rapidly as possible. This presented a difficult landscape to work in, but also gave a fascinating glimpse into the legacy and genesis of the product.
+Agworld's web app has been around since 2009, and during that time, the company has grown from 3 to almost 60 employees. Like many mature products that have achieved market fit, the Agworld web app horboured significant technical and design debt - an understandable result of moving quickly to respond to user needs as rapidly as possible. This presented a difficult landscape to work in, but also gave a fascinating glimpse into the legacy and genesis of the product.
 
-When working in a legacy codebase, I believe it's really important to ensure that you respect the decisions that were made, while enabling and inspiring a path forward; and this was no exception. Any decisions in design, architecture and development have to be forward-thinking and clear to follow; while making sure they integrate well into existing features and experiences.
+When working in a legacy codebase, I believe it's really important to ensure that you **respect the decisions that were made**, while **enabling and inspiring a path forward**; and this was no exception. Any design, architecture and development decisions have to be forward-thinking, and clear to follow; while making sure they integrate well into existing features and experiences.
 
 ## The Process
 
-We started by researching and investigating Agworld's web and mobile apps. We found some strong patterns in the mobile apps that we felt would translate really well to the web app and create a consistent theme between the platform experiences. One of the key take-aways we foudn from qualitative research that was references throughout the project was: _"farmers know what their fields look like"_.
+We started by `researching and investigating Agworld's web and mobile apps`. We found some strong patterns in the mobile apps that we felt would translate really well to the web app and create a consistent theme between the platform experiences. During qualitative research, we discovered just how important the **Farm / Field** metaphor was, so it was important to reference this throughout the project.
+
+> Farmers know what their farm and fields look like
 
 ---
 
 To develop the initial proof of concept, we started by sketching on paper, then moved to low-fidelity, high-level UI wireframes on the whiteboard. I worked closely with product managers and development teams to further develop these concepts and explore the new architecture.
 
 <FigureGrid
-  caption="A selection of initial sketches on paper">
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/02.png" alt="Original concepts mockup" />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/03.png" alt="Paddock inspector mockup" />
+  caption="Initial explorations and high-level sketches on paper">
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/sketch1.png" alt="Paddock selector exploration and layout" />
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/sketch2.png" alt="Paddock inspector exploration" />
 </FigureGrid>
 
 <FigureGrid
-  caption="Working through higher-level concepts with the team "
-  gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}>
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/01.png" alt="Whiteboard concepts" gridArea={["auto", "1 / 1 / span 1 / span 2"]} />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/03.png" alt="Paddock inspector mockup" gridArea={["auto", "1 / 3 / span 1 / span 1"]} />
+  caption="Working through initial concepts with product managers and structural elements with developers on whiteboard"
+  gridTemplateColumns={["1fr", "repeat(5, 1fr)"]}>
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/03.png" alt="Paddock inspector mockup" gridArea={["auto", "1 / 1 / span 1 / span 2"]} />
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/01.png" alt="Whiteboard concepts" gridArea={["auto", "1 / 3 / span 1 / span 3"]} />
 </FigureGrid>
 
 ---
 
-As someone with a background in both design and development, I really enjoy being able to produce working prototypes and designs with code, rather than just static mockups. I think this helps to better demonstrate the potential in a design, but also quickly demonstrate the capability of a solution. This helps to `facilitate conversation` in a team, as well as `improve usability testing`.
+As someone with a background in **both design and development**, I really enjoy being able to produce working prototypes and designs with code, rather than just static mockups. I think this helps to better demonstrate the potential in a design, but also quickly demonstrate the capability of a solution. This helps to `facilitate conversation` in a team, as well as `improve usability testing`.
 
-I spent the next phase building and iterating on these prototypes, which meant that concepts were realised quickly and were able to be tested as soon as was possible. Once the prototypes had been tested and approved, I collaborated closely with development and quality assurance teams to produce production-quality results.
+I spent the next phase building and iterating on these prototypes, which meant that concepts were **realised quickly** and were able to be **tested as soon as was possible**. Once the prototypes had been tested and approved, I collaborated closely with development and quality assurance teams to produce production-quality results.
 
-<FigureGrid caption="Some early, in-context work that actually shipped incrementally as part of the process">
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/04.jpg" alt="Jobs on maps" />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/05.jpg" alt="Financial snapshot" />
+<FigureGrid
+  caption="Some early, in-context work that shipped incrementally as part of the process"
+  gridTemplateColumns={["1fr", "repeat(3, 1fr)"]}
+  gridGap={0}>
+  <Image src="/static/studies/aligning-agworld-platform-experience/inspector1.png" alt="Jobs on maps" />
+  <Image src="/static/studies/aligning-agworld-platform-experience/inspector2.png" alt="Financial snapshot" />
+  <Image src="/static/studies/aligning-agworld-platform-experience/inspector3.png" alt="Financial snapshot" />
 </FigureGrid>
 
 ---
 
-Once these initial changes were completed, the final phase saw us refactoring and implementing the core design using components and architecture from a new design system that I was developing.
+Once these initial changes were completed, the final phase saw us refactoring and implementing the core design using components and architecture from [Signal, a new design system](http://signal.agworld.com) that I am actively developing.
 
 We were able to achieve **drastic improvement** to the `actual and perceived performance` of the experience, as well as dramatically improved `accessibility` via screen-readability,  keyboard-navigation, and improved contrast for different scenarios.
 
 I created a subtle aesthetic shift for the experience; paying respect to existing styles to ensure consistency, but also creating a pathway forward with a more modern, contemporary aesthetic; emphasising a clear hierarchy and improving white-space.
 
-> I'm going to rework some of these images - give more of a progression to the final result rather than just plop them in site unseen
+<Figure caption="The original web app experience">
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/web.jpg" alt="Original Agworld on web" />
+</Figure>
+
+---
+
+<Figure caption="The redesigned web app experience">
+  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/new_web.png" alt="Redesigned Agworld on web" />
+</Figure>
 
 <FigureGrid
-  caption="The original ">
-  <Image width={['100%', 'auto']} src="/static/studies/aligning-agworld-platform-experience/ipad.png" alt="Agworld on the iPad" />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/web.jpg" alt="Agworld on web" />
-</FigureGrid>
-
-<FigureGrid
-  caption="Insetting the panels, so they don't attach to the extremities of the map gives the illusion of space. Even though the panels are actually larger, they appear to float, reducing their impact on the overall experience"
-  gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}>
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/06.png" alt="The final result" gridArea={['auto', '1 / 1 / span 1 / span 2']} />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/07.png" alt="Detail of the paddock selector" />
-  <Image width="100%" src="/static/studies/aligning-agworld-platform-experience/08.png" alt="Detail of the paddock inspector" />
+  caption="Insetting the panels, so they don't attach to the extremities of the map gives the illusion of space. Even though the panels are actually larger, they appear to float, reducing their impact on the overall experience">
+  <Image width={["100%", 'auto']} src="/static/studies/aligning-agworld-platform-experience/new_paddocks.png" alt="Detail of the paddock selector" />
+  <Image width={["100%", 'auto']} src="/static/studies/aligning-agworld-platform-experience/new_inspector.png" alt="Detail of the paddock inspector" />
 </FigureGrid>
 
 ### Scaling and My Design Philosophy
 
-I've always felt that producing static artefacts as part of a software design and development process increases siloing. This can create a `handoff culture`, that reduces collaboration and creates bottlenecks.
+I've always felt that producing static artefacts as part of a software design and development process can create a `handoff culture`: one that reduces collaboration, creates bottlenecks and encourages siloing.
 
-So, it was really important to me to ensure that this project produced systems, processes, and artefacts that specifically can scale; as well as provide mentoring to others to help bridge the gap between design and development; between project and engineering.
+So, it was really important to me to ensure that this project `produced systems, processes, and artefacts that specifically can scale`; as well as provide mentoring to others to help bridge the gap between design and development; between project and engineering.
 
 I believe that everyone can build beautiful, accessible, performant designs with the right guidance and systems, and it's not simple the realm of _designers_.
 
 ## Results and Improving how we Measure
 
-Overall, this project was successful in increasing the visibility of jobs to be done on a farm, and aligning the experience between web and mobile products.
+Overall, this **project was successful** in increasing the visibility of jobs to be done on a farm, and aligning the experience between web and mobile products.
 
-One of the key highlights from this project was that we need to improve and codefy how we measure, record and distribute qualitative and quantitative data. This has been taken on as a _key goal_ in all product delivery projects from this point.
+One of the key highlights from this project was that we need to improve and codefy how we measure, record and distribute qualitative and quantitative data. This has been taken on as a _major focus_ in all product delivery projects from this point.
 
 Quantitatively, we had a number of great successes:
 
