@@ -64,7 +64,6 @@ const GlobalStyles = createGlobalStyle`
 
     font-size: 8px;
     background-color: var(--c-background, hsl(0, 0%, 100%));
-    overflow-x: hidden;
   }
 
   body {
