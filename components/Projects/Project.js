@@ -10,7 +10,6 @@ const Project = ({ project, ...props }) => {
       <Tag
         lineHeight={2}
         fontSize={[1, 2]}
-        mb={[0, 2]}
         bg={status === 'Live' ? 'greens.9' : 'oranges.9'}
         color={status === 'Live' ? 'greens.0' : 'oranges.0'}>{`${status} Project`}</Tag>
       
@@ -20,7 +19,7 @@ const Project = ({ project, ...props }) => {
       <BoxList flexDirection="row" flexWrap="wrap" justifyContent="flex-start" fullWidth>
         {tags.map(t => (
           <BoxListItem key={t} mr={3}>
-            <Text fontSize={[2, 3]} color="grayscale.2">{t}</Text>
+            <Tag fontSize={[1, 2]} bg="grayscale.9" color="grayscale.2">{t}</Tag>
           </BoxListItem>
         ))}
       </BoxList>
