@@ -2,7 +2,7 @@ const projects = [
   {
     name: 'Signal',
     status: 'Live',
-    description: 'A scalable design system built with styled-components and styled-system.',
+    description: 'A design system built with styled-components & styled-system.',
     image: null,
     url: 'http://signal.agworld.com',
     tags: [

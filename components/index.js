@@ -9,6 +9,7 @@ import Picture from './Picture';
 
 import markdownComponents, { Figure, FigureGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
+import Study from './Study';
 
 const markdown = {
   ...markdownComponents,
@@ -29,4 +30,5 @@ export {
   Figure,
   FigureGrid,
   Picture,
+  Study,
 };

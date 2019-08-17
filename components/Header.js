@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Box, Vector, Stack, useTheme } from '@phobon/base';
+import { Box, Flex, Text, Vector, Stack, useTheme } from '@phobon/base';
 import Link from 'next/link';
 
 import Toggle from './Toggle';
@@ -20,7 +20,7 @@ const nav = [
   { pathname: '/thoughts/test', label: 'Thoughts' },
 ];
 
-const Header = ({ pathname, ...props }) => {
+const Header = ({ pathname, title, ...props }) => {
   const [theme, setTheme] = useTheme('light', getTheme);
   const toggleTheme = useCallback(() => setTheme(theme === 'light' ? 'dark' : 'light'), [theme]);
   
@@ -35,7 +35,6 @@ const Header = ({ pathname, ...props }) => {
       as="header"
       py={[4, 5]}
       bg="background"
-      justifyContent="space-between"
       fullWidth
       {...props}
       css={{ position: 'sticky', top: 0, zIndex: 1 }}>
@@ -49,6 +48,8 @@ const Header = ({ pathname, ...props }) => {
           </AccentVector>
         </Box>
       </Link>
+
+      <Flex />
 
       <Stack as="nav" flexDirection="row" space={3}>
         {/* {navItems} */}

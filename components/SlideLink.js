@@ -27,7 +27,7 @@ const SlideLinkContainer = styled.span`
 
   &::after {
     transform: translateX(-101%);
-    background-color: ${props => props.theme.colors.accent[5]};
+    background-color: ${props => props.theme.colors.accent[8]};
   }
 
   &::before {
@@ -49,7 +49,7 @@ const SlideLinkContainer = styled.span`
 
     &::after {
       transform: translateX(0);
-      background-color: ${props => props.theme.colors.accent[6]};
+      background-color: ${props => props.theme.colors.accent[8]};
       top: 30%;
       height: 60%;
     }
