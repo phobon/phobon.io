@@ -1,62 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space, fontSize } from 'styled-system';
-import { Text } from '@phobon/base';
+import { compose, color, space, fontSize, lineHeight } from 'styled-system';
 
-const SlideLinkContainer = styled.span`
-  ${space}
-  ${fontSize}
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-  display: inline-flex;
-  line-height: inherit;
-  vertical-align: inherit;
+const slideLinkProps = compose(color, space, fontSize, lineHeight);
 
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 67%;
-    height: 22%;
-    width: 100%;
-    transition: transform 90ms cubic-bezier(0.19, 1, 0.22, 1);
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  &::after {
-    transform: translateX(-101%);
-    background-color: ${props => props.theme.colors.accent[8]};
-  }
-
-  &::before {
-    background-color: ${props => props.theme.colors.grayscale[7]};
-  }
-
-  &:hover {
-    &::after {
-      transform: translateX(0);
-    }
-  }
-
-  &.current {
-    pointer-events: none;
-
-    &::before {
-      display: none;
-    }
-
-    &::after {
-      transform: translateX(0);
-      background-color: ${props => props.theme.colors.accent[8]};
-      top: 30%;
-      height: 60%;
-    }
-  }
-`;
-
-const SlideAnchor = styled(Text).attrs(props => ({ as: 'a' }))`
+const SlideAnchor = styled.a`
+  ${slideLinkProps}
   overflow: hidden;
   z-index: 1;
   line-height: inherit;
@@ -64,30 +13,42 @@ const SlideAnchor = styled(Text).attrs(props => ({ as: 'a' }))`
   &:visited, &:focus {
     text-decoration: none;
   }
+`;
 
-  &:focus {
-    outline: 0;
+const SlideSpan = styled.span`
+  line-height: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  background-image: ${props => `linear-gradient(${props.theme.colors.accent[8]}, ${props.theme.colors.accent[8]})`};
+  background-position: 0% 95%;
+  background-repeat: no-repeat;
+  background-size: 0% 22%;
+  transition: background-size 90ms cubic-bezier(0.19, 1, 0.22, 1);
 
-    &::after {
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      content: "";
-      box-shadow: 0 0 0 2px ${props => props.theme.colors.guidance.focus};
-      border-radius: ${props => props.theme.radii[2]}px;
-      pointer-events: none;
-    }
+  &:hover, &:focus {
+    background-size: 100% 22%;
   }
 `;
 
-const SlideLink = ({ children, href, title, rel, ...props}) => (
-  <SlideLinkContainer {...props}>
-    <SlideAnchor fontSize="inherit" href={href} title={title} rel={rel}>
-      {children}
-    </SlideAnchor>
-  </SlideLinkContainer>
+const SlideSpanInner = styled.span`
+  background-image: ${props => `linear-gradient(${props.theme.colors.grayscale[7]}, ${props.theme.colors.grayscale[7]})`};
+  background-position: 0% 95%;
+  background-repeat: no-repeat;
+  background-size: 100% 22%;
+`;
+
+const SlideLink = ({ children, href, title, rel, ...props }) => (
+  <SlideAnchor href={href} title={title} rel={rel} {...props}>
+    <SlideSpanInner>
+      <SlideSpan>
+        {children}
+      </SlideSpan>
+    </SlideSpanInner>
+  </SlideAnchor>
 );
+
+SlideLink.defaultProps = {
+  color: 'foreground',
+}
 
 export default SlideLink;
