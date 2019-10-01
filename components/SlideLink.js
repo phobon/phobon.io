@@ -22,7 +22,7 @@ const SlideSpan = styled.span`
   background-image: ${props => `linear-gradient(${props.theme.colors.accent[8]}, ${props.theme.colors.accent[8]})`};
   background-position: 0% 95%;
   background-repeat: no-repeat;
-  background-size: 0% 22%;
+  background-size: ${props => props.current ? '100%' : '0%'} 22%;
   transition: background-size 90ms cubic-bezier(0.19, 1, 0.22, 1);
 
   &:hover, &:focus {
@@ -37,18 +37,18 @@ const SlideSpanInner = styled.span`
   background-size: 100% 22%;
 `;
 
-const SlideLink = ({ children, href, title, rel, ...props }) => (
+const SlideLink = React.forwardRef(({ children, href, title, rel, current, ...props }, ref) => (
   <SlideAnchor href={href} title={title} rel={rel} {...props}>
     <SlideSpanInner>
-      <SlideSpan>
+      <SlideSpan current={current}>
         {children}
       </SlideSpan>
     </SlideSpanInner>
   </SlideAnchor>
-);
+));
 
 SlideLink.defaultProps = {
   color: 'foreground',
-}
+};
 
 export default SlideLink;

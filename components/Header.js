@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Box, Flex, Text, Vector, Stack, useTheme } from '@phobon/base';
+import { Box, Flex, Vector, Stack, useTheme } from '@phobon/base';
 import Link from 'next/link';
 
 import Toggle from './Toggle';
@@ -15,9 +15,8 @@ const AccentVector = styled(Vector)`
 `;
 
 const nav = [
-  { pathname: '/', label: 'Home' },
   { pathname: '/projects', label: 'Projects' },
-  { pathname: '/thoughts/test', label: 'Thoughts' },
+  { pathname: '/writing', label: 'Writing' },
 ];
 
 const Header = ({ pathname, title, ...props }) => {
@@ -26,7 +25,7 @@ const Header = ({ pathname, title, ...props }) => {
   
   const navItems = nav.map(n => (
     <Link href={n.pathname} passHref key={n.pathname}>
-      <SlideLink fontSize={2} className={n.pathname === pathname ? 'current' : ''}>{n.label}</SlideLink>
+      <SlideLink fontSize={[3, 5]} current={n.pathname === pathname}>{n.label}</SlideLink>
     </Link>
   ));
 
@@ -37,7 +36,7 @@ const Header = ({ pathname, title, ...props }) => {
       bg="background"
       fullWidth
       {...props}
-      css={{ position: 'sticky', top: 0, zIndex: 1 }}>
+      css={{ position: 'sticky', top: 0, zIndex: 2 }}>
       <Link href="/">
         <Box width={[32, 40]} height={[32, 40]} >
           <AccentVector width="100%" height="100%" viewBox="0 0 16 16" color="grayscale.3">
@@ -51,9 +50,9 @@ const Header = ({ pathname, title, ...props }) => {
 
       <Flex />
 
-      <Stack as="nav" flexDirection="row" space={3}>
-        {/* {navItems} */}
-        <Toggle toggled={theme === 'dark'} onClick={toggleTheme} />
+      <Stack as="nav" flexDirection="row" space={5}>
+        {navItems}
+        <Toggle ml={[5, 6]} toggled={theme === 'dark'} onClick={toggleTheme} />
       </Stack>
     </Box>
   );

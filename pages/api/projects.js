@@ -2,7 +2,7 @@ const projects = [
   {
     name: 'Signal',
     status: 'Live',
-    description: 'A design system built with styled-components & styled-system.',
+    description: 'A design system built with styled-components & styled-system',
     image: '/static/projects/signal.png',
     url: 'http://signal.agworld.com',
     tags: [
@@ -12,7 +12,7 @@ const projects = [
   {
     name: 'The Studio',
     status: 'Live',
-    description: 'A physiotherapy and clinical pilates studio based in Perth.',
+    description: 'A physiotherapy and clinical pilates studio based in Perth',
     image: '/static/projects/thestudio.png',
     url: 'https://thestudiophysio.com',
     tags: [

@@ -895,6 +895,11 @@
     "@styled-system/prop-types" "^5.0.8"
     "@styled-system/theme-get" "^5.0.6"
 
+"@phobon/hooks@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@phobon/hooks/-/hooks-1.0.0.tgz#767a5f1f99bb12f6c5d5b929895a60d731535d4b"
+  integrity sha512-4Ply6oqHNxz3wjNmKRcDtsyKlEZy1KViU6X05pdZ+Gwd+XSL01I3eIaFsDncHHlV6QwUSL6+4hqf1WruVmJLcg==
+
 "@popmotion/easing@^1.0.1", "@popmotion/easing@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@popmotion/easing/-/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"

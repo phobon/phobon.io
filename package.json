@@ -5,6 +5,7 @@
     "@mdx-js/loader": "latest",
     "@next/mdx": "latest",
     "@phobon/base": "latest",
+    "@phobon/hooks": "^1.0.0",
     "framer-motion": "latest",
     "next": "latest",
     "react": "latest",

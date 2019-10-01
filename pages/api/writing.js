@@ -1,7 +1,8 @@
-const studies = [
+const writing = [
   {
+    "key": "aligning-agworlds-platform-experiences",
     "title": "Aligning Agworld's Platform Experiences",
-    "href": "studies/aligning-agworlds-platform-experiences",
+    "href": "writing/aligning-agworlds-platform-experiences",
     "published": "17 August 2019",
     "tags": [
       "Design",
@@ -9,8 +10,9 @@ const studies = [
     ]
   },
   {
+    "key": "building-a-better-buying-experience-at-agworld",
     "title": "Building a Better Buying Experience at Agworld",
-    "href": "studies/building-a-better-buying-experience-at-agworld",
+    "href": "writing/building-a-better-buying-experience-at-agworld",
     "published": "17 August 2019",
     "tags": [
       "Design",
@@ -21,5 +23,5 @@ const studies = [
 ];
 
 export default function handle(req, res) {
-  res.json(studies);
+  res.json(writing);
 };
