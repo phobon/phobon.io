@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Heading, Stack } from '@phobon/base';
+import { useInterval } from '@phobon/hooks';
 
 import { useApi } from '../hooks';
 import { SlideLink, Paragraph, Span, Projects, Study } from '../components';
@@ -9,7 +10,7 @@ import Gesture from 'rmdi/lib/Gesture';
 
 export default () => {
   const projects = useApi('/api/projects');
-  const studies = useApi('/api/studies');
+  const writing = useApi('/api/writing');
   return (
     <React.Fragment>
       <Heading.H1 fontSize={[8, 10]} lineHeight={[2, 3]} color="foreground">Hi there! I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>, a <Span color="greens.5">Developer</Span> & <Span color="accent.5">Product Designer</Span> based in Perth</Heading.H1>
@@ -30,17 +31,18 @@ export default () => {
         </Stack>
       </Box>
 
-      <Box fullWidth mb={[7, 10]} alignItems="flex-start">
-        <Box display={['none', 'flex']}>
-          <Gesture color="grayscale.4" />
+      {writing && (
+        <Box fullWidth mb={[8, 11]} alignItems="flex-start">
+          <Box display={['none', 'flex']}>
+            <Gesture color="grayscale.4" />
+          </Box>
+          <Stack flex={1} pl={[0, 9]} space={6}>
+            {writing.map(({key, ...s}) => (
+              <Study key={key} {...s} />
+            ))}
+          </Stack>
         </Box>
-        <Stack flex={1} pl={[0, 9]}>
-          {studies && studies.map(s => (
-            <Study {...s} />
-          ))}
-        </Stack>
-      </Box>
-      
+      )}
 
       {projects && <Projects projects={projects} />}
     </React.Fragment>
