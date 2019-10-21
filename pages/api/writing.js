@@ -8,17 +8,6 @@ const writing = [
       "Design",
       "Front-end Development"
     ]
-  },
-  {
-    "key": "building-a-better-buying-experience-at-agworld",
-    "title": "Building a Better Buying Experience at Agworld",
-    "href": "writing/building-a-better-buying-experience-at-agworld",
-    "published": "17 August 2019",
-    "tags": [
-      "Design",
-      "Research",
-      "Front-end Development"
-    ]
   }
 ];
 
