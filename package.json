@@ -3,15 +3,15 @@
   "version": "3.1.0",
   "dependencies": {
     "@mdx-js/loader": "latest",
-    "@next/mdx": "latest",
-    "@phobon/base": "latest",
+    "@next/mdx": "^9.1.2",
+    "@phobon/base": "^2.3.0",
     "@phobon/hooks": "^1.0.0",
     "framer-motion": "latest",
-    "next": "latest",
+    "next": "^9.1.2",
     "react": "latest",
     "react-dom": "latest",
     "rmdi": "latest",
-    "styled-components": "beta",
+    "styled-components": "^5.0.0-rc.1",
     "styled-system": "latest"
   },
   "devDependencies": {

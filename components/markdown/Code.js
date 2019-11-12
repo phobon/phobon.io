@@ -8,7 +8,7 @@ const Code = props => (
     fontSize={[3, 4]}
     lineHeight="inherit"
     bg="accent.9"
-    color="hsl(28, 100%, 31%)"
+    color="accent.2"
     px={2}
     py={1}
     css={{ borderRadius: 8 }}
