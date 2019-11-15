@@ -3,31 +3,30 @@ import { Picture, Figure, FigureGrid } from '../../../components';
 
 # Building a Better Buying Experience at [Agworld](https://agworld.com)
 
-One of the major projects I worked on at Agworld over the course of 2019 was to improve the experience of buying subscriptions for customers. The aim was to simplify what Agworld offers so those customers are provided with a tailored experience that is more relevent to them; as well as create a consistent message that the business could align to globally.
+One of the major projects I worked on at [Agworld](https://agworld.com) for a large part of 2019 was to improve the experience of buying subscriptions for their customers. The aim was to simplify what [Agworld](https://agworld.com) offers so those customers are provided with a tailored experience that is more relevent to them; as well as create a consistent message that the business could align to globally.
 
 ## Why this Project was Important
 
-Over its decade-long existence, Agworld has grown to be a global company; but the way it sells subscriptions hadn't grown with it. There were different offerings based on your role in agriculture, your overall size as well as your global region. Not surprisingly, this created a lot of friction for internal systems and staff, as well as confusing messaging externally. 
+Over its decade-long existence, [Agworld](https://agworld.com) has grown to be a global company; but the way it sold subscriptions hadn't grown with it. There were different offerings based on your **role in agriculture**, your **overall size** as well as your **global region**. Not surprisingly, this created a lot of friction for internal systems and staff, as well as confusing messaging externally. 
 
-For example, a subscription for a large corporate farm shouldn't be the same as one offered to a small family farm, but Agworld needed to use bespoke arrangements that just weren't flexible, or scalable.
+For example, a subscription for a large corporate farm shouldn't be the same as one offered to a small family farm, but [Agworld](https://agworld.com) needed to use bespoke arrangements that just weren't flexible, or scalable.
 
-This project was an attempt to alleviate all of those issues, and to provide customers with an excellent, clear way of purchasing exactly what they needed without increasing the pressure on staff.
+This project was an attempt to alleviate all of those issues, and to provide customers with a clear way of purchasing exactly what they needed without increasing the pressure on staff.
 
 ## Taking Bets
 
-This project was a series of experiments affecting all parts of the company:
+This project was a series of experiments:
 
 - Could we change our pricing strategy without alienating our existing customers?
 - Could we improve our Annual Contract Value (ACV) without extreme (> 20%) churn?
 - Could we work as a cross-functional team?
 - Could we be effective with remote product management?
 
-In my role as a designer on the project, I was also interested in other experiments:
+In a design capacity, I was also interested in other experiments:
 
-- Where do we see Agworld in 5 years?
+- Where do we see [Agworld](https://agworld.com) in 5 years?
 - Could we experiment on something that looked towards the future of the product?
-- Could we design something that fits these goals, while staying within the consistency spectrum of an established design system?
-- Could we adapt and scale processes to reduce bottlenecks?
+- Could we design something new, while staying in the consistency spectrum of an established design system ([Signal](http://signal.agworld.com))?
 
 Over the course of the 5 months of the project, my role shifted from `research`, to `UI design` and `prototyping`, then ended with a heavy focus on `front-end development` and `usability testing`
 
@@ -35,17 +34,19 @@ Over the course of the 5 months of the project, my role shifted from `research`,
 
 I made some assumpations at the start of the project. I assumed that there were clearly defined patterns and best practices for how to build a shopping experience in a SaaS business. I thought surely, we can look at something like `Amazon` or `Dropbox`, - or any business that sells software - to see what they do.
 
-It turns out, there are a few generalised patterns involved, but almost every different example I found was bespoke in some way; every offering was tailored to the specific needs of their audiences. It's certainly not as simple just taking a shopping cart, or a purchase flow and then plugging it into the product.
+It turns out, despite there being some generalised patterns involved, almost every different example I found was bespoke in some way; almost every experience was tailored to the specific needs of their audiences. It's certainly not as simple just taking a shopping cart, or a purchase flow and then plugging it into the product.
 
-Some specific patterns were largely proven to have higher conversion rates, or at least be part of `higher-converting checkout experiences`, but they may not be suitable for our specific audience. A really clear way to know would be to prototype different solutions and test them with Agworld's target audience.
+Some specific patterns are largely proven to have higher conversion rates, or at least be part of `higher-converting checkout experiences`, but they may not be suitable for our specific audience. A really clear way to know would be to prototype different solutions and test them with [Agworld's](https://agworld.com) target audience.
 
-## Prototyping
+## Concepts and First Steps
 
-My design process usually starts from research into trends, compiling a moodboard or an inspiration board and determine some different potential aesthetic directions, then spending some time sketching and wireframing different solutions until there are a set of concepts that are taken through to a higher-fidelity of prototype.
+My design process starts with `research`: trends, patterns, discovery and deep exploration. Understanding a broad array of potential aesthetic directions and patterns is very important at this stage of a project.
 
 <Figure caption="A rough moodboard">
   <Picture width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/moodboard" fallbackType="jpg" alt="Moodboard" />
 </Figure>
+
+Sketching and wireframing plays a huge part in exploring basic flows and patterns. These can then be taken through to higher-fidelity prototypes.
 
 <FigureGrid
   caption="Explorations and deep dives">
@@ -55,22 +56,19 @@ My design process usually starts from research into trends, compiling a moodboar
 
 ### How to Test a Prototype
 
-Overall the first prototype did not test well at all. I observed `frustration`, `anxiety`, `confusion`; all derived from some key insights:
+Overall the first prototype did not test well at all. I observed `frustration`, `anxiety`, and `confusion`; all derived from some key insights:
 
-- There is far too much information to parse
-- Confusion about where in the customer journey this experience appears
+- There is far **too much information** to parse
+- Confusion about **where in the customer journey** this experience appears
 - There's **no clear direction about what the plans offered**, or **who they're for**
 
-That last point I think is one of the most important insights to have uncovered from this process. The users that tested the prototype were familiar with Agworld's products, familiar with agronomy and the industry in general, but were still not confident that they could make a decision based on what was shown.
-
-<Figure caption="Sustainable processes and systems: prototyping with a design system">
-  <Image width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/prototype_1.png" alt="An initial prototype" />
-</Figure>
-
----
+That last point I think is one of the most important insights to have uncovered from this process. The people that tested the prototype were all familiar with [Agworld's](https://agworld.com) products, familiar with agronomy and the industry in general, but were still not confident that they could make a decision based on what was shown.
 
 <FigureGrid
-  caption="Some early iterations based on feedback from product and other stakeholders">
+  caption="Some early iterations based on feedback from product and other stakeholders"
+  gridTemplateRows="auto auto"
+  gridTemplateColumns="1fr 1fr">
+  <Image width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/prototype_1.png" alt="An initial prototype" gridArea="1 / 1 / span 1 / span 2" />
   <Image width={["100%", 'auto']} src="/static/writing/building-a-better-buying-experience-at-agworld/prototype_2.png" alt="Choosing a subscription" />
   <Image width={["100%", 'auto']} src="/static/writing/building-a-better-buying-experience-at-agworld/prototype_3.png" alt="Payment prototype" />
 </FigureGrid>
@@ -81,11 +79,11 @@ The clear direction to move on from here was to:
 - Give the experience its own space, and make it accessible without having to sign in
 - Improve how we describe each subscription, and really hone in on **who** it's for.
 
-One of the most important insights that came out of this project for me is learning just how important relationships and trust are in this industry. It's something that I feel we need to lean in on in everything that we do.
+One of the most important insights that came out of this project for me is learning just `how important relationships and trust are` in this industry. I've learned first-hand how easy it is to break trust, and how hard it is to build it; so making sure we keep this at the forefront of what we do is paramount.
 
-## Polish and Ship
+## Iterations on a Theme
 
-Taking the insights uncovered from the initial set of prototypes as a base, I created further, more refined iterations in the context of Agworld's product environment. Doing this, I could rapidly iterate and apply feedback and test at any point during the project.
+Taking the insights uncovered from the initial set of prototypes as a base, I created further, more refined iterations in the context of [Agworld's](https://agworld.com) product environment. Doing this, I could `rapidly iterate, apply feedback and test at any point` during the project.
 
 <FigureGrid
   caption="Refining and iterating on a theme and aesthetic">
@@ -108,29 +106,42 @@ Taking the insights uncovered from the initial set of prototypes as a base, I cr
 
 ---
 
+<FigureGrid
+  caption="Balancing hierarchy">
+  <Image width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/iteration_4.png" alt="Choosing a subscription iterations" />
+</FigureGrid>
+
+---
+
 <Figure caption="The final polished, and shipped (?) experience">
   <Image width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/final_1.png" alt="The final shipped experience" />
 </Figure>
 
 ## Finishing is Hard
 
-This is a bit of a difficult subject to talk about, but it's important to get out there that focus can shift, priorities can change and things can appear at the last minute and you have to adapt to it. This project was definitely not immune to those things.
+This is a bit of a difficult subject to talk about, but it's important to talk about.
 
-As we were preparing to ship, we had to adapt to changing priorities and achieve a greater alignment with some work that marketing had been doing in parallel. The short version is that it was something we simply couldn't incrementally build and ship, so the priority turned to implementing this new design and experience.
+Focus on a project can shift, priorities can change and things can appear at the last minute and you have to adapt to it. This project was definitely not immune to that.
 
-`This was quite a difficult period for me personally`. Many additional hours of intense work and grind, the understandable hit to my ego - we all have those - but, there's no denying that the change was the best outcome for the business, which is something that's really important to call out.
+As we were preparing to ship, we had to adapt to changing priorities and implement a different experience that matched the marketing site that was being developed in parallel. It was something that we couldn't incrementally build and ship, so the priority shifted heavily toward getting this change shipped as soon as possible.
 
 <Figure caption="The redesigned experience">
   <Image width="100%" src="/static/writing/building-a-better-buying-experience-at-agworld/cart-min.gif" alt="The redesigned experience" />
 </Figure>
 
-I'm really proud of the outcome here. The final implementation is accessible, responsive and performant; built in-app using design system components.
+I'm really proud of the outcome here. The final implementation is `accessible`, `responsive` and `performant`; all built in-app using [Signal components](http://signal.agworld.com).
 
-The design system held up exceptionally well; implementing a vastly different and difficult design as close to the provided spec as possible.
+[Signal](http://signal.agworld.com) held up exceptionally well; implementing a vastly different and difficult design practically identical to the provided spec.
+
+## On Burnout and Working Sustainably
+
+`This was a really difficult period for me personally, both mentally and physically`. I have been guilty of working unsustainably over my career - which has resulted in periods of burnout, anxiety and depression. This was another period of burnout that I'm still slowly recovering from some 5 months later.
+
+A big part of my life, and my career has been about learning to work sustainably; when to take a step back and when to deep dive. It's something I still struggle with, and probably will for the rest of my career; but I'm learning more and more every day.
 
 ## Success in Different Forms
 
-Over the course of a long and difficult project, it's easy to lose sight of the successes that we had along the way.
+Over the course of a long and difficult project and my own mental health struggles, it's easy to lose sight of the successes that we had along the way:
 
 - The changed pricing strategy resulted in a `~% increase in ACV` in the first 3 months
 - The improved buying experience has resulted in `~% higher sales than previous months`
@@ -143,4 +154,4 @@ Instead of focusing on some of the negative aspects, what are some areas of grow
 - Be more adaptable and positive in the face of challenging circumstances
 - Have the confidence and trust in my own abilities
 
-There were some incredibly challenging aspects to this project, but in a fast-moving environment there are some expectations that things won't always go smoothly. This project covered the spectrum, and was overall very successful; just in some ways I didn't expect.
+There were some `incredibly challenging aspects` to this project, but in a fast-moving environment there are some expectations that things won't always go smoothly. This project covered the spectrum, and was overall very successful - just in ways I didn't expect.
