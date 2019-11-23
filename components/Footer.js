@@ -13,7 +13,7 @@ const links = [
 const Footer = props => {
   const linkSet = links.map(l => (
     <BoxListItem key={l.label} mr={5} mb={3}>
-      <SlideLink href={l.url}>{l.label}</SlideLink>
+      <SlideLink href={l.url} fontSize={[3, 5]}>{l.label}</SlideLink>
     </BoxListItem>
   ));
 
@@ -29,7 +29,6 @@ const Footer = props => {
         alignItems="flex-start"
         pt={5}
         pb={3}
-        fontSize={[3, 5]}
         gridGap={[3, 6]}
         {...props}>
         {linkSet}
