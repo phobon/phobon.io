@@ -32,16 +32,11 @@ export default () => {
       </Box>
 
       {writing && (
-        <Box fullWidth mb={[8, 11]} alignItems="flex-start">
-          <Box display={['none', 'flex']}>
-            <Gesture color="grayscale.4" />
-          </Box>
-          <Stack flex={1} pl={[0, 9]} space={6}>
-            {writing.map(({key, ...s}) => (
-              <Study key={key} {...s} />
-            ))}
-          </Stack>
-        </Box>
+        <Stack fullWidth mb={[8, 11]} space={8}>
+          {writing.map(({key, ...s}) => (
+            <Study key={key} {...s} />
+          ))}
+        </Stack>
       )}
 
       {projects && <Projects projects={projects} />}

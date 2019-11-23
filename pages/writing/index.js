@@ -8,7 +8,7 @@ export default () => {
   return (
     <React.Fragment>
       {writing && (
-        <Stack fullWidth space={6}>
+        <Stack fullWidth space={8}>
           {writing.map(({key, ...s}) => (
             <Study key={key} {...s} />
           ))}
