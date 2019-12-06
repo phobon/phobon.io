@@ -10,6 +10,7 @@ import { Ul, Li } from './Lists';
 
 import Figure from './Figure';
 import FigureGrid from './FigureGrid';
+import ImageGrid from './ImageGrid';
 
 export default {
   p: Paragraph,
@@ -26,4 +27,4 @@ export default {
 }
 
 // Named export for Figure and FigureGrid as we shouldn't use it in the default export.
-export { Figure, FigureGrid };
+export { Figure, FigureGrid, ImageGrid };

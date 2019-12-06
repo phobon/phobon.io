@@ -7,8 +7,6 @@ import { MDXProvider } from '@mdx-js/react';
 
 import { Layout, markdown } from '../components';
 
-theme.colors.accent = [...theme.colors.oranges];
-
 export default class PhobonApp extends App {
   render () {
     const { Component, pageProps, router } = this.props

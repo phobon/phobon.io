@@ -7,7 +7,7 @@ import Span from './Span';
 import Toggle from './Toggle';
 import Picture from './Picture';
 
-import markdownComponents, { Figure, FigureGrid } from './markdown';
+import markdownComponents, { Figure, FigureGrid, ImageGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
 import Study from './Study';
 
@@ -29,6 +29,7 @@ export {
   markdown,
   Figure,
   FigureGrid,
+  ImageGrid,
   Picture,
   Study,
 };

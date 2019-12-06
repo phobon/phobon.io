@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { space, flexbox } from 'styled-system';
-import { Text } from '@phobon/base';
+import { Text, gridPosition } from '@phobon/base';
 
 const StyledFigure = styled.figure({
   display: 'flex',
@@ -11,18 +11,18 @@ const StyledFigure = styled.figure({
 },
   space,
   flexbox,
+  gridPosition,
 );
 
-const Figure = ({ caption, children, ...props }) => (
+const Figure = ({ caption, children, bg, ...props }) => (
   <StyledFigure {...props}>
     {children}
     <Text
       mt={2}
       as="figcaption"
       fontSize={2}
-      color="grayscale.2"
-      textStyle="italic"
-      textAlign="center">
+      color="grayscale.3"
+      css={{ alignSelf: 'flex-start' }}>
       {caption}
     </Text>
   </StyledFigure>

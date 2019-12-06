@@ -19,7 +19,7 @@ const SlideSpan = styled.span`
   line-height: inherit;
   font-size: inherit;
   text-decoration: none;
-  background-image: ${props => `linear-gradient(${props.theme.colors.accent[8]}, ${props.theme.colors.accent[8]})`};
+  background-image: ${props => `linear-gradient(${props.theme.colors.accent[7]}, ${props.theme.colors.accent[7]})`};
   background-position: 0% 95%;
   background-repeat: no-repeat;
   background-size: ${props => props.current ? '100%' : '0%'} 22%;
