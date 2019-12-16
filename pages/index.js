@@ -19,7 +19,7 @@ export default () => {
 
         <Stack width={['100%', 3 / 5]} alignItems="flex-end">
           <Paragraph mb={5}>
-            I've been <Span color="accent.5">designing</Span> & <Span color="violets.6">making</Span> interesting things my entire life, & have really found my passion building products that make a positive difference to the world
+            I've been <Span color="accent.5">designing</Span> & <Span color="violets.6">making</Span> interesting things my entire life. I've really found my passion building products that make a positive difference to the world
           </Paragraph>
           <Paragraph mb={5}>
             Currently, I'm working as a UX Engineer at <SlideLink href="https://agworld.com">Agworld</SlideLink>, helping drive & scale their design effort through making <SlideLink href="http://signal.agworld.com/">Design Systems</SlideLink>; designing thoughtful, accessible digital experiences; & mentoring others in design & front-end development
