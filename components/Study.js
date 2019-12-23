@@ -1,14 +1,15 @@
 import React from 'react';
-import { Stack, Text, Image, Box } from '@phobon/base';
+import { Stack, Text, Box } from '@phobon/base';
 import Link from 'next/link';
 
+import BoxImage from './BoxImage';
 import SlideLink from './SlideLink';
 
 const Study = ({ href, title, published, description, category, tags, ...props }) => (
   <Stack fullWidth alignItems="flex-start" {...props}>
     <Link href={href} passHref>
       <a css={{ width: '100%' }}>
-        <Image fullWidth src={`static/${href}/index.png`} mb={4}/>
+        <BoxImage fullWidth src={`static/${href}/index.png`} mb={4} />
       </a>
     </Link>
 
