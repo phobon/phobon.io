@@ -3,9 +3,9 @@ const writing = [
     "key": "building-a-better-buying-experience-at-agworld",
     "title": "Building a Better Buying Experience at Agworld",
     "href": "writing/building-a-better-buying-experience-at-agworld",
-    "published": "16 December 2019",
+    "published": "23 December 2019",
     "category": "Agworld",
-    "description": "One of the major projects I worked on at Agworld for a large part of 2019 was to improve the experience of buying subscriptions for their customers",
+    "description": "Improving the experience of buying subscriptions for Agworld's customers",
     "tags": [
       "Design",
       "Research",
@@ -18,7 +18,7 @@ const writing = [
     "href": "writing/aligning-agworlds-platform-experiences",    
     "published": "17 August 2019",
     "category": "Agworld",
-    "description": "One of my first projects at Agworld was to improve their existing web product based off the success of the company's highly rated and widely-adopted mobile apps",
+    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
     "tags": [
       "Design",
       "Front-end Development"

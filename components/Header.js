@@ -9,13 +9,19 @@ import { getTheme } from '../hooks';
 import SlideLink from './SlideLink';
 
 const AccentVector = styled(Vector)`
+  transition: transform 90ms ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
   > .a {
     fill: ${props => props.theme.colors.accent[5]};
   }
 `;
 
 const nav = [
-  { pathname: '/projects', label: 'Projects' },
+  // { pathname: '/projects', label: 'Projects' },
   { pathname: '/writing', label: 'Writing' },
 ];
 
