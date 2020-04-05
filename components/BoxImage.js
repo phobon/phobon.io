@@ -54,7 +54,7 @@ const SlideContainer = styled(Box)`
 
 const BoxImage = ({ src, alt, ...props }) => (
   <SlideContainer {...props}>
-    <img src={src} alt={alt} />
+    <img src={`${src}.webp`} alt={alt} />
   </SlideContainer>
 );
 

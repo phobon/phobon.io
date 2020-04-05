@@ -1,10 +1,8 @@
 import React from "react";
-import { Box, Heading, Stack } from '@phobon/base';
+import { Box, Heading, Stack, Vector } from '@phobon/base';
 
 import { useApi } from '../hooks';
 import { SlideLink, Paragraph, Span, Projects, Study } from '../components';
-
-import ArrowDownward from 'rmdi/lib/ArrowDownward';
 
 export default () => {
   const projects = useApi('/api/projects');
@@ -13,7 +11,9 @@ export default () => {
     <>
       <Heading.H1 fontSize={[8, 10]} lineHeight={[2, 3]} color="foreground">Hi there! I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>, a <Span color="violets.5">Developer</Span> & <Span color="accent.5">Designer</Span> based in Perth</Heading.H1>
       <Box fullWidth mt={[7, 9]} justifyContent="space-between" alignItems="flex-start" mb={[7, 10]}>
-        <ArrowDownward color="grayscale.4" size={32} mt={2} display={['none', 'initial']} />
+        <Vector color="grayscale.4" size={32} mt={2} display={['none', 'initial']}>
+          <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+        </Vector>
 
         <Stack width={['100%', 3 / 5]} alignItems="flex-end">
           <Paragraph mb={5}>
