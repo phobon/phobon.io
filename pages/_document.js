@@ -12,10 +12,10 @@ export default class PhobonDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: App => props => sheet.collectStyles(
-            <React.Fragment>
+            <>
               <GlobalStyles />
               <App {...props} />
-            </React.Fragment>
+            </>
           )
         })
 

@@ -6,7 +6,7 @@ import { Study } from '../../components';
 export default () => {
   const writing = useApi('/api/writing');
   return (
-    <React.Fragment>
+    <>
       {writing && (
         <Stack fullWidth space={8}>
           {writing.map(({key, ...s}) => (
@@ -14,6 +14,6 @@ export default () => {
           ))}
         </Stack>
       )}
-    </React.Fragment>
+    </>
   );
 };

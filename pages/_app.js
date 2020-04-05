@@ -23,20 +23,20 @@ export default class PhobonApp extends App {
           <meta property="og:url" content="https://phobon.io" />
           <meta property="og:title" content="phbn" />
           <meta property="og:description" content="Personal website for developer and product designer, Ben McCormick" />
-          <meta property="og:image" content="https://phobon.io/static/phbn.png" />
+          <meta property="og:image" content="https://phobon.io/static/phbn.webp" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://phobon.io" />
           <meta property="twitter:title" content="phbn" />
           <meta property="twitter:description" content="Personal website for developer and product designer, Ben McCormick" />
-          <meta property="twitter:image" content="https://phobon.io/static/phbn.png" />
+          <meta property="twitter:image" content="https://phobon.io/static/phbn.webp" />
         </Head>
         <ThemeProvider theme={theme}>
-          <Layout pathname={router.pathname}>
-            <MDXProvider components={markdown}>
-              <Component {...pageProps} key={router.pathname} />
-            </MDXProvider>
-          </Layout>
+          <MDXProvider components={markdown}>
+            <Layout pathname={router.pathname}>
+              <Component {...pageProps} key={router.route} />
+            </Layout>
+          </MDXProvider>
         </ThemeProvider>
       </>
     )

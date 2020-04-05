@@ -58,7 +58,7 @@ const Header = ({ pathname, title, ...props }) => {
 
       <Stack as="nav" flexDirection="row" space={5}>
         {navItems}
-        <Toggle ml={[5, 6]} toggled={theme === 'dark'} onClick={toggleTheme} />
+        <Toggle ml={[5, 6]} toggled={theme === 'dark'} onClick={toggleTheme} aria-label="Toggle Theme" />
       </Stack>
     </Box>
   );
