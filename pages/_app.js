@@ -32,11 +32,11 @@ export default class PhobonApp extends App {
           <meta property="twitter:image" content="https://phobon.io/static/phbn.png" />
         </Head>
         <ThemeProvider theme={theme}>
-          <Layout pathname={router.pathname}>
-            <MDXProvider components={markdown}>
-              <Component {...pageProps} key={router.pathname} />
-            </MDXProvider>
-          </Layout>
+          <MDXProvider components={markdown}>
+            <Layout pathname={router.pathname}>
+              <Component {...pageProps} key={router.route} />
+            </Layout>
+          </MDXProvider>
         </ThemeProvider>
       </>
     )

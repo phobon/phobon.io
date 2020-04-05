@@ -6,8 +6,8 @@ import { Projects } from '../../components';
 export default () => {
   const projects = useApi('/api/projects');
   return (
-    <React.Fragment>
+    <>
       {projects && <Projects projects={projects} />}
-    </React.Fragment>
+    </>
   );
 };

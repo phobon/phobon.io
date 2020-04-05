@@ -52,9 +52,9 @@ const SlideContainer = styled(Box)`
   }
 `;
 
-const BoxImage = ({ src, ...props }) => (
+const BoxImage = ({ src, alt, ...props }) => (
   <SlideContainer {...props}>
-    <img src={src} />
+    <img src={src} alt={alt} />
   </SlideContainer>
 );
 
