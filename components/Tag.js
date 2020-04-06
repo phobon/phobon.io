@@ -19,7 +19,7 @@ Tag.displayName = 'Tag';
 
 Tag.defaultProps = {
   color: 'foreground',
-  bg: 'grayscale.5',
+  bg: 'grayscale.8',
   lineHeight: 1.8,
   fontSize: 0,
   py: '1px',
