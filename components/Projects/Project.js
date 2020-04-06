@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Text } from '@phobon/base';
 
 import SlideLink from '../SlideLink';
-import BoxImage from '../BoxImage';
+import PopImage from '../PopImage';
 
 const Project = ({ project, ...props }) => {
   const { name, description, image, url } = project;
@@ -17,7 +17,7 @@ const Project = ({ project, ...props }) => {
       <Text fontSize={[4, 5]} color="grayscale.2" mb={4}>{description}</Text>
       {/* When this becomes a link to an internal project, it needs a Link */}
       <a css={{ width: '100%' }} href={url}>
-        <BoxImage responsive src={image} alt={name} />
+        <PopImage responsive src={image} alt={name} />
       </a>
     </Box>
   );

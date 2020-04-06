@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { compose, color, space, fontSize, lineHeight } from 'styled-system';
 
 const slideLinkProps = compose(color, space, fontSize, lineHeight);
@@ -19,7 +20,7 @@ const SlideSpan = styled.span`
   line-height: inherit;
   font-size: inherit;
   text-decoration: none;
-  background-image: ${props => `linear-gradient(${props.theme.colors.accent[7]}, ${props.theme.colors.accent[7]})`};
+  background-image: ${props => `linear-gradient(${props.theme.colors[props.slideColor][7]}, ${props.theme.colors[props.slideColor][7]})`};
   background-position: 0% 95%;
   background-repeat: no-repeat;
   background-size: ${props => props.current ? '100%' : '0%'} 22%;
@@ -37,18 +38,23 @@ const SlideSpanInner = styled.span`
   background-size: 100% 22%;
 `;
 
-const SlideLink = React.forwardRef(({ children, href, title, rel, current, ...props }, ref) => (
+const SlideLink = React.forwardRef(({ children, href, title, rel, current, slideColor, ...props }, ref) => (
   <SlideAnchor href={href} title={title} rel={rel} {...props}>
     <SlideSpanInner>
-      <SlideSpan current={current}>
+      <SlideSpan slideColor={slideColor} current={current}>
         {children}
       </SlideSpan>
     </SlideSpanInner>
   </SlideAnchor>
 ));
 
+SlideLink.propTypes = {
+  slideColor: PropTypes.string,
+};
+
 SlideLink.defaultProps = {
   color: 'foreground',
+  slideColor: 'accent',
 };
 
 export default SlideLink;
