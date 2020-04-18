@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, BoxList, BoxListItem } from '@phobon/base';
+import { Box, Stack } from '@phobon/base';
 import SlideLink from './SlideLink';
 
 const links = [
-  { label: "Dribbble", url: "https://dribbble.com/thenoumenon" },
+  { label: "Dribbble", url: "https://dribbble.com/phobon" },
   { label: "Github", url: "https://github.com/phobon" },
   { label: "Instagram", url: "http://instagram.com/thenoumenon" },
   { label: "LinkedIn", url: "https://www.linkedin.com/in/ben-mccormick-a373304/" },
@@ -12,9 +12,9 @@ const links = [
 
 const Footer = props => {
   const linkSet = links.map(l => (
-    <BoxListItem key={l.label} mr={5} mb={3}>
+    <Box as="li" key={l.label} mr={5} mb={3}>
       <SlideLink href={l.url} fontSize={[3, 5]}>{l.label}</SlideLink>
-    </BoxListItem>
+    </Box>
   ));
 
   return (
@@ -23,7 +23,8 @@ const Footer = props => {
       fullWidth
       alignItems="flex-start"
       justifyContent="flex-start">
-      <BoxList
+      <Stack
+        as="ul"
         flexDirection={['column', 'row']}
         justifyContent="flex-start"
         alignItems="flex-start"
@@ -32,7 +33,7 @@ const Footer = props => {
         gridGap={[3, 6]}
         {...props}>
         {linkSet}
-      </BoxList>
+      </Stack>
     </Box>
   );
 };

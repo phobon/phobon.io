@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Vector, Stack, useTheme } from '@phobon/base';
+import { Toggle } from '@phobon/grimoire';
 import Link from 'next/link';
 
-import Toggle from './Toggle';
 import { getTheme } from '../hooks';
 
 import SlideLink from './SlideLink';

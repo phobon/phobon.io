@@ -1,7 +1,7 @@
 import React from 'react';
-import { BoxList, BoxListItem, Text } from '@phobon/base';
+import { Stack, Text, Box } from '@phobon/base';
 
-const Ul = props => <BoxList {...props} space={2} />;
+const Ul = props => <Stack as="ul" {...props} space={2} />;
 
 Ul.defaultProps = {
   mb: 5,
@@ -9,7 +9,8 @@ Ul.defaultProps = {
 };
 
 const Li = ({ children, ...props }) => (
-  <BoxListItem
+  <Box
+    as="li"
     {...props}
     pl={[4, 6]}
     css={`
@@ -26,7 +27,7 @@ const Li = ({ children, ...props }) => (
       }
     `}>
     <Text fontSize={[4, 5]} lineHeight={1.8} maxWidth="80ch" color="grayscale.4">{children}</Text>
-  </BoxListItem>
+  </Box>
 );
 
 export {
