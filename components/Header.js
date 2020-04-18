@@ -41,6 +41,7 @@ const Header = ({ pathname, title, ...props }) => {
       py={[4, 5]}
       bg="background"
       fullWidth
+      opacity={0.9}
       {...props}
       css={{ position: 'sticky', top: 0, zIndex: 2 }}>
       <Link href="/">

@@ -1,3 +1,4 @@
+import Wrapper from './Wrapper';
 import Table from './Table';
 import Paragraph from './Paragraph';
 import { H1, H2, H3 } from './Headings';
@@ -13,6 +14,7 @@ import FigureGrid from './FigureGrid';
 import ImageGrid from './ImageGrid';
 
 export default {
+  wrapper: Wrapper,
   p: Paragraph,
   h1: H1,
   h2: H2,

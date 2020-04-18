@@ -37,8 +37,9 @@ const PopContainer = styled(Box)`
 
   > img {
     width: 100%;
-    height: auto;
+    height: 100%;
     position: relative;
+    object-fit: cover;
     left: 0;
     top: 0;
     transition: transform 90ms ease-out;

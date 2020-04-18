@@ -25,7 +25,6 @@ const Study = ({ href, src, title, published, description, category, tags, ...pr
         </Link>
       </Stack>
     </Box>
-    
   </Stack>
 );
 

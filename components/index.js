@@ -9,6 +9,7 @@ import Picture from './Picture';
 import markdownComponents, { Figure, FigureGrid, ImageGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
 import Study from './Study';
+import FluidStudy from './FluidStudy';
 
 const markdown = {
   ...markdownComponents,
@@ -30,4 +31,5 @@ export {
   ImageGrid,
   Picture,
   Study,
+  FluidStudy,
 };
