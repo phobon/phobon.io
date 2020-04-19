@@ -36,7 +36,7 @@ export default () => {
       </Stack>
 
       {writing && (
-        <Stack fullWidth mb={[7, 10]} className="fluid">
+        <Stack fullWidth mb={[7, 10]} className="fluid" id="writing">
           {writing.map(({key, ...s}, i, array) => (
             <FluidStudy bg="grayscale.9" key={key} {...s} heroPosition={i % 2 === 0 ? 'left' : 'right'} mb={[i === array.length - 1 ? 0 : 5, 0]} />
           ))}

@@ -20,6 +20,7 @@ const Footer = props => {
   return (
     <Box
       as="footer"
+      id="contact"
       fullWidth
       alignItems="flex-start"
       justifyContent="flex-start">

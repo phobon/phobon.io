@@ -23,7 +23,8 @@ const AccentVector = styled(Vector)`
 
 const nav = [
   // { pathname: '/projects', label: 'Projects' },
-  { pathname: '/writing', label: 'Writing' },
+  { pathname: '#writing', label: 'Writing' },
+  { pathname: '#contact', label: 'Contact' },
 ];
 
 const Header = ({ pathname, title, ...props }) => {
