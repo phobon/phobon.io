@@ -24,7 +24,7 @@ const FluidStudy = ({
     <Link href={href} passHref>
       <SignalLink
         fullWidth
-        height={[300, '100%']}
+        height={[500, '100%']}
         gridArea={heroPosition === 'left' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
         <PopImage fullWidth src={src} alt={title} fullHeight />
       </SignalLink>
@@ -33,7 +33,7 @@ const FluidStudy = ({
     <Stack
       fullWidth
       alignItems="flex-start"
-      px={[3, 8]}
+      px={[4, 8]}
       py={[4, 9]}
       gridArea={heroPosition === 'right' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
       <Text fontSize={[3, 4]} color="grayscale.4">{published}</Text>
