@@ -5,7 +5,7 @@ import { Image, cover } from '@phobon/base';
 const StyledPicture = styled('picture')(cover);
 
 const Picture = ({ src, fallbackExtension, fallbackType, alt, ...props }) => {
-  const fallback = `${src}.${fallbackType}`;
+  const fallback = `${src}.${fallbackExtension}`;
   return (
     <StyledPicture {...props}>
       <source srcSet={`${src}.webp`} type="image/webp" />
