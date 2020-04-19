@@ -8,7 +8,8 @@ const FigureGrid = ({ children, caption, ...props }) => (
     <Grid
       {...props}
       css={`
-        > img {
+        > picture {
+          width: 100%;
           justify-self: center;
         }
       `}
