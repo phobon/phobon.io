@@ -24,7 +24,7 @@ const FluidStudy = ({
     <Link href={href} passHref>
       <SignalLink
         fullWidth
-        height={[500, '100%']}
+        height={[420, '100%']}
         gridArea={heroPosition === 'left' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
         <PopImage fullWidth src={src} alt={title} fullHeight />
       </SignalLink>
