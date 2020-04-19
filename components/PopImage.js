@@ -1,14 +1,13 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '@phobon/base';
 
-const PopContainer = styled(Box)`
+const Picture = styled(Box)`
   background: ${props => props.theme.colors[props.color][6]};
-  opacity: 0;
   transition: opacity 0.5s ease-out;
   position: relative;
+  display: flex;
 
   &::before, &::after {
     content: '';
@@ -35,12 +34,11 @@ const PopContainer = styled(Box)`
     transform: translateX(-8px);
   }
 
-  > img {
+  img {
     width: 100%;
-    height: auto;
+    height: 100%;
     position: relative;
-    left: 0;
-    top: 0;
+    object-fit: cover;
     transition: transform 90ms ease-out;
     z-index: 1;
   }
@@ -50,40 +48,33 @@ const PopContainer = styled(Box)`
       transform: translate(0, 0);
     }
 
-    > img {
+    img {
       transform: translate(8px, -8px);
     }
   }
-
-  &.loaded {
-    opacity: 1;
-  }
 `;
 
-const PopImage = ({ src, alt, extension, ...props }) => {
-  const [loading, setLoading] = useState(true);
-  const imgRef = useRef(null);
-
-  useEffect(() => {
-    imgRef.current.src = `${src}${extension}`;
-    imgRef.current.onload = () => setLoading(false);
-  }, [])
-
+const PopImage = ({ src, alt, fallbackExtension, fallbackType, ...props }) => {
+  const fallback = `${src}.${fallbackExtension}`;
   return (
-    <PopContainer className={loading ? '' : 'loaded'} {...props}>
-      <img ref={imgRef} alt={alt} />
-    </PopContainer>
+    <Picture as="picture" {...props}>
+      <source srcSet={`${src}.webp`} type="image/webp" />
+      <source srcSet={fallback} type={`image/${fallbackType}`} />
+      <img src={fallback} alt={alt} />
+    </Picture>
   );
 };
 
 PopImage.propTypes = {
   color: PropTypes.string,
-  extension: PropTypes.string,
+  fallbackExtension: PropTypes.string,
+  fallbackType: PropTypes.string,
 };
 
 PopImage.defaultProps = {
   color: 'accent',
-  extension: '',
+  fallbackType: 'jpeg',
+  fallbackExtension: 'jpg',
 };
 
 export default PopImage;

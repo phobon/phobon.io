@@ -4,12 +4,11 @@ import Layout from './Layout';
 import SlideLink from './SlideLink';
 import { Project, Projects } from './Projects';
 import Span from './Span';
-import Toggle from './Toggle';
 import Picture from './Picture';
 
 import markdownComponents, { Figure, FigureGrid, ImageGrid } from './markdown';
 import Paragraph from './markdown/Paragraph';
-import Study from './Study';
+import FluidStudy from './FluidStudy';
 
 const markdown = {
   ...markdownComponents,
@@ -25,11 +24,10 @@ export {
   Projects,
   Span,
   Paragraph,
-  Toggle,
   markdown,
   Figure,
   FigureGrid,
   ImageGrid,
   Picture,
-  Study,
+  FluidStudy,
 };

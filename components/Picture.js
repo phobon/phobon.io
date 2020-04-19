@@ -2,17 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { Image, cover } from '@phobon/base';
 
-const StyledPicture = styled.picture(cover);
+const StyledPicture = styled('picture')(cover);
 
-const Picture = ({ src, fallbackType, ...props }) => {
-  const fallback = `${src}.${fallbackType}`;
+const Picture = ({ src, fallbackExtension, fallbackType, alt, ...props }) => {
+  const fallback = `${src}.${fallbackExtension}`;
   return (
     <StyledPicture {...props}>
       <source srcSet={`${src}.webp`} type="image/webp" />
       <source srcSet={fallback} type={`image/${fallbackType}`} />
-      <Image src={fallback} {...props} />
+      <Image src={fallback} alt={alt} {...props} />
     </StyledPicture>
   );
+};
+
+Picture.defaultProps = {
+  fallbackExtension: 'jpg',
+  fallbackType: 'jpeg',
 };
 
 export default Picture;

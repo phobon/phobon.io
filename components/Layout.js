@@ -10,9 +10,7 @@ const Layout = ({ pathname, title, children }) => (
     <Flex
       as="main"
       fullWidth
-      maxWidth={1280}
       py={[5, 10]}
-      px={[4, 6]}
       flexDirection="column"
       alignItems="flex-start">
       {children}

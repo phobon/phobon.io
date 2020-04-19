@@ -1,11 +1,11 @@
 import React from 'react';
 import { Stack } from '@phobon/base';
 
-import Study from './Study';
+import FluidStudy from './FluidStudy';
 
 export default {
-  component: Study,
-  title: 'Components/Study',
+  component: FluidStudy,
+  title: 'Components/FluidStudy',
 };
 
 const studies = [{
@@ -21,6 +21,7 @@ const studies = [{
     "Research",
     "Front-end Development"
   ],
+  heroPosition: 'left',
 },
 {
   key: "aligning-agworlds-platform-experiences",
@@ -34,10 +35,11 @@ const studies = [{
     "Design",
     "Front-end Development"
   ],
+  heroPosition: 'right',
 }];
 
 export const withVaryingTextLengths = () => (
-  <Stack fullWidth space={9} alignItems="flex-start">
-    {studies.map(({ key, ...s }) => <Study key={key} {...s} />)}
+  <Stack fullWidth alignItems="flex-start">
+    {studies.map(({ key, ...s }) => <FluidStudy key={key} {...s} />)}
   </Stack>
 );

@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Box, Flex, Vector, Stack, useTheme } from '@phobon/base';
+
+import { Toggle } from '@phobon/grimoire';
 import Link from 'next/link';
 
-import Toggle from './Toggle';
 import { getTheme } from '../hooks';
 
 import SlideLink from './SlideLink';
@@ -22,7 +23,8 @@ const AccentVector = styled(Vector)`
 
 const nav = [
   // { pathname: '/projects', label: 'Projects' },
-  { pathname: '/writing', label: 'Writing' },
+  { pathname: '/#writing', label: 'Writing' },
+  { pathname: '/#contact', label: 'Contact' },
 ];
 
 const Header = ({ pathname, title, ...props }) => {
@@ -41,6 +43,7 @@ const Header = ({ pathname, title, ...props }) => {
       py={[4, 5]}
       bg="background"
       fullWidth
+      opacity={0.9}
       {...props}
       css={{ position: 'sticky', top: 0, zIndex: 2 }}>
       <Link href="/">
