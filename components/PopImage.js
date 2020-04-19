@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '@phobon/base';
 
-const PopContainer = styled(Box)`
+const Picture = styled(Box)`
   background: ${props => props.theme.colors[props.color][6]};
   transition: opacity 0.5s ease-out;
   position: relative;
+  display: flex;
 
   &::before, &::after {
     content: '';
@@ -33,13 +34,11 @@ const PopContainer = styled(Box)`
     transform: translateX(-8px);
   }
 
-  picture, img {
+  img {
     width: 100%;
     height: 100%;
     position: relative;
     object-fit: cover;
-    left: 0;
-    top: 0;
     transition: transform 90ms ease-out;
     z-index: 1;
   }
@@ -58,13 +57,11 @@ const PopContainer = styled(Box)`
 const PopImage = ({ src, alt, fallbackExtension, fallbackType, ...props }) => {
   const fallback = `${src}.${fallbackExtension}`;
   return (
-    <PopContainer {...props}>
-      <picture>
-        <source srcSet={`${src}.webp`} type="image/webp" />
-        <source srcSet={fallback} type={`image/${fallbackType}`} />
-        <img src={fallback} alt={alt} />
-      </picture>
-    </PopContainer>
+    <Picture as="picture" {...props}>
+      <source srcSet={`${src}.webp`} type="image/webp" />
+      <source srcSet={fallback} type={`image/${fallbackType}`} />
+      <img src={fallback} alt={alt} />
+    </Picture>
   );
 };
 

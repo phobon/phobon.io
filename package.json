@@ -4,9 +4,9 @@
   "dependencies": {
     "@mdx-js/loader": "^1.5.8",
     "@next/mdx": "^9.3.5",
-    "@phobon/base": "^2.6.1",
+    "@phobon/base": "^2.6.2",
     "@phobon/grimoire": "^0.12.1",
-    "@phobon/hooks": "^1.1.0",
+    "@phobon/hooks": "^1.1.1",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addons": "^5.3.18",
