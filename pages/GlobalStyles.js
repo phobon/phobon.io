@@ -58,6 +58,7 @@ const GlobalStyles = createGlobalStyle`
 
   :root, body {
     width: 100%;
+    overflow-x: hidden;
 
     margin: 0;
     padding: 0;
