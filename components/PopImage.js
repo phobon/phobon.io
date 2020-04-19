@@ -1,12 +1,10 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box } from '@phobon/base';
 
 const PopContainer = styled(Box)`
   background: ${props => props.theme.colors[props.color][6]};
-  opacity: 0;
   transition: opacity 0.5s ease-out;
   position: relative;
 
@@ -35,7 +33,7 @@ const PopContainer = styled(Box)`
     transform: translateX(-8px);
   }
 
-  > img {
+  picture, img {
     width: 100%;
     height: 100%;
     position: relative;
@@ -51,40 +49,35 @@ const PopContainer = styled(Box)`
       transform: translate(0, 0);
     }
 
-    > img {
+    img {
       transform: translate(8px, -8px);
     }
   }
-
-  &.loaded {
-    opacity: 1;
-  }
 `;
 
-const PopImage = ({ src, alt, extension, ...props }) => {
-  const [loading, setLoading] = useState(true);
-  const imgRef = useRef(null);
-
-  useEffect(() => {
-    imgRef.current.src = `${src}${extension}`;
-    imgRef.current.onload = () => setLoading(false);
-  }, [])
-
+const PopImage = ({ src, alt, fallbackExtension, fallbackType, ...props }) => {
+  const fallback = `${src}.${fallbackExtension}`;
   return (
-    <PopContainer className={loading ? '' : 'loaded'} {...props}>
-      <img ref={imgRef} alt={alt} />
+    <PopContainer {...props}>
+      <picture>
+        <source srcSet={`${src}.webp`} type="image/webp" />
+        <source srcSet={fallback} type={`image/${fallbackType}`} />
+        <img src={fallback} alt={alt} />
+      </picture>
     </PopContainer>
   );
 };
 
 PopImage.propTypes = {
   color: PropTypes.string,
-  extension: PropTypes.string,
+  fallbackExtension: PropTypes.string,
+  fallbackType: PropTypes.string,
 };
 
 PopImage.defaultProps = {
   color: 'accent',
-  extension: '',
+  fallbackType: 'jpeg',
+  fallbackExtension: 'jpg',
 };
 
 export default PopImage;

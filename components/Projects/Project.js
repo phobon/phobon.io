@@ -5,7 +5,7 @@ import SlideLink from '../SlideLink';
 import PopImage from '../PopImage';
 
 const Project = ({ project, ...props }) => {
-  const { name, description, image, url } = project;
+  const { name, description, image, fallbackType, fallbackExtension, url } = project;
   return (
     <Box
       {...props}
@@ -17,7 +17,7 @@ const Project = ({ project, ...props }) => {
       <Text fontSize={[4, 5]} color="grayscale.2" mb={4}>{description}</Text>
       {/* When this becomes a link to an internal project, it needs a Link */}
       <a css={{ width: '100%' }} href={url}>
-        <PopImage responsive src={image} alt={name} />
+        <PopImage responsive src={image} fallbackType={fallbackType} fallbackExtension={fallbackExtension} alt={name} />
       </a>
     </Box>
   );

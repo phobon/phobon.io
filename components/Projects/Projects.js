@@ -9,6 +9,7 @@ const Projects = ({ projects, ...props }) => (
     gridTemplateColumns="repeat(auto-fit, minmax(300px, 500px))"
     gridAutoRows="auto"
     gridGap={8}
+    alignSelf="center"
     px={[4, 6]}
     {...props}>
     {projects.map(p => (

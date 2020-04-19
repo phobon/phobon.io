@@ -1,12 +1,16 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 import { Box, Flex, Vector, Stack, useTheme } from '@phobon/base';
+
 import { Toggle } from '@phobon/grimoire';
 import Link from 'next/link';
 
 import { getTheme } from '../hooks';
 
 import SlideLink from './SlideLink';
+
+// const useTheme = dynamic(() => import('@phobon/base').then(mod => mod.useTheme), { ssr: false });
 
 const AccentVector = styled(Vector)`
   transition: transform 90ms ease-out;
