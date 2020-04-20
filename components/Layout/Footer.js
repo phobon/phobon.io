@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Stack } from '@phobon/base';
-import SlideLink from './SlideLink';
+
+import SlideLink from '../SlideLink';
+import { Paragraph, Span } from '../Markdown';
 
 const links = [
   { label: "Dribbble", url: "https://dribbble.com/phobon" },
@@ -18,24 +20,31 @@ const Footer = props => {
   ));
 
   return (
-    <Box
+    <Stack
       as="footer"
       id="contact"
       fullWidth
       alignItems="flex-start"
-      justifyContent="flex-start">
+      justifyContent="flex-start"
+      bg="grayscale.9"
+      pt={6}
+      pb={3}
+      space={5}
+      {...props}>
+
+      <Paragraph color="grayscale.3" mb={0}>
+        You'll often find me enjoying time with my <SlideLink href="https://www.instagram.com/thestudiophysio/">amazing partner</SlideLink>, and my <SlideLink href="https://www.instagram.com/kodi_lab/">best friend</SlideLink>; or <Span color="inherit" css={{ textDecoration: 'line-through' }}>shitposting</Span> online
+      </Paragraph>
+  
       <Stack
         as="ul"
         flexDirection={['column', 'row']}
         justifyContent="flex-start"
         alignItems="flex-start"
-        pt={5}
-        pb={3}
-        gridGap={[3, 6]}
-        {...props}>
+        gridGap={[3, 6]}>
         {linkSet}
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

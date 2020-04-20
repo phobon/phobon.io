@@ -2,8 +2,8 @@ import React from 'react';
 import { Grid, Stack, Text, Link as SignalLink } from '@phobon/base';
 import Link from 'next/link';
 
-import PopImage from './PopImage';
-import SlideLink from './SlideLink';
+import PopImage from '../PopImage';
+import SlideLink from '../SlideLink';
 
 const FluidStudy = ({
   href,
@@ -38,7 +38,7 @@ const FluidStudy = ({
       gridArea={heroPosition === 'right' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
       <Text fontSize={[3, 4]} color="grayscale.4">{published}</Text>
       <Text fontSize={[6, 7]} color="grayscale.0" lineHeight={1} mb={3}>{title}</Text>
-      <Text fontSize={[4, 5]} color="grayscale.4" mb={3}>{description}</Text>
+      <Text fontSize={[4, 5]} color="grayscale.3" mb={3}>{description}</Text>
       <Link href={href} passHref>
         <SlideLink fontSize={[4, 5]} fontWeight="bold">Check it out</SlideLink>
       </Link>

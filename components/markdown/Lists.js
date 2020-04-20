@@ -26,7 +26,7 @@ const Li = ({ children, ...props }) => (
         border-radius: 4px;
       }
     `}>
-    <Text fontSize={[4, 5]} lineHeight={1.8} maxWidth="80ch" color="grayscale.4">{children}</Text>
+    <Text fontSize={[4, 5]} lineHeight={1.8} maxWidth="80ch" color="grayscale.3">{children}</Text>
   </Box>
 );
 
