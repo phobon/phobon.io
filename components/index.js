@@ -1,13 +1,9 @@
-import Header from './Header';
-import Footer from './Footer';
-import Layout from './Layout';
-import SlideLink from './SlideLink';
-import { Project, Projects } from './Projects';
-import Span from './Span';
-import Picture from './Picture';
+import { Header, Footer, Layout } from './Layout';
 
-import markdownComponents, { Figure, FigureGrid, ImageGrid } from './markdown';
-import Paragraph from './markdown/Paragraph';
+import SlideLink from './SlideLink';
+import Project from './Project';
+
+import markdownComponents, { Figure, FigureGrid, ImageGrid, Span, Picture, Paragraph } from './Markdown';
 import FluidStudy from './FluidStudy';
 
 const markdown = {
@@ -21,7 +17,6 @@ export {
   Layout,
   SlideLink,
   Project,
-  Projects,
   Span,
   Paragraph,
   markdown,

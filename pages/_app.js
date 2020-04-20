@@ -17,6 +17,7 @@ export default class PhobonApp extends App {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="title" content="phbn" />
           <meta name="description" content="Personal website for developer and product designer, Ben McCormick" />
+          <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
           <link rel="icon" href="/static/favicon.ico" />
 
           <meta property="og:type" content="website" />

@@ -14,7 +14,7 @@ const Project = ({ project, ...props }) => {
       alignItems="flex-start"
       fontSize={[6, 8]}>
       <SlideLink fontSize={[6, 7]} fontWeight="bold" lineHeight={2} mb={[2, 0]} href={url}>{name}</SlideLink>
-      <Text fontSize={[4, 5]} color="grayscale.4" mb={4}>{description}</Text>
+      <Text fontSize={[4, 5]} color="grayscale.3" mb={4}>{description}</Text>
       {/* When this becomes a link to an internal project, it needs a Link */}
       <a css={{ width: '100%' }} href={url}>
         <PopImage src={image} fallbackType={fallbackType} fallbackExtension={fallbackExtension} alt={name} />

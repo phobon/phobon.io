@@ -13,6 +13,9 @@ import Figure from './Figure';
 import FigureGrid from './FigureGrid';
 import ImageGrid from './ImageGrid';
 
+import Picture from './Picture';
+import Span from './Span';
+
 export default {
   wrapper: Wrapper,
   p: Paragraph,
@@ -26,7 +29,7 @@ export default {
   li: Li,
   hr: Hr,
   blockquote: Blockquote,
-}
+};
 
-// Named export for Figure and FigureGrid as we shouldn't use it in the default export.
-export { Figure, FigureGrid, ImageGrid };
+// Named export as we shouldn't use it in the default export.
+export { Figure, FigureGrid, ImageGrid, Picture, Span, Paragraph };
