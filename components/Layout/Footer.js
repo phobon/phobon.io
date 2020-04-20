@@ -31,7 +31,6 @@ const Footer = props => {
       pb={3}
       space={5}
       {...props}>
-
       <Paragraph color="grayscale.3" mb={0}>
         You'll often find me enjoying time with my <SlideLink href="https://www.instagram.com/thestudiophysio/">amazing partner</SlideLink>, and my <SlideLink href="https://www.instagram.com/kodi_lab/">best friend</SlideLink>; or <Span color="inherit" css={{ textDecoration: 'line-through' }}>shitposting</Span> online
       </Paragraph>
