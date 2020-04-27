@@ -5,6 +5,7 @@ import Project from './Project';
 
 import markdownComponents, { Figure, FigureGrid, ImageGrid, Span, Picture, Paragraph } from './Markdown';
 import FluidStudy from './FluidStudy';
+import Experience from './Experience';
 
 const markdown = {
   ...markdownComponents,
@@ -25,4 +26,5 @@ export {
   ImageGrid,
   Picture,
   FluidStudy,
+  Experience,
 };

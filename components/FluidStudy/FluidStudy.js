@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Stack, Text, Link as SignalLink } from '@phobon/base';
+import { Heading, Stack, Text, Link as SignalLink } from '@phobon/base';
 import Link from 'next/link';
 
 import PopImage from '../PopImage';
@@ -16,34 +16,30 @@ const FluidStudy = ({
   heroPosition,
   ...props
 }) => (
-  <Grid
+  <Stack
+    as="article"
     fullWidth
     {...props}
-    height={['auto', 800]}
-    gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}>
+    alignItems="flex-start">
     <Link href={href} passHref>
-      <SignalLink
-        fullWidth
-        height={[420, '100%']}
-        gridArea={heroPosition === 'left' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
+      <SignalLink fullWidth mb={5}>
         <PopImage fullWidth src={src} alt={title} fullHeight />
       </SignalLink>
     </Link>
 
-    <Stack
-      fullWidth
-      alignItems="flex-start"
-      px={[4, 8]}
-      py={[4, 9]}
-      gridArea={heroPosition === 'right' ? ['', '1 / 1 / span 1 / span 1'] : ['', '1 / 2 / span 1 / span 1']}>
-      <Text fontSize={[3, 4]} color="grayscale.4">{published}</Text>
-      <Text fontSize={[6, 7]} color="grayscale.0" lineHeight={1} mb={3}>{title}</Text>
-      <Text fontSize={[4, 5]} color="grayscale.3" mb={3}>{description}</Text>
-      <Link href={href} passHref>
-        <SlideLink fontSize={[4, 5]} fontWeight="bold">Check it out</SlideLink>
-      </Link>
-    </Stack>
-  </Grid>
+    <Text fontSize={[3, 4]} color="grayscale.4">{published}</Text>
+    <Link href={href} passHref>
+      <Heading.H2 mb={3} lineHeight={1}>
+        <SlideLink>
+          {title}
+        </SlideLink>
+      </Heading.H2>
+    </Link>
+    <Text fontSize={[4, 5]} color="grayscale.3" mb={3}>{description}</Text>
+    <Link href={href} passHref>
+      <SlideLink fontSize={[4, 5]}>Read more</SlideLink>
+    </Link>
+  </Stack>
 );
 
 FluidStudy.defaultProps = {

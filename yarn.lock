@@ -1348,10 +1348,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@phobon/base@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-2.6.2.tgz#2817e3d606b3185ff1f14b89898cf1521cc84eb9"
-  integrity sha512-Qr4BXizasUa/IN5CFOFTR7ObgZixdwTJLAjiEX1k3ksDOq6YElZ6lLbW3KrNthhIhf3tzhEzl2jMRu2Ixd3/vA==
+"@phobon/base@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-2.7.0.tgz#96308e250bd18ce5e9333d997a2a356700376485"
+  integrity sha512-u9XRFFvWHJ+XE/8aSc9b3xjf8aNFVlG7pqhnb7aQOXvY+kBI4uCee/0HniCJEzPv3DLp/8LYHh5pnSw9phwXdQ==
   dependencies:
     "@phobon/hooks" "^1.1.1"
     "@storybook/addon-info" "^5.3.18"
@@ -1361,10 +1361,10 @@
     "@styled-system/theme-get" "^5.0.6"
     react-test-render "^1.1.2"
 
-"@phobon/grimoire@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-0.12.1.tgz#306369d59c265e792f45af312e4493314aaba164"
-  integrity sha512-7UogW9xhFTvg76W50/9Eq+XmZALt7RwgaYdzrtyUklRRHw19fd7xUbVWsKLI/rnz6VTutdgP71qtjqqjVQDb5w==
+"@phobon/grimoire@^0.12.4":
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-0.12.4.tgz#689ee0f4e0737a4de399806166ba4e9782c71176"
+  integrity sha512-fLwyHuc+NYucZb6jHPxfRehwFXswludx0JqYd7bW2laP9YIeGnQc18fYAPJ8EOJ/ibbIO7suk6y9z0D1xHNf9A==
   dependencies:
     "@styled-system/should-forward-prop" "^5.1.5"
 

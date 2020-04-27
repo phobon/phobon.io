@@ -1,21 +1,33 @@
 import React from 'react';
-import { Flex } from '@phobon/base';
+import { Stack } from '@phobon/base';
 
 import Header from './Header';
 import Footer from './Footer';
 
 const Layout = ({ pathname, title, children }) => (
   <>
-    <Header key="header" pathname={pathname} title={title} px={[4, 6]} />
-    <Flex
+    <Header
+      key="header"
+      pathname={pathname}
+      title={title}
+      maxWidth={['none', 1280]}
+      px={[5, 0]} />
+    
+    <Stack
+      flex={1}
       as="main"
       fullWidth
-      py={[5, 10]}
-      flexDirection="column"
-      alignItems="flex-start">
+      maxWidth={1280}
+      px={[5, 0]}
+      py={9}
+      space={9}>
       {children}
-    </Flex>
-    <Footer key="footer" px={[4, 6]} />
+    </Stack>
+
+    <Footer
+      key="footer"
+      px={[5, 0]}
+      maxWidth={1280} />
   </>
 );
 

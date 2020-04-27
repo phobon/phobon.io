@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { Box, Stack, useTheme } from '@phobon/base';
-
-import { Toggle } from '@phobon/grimoire';
+import { Toggle, Spacer } from '@phobon/grimoire';
 import Link from 'next/link';
 
 import { getTheme } from '../../hooks';
@@ -25,24 +24,31 @@ const Header = ({ pathname, title, ...props }) => {
   ));
 
   return (
-    <Box
-      as="header"
-      py={[4, 5]}
-      bg="background"
+    <Stack
       fullWidth
-      opacity={0.9}
-      justifyContent="space-between"
-      {...props}
-      css={{ position: 'sticky', top: 0, zIndex: 2 }}>
-      <Link href="/">
-        <Identity />
-      </Link>
+      css={{
+        // position: 'sticky',
+        // top: 0,
+        // zIndex: 2,
+      }} 
+      {...props}>
+      <Box
+        as="header"
+        bg="background"
+        fullWidth
+        py={[4, 5]}
+        justifyContent="space-between">
+        <Link href="/">
+          <Identity />
+        </Link>
 
-      <Stack as="nav" flexDirection="row" space={5}>
-        {navItems}
-        <Toggle toggled={theme === 'dark'} onClick={toggleTheme} aria-label="Toggle Theme" />
-      </Stack>
-    </Box>
+        <Stack as="nav" flexDirection="row" space={5}>
+          {navItems}
+          <Toggle toggled={theme === 'dark'} onClick={toggleTheme} aria-label="Toggle Theme" />
+        </Stack>
+      </Box>
+      <Spacer length="100%" />
+    </Stack>
   );
 };
 

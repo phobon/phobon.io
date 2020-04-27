@@ -1,11 +1,11 @@
 {
   "name": "phobon.io",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "dependencies": {
     "@mdx-js/loader": "^1.5.8",
     "@next/mdx": "^9.3.5",
-    "@phobon/base": "^2.6.2",
-    "@phobon/grimoire": "^0.12.1",
+    "@phobon/base": "^2.7.0",
+    "@phobon/grimoire": "^0.12.4",
     "@phobon/hooks": "^1.1.1",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.18",
