@@ -19,8 +19,8 @@ const Layout = ({ pathname, title, children }) => (
       fullWidth
       maxWidth={1280}
       px={[5, 0]}
-      py={9}
-      space={9}>
+      py={[6, 9]}
+      space={[6, 9]}>
       {children}
     </Stack>
 

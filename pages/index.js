@@ -16,6 +16,7 @@ export default () => {
         fontSize={[9, 10]}
         lineHeight={[2, 3]}
         maxWidth={1280}
+        mb={[5, 0]}
         color="foreground">
         Hi, I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>. I'm a <Span color="violets.5">developer</Span> & <Span color="accent.5">designer</Span> based out of Perth.
       </Heading.H1>
@@ -26,10 +27,11 @@ export default () => {
           fullWidth
           as="section"
           alignItems="flex-start"
+          gridGap={[7, 0]}
           gridTemplateColumns={['1fr', '2fr auto 1fr']}>
-          {writing.map(({key, ...s}, i, array) => (
+          {writing.map(({key, ...s}) => (
             <>
-              <FluidStudy bg="grayscale.9" key={key} {...s} heroPosition={i % 2 === 0 ? 'left' : 'right'} mb={[i === array.length - 1 ? 0 : 5, 0]} />
+              <FluidStudy key={key} {...s} />
               <Spacer direction="vertical" mx={5} length="100%" display={['none', 'block']} />
             </>
           ))}
@@ -44,7 +46,7 @@ export default () => {
           maxWidth={1280}
           alignSelf="center"
           alignItems="flex-start"
-          space={9}
+          space={[6, 9]}
           as="section">
           {experiences.map(({ key, ...e }) => (
             <>
@@ -59,7 +61,7 @@ export default () => {
         <Grid
           maxWidth={1280}
           fullWidth
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}
           gridAutoRows="auto"
           alignSelf="center"
           gridGap={6}

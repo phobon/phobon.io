@@ -11,11 +11,11 @@ const Experience = ({ employ, href, title, timeframe, description, achievements,
     gridTemplateRows="auto"
     alignItems="flex-start"
     {...props}>
-    <Stack alignItems="flex-start" fullWidth space={2}>
-      <Heading.H3>
+    <Stack justifyContent={['flex-start', 'center']} alignItems={['center', 'flex-start']} flexDirection={['row', 'column']} fullWidth space={[0, 2]}>
+      <Heading.H3 mr={[2, 0]}>
         <SlideLink href={href}>{employ}</SlideLink>
       </Heading.H3>
-      <Text fontSize={[4, 5]} color="grayscale.4">{timeframe}</Text>
+      <Text fontSize={5} color="grayscale.4">{timeframe}</Text>
     </Stack>
 
     <Stack fullWidth alignItems="flex-start" space={4}>
@@ -27,8 +27,8 @@ const Experience = ({ employ, href, title, timeframe, description, achievements,
       </Text>
 
       {achievements && (
-        <Grid as="ul" gridTemplateColumns="1fr 1fr" fullWidth gridAutoRows="auto" alignItems="flex-start" gridGap={4}>
-          {achievements.map(({ key, title, description, href, }) => (
+        <Grid as="ul" gridTemplateColumns={['1fr', 'repeat(2, 1fr)']} fullWidth gridAutoRows="auto" alignItems="flex-start" gridGap={4}>
+          {achievements.map(({ key, title, description, href }) => (
             <Stack as="li" key={key} alignItems="flex-start">
               <SlideLink href={href} fontSize={[4, 5]}>
                 {title}
