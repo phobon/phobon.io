@@ -13,13 +13,13 @@ const nav = [
   { pathname: '/#contact', label: 'Contact' },
 ];
 
-const Header = ({ pathname, title, ...props }) => {
+const Header = ({ title, ...props }) => {
   const [theme, setTheme] = useTheme('light', getTheme);
   const toggleTheme = useCallback(() => setTheme(theme === 'light' ? 'dark' : 'light'), [theme]);
   
   const navItems = nav.map(n => (
     <Link href={n.pathname} passHref key={n.pathname}>
-      <SlideLink fontSize={[3, 5]} current={n.pathname === pathname}>{n.label}</SlideLink>
+      <SlideLink fontSize={[3, 5]}>{n.label}</SlideLink>
     </Link>
   ));
 
@@ -27,9 +27,9 @@ const Header = ({ pathname, title, ...props }) => {
     <Stack
       fullWidth
       css={{
-        // position: 'sticky',
-        // top: 0,
-        // zIndex: 2,
+        position: 'sticky',
+        top: 0,
+        zIndex: 2,
       }} 
       {...props}>
       <Box

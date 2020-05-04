@@ -4,12 +4,14 @@ import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@phobon/base';
 import { MDXProvider } from '@mdx-js/react';
+import { AnimatePresence } from 'framer-motion';
 
 import { Layout, markdown } from '../components';
 
 export default class PhobonApp extends App {
   render () {
     const { Component, pageProps, router } = this.props
+    console.log(router.route);
     return (
       <>
         <Head>
@@ -34,8 +36,10 @@ export default class PhobonApp extends App {
         </Head>
         <ThemeProvider theme={theme}>
           <MDXProvider components={markdown}>
-            <Layout pathname={router.pathname}>
-              <Component {...pageProps} key={router.route} />
+            <Layout>
+              <AnimatePresence exitBeforeEnter>
+                <Component {...pageProps} key={router.route} />
+              </AnimatePresence>
             </Layout>
           </MDXProvider>
         </ThemeProvider>

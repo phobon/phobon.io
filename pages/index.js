@@ -5,10 +5,11 @@ import { Spacer } from '@phobon/grimoire';
 import { useApi } from '../hooks';
 import { SlideLink, Span, FluidStudy, Project, Experience } from '../components';
 
-export default () => {
+const Index = ({ ...props }) => {
   const projects = useApi('/api/projects');
   const writing = useApi('/api/writing');
   const experiences = useApi('/api/experiences');
+
   return (
     <>
       <Heading.H1
@@ -18,7 +19,7 @@ export default () => {
         maxWidth={1280}
         mb={[5, 0]}
         color="foreground">
-        Hi, I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>. I'm a <Span color="violets.5">developer</Span> & <Span color="accent.5">designer</Span> based out of Perth.
+        Hi, I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>. I'm a <Span color="violets.5">developer</Span> & <Span color="accent.5">designer</Span> based in Perth
       </Heading.H1>
 
       {writing && (
@@ -30,10 +31,10 @@ export default () => {
           gridGap={[7, 0]}
           gridTemplateColumns={['1fr', '2fr auto 1fr']}>
           {writing.map(({key, ...s}) => (
-            <>
-              <FluidStudy key={key} {...s} />
+            <React.Fragment key={key}>
+              <FluidStudy {...s} />
               <Spacer direction="vertical" mx={5} length="100%" display={['none', 'block']} />
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       )}
@@ -49,10 +50,10 @@ export default () => {
           space={[6, 9]}
           as="section">
           {experiences.map(({ key, ...e }) => (
-            <>
+            <React.Fragment key={key}>
               <Experience {...e} />
               <Spacer length="100%" />
-            </>
+            </React.Fragment>
           ))}
         </Stack>
       )}
@@ -76,3 +77,5 @@ export default () => {
     </>
   );
 }
+
+export default Index;

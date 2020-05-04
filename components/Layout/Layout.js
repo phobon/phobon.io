@@ -4,11 +4,10 @@ import { Stack } from '@phobon/base';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ pathname, title, children }) => (
+const Layout = ({ title, children }) => (
   <>
     <Header
       key="header"
-      pathname={pathname}
       title={title}
       maxWidth={['none', 1280]}
       px={[5, 0]} />
