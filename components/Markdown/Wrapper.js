@@ -5,10 +5,12 @@ import { Stack } from '@phobon/base';
 const MotionStack = motion.custom(Stack);
 
 const motionProps = {
-  initial: 'hidden',
+  initial: 'initial',
   animate: 'visible',
   exit: 'hidden',
 };
+
+const ease = [0.33, 1, 0.68, 1];
 
 const Wrapper = ({ children, ...props }) => (
   <MotionStack
@@ -24,16 +26,15 @@ const Wrapper = ({ children, ...props }) => (
         opacity: 1,
         transition: {
           duration: 0.5,
-          ease: [0.33, 1, 0.68, 1],
+          ease,
         }
+      },
+      initial: {
+        opacity: 0,
+        translateY: 16,
       },
       hidden: {
         opacity: 0,
-        translateY: 16,
-        transition: {
-          duration: 0.4,
-          ease: [0.33, 1, 0.68, 1],
-        }
       },
     }}
     {...motionProps}

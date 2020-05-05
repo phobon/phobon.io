@@ -11,23 +11,15 @@ const ease = [0.33, 1, 0.68, 1];
 const container = {
   visible: {
     opacity: 1,
-    transition: {
-      duration: 0,
-    }
   },
   hidden: {
     opacity: 0,
-    transition: {
-      duration: 0.7,
-      ease,
-    }
   },
 };
 
 const motionProps = {
-  initial: 'hidden',
+  initial: 'initial',
   animate: 'visible',
-  exit: 'hidden',
 };
 
 const MotionStack = motion.custom(Stack);
@@ -49,7 +41,9 @@ const Index = props => {
       py={[6, 9]}
       space={[6, 9]}
       variants={container}
-      {...motionProps}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
       {...props}>
       <MotionHeading1
         fullWidth
@@ -68,13 +62,9 @@ const Index = props => {
               ease,
             }
           },
-          hidden: {
-            opacity: 0,
+          initial: {
             translateY: 16,
-            transition: {
-              duration: 0.4,
-              ease,
-            }
+            opacity: 0,
           },
         }}
         {...motionProps}>
@@ -99,13 +89,9 @@ const Index = props => {
                 ease,
               }
             },
-            hidden: {
-              opacity: 0,
+            initial: {
               translateY: 16,
-              transition: {
-                duration: 0.4,
-                ease,
-              }
+              opacity: 0,
             },
           }}
           {...motionProps}>
@@ -129,12 +115,8 @@ const Index = props => {
               ease,
             }
           },
-          hidden: {
+          initial: {
             opacity: 0,
-            transition: {
-              duration: 0.3,
-              ease,
-            }
           },
         }}
         {...motionProps} />
@@ -157,13 +139,9 @@ const Index = props => {
                 ease,
               }
             },
-            hidden: {
+            initial: {
               opacity: 0,
               translateY: 16,
-              transition: {
-                duration: 0.4,
-                ease,
-              }
             },
           }}
           {...motionProps}>
@@ -195,13 +173,9 @@ const Index = props => {
                 ease,
               }
             },
-            hidden: {
+            initial: {
               opacity: 0,
               translateY: 16,
-              transition: {
-                duration: 0.4,
-                ease,
-              }
             },
           }}
           {...motionProps}>
@@ -222,12 +196,8 @@ const Index = props => {
               ease,
             }
           },
-          hidden: {
+          initial: {
             opacity: 0,
-            transition: {
-              duration: 0.3,
-              ease,
-            }
           },
         }}
         {...motionProps} />

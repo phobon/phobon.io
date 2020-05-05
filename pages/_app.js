@@ -11,7 +11,6 @@ import { Layout, markdown } from '../components';
 export default class PhobonApp extends App {
   render () {
     const { Component, pageProps, router } = this.props
-    console.log(router.route);
     return (
       <>
         <Head>
