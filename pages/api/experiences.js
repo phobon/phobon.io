@@ -3,7 +3,7 @@ const experiences = [{
     employ: 'Agworld',
     href: 'https://agworld.com',
     title: 'Senior UX Engineer',
-    timeframe: '2018 - current',
+    timeframe: '2018 - Current',
     description: "I was hired to help drive design at Agworld in 2018. I'm now responsible for creating and maintaining design systems, designing thoughtful, accessible digital experiences; & mentoring others in design & front-end development",
     achievements: [
       {

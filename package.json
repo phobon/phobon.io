@@ -29,7 +29,7 @@
     "babel-plugin-styled-components": "^1.10.7"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3001",
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook"

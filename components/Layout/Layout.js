@@ -1,5 +1,4 @@
 import React from 'react';
-import { Stack } from '@phobon/base';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -9,24 +8,15 @@ const Layout = ({ title, children }) => (
     <Header
       key="header"
       title={title}
-      maxWidth={['none', 1280]}
-      px={[5, 0]} />
-    
-    <Stack
-      flex={1}
-      as="main"
-      fullWidth
-      maxWidth={1280}
-      px={[5, 0]}
-      py={[6, 9]}
-      space={[6, 9]}>
-      {children}
-    </Stack>
+      maxWidth={['none', 1400]}
+      px={5} />
+
+    {children}
 
     <Footer
       key="footer"
-      px={[5, 0]}
-      maxWidth={1280} />
+      px={5}
+      maxWidth={1400} />
   </>
 );
 

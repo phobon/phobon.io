@@ -34,10 +34,22 @@ const Header = ({ title, ...props }) => {
       {...props}>
       <Box
         as="header"
-        bg="background"
         fullWidth
         py={[4, 5]}
-        justifyContent="space-between">
+        justifyContent="space-between"
+        css={props => ({
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundColor: props.theme.colors.background,
+            opacity: 0.9,
+            backdropFilter: 'blur(8px)',
+            zIndex: -1,
+          },
+        })}>
         <Link href="/">
           <Identity />
         </Link>
