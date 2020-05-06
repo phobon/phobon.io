@@ -1,6 +1,5 @@
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { Helmet } from 'react-helmet';
 
 import GlobalStyles from './GlobalStyles';
 
@@ -23,7 +22,6 @@ export default class PhobonDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx)
       return {
         ...initialProps,
-        helmet: Helmet.renderStatic(),
         styles: (
           <>
             {initialProps.styles}
