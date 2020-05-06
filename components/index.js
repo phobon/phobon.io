@@ -1,4 +1,4 @@
-import { Header, Footer, Layout } from './Layout';
+import { Header, Footer, Layout, Meta } from './Layout';
 
 import SlideLink from './SlideLink';
 import Project from './Project';
@@ -18,6 +18,7 @@ export {
   Header,
   Footer,
   Layout,
+  Meta,
   SlideLink,
   Project,
   Span,
