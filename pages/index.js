@@ -34,7 +34,7 @@ const Index = props => {
 
   return (
     <>
-      <Meta />
+      <Meta twitterCard="summary" />
       <MotionStack
         flex={1}
         as="main"
