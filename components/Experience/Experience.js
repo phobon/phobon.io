@@ -30,9 +30,13 @@ const Experience = ({ employ, href, title, timeframe, description, achievements,
         <Grid as="ul" gridTemplateColumns={['1fr', 'repeat(2, 1fr)']} fullWidth gridAutoRows="auto" alignItems="flex-start" gridGap={4}>
           {achievements.map(({ key, title, description, href }) => (
             <Stack as="li" key={key} alignItems="flex-start">
-              <SlideLink href={href} fontSize={[4, 5]}>
-                {title}
-              </SlideLink>
+              {href ? (
+                <SlideLink href={href} fontSize={[4, 5]}>
+                  {title}
+                </SlideLink>
+              ) : (
+                <Text fontSize={[4, 5]} color="foreground">{title}</Text>
+              )}
               <Text fontSize={[4, 5]} color="grayscale.4">{description}</Text>
             </Stack>
           ))}
