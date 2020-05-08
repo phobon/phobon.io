@@ -16,8 +16,8 @@ const projects = [
     status: 'Live',
     description: 'A physiotherapy and clinical pilates studio based in Perth',
     image: '/static/projects/thestudio',
-    fallbackType: 'jpeg',
-    fallbackExtension: 'jpg',
+    fallbackType: 'png',
+    fallbackExtension: 'png',
     url: 'https://thestudiophysio.com',
     tags: [
       'Founder', 'Identity', 'Photography'
