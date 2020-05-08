@@ -24,7 +24,6 @@ const Meta = ({ title, description, url, image, twitterCard }) => {
       <meta property="twitter:title" content={t} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-
     </Head>
   );
 };
