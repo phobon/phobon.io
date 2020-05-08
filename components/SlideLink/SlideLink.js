@@ -9,6 +9,8 @@ const SlideAnchor = styled('a')({
   overflow: 'hidden',
   zIndex: 1,
   lineHeight: 'inherit',
+  fontSize: 'inherit',
+  fontFamily: 'inherit',
 
   '&:visited, &:focus': {
     textDecoration: 'none',
@@ -20,6 +22,7 @@ const SlideSpan = styled('span')(
   props => ({
     lineHeight: 'inherit',
     fontSize: 'inherit',
+    fontFamily: 'inherit',
     textDecoration: 'inherit',
     backgroundImage: `linear-gradient(${props.theme.colors[props.slideColor][7]}, ${props.theme.colors[props.slideColor][7]})`,
     backgroundPosition: '0% 95%',
@@ -33,6 +36,9 @@ const SlideSpan = styled('span')(
 
 const SlideSpanInner = styled('span')(
   props => ({
+    lineHeight: 'inherit',
+    fontSize: 'inherit',
+    fontFamily: 'inherit',
     backgroundImage:`linear-gradient(${props.theme.colors.grayscale[7]}, ${props.theme.colors.grayscale[7]})`,
     backgroundPosition: '0% 95%',
     backgroundRepeat: 'no-repeat',
@@ -43,7 +49,7 @@ const SlideSpanInner = styled('span')(
 const SlideLink = React.forwardRef(({ children, href, title, rel, current, slideColor, ...props }, ref) => (
   <SlideAnchor href={href} title={title} rel={rel} {...props}>
     <SlideSpanInner>
-      <SlideSpan slideColor={slideColor} current={current}>
+      <SlideSpan slideColor={slideColor} current={current} ref={ref}>
         {children}
       </SlideSpan>
     </SlideSpanInner>

@@ -141,7 +141,7 @@ const GlobalStyles = createGlobalStyle`
     border: 0;
   }
 
-  figure {
+  h1, h2, h3, h4, h5, h6, figure {
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0;

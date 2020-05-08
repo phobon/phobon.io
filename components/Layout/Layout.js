@@ -1,21 +1,22 @@
 import React from 'react';
-import { Flex } from '@phobon/base';
 
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ pathname, title, children }) => (
+const Layout = ({ title, children }) => (
   <>
-    <Header key="header" pathname={pathname} title={title} px={[4, 6]} />
-    <Flex
-      as="main"
-      fullWidth
-      py={[5, 10]}
-      flexDirection="column"
-      alignItems="flex-start">
-      {children}
-    </Flex>
-    <Footer key="footer" px={[4, 6]} />
+    <Header
+      key="header"
+      title={title}
+      maxWidth={['none', 1400]}
+      px={5} />
+
+    {children}
+
+    <Footer
+      key="footer"
+      px={5}
+      maxWidth={1400} />
   </>
 );
 

@@ -19,8 +19,7 @@ const Footer = props => (
     fullWidth
     alignItems="flex-start"
     justifyContent="flex-start"
-    bg="grayscale.9"
-    pt={6}
+    pt={[0, 6]}
     pb={3}
     space={5}
     {...props}>

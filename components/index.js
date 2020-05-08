@@ -1,10 +1,13 @@
-import { Header, Footer, Layout } from './Layout';
+import { Header, Footer, Layout, Meta } from './Layout';
 
 import SlideLink from './SlideLink';
 import Project from './Project';
 
 import markdownComponents, { Figure, FigureGrid, ImageGrid, Span, Picture, Paragraph } from './Markdown';
 import FluidStudy from './FluidStudy';
+import Experience from './Experience';
+
+import MotionContainer from './MotionContainer';
 
 const markdown = {
   ...markdownComponents,
@@ -15,6 +18,7 @@ export {
   Header,
   Footer,
   Layout,
+  Meta,
   SlideLink,
   Project,
   Span,
@@ -25,4 +29,6 @@ export {
   ImageGrid,
   Picture,
   FluidStudy,
+  Experience,
+  MotionContainer,
 };

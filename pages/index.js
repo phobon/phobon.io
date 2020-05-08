@@ -1,88 +1,211 @@
 import React from "react";
-import { Box, Heading, Stack, Vector, Grid } from '@phobon/base';
+import { Heading, Stack, Grid } from '@phobon/base';
+import { Spacer } from '@phobon/grimoire';
+import { motion } from 'framer-motion';
 
 import { useApi } from '../hooks';
-import { SlideLink, Paragraph, Span, FluidStudy, Project } from '../components';
+import { SlideLink, Span, FluidStudy, Project, Experience, Meta } from '../components';
 
-export default () => {
+const ease = [0.33, 1, 0.68, 1];
+
+const container = {
+  visible: {
+    opacity: 1,
+  },
+  hidden: {
+    opacity: 0,
+  },
+};
+
+const motionProps = {
+  initial: 'initial',
+  animate: 'visible',
+};
+
+const MotionStack = motion.custom(Stack);
+const MotionHeading1 = motion.custom(Heading.H1);
+const MotionGrid = motion.custom(Grid);
+const MotionSpacer = motion.custom(Spacer);
+
+const Index = props => {
   const projects = useApi('/api/projects');
   const writing = useApi('/api/writing');
+  const experiences = useApi('/api/experiences');
+
   return (
     <>
-      <Stack
-        fullWidth
-        maxWidth={1280}
-        alignSelf="center"
-        px={[4, 6]}
-        as="section">
-        <Heading.H1 fontSize={[9, 10]} lineHeight={[2, 3]} color="foreground">I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>, a <Span color="violets.5">Developer</Span> & <Span color="accent.5">Designer</Span> based out of Perth</Heading.H1>
-        <Box fullWidth mt={[7, 9]} justifyContent="space-between" alignItems="flex-start" mb={[7, 10]}>
-          <Vector fill="grayscale.4" size={32} mt={2} display={['none', 'initial']}>
-            <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
-          </Vector>
-
-          <Paragraph width={['100%', 3 / 5]} mb={0} color="grayscale.3">
-            I've been <Span color="accent.4">designing</Span> & <Span color="violets.4">making</Span> interesting things my entire life. I've really found my passion building products that make a <Span>positive difference to the world</Span>
-          </Paragraph>
-        </Box>
-      </Stack>
-
-      {writing && (
-        <Stack fullWidth mb={[7, 10]} className="fluid" id="writing" as="section">
-          {writing.map(({key, ...s}, i, array) => (
-            <FluidStudy bg="grayscale.9" key={key} {...s} heroPosition={i % 2 === 0 ? 'left' : 'right'} mb={[i === array.length - 1 ? 0 : 5, 0]} />
-          ))}
-        </Stack>
-      )}
-
-      <Stack
-        fullWidth
-        maxWidth={1280}
-        alignSelf="center"
-        px={[4, 6]}
-        mb={[7, 10]}
-        alignItems="flex-start"
-        space={6}
-        as="section">
-        <Stack alignItems="flex-start">
-          <Heading.H3 color="grayscale.4">
-            Current
-          </Heading.H3>
-          <Paragraph mb={0}>
-            UX Engineer at <SlideLink href="https://agworld.com">Agworld</SlideLink> <Span color="grayscale.3">since 2018</Span>
-          </Paragraph>
-          <Paragraph mb={0} color="grayscale.3">
-            Driving & scaling design through making <SlideLink href="http://signal.agworld.com/">Design Systems</SlideLink>; designing thoughtful, accessible digital experiences; & mentoring others in <Span color="violets.5">design</Span> & <Span color="accent.5">front-end development</Span>
-          </Paragraph>
-        </Stack>
-        
-
-        <Stack alignItems="flex-start">
-          <Heading.H3 color="grayscale.4">
-            Previous
-          </Heading.H3>
-          <Paragraph mb={0}>
-            Full Stack Engineer and Designer at <SlideLink href="https://acquire.com.au">Acquire</SlideLink> <Span color="grayscale.3">2005-2017</Span>
-          </Paragraph>
-        </Stack>
-      </Stack>
-      
-
-      {projects && (
-        <Grid
-          maxWidth={1280}
+      <Meta twitterCard="summary" />
+      <MotionStack
+        flex={1}
+        as="main"
+        maxWidth={1400}
+        px={5}
+        py={[6, 9]}
+        space={[6, 9]}
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        {...props}>
+        <MotionHeading1
           fullWidth
-          gridTemplateColumns="repeat(auto-fit, minmax(300px, 500px))"
-          gridAutoRows="auto"
-          gridGap={8}
-          alignSelf="center"
-          px={[4, 6]}
-          as="section">
-          {projects.map(p => (
-            <Project key={p.name} project={p} alignSelf="flex-start" />
-          ))}
-        </Grid>
-      )}
+          fontSize={[9, 10]}
+          lineHeight={[2, 3]}
+          maxWidth={1400}
+          mb={[5, 0]}
+          color="foreground"
+          variants={{
+            visible: {
+              translateY: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.5,
+                delay: 0,
+                ease,
+              }
+            },
+            initial: {
+              translateY: 16,
+              opacity: 0,
+            },
+          }}
+          {...motionProps}>
+          Hi, I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>. I'm a <Span color="violets.5">developer</Span> & <Span color="accent.5">designer</Span> based in Perth
+        </MotionHeading1>
+
+        {writing && (
+          <MotionGrid
+            id="writing"
+            fullWidth
+            as="section"
+            alignItems="flex-start"
+            gridGap={[7, 0]}
+            gridTemplateColumns={['1fr', '2fr auto 1fr']}
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.15,
+                  ease,
+                }
+              },
+              initial: {
+                translateY: 16,
+                opacity: 0,
+              },
+            }}
+            {...motionProps}>
+            {writing.map(({key, ...s}) => (
+              <React.Fragment key={key}>
+                <FluidStudy {...s} />
+                <Spacer direction="vertical" mx={5} length="100%" display={['none', 'block']} />
+              </React.Fragment>
+            ))}
+          </MotionGrid>
+        )}
+
+        <MotionSpacer
+          length="100%"
+          variants={{
+            visible: {
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                delay: 0.15,
+                ease,
+              }
+            },
+            initial: {
+              opacity: 0,
+            },
+          }}
+          {...motionProps} />
+
+        {experiences && (
+          <MotionStack
+            fullWidth
+            maxWidth={1400}
+            alignSelf="center"
+            alignItems="flex-start"
+            space={[6, 9]}
+            as="section"
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.3,
+                  ease,
+                }
+              },
+              initial: {
+                opacity: 0,
+                translateY: 16,
+              },
+            }}
+            {...motionProps}>
+            {experiences.map(({ key, ...e }) => (
+              <React.Fragment key={key}>
+                <Experience {...e} />
+                <Spacer length="100%" />
+              </React.Fragment>
+            ))}
+          </MotionStack>
+        )}
+
+        {projects && (
+          <MotionGrid
+            maxWidth={1400}
+            fullWidth
+            gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}
+            gridAutoRows="auto"
+            alignSelf="center"
+            gridGap={6}
+            as="section"
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.5,
+                  ease,
+                }
+              },
+              initial: {
+                opacity: 0,
+                translateY: 16,
+              },
+            }}
+            {...motionProps}>
+            {projects.map(p => (
+              <Project key={p.name} project={p} alignSelf="flex-start" />
+            ))}
+          </MotionGrid>
+        )}
+
+        <MotionSpacer
+          length="100%"
+          variants={{
+            visible: {
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                delay: 0.5,
+                ease,
+              }
+            },
+            initial: {
+              opacity: 0,
+            },
+          }}
+          {...motionProps} />
+      </MotionStack>
     </>
   );
 }
+
+export default Index;

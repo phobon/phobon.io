@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { Box, Stack, useTheme } from '@phobon/base';
-
-import { Toggle } from '@phobon/grimoire';
+import { Toggle, Spacer } from '@phobon/grimoire';
 import Link from 'next/link';
 
 import { getTheme } from '../../hooks';
@@ -14,35 +13,54 @@ const nav = [
   { pathname: '/#contact', label: 'Contact' },
 ];
 
-const Header = ({ pathname, title, ...props }) => {
+const Header = ({ title, ...props }) => {
   const [theme, setTheme] = useTheme('light', getTheme);
   const toggleTheme = useCallback(() => setTheme(theme === 'light' ? 'dark' : 'light'), [theme]);
   
   const navItems = nav.map(n => (
     <Link href={n.pathname} passHref key={n.pathname}>
-      <SlideLink fontSize={[3, 5]} current={n.pathname === pathname}>{n.label}</SlideLink>
+      <SlideLink fontSize={[3, 5]}>{n.label}</SlideLink>
     </Link>
   ));
 
   return (
-    <Box
-      as="header"
-      py={[4, 5]}
-      bg="background"
+    <Stack
       fullWidth
-      opacity={0.9}
-      justifyContent="space-between"
-      {...props}
-      css={{ position: 'sticky', top: 0, zIndex: 2 }}>
-      <Link href="/">
-        <Identity />
-      </Link>
+      css={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 2,
+      }} 
+      {...props}>
+      <Box
+        as="header"
+        fullWidth
+        py={[4, 5]}
+        justifyContent="space-between"
+        css={props => ({
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundColor: props.theme.colors.background,
+            opacity: 0.9,
+            backdropFilter: 'blur(8px)',
+            zIndex: -1,
+          },
+        })}>
+        <Link href="/">
+          <Identity />
+        </Link>
 
-      <Stack as="nav" flexDirection="row" space={5}>
-        {navItems}
-        <Toggle toggled={theme === 'dark'} onClick={toggleTheme} aria-label="Toggle Theme" />
-      </Stack>
-    </Box>
+        <Stack as="nav" flexDirection="row" space={5}>
+          {navItems}
+          <Toggle toggled={theme === 'dark'} onClick={toggleTheme} aria-label="Toggle Theme" />
+        </Stack>
+      </Box>
+      <Spacer length="100%" />
+    </Stack>
   );
 };
 

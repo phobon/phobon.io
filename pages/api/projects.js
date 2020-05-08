@@ -2,7 +2,7 @@ const projects = [
   {
     name: 'Signal',
     status: 'Live',
-    description: 'A design system built with styled-components & styled-system',
+    description: "Agworld's design system built with React and CSS-in-JS",
     image: '/static/projects/signal',
     fallbackType: 'png',
     fallbackExtension: 'png',
