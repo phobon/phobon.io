@@ -13,6 +13,11 @@ const experiences = [{
         href: 'http://signal.agworld.com',
       },
       {
+        key: 'front-end-development',
+        title: 'Front-end Development',
+        description: 'Multiple projects',
+      },
+      {
         key: 'research-design-process',
         title: 'User research & design',
         description: 'Implementing processes',
@@ -21,7 +26,7 @@ const experiences = [{
         key: 'agworld-product-design',
         title: 'Product design',
         description: 'Multiple projects',
-        href: '/',
+        href: 'https://dribbble.com/shots/8236047-Agworld-Shopping-Experience-Checkout-Concept',
       },
     ],
   },
