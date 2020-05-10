@@ -54,13 +54,13 @@ const Picture = styled(Box)`
   }
 `;
 
-const PopImage = ({ src, alt, fallbackExtension, fallbackType, ...props }) => {
+const PopImage = ({ src, alt, fallbackExtension, fallbackType, loading, ...props }) => {
   const fallback = `${src}.${fallbackExtension}`;
   return (
     <Picture as="picture" {...props}>
       <source srcSet={`${src}.webp`} type="image/webp" />
       <source srcSet={fallback} type={`image/${fallbackType}`} />
-      <img src={fallback} alt={alt} />
+      <img src={fallback} alt={alt} loading={loading} />
     </Picture>
   );
 };
@@ -75,6 +75,7 @@ PopImage.defaultProps = {
   color: 'accent',
   fallbackType: 'jpeg',
   fallbackExtension: 'jpg',
+  loading: 'lazy',
 };
 
 export default PopImage;
