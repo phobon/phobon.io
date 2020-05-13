@@ -1,6 +1,6 @@
 {
   "name": "phobon.io",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "dependencies": {
     "@mdx-js/loader": "^1.6.1",
     "@next/mdx": "^9.4.0",
