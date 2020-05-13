@@ -3,8 +3,8 @@ import { Heading, Stack, Grid } from '@phobon/base';
 import { Spacer } from '@phobon/grimoire';
 import { motion } from 'framer-motion';
 
-import { useApi } from '../hooks';
-import { SlideLink, Span, FluidStudy, Project, Experience, Meta } from '../components';
+import { useApi } from '@/hooks';
+import { SlideLink, Span, FluidStudy, Project, Experience, Meta } from '@/components';
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -28,9 +28,9 @@ const MotionGrid = motion.custom(Grid);
 const MotionSpacer = motion.custom(Spacer);
 
 const Index = props => {
-  const projects = useApi('/api/projects');
-  const writing = useApi('/api/writing');
-  const experiences = useApi('/api/experiences');
+  const [projects, projectsError] = useApi('/api/projects');
+  const [writing, writingError] = useApi('/api/writing');
+  const [experiences, experiencesError] = useApi('/api/experiences');
 
   return (
     <>

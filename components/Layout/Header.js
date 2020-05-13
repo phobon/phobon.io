@@ -3,7 +3,7 @@ import { Box, Stack, useTheme } from '@phobon/base';
 import { Toggle, Spacer } from '@phobon/grimoire';
 import Link from 'next/link';
 
-import { getTheme } from '../../hooks';
+import { getTheme } from '@/hooks';
 
 import Identity from '../Identity';
 import SlideLink from '../SlideLink';
