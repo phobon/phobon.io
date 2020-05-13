@@ -2,8 +2,8 @@
   "name": "phobon.io",
   "version": "5.0.0",
   "dependencies": {
-    "@mdx-js/loader": "^1.5.8",
-    "@next/mdx": "^9.3.5",
+    "@mdx-js/loader": "^1.6.1",
+    "@next/mdx": "^9.4.0",
     "@phobon/base": "^2.7.1",
     "@phobon/grimoire": "^0.12.6",
     "@phobon/hooks": "^1.1.1",
@@ -12,16 +12,16 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@storybook/theming": "^5.3.18",
-    "framer-motion": "^2.0.0-beta.50",
-    "isomorphic-unfetch": "^3.0.0",
+    "framer-motion": "^2.0.0-beta.69",
     "js-cookie": "^2.2.1",
-    "next": "^9.3.5",
+    "next": "^9.4.0",
     "next-compose-plugins": "^2.2.0",
     "next-cookies": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.0",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "swr": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

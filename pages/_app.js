@@ -5,7 +5,7 @@ import { theme } from '@phobon/base';
 import { MDXProvider } from '@mdx-js/react';
 import { AnimatePresence } from 'framer-motion';
 
-import { Layout, markdown } from '../components';
+import { Layout, markdown } from '@/components';
 
 export default class PhobonApp extends App {
   render () {

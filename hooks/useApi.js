@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 
 const useApi = (url) => {
-  const [result, setResult] = useState(null);
-  useEffect(() => {
-    async function getApiResult() {
-      const res = await fetch(url);
-      const newResult = await res.json();
-      setResult(newResult);
-    };
-
-    getApiResult();
-  }, []);
-
-  return result;
+  const fetcher = async (key) => {
+    const res = await fetch(key);
+    const newResult = await res.json();
+    return newResult;
+  };
+  const { data, error } = useSWR(url, fetcher);
+  return [data, error];
 };
 
 export default useApi;
