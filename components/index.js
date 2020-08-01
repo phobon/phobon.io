@@ -7,8 +7,6 @@ import markdownComponents, { Figure, FigureGrid, ImageGrid, Span, Picture, Parag
 import FluidStudy from './FluidStudy';
 import Experience from './Experience';
 
-import MotionContainer from './MotionContainer';
-
 const markdown = {
   ...markdownComponents,
   a: SlideLink,
@@ -30,5 +28,4 @@ export {
   Picture,
   FluidStudy,
   Experience,
-  MotionContainer,
 };
