@@ -1,9 +1,16 @@
 import React from "react";
-import { Heading, Stack, Grid } from '@phobon/base';
-import { Spacer } from '@phobon/grimoire';
-import { motion } from 'framer-motion';
+import { Heading, Stack, Grid } from "@phobon/base";
+import { Spacer } from "@phobon/grimoire";
+import { motion } from "framer-motion";
 
-import { SlideLink, Span, FluidStudy, Project, Experience, Meta } from '@/components';
+import {
+  SlideLink,
+  Span,
+  FluidStudy,
+  Project,
+  Experience,
+  Meta,
+} from "@/components";
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -17,12 +24,12 @@ const container = {
 };
 
 const motionProps = {
-  initial: 'initial',
-  animate: 'visible',
+  initial: "initial",
+  animate: "visible",
 };
 
 const MotionStack = motion.custom(Stack);
-const MotionHeading1 = motion.custom(Heading.H1);
+const MotionHeading = motion.custom(Heading);
 const MotionGrid = motion.custom(Grid);
 const MotionSpacer = motion.custom(Spacer);
 
@@ -40,8 +47,10 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       initial="hidden"
       animate="visible"
       exit="hidden"
-      {...props}>
-      <MotionHeading1
+      {...props}
+    >
+      <MotionHeading
+        as="h1"
         fullWidth
         fontSize={[9, 10]}
         lineHeight={[2, 3]}
@@ -56,16 +65,20 @@ const Index = ({ projects, writing, experiences, ...props }) => (
               duration: 0.5,
               delay: 0,
               ease,
-            }
+            },
           },
           initial: {
             translateY: 16,
             opacity: 0,
           },
         }}
-        {...motionProps}>
-        Hi, I'm <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>. I'm a <Span color="violets.5">developer</Span> & <Span color="accent.5">designer</Span> based in Perth
-      </MotionHeading1>
+        {...motionProps}
+      >
+        Hi, I'm{" "}
+        <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>
+        . I'm a <Span color="violets.5">developer</Span> &{" "}
+        <Span color="accent.5">designer</Span> based in Perth
+      </MotionHeading>
 
       {writing && (
         <MotionGrid
@@ -74,7 +87,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           as="section"
           alignItems="flex-start"
           gridGap={[7, 0]}
-          gridTemplateColumns={['1fr', '2fr auto 1fr']}
+          gridTemplateColumns={["1fr", "2fr auto 1fr"]}
           variants={{
             visible: {
               translateY: 0,
@@ -83,18 +96,24 @@ const Index = ({ projects, writing, experiences, ...props }) => (
                 duration: 0.5,
                 delay: 0.15,
                 ease,
-              }
+              },
             },
             initial: {
               translateY: 16,
               opacity: 0,
             },
           }}
-          {...motionProps}>
-          {writing.map(({key, ...s}) => (
+          {...motionProps}
+        >
+          {writing.map(({ key, ...s }) => (
             <React.Fragment key={key}>
               <FluidStudy {...s} />
-              <Spacer direction="vertical" mx={5} length="100%" display={['none', 'block']} />
+              <Spacer
+                direction="vertical"
+                mx={5}
+                length="100%"
+                display={["none", "block"]}
+              />
             </React.Fragment>
           ))}
         </MotionGrid>
@@ -109,13 +128,14 @@ const Index = ({ projects, writing, experiences, ...props }) => (
               duration: 0.3,
               delay: 0.15,
               ease,
-            }
+            },
           },
           initial: {
             opacity: 0,
           },
         }}
-        {...motionProps} />
+        {...motionProps}
+      />
 
       {experiences && (
         <MotionStack
@@ -133,14 +153,15 @@ const Index = ({ projects, writing, experiences, ...props }) => (
                 duration: 0.5,
                 delay: 0.3,
                 ease,
-              }
+              },
             },
             initial: {
               opacity: 0,
               translateY: 16,
             },
           }}
-          {...motionProps}>
+          {...motionProps}
+        >
           {experiences.map(({ key, ...e }) => (
             <React.Fragment key={key}>
               <Experience {...e} />
@@ -154,7 +175,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         <MotionGrid
           maxWidth={1400}
           fullWidth
-          gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}
+          gridTemplateColumns={["1fr", "repeat(2, 1fr)"]}
           gridAutoRows="auto"
           alignSelf="center"
           gridGap={6}
@@ -167,15 +188,16 @@ const Index = ({ projects, writing, experiences, ...props }) => (
                 duration: 0.5,
                 delay: 0.5,
                 ease,
-              }
+              },
             },
             initial: {
               opacity: 0,
               translateY: 16,
             },
           }}
-          {...motionProps}>
-          {projects.map(p => (
+          {...motionProps}
+        >
+          {projects.map((p) => (
             <Project key={p.name} project={p} alignSelf="flex-start" />
           ))}
         </MotionGrid>
@@ -190,21 +212,24 @@ const Index = ({ projects, writing, experiences, ...props }) => (
               duration: 0.3,
               delay: 0.5,
               ease,
-            }
+            },
           },
           initial: {
             opacity: 0,
           },
         }}
-        {...motionProps} />
+        {...motionProps}
+      />
     </MotionStack>
   </>
 );
 
 export const getStaticProps = async () => {
-  const { default: projects = [] } = await import('../data/projects.json');
-  const { default: writing = [] } = await import('../data/writing.json');
-  const { default: experiences = [] } = await import('../data/experiences.json');
+  const { default: projects = [] } = await import("../data/projects.json");
+  const { default: writing = [] } = await import("../data/writing.json");
+  const { default: experiences = [] } = await import(
+    "../data/experiences.json"
+  );
   return {
     props: {
       projects,
@@ -212,6 +237,6 @@ export const getStaticProps = async () => {
       experiences,
     },
   };
-}
+};
 
 export default Index;
