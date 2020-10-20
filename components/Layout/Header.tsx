@@ -47,14 +47,14 @@ export const Header = ({ title, ...props }) => {
         fullWidth
         py={[4, 5]}
         justifyContent="space-between"
-        css={(props) => ({
+        css={(theme) => ({
           position: "relative",
           "&::before": {
             content: '""',
             position: "absolute",
             width: "100%",
             height: "100%",
-            backgroundColor: props.theme.colors.background,
+            backgroundColor: theme.colors.background,
             opacity: 0.9,
             backdropFilter: "blur(8px)",
             zIndex: -1,

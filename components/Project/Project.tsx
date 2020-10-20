@@ -3,10 +3,10 @@ import { jsx } from "@emotion/react";
 import React from "react";
 import { Stack, Box, Text } from "@phobon/base";
 
-import SlideLink from "../SlideLink";
-import PopImage from "../PopImage";
+import { SlideLink } from "../SlideLink";
+import { PopImage } from "../PopImage";
 
-const Project = ({ project, ...props }) => {
+export const Project = ({ project, ...props }) => {
   const {
     name,
     description,
@@ -58,5 +58,3 @@ const Project = ({ project, ...props }) => {
     </Box>
   );
 };
-
-export default Project;

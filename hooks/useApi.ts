@@ -1,6 +1,6 @@
-import useSWR from 'swr';
+import useSWR from "swr";
 
-const useApi = (url) => {
+export const useApi = (url) => {
   const fetcher = async (key) => {
     const res = await fetch(key);
     const newResult = await res.json();
@@ -9,5 +9,3 @@ const useApi = (url) => {
   const { data, error } = useSWR(url, fetcher);
   return [data, error];
 };
-
-export default useApi;

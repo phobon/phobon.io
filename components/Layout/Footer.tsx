@@ -17,7 +17,7 @@ const links = [
   { label: "Twitter", url: "https://twitter.com/thenoumenon" },
 ];
 
-export const Footer: React.FunctionComponent<StackProps> = ({ ...props }) => (
+export const Footer = ({ ...props }) => (
   <Stack
     as="footer"
     id="contact"
@@ -50,7 +50,9 @@ export const Footer: React.FunctionComponent<StackProps> = ({ ...props }) => (
       flexDirection={["column", "row"]}
       justifyContent="flex-start"
       alignItems="flex-start"
-      gridGap={[3, 6]}
+      css={(theme) => ({
+        gridGap: theme.space[5],
+      })}
     >
       {links.map((l) => (
         <Box as="li" key={l.label} mr={5} mb={3}>

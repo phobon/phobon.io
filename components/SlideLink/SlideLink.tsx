@@ -7,27 +7,34 @@ import {
   color,
   space,
   fontSize,
+  fontWeight,
   lineHeight,
   ColorProps,
   SpaceProps,
   FontSizeProps,
+  FontWeightProps,
   LineHeightProps,
 } from "styled-system";
 
-const slideLinkProps = compose(color, space, fontSize, lineHeight);
+const slideLinkProps = compose(color, space, fontSize, fontWeight, lineHeight);
 
 const Anchor = styled("a")(slideLinkProps);
 
 export interface ISlideLinkProps {
   slideColor?: string;
+  current?: boolean;
 }
 
 export type SlideLinkProps = ISlideLinkProps &
   ColorProps &
   SpaceProps &
   FontSizeProps &
+  FontWeightProps &
   LineHeightProps &
-  React.HTMLAttributes<HTMLAnchorElement>;
+  React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >;
 
 export const SlideLink = React.forwardRef<HTMLSpanElement, SlideLinkProps>(
   ({ children, href, title, rel, current, slideColor, ...props }, ref) => (
