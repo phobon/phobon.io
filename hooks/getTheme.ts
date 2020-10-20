@@ -1,4 +1,4 @@
-const themeDefinitions = {
+export const themeDefinitions = {
   light: {
     foreground: "hsl(228, 15%, 35%)",
     background: "hsl(0, 0%, 100%)",

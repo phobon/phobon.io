@@ -39,6 +39,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       px={5}
       py={[6, 9]}
       space={9}
+      bg="background"
       variants={container}
       initial="hidden"
       animate="visible"

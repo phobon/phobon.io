@@ -3,19 +3,22 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "@phobon/tokens";
 import { MDXProvider } from "@mdx-js/react";
 import { AnimatePresence } from "framer-motion";
+import { Provider } from "jotai";
 
 import { Layout, markdown } from "@/components";
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
     <ThemeProvider theme={theme}>
-      <MDXProvider components={markdown}>
+      <Provider>
         <Layout>
-          <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
+          <MDXProvider components={markdown}>
+            <AnimatePresence exitBeforeEnter>
+              <Component {...pageProps} key={router.route} />
+            </AnimatePresence>
+          </MDXProvider>
         </Layout>
-      </MDXProvider>
+      </Provider>
     </ThemeProvider>
   );
 };

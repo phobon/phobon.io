@@ -7027,6 +7027,13 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jotai@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.10.0.tgz#743fbb99882351a132c4fed582455fecc08eebbd"
+  integrity sha512-zRLdMZYDYy1BjgeVrfCu/CywAT8nM1PCGnO+wvuNSW+Y5X35Wew1vZCDjtHK/Y/3lwjYS/V4elfpNWNYI/zbuA==
+  dependencies:
+    use-context-selector "1.2.10"
+
 js-cookie@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
@@ -10671,6 +10678,11 @@ use-callback-ref@^1.2.1:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.3.tgz#9f939dfb5740807bbf9dd79cdd4e99d27e827756"
   integrity sha512-DPBPh1i2adCZoIArRlTuKRy7yue7QogtEnfv0AKrWsY+GA+4EKe37zhRDouNnyWMoNQFYZZRF+2dLHsWE4YvJA==
+
+use-context-selector@1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-1.2.10.tgz#47230099cd381119ae1c0f4a44737f336932aec0"
+  integrity sha512-gSKcvwl2I683GY5JG/ixsVDeVsIdEdLJz3ccl7y1KaKJqXitX2PjC0Z1F0LEtni1pc7u1J3cy5dHT8+MI69naA==
 
 use-sidecar@^1.0.1:
   version "1.0.2"

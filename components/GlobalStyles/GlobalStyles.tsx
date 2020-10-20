@@ -45,12 +45,13 @@ export const GlobalStyles = (): React.ReactElement => {
     "img, fieldset": {
       border: 0,
     },
-    __next: {
+    "#__next": {
       width: "100%",
       minHeight: "100%",
       display: "flex",
       flexDirection: "column",
       placeItems: "center",
+      backgroundColor: "var(--c-background)",
     },
   };
   return <Global styles={styles} />;

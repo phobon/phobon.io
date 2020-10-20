@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { Box, Stack } from "@phobon/base";
+import { useTheme } from "@phobon/hooks";
 import { Toggle, Spacer } from "@phobon/grimoire";
 import Link from "next/link";
 
-// import { getTheme } from "@/hooks";
+import { getTheme } from "@/hooks/getTheme";
 
 import { Identity } from "../Identity";
 import { SlideLink } from "../SlideLink";
@@ -15,16 +16,12 @@ const nav = [
   { pathname: "/#contact", label: "Contact" },
 ];
 
-// TODO: fix theming
-
 export const Header = ({ title, ...props }) => {
-  // const [theme, setTheme] = useTheme("light", getTheme);
-  // const toggleTheme = useCallback(
-  //   () => setTheme(theme === "light" ? "dark" : "light"),
-  //   [theme]
-  // );
-  const [theme, setTheme] = useState(() => "light");
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+  const [theme, setTheme] = useTheme("light", getTheme);
+  const toggleTheme = useCallback(
+    () => setTheme(theme === "light" ? "dark" : "light"),
+    [theme]
+  );
 
   const navItems = nav.map((n) => (
     <Link href={n.pathname} passHref key={n.pathname}>
