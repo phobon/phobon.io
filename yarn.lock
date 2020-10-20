@@ -2283,10 +2283,10 @@
   resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.6.tgz#fa35bcf42b95c632786e7e7f647951ddcade43ab"
   integrity sha512-QChn4V1i01xhS8iIuG3Akw+sj1ViMquGGSM1EpYlzJdZhLaMrouemKVjnIIXlwu0fgjarAbUU0mXsAIBk8hZXQ==
 
-"@phobon/grimoire@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-1.0.0.tgz#d5f0877c9cc839027eb7d329909bebfa1ba31cf7"
-  integrity sha512-v6x/8+zinHOdjD8TpjkgoHQJD74yVofDDR+AwXk3mekKKjUyHhbzm4xJPpqY7xVidd0XZmAJucxeZpB3ATo8RQ==
+"@phobon/grimoire@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-1.0.2.tgz#7d3982a7dbb9446bb9cbebfee11815180751d9d3"
+  integrity sha512-76S4CXgyDXY11QrnYBTDzYxu/O+/nFCw1rUaeJ7jq9bdklwqyoJYppLemMKQGt/EVbVoePL+RlJnYIbRJdVM+A==
 
 "@phobon/hooks@^2.2.0":
   version "2.2.0"

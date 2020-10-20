@@ -7,7 +7,7 @@
     "@mdx-js/loader": "^1.6.1",
     "@next/mdx": "^9.4.0",
     "@phobon/base": "^3.1.6",
-    "@phobon/grimoire": "^1.0.0",
+    "@phobon/grimoire": "^1.0.2",
     "@phobon/hooks": "^2.2.0",
     "@phobon/tokens": "^1.1.1",
     "framer-motion": "^2.9.1",
