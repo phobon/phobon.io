@@ -1,16 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Box } from '@phobon/base';
+import React from "react";
+import styled from "@emotion/styled";
+import PropTypes from "prop-types";
+import { Box } from "@phobon/base";
 
 const Picture = styled(Box)`
-  background: ${props => props.theme.colors[props.color][6]};
+  background: ${(props) => props.theme.colors[props.color][6]};
   transition: opacity 0.5s ease-out;
   position: relative;
   display: flex;
 
-  &::before, &::after {
-    content: '';
+  &::before,
+  &::after {
+    content: "";
     width: 0;
     height: 0;
     border: 4px solid transparent;
@@ -19,16 +20,16 @@ const Picture = styled(Box)`
   }
 
   &::before {
-    border-right-color: ${props => props.theme.colors[props.color][6]};
-    border-bottom-color: ${props => props.theme.colors[props.color][6]};
+    border-right-color: ${(props) => props.theme.colors[props.color][6]};
+    border-bottom-color: ${(props) => props.theme.colors[props.color][6]};
     left: 0;
     top: -8px;
     transform: translateY(8px);
   }
 
   &::after {
-    border-left-color: ${props => props.theme.colors[props.color][6]};
-    border-top-color: ${props => props.theme.colors[props.color][6]};
+    border-left-color: ${(props) => props.theme.colors[props.color][6]};
+    border-top-color: ${(props) => props.theme.colors[props.color][6]};
     right: -8px;
     bottom: 0;
     transform: translateX(-8px);
@@ -44,7 +45,8 @@ const Picture = styled(Box)`
   }
 
   &:hover {
-    &::before, &::after {
+    &::before,
+    &::after {
       transform: translate(0, 0);
     }
 
@@ -54,7 +56,14 @@ const Picture = styled(Box)`
   }
 `;
 
-const PopImage = ({ src, alt, fallbackExtension, fallbackType, loading, ...props }) => {
+const PopImage = ({
+  src,
+  alt,
+  fallbackExtension,
+  fallbackType,
+  loading,
+  ...props
+}) => {
   const fallback = `${src}.${fallbackExtension}`;
   return (
     <Picture as="picture" {...props}>
@@ -72,10 +81,10 @@ PopImage.propTypes = {
 };
 
 PopImage.defaultProps = {
-  color: 'accent',
-  fallbackType: 'jpeg',
-  fallbackExtension: 'jpg',
-  loading: 'lazy',
+  color: "accent",
+  fallbackType: "jpeg",
+  fallbackExtension: "jpg",
+  loading: "lazy",
 };
 
 export default PopImage;

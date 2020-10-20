@@ -1,6 +1,8 @@
-import { Text } from '@phobon/base';
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
+import { Text } from "@phobon/base";
 
-const Code = props => (
+export const Code = (props) => (
   <Text
     as="span"
     textStyle="monospace"
@@ -12,7 +14,6 @@ const Code = props => (
     px={2}
     py={1}
     css={{ borderRadius: 8 }}
-    {...props} />
+    {...props}
+  />
 );
-
-export default Code;
