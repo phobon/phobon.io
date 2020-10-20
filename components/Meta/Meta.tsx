@@ -4,7 +4,7 @@ import Head from "next/head";
 interface MetaProps {
   title?: string;
   description?: string;
-  url: string;
+  url?: string;
   image?: string;
   twitterCard: "summary" | "summary_large_image";
 }

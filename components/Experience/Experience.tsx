@@ -5,7 +5,7 @@ import { Grid, Heading, Stack, Text } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
 
-export const Experience = ({
+export const Experience: React.FunctionComponent<any> = ({
   employ,
   href,
   title,

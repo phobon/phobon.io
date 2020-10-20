@@ -1,16 +1,12 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
 import React from "react";
-import { Heading, Stack, Grid } from "@phobon/base";
+import { Text, Stack, Grid } from "@phobon/base";
 import { Spacer } from "@phobon/grimoire";
 import { motion } from "framer-motion";
 
-import {
-  SlideLink,
-  Span,
-  FluidStudy,
-  Project,
-  Experience,
-  Meta,
-} from "@/components";
+import { SlideLink, Span, FluidStudy, Project, Experience } from "@/components";
+import { Meta } from "@/components/Meta";
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -29,7 +25,7 @@ const motionProps = {
 };
 
 const MotionStack = motion.custom(Stack);
-const MotionHeading = motion.custom(Heading);
+const MotionHeading = motion.custom(Text);
 const MotionGrid = motion.custom(Grid);
 const MotionSpacer = motion.custom(Spacer);
 
@@ -85,7 +81,9 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           id="writing"
           fullWidth
           as="section"
-          alignItems="flex-start"
+          css={{
+            alignItems: "flex-start",
+          }}
           gridGap={[7, 0]}
           gridTemplateColumns={["1fr", "2fr auto 1fr"]}
           variants={{
@@ -177,7 +175,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           fullWidth
           gridTemplateColumns={["1fr", "repeat(2, 1fr)"]}
           gridAutoRows="auto"
-          alignSelf="center"
+          css={{ alignSelf: "center" }}
           gridGap={6}
           as="section"
           variants={{

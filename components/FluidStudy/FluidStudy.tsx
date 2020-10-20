@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PopImage } from "../PopImage";
 import { SlideLink } from "../SlideLink";
 
-export const FluidStudy = ({
+export const FluidStudy: React.FunctionComponent<any> = ({
   href,
   src,
   title,
