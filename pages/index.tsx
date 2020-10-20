@@ -5,7 +5,7 @@ import { Text, Stack, Grid } from "@phobon/base";
 import { Spacer } from "@phobon/grimoire";
 import { motion } from "framer-motion";
 
-import { SlideLink, Span, FluidStudy, Project, Experience } from "@/components";
+import { SlideLink, FluidStudy, Project, Experience } from "@/components";
 import { Meta } from "@/components/Meta";
 
 const ease = [0.33, 1, 0.68, 1];
@@ -38,7 +38,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       maxWidth={1400}
       px={5}
       py={[6, 9]}
-      space={[6, 9]}
+      space={9}
       variants={container}
       initial="hidden"
       animate="visible"
@@ -52,7 +52,16 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         lineHeight={[2, 3]}
         maxWidth={1400}
         mb={[5, 0]}
-        color="foreground"
+        color="grayscale.3"
+        fontWeight="light"
+        css={(theme) => ({
+          "> span": {
+            display: "inline-block",
+          },
+          "> * + *": {
+            marginLeft: theme.space[2],
+          },
+        })}
         variants={{
           visible: {
             translateY: 0,
@@ -70,10 +79,25 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         }}
         {...motionProps}
       >
-        Hi, I'm{" "}
-        <SlideLink href="https://www.instagram.com/thenoumenon/">Ben</SlideLink>
-        . I'm a <Span color="violets.5">developer</Span> &{" "}
-        <Span color="accent.5">designer</Span> based in Perth
+        <span>Hi, I'm</span>
+        <span>
+          <SlideLink
+            href="https://www.instagram.com/thenoumenon/"
+            color="inherit"
+          >
+            Ben
+          </SlideLink>
+          .
+        </span>
+        <span>I'm a</span>
+        <span css={(theme) => ({ color: theme.colors.violets[5] })}>
+          developer
+        </span>
+        <span>&</span>
+        <span css={(theme) => ({ color: theme.colors.accent[5] })}>
+          designer
+        </span>
+        <span>based in Perth</span>
       </MotionHeading>
 
       {writing && (
