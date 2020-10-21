@@ -62,7 +62,7 @@ export const Header = ({ title, ...props }) => {
           <Identity />
         </Link>
 
-        <Stack as="nav" flexDirection="row" space={5}>
+        <Stack as="nav" flexDirection="row" space={5} alignItems="center">
           {navItems}
           <Toggle
             toggled={theme === "dark"}
