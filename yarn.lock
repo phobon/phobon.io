@@ -2278,10 +2278,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@phobon/base@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.6.tgz#fa35bcf42b95c632786e7e7f647951ddcade43ab"
-  integrity sha512-QChn4V1i01xhS8iIuG3Akw+sj1ViMquGGSM1EpYlzJdZhLaMrouemKVjnIIXlwu0fgjarAbUU0mXsAIBk8hZXQ==
+"@phobon/base@^3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.8.tgz#4b85d4251ad8de635b93cebe08cd6490825efe41"
+  integrity sha512-cTIs9nLPXl12mUz8E2SBA3NXJ3CKY7+K72tbas2ift6z2tSchexww7rlsC1P0ltHeEcQWOU7V12SiBQRwFUYSg==
 
 "@phobon/grimoire@^1.0.2":
   version "1.0.2"

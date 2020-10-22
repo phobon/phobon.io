@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { Box, Stack, StackProps } from "@phobon/base";
+import { Box, Stack, Text, StackProps } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
 import { Paragraph, Span } from "../Markdown";
@@ -17,7 +17,9 @@ const links = [
   { label: "Twitter", url: "https://twitter.com/thenoumenon" },
 ];
 
-export const Footer = ({ ...props }) => (
+export const Footer: React.FunctionComponent<
+  StackProps & React.HTMLAttributes<HTMLDivElement>
+> = ({ ...props }) => (
   <Stack
     as="footer"
     id="contact"
@@ -29,20 +31,34 @@ export const Footer = ({ ...props }) => (
     space={5}
     {...props}
   >
-    <Paragraph color="grayscale.3" mb={0}>
-      You'll often find me enjoying time with my{" "}
-      <SlideLink href="https://www.instagram.com/thestudiophysio/">
-        amazing partner
-      </SlideLink>
-      , and my{" "}
-      <SlideLink href="https://www.instagram.com/kodi_lab/">
-        best friend
-      </SlideLink>
-      ; or{" "}
+    <Paragraph
+      color="grayscale.3"
+      mb={0}
+      css={(theme) => ({
+        "> * + *": {
+          marginLeft: theme.space[1],
+        },
+      })}
+    >
+      <span>You'll often find me enjoying time with my</span>
+      <span>
+        <SlideLink href="https://www.instagram.com/thestudiophysio/">
+          amazing partner
+        </SlideLink>
+        ,
+      </span>
+      <span>and my</span>
+      <span>
+        <SlideLink href="https://www.instagram.com/kodi_lab/">
+          best friend
+        </SlideLink>
+        ;
+      </span>
+      <span>or</span>
       <Span color="inherit" css={{ textDecoration: "line-through" }}>
         shitposting
-      </Span>{" "}
-      online
+      </Span>
+      <span>online</span>
     </Paragraph>
 
     <Stack

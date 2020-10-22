@@ -6,6 +6,7 @@
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
       "@/atoms/*": ["atoms/*"],
+      "@/data/*": ["data/*"],
       "@/api/*": ["pages/api/*"]
     },
     "target": "es5",

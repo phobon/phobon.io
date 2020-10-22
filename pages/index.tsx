@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 
 import { SlideLink, FluidStudy, Project, Experience } from "@/components";
 import { Meta } from "@/components/Meta";
+import { Main } from "@/components/Layout/Main";
+import { ShowcaseGrid } from "@/components/ShowcaseGrid";
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -32,20 +34,7 @@ const MotionSpacer = motion.custom(Spacer);
 const Index = ({ projects, writing, experiences, ...props }) => (
   <>
     <Meta title="phbn" twitterCard="summary" />
-    <MotionStack
-      flex={1}
-      as="main"
-      maxWidth={1400}
-      px={5}
-      py={[6, 9]}
-      space={9}
-      bg="background"
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      {...props}
-    >
+    <Main {...props}>
       <MotionHeading
         as="h1"
         fullWidth
@@ -55,6 +44,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         mb={[5, 0]}
         color="grayscale.3"
         fontWeight="light"
+        gridColumn="1 / span 12"
         css={(theme) => ({
           "> span": {
             display: "inline-block",
@@ -102,15 +92,14 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       </MotionHeading>
 
       {writing && (
-        <MotionGrid
+        <ShowcaseGrid
           id="writing"
-          fullWidth
           as="section"
+          gridColumn="1 / span 12"
+          gridRowGap={9}
           css={{
             alignItems: "flex-start",
           }}
-          gridGap={[7, 0]}
-          gridTemplateColumns={["1fr", "2fr auto 1fr"]}
           variants={{
             visible: {
               translateY: 0,
@@ -129,21 +118,16 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           {...motionProps}
         >
           {writing.map(({ key, ...s }) => (
-            <React.Fragment key={key}>
-              <FluidStudy {...s} />
-              <Spacer
-                direction="vertical"
-                mx={5}
-                length="100%"
-                display={["none", "block"]}
-              />
-            </React.Fragment>
+            <FluidStudy {...s} key={key} />
           ))}
-        </MotionGrid>
+        </ShowcaseGrid>
       )}
 
       <MotionSpacer
         length="100%"
+        css={{
+          gridColumn: "1 / span 12",
+        }}
         variants={{
           visible: {
             opacity: 1,
@@ -167,6 +151,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           alignSelf="center"
           alignItems="flex-start"
           space={[6, 9]}
+          gridColumn="1 / span 12"
           as="section"
           variants={{
             visible: {
@@ -202,6 +187,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           gridAutoRows="auto"
           css={{ alignSelf: "center" }}
           gridGap={6}
+          gridColumn="1 / span 12"
           as="section"
           variants={{
             visible: {
@@ -228,6 +214,9 @@ const Index = ({ projects, writing, experiences, ...props }) => (
 
       <MotionSpacer
         length="100%"
+        css={{
+          gridColumn: "1 / span 12",
+        }}
         variants={{
           visible: {
             opacity: 1,
@@ -243,7 +232,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         }}
         {...motionProps}
       />
-    </MotionStack>
+    </Main>
   </>
 );
 

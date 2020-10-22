@@ -1,6 +1,7 @@
 import { Table } from "@phobon/base";
 
-import { Wrapper } from "./Wrapper";
+import { Main } from "@/components/Layout/Main";
+
 import { Paragraph } from "./Paragraph";
 import { H1, H2, H3 } from "./Headings";
 import { Code } from "./Code";
@@ -16,7 +17,7 @@ export * from "./Picture";
 export * from "./Span";
 
 export default {
-  wrapper: Wrapper,
+  wrapper: Main,
   p: Paragraph,
   h1: H1,
   h2: H2,
@@ -30,5 +31,4 @@ export default {
   blockquote: Blockquote,
 };
 
-// Named export as we shouldn't use it in the default export.
 export { Paragraph };

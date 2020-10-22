@@ -1,7 +1,10 @@
 import React from "react";
-import { Text } from "@phobon/base";
+import { Text, TypographyProps } from "@phobon/base";
 
-export const Paragraph = React.forwardRef<HTMLParagraphElement, any>(
+export type ParagraphProps = TypographyProps &
+  React.HTMLAttributes<HTMLParagraphElement>;
+
+export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   ({ children, ...props }, ref) => (
     <Text as="p" ref={ref} {...props}>
       {children}

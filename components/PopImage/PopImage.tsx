@@ -54,10 +54,9 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
           bottom: 0,
           transform: "translateX(-8px)",
         },
-
         img: {
           width: "100%",
-          height: "100%",
+          height: "auto",
           position: "relative",
           objectFit: "cover",
           transition: "transform 90ms ease-out",

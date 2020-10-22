@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import { Provider } from "jotai";
 
 import { Layout, markdown } from "@/components";
+import { GridHelper } from "@/components/Debug/GridHelper";
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
@@ -18,6 +19,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
             </AnimatePresence>
           </MDXProvider>
         </Layout>
+        <GridHelper />
       </Provider>
     </ThemeProvider>
   );

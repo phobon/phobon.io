@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import { Vector, Box } from "@phobon/base";
+import { Vector, Box, BoxProps } from "@phobon/base";
 
-export const Identity = (props) => (
+export const Identity: React.FunctionComponent<
+  BoxProps & React.HTMLAttributes<HTMLDivElement>
+> = (props) => (
   <Box {...props} css={{ cursor: "pointer" }}>
     <Vector
       width="100%"

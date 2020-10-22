@@ -7,11 +7,7 @@
     "published": "23 December 2019",
     "category": "Agworld",
     "description": "Improving the experience of buying subscriptions for Agworld's customers",
-    "tags": [
-      "Design",
-      "Research",
-      "Front-end Development"
-    ]
+    "tags": ["Design", "Research", "Front-end Development"]
   },
   {
     "key": "aligning-agworlds-platform-experiences",
@@ -21,9 +17,46 @@
     "published": "17 August 2019",
     "category": "Agworld",
     "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
-    "tags": [
-      "Design",
-      "Front-end Development"
-    ]
+    "tags": ["Design", "Front-end Development"]
+  },
+  {
+    "key": "building-a-better-buying-experience-at-agworld-2",
+    "title": "Building a Better Buying Experience at Agworld",
+    "href": "writing/building-a-better-buying-experience-at-agworld",
+    "src": "static/writing/building-a-better-buying-experience-at-agworld/index",
+    "published": "23 December 2019",
+    "category": "Agworld",
+    "description": "Improving the experience of buying subscriptions for Agworld's customers",
+    "tags": ["Design", "Research", "Front-end Development"]
+  },
+  {
+    "key": "aligning-agworlds-platform-experiences-2",
+    "title": "Aligning Agworld's Platform Experiences",
+    "href": "writing/aligning-agworlds-platform-experiences",
+    "src": "static/writing/aligning-agworlds-platform-experiences/index",
+    "published": "17 August 2019",
+    "category": "Agworld",
+    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
+    "tags": ["Design", "Front-end Development"]
+  },
+  {
+    "key": "building-a-better-buying-experience-at-agworld-3",
+    "title": "Building a Better Buying Experience at Agworld",
+    "href": "writing/building-a-better-buying-experience-at-agworld",
+    "src": "static/writing/building-a-better-buying-experience-at-agworld/index",
+    "published": "23 December 2019",
+    "category": "Agworld",
+    "description": "Improving the experience of buying subscriptions for Agworld's customers",
+    "tags": ["Design", "Research", "Front-end Development"]
+  },
+  {
+    "key": "aligning-agworlds-platform-experiences-3",
+    "title": "Aligning Agworld's Platform Experiences",
+    "href": "writing/aligning-agworlds-platform-experiences",
+    "src": "static/writing/aligning-agworlds-platform-experiences/index",
+    "published": "17 August 2019",
+    "category": "Agworld",
+    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
+    "tags": ["Design", "Front-end Development"]
   }
 ]

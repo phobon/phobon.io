@@ -1,11 +1,31 @@
 import React from "react";
-import { Heading, Stack, Text, Link as SignalLink } from "@phobon/base";
+import {
+  Heading,
+  Stack,
+  Text,
+  Link as SignalLink,
+  StackProps,
+} from "@phobon/base";
 import Link from "next/link";
 
 import { PopImage } from "../PopImage";
 import { SlideLink } from "../SlideLink";
 
-export const FluidStudy: React.FunctionComponent<any> = ({
+export interface IFluidStudyProps {
+  href?: string;
+  src?: string;
+  title?: string;
+  published?: string;
+  description?: string;
+  category?: string;
+  tags?: string[];
+}
+
+export type FluidStudyProps = IFluidStudyProps &
+  StackProps &
+  React.HTMLAttributes<HTMLDivElement>;
+
+export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   href,
   src,
   title,
@@ -13,10 +33,9 @@ export const FluidStudy: React.FunctionComponent<any> = ({
   description,
   category,
   tags,
-  heroPosition,
   ...props
 }) => (
-  <Stack as="article" fullWidth {...props} alignItems="flex-start">
+  <Stack as="article" alignItems="flex-start" fullWidth {...props}>
     <Link href={href} passHref>
       <SignalLink fullWidth mb={5}>
         <PopImage fullWidth src={src} alt={title} fullHeight />
@@ -39,7 +58,3 @@ export const FluidStudy: React.FunctionComponent<any> = ({
     </Link>
   </Stack>
 );
-
-FluidStudy.defaultProps = {
-  heroPosition: "left",
-};
