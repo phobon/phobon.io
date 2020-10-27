@@ -2278,20 +2278,20 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@phobon/base@^3.1.8":
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.8.tgz#4b85d4251ad8de635b93cebe08cd6490825efe41"
-  integrity sha512-cTIs9nLPXl12mUz8E2SBA3NXJ3CKY7+K72tbas2ift6z2tSchexww7rlsC1P0ltHeEcQWOU7V12SiBQRwFUYSg==
+"@phobon/base@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.9.tgz#55ae3e362a3a8e66528eabaab30143c5738087a3"
+  integrity sha512-1Vc9mVKkkk7kJAhRH9UV9PBfRf0TrnBTfhvd4KUArViqWmah315ACePWI1PSiAHJzxTqR3ToFFLOt/btM+kdcg==
 
-"@phobon/grimoire@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-1.0.2.tgz#7d3982a7dbb9446bb9cbebfee11815180751d9d3"
-  integrity sha512-76S4CXgyDXY11QrnYBTDzYxu/O+/nFCw1rUaeJ7jq9bdklwqyoJYppLemMKQGt/EVbVoePL+RlJnYIbRJdVM+A==
+"@phobon/grimoire@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-1.1.0.tgz#de6c1cd63956ee55649af63b0a0048b8f1ae2f6f"
+  integrity sha512-qIZQvK6zTwIrTCBnGsiCM26oItVhCqfE6f7vv3NdGLd9fgqG6/LJYWcEuAEXHCUA/dEjzGWPFl7o3E9QJShX4w==
 
-"@phobon/hooks@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@phobon/hooks/-/hooks-2.2.0.tgz#7d5de6a76562a84c9c80f4f2c4b42b89a5021626"
-  integrity sha512-TelAqbvAF/eZUATE4cxKPx8Ar2qqOxRxcH6Bv8bfv8rZHzdOcor0agcktsoLxbvZgWfbZA9Fa3LQY42bJh1ZcA==
+"@phobon/hooks@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@phobon/hooks/-/hooks-2.2.2.tgz#49fc6866710dfcaf3e4a9155c526ba9dee121be8"
+  integrity sha512-hiMn095rJOk34aYex/LUV3GFXUTLxKgZ1zX/A9hSXC8rlgfgln6EaI8Xwr96uhNHQqnQdHil2lPcVgf0pex4DQ==
 
 "@phobon/tokens@^1.1.1":
   version "1.1.1"
