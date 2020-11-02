@@ -24,8 +24,8 @@ export const Meta: FunctionComponent<MetaProps> = ({
       <meta name="title" content={metaTitle} />
       <meta name="description" content={description} />
 
-      <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-      <link rel="icon" href="/static/favicon.ico" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="icon" href="/favicon.ico" />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
@@ -44,7 +44,7 @@ export const Meta: FunctionComponent<MetaProps> = ({
 
 Meta.defaultProps = {
   url: "https://phobon.io",
-  image: "https://phobon.io/static/phbn.webp",
+  image: "https://phobon.io/phbn.webp",
   description: "Personal website for developer and designer, Ben McCormick",
   twitterCard: "summary_large_image",
 };
