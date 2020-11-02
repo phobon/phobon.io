@@ -45,6 +45,9 @@ export const GlobalStyles = (): React.ReactElement => {
     "img, fieldset": {
       border: 0,
     },
+    figure: {
+      margin: 0,
+    },
     "#__next": {
       width: "100%",
       minHeight: "100%",
@@ -52,6 +55,7 @@ export const GlobalStyles = (): React.ReactElement => {
       flexDirection: "column",
       placeItems: "center",
       backgroundColor: "var(--c-background)",
+      overflowX: "hidden",
     },
   };
   return <Global styles={styles} />;

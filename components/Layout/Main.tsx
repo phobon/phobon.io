@@ -2,7 +2,12 @@ import React from "react";
 import { Grid, GridProps } from "@phobon/base";
 import { motion } from "framer-motion";
 
-import { maxWidth, gridGap, gridTemplateColumns } from "@/data/constants";
+import {
+  maxWidth,
+  gridGap,
+  gridTemplateColumns,
+  horizontalPadding,
+} from "@/data/constants";
 
 const container = {
   visible: {
@@ -25,7 +30,7 @@ export const Main: React.FunctionComponent<MainProps & any> = ({
     as="main"
     fullWidth
     maxWidth={maxWidth}
-    px={5}
+    px={horizontalPadding}
     py={[6, 9]}
     gridTemplateColumns={gridTemplateColumns}
     gridColumnGap={gridGap}

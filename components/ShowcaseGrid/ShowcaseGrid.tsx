@@ -19,8 +19,8 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   // We want to alternate the size and position of the elements as
   // we go, so index 0 should be large, 1 should be small, 2 should be small, 3 should be large
   const columnSizes = {
-    1: ["1 / span 8", "9 / span 4"],
-    0: ["1 / span 4", "5 / span 8"],
+    1: ["auto / span 7", "auto / span 5"],
+    0: ["auto / span 5", "auto / span 7"],
   };
   let row = 1;
   let rowCount = 0;

@@ -1,6 +1,6 @@
 export const themeDefinitions = {
   light: {
-    foreground: "hsl(228, 15%, 35%)",
+    foreground: "hsl(228, 15%, 45%)",
     background: "hsl(0, 0%, 100%)",
     grayscale: [
       "hsl(213, 10%, 17%)",

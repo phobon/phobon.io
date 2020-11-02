@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, TypographyProps } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 export type ParagraphProps = TypographyProps &
   React.HTMLAttributes<HTMLParagraphElement>;
 
@@ -19,4 +21,5 @@ Paragraph.defaultProps = {
   mt: 0,
   mb: 5,
   maxWidth: "80ch",
+  gridColumn: spanAllColumns,
 };

@@ -1,9 +1,17 @@
 import styled from "@emotion/styled";
-import { space, SpaceProps } from "styled-system";
+import {
+  compose,
+  space,
+  gridColumn,
+  SpaceProps,
+  GridColumnProps,
+} from "styled-system";
 import { shouldForwardProp } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 export const Blockquote = styled("blockquote", { shouldForwardProp })<
-  SpaceProps
+  SpaceProps & GridColumnProps
 >(
   (props) => ({
     position: "relative",
@@ -22,9 +30,10 @@ export const Blockquote = styled("blockquote", { shouldForwardProp })<
       color: props.theme.colors.grayscale[3],
     },
   }),
-  space
+  compose(space, gridColumn)
 );
 
 Blockquote.defaultProps = {
   mb: 6,
+  gridColumn: spanAllColumns,
 };

@@ -38,7 +38,15 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   <Stack as="article" alignItems="flex-start" fullWidth {...props}>
     <Link href={href} passHref>
       <SignalLink fullWidth mb={5}>
-        <PopImage fullWidth src={src} alt={title} fullHeight />
+        <PopImage
+          fullWidth
+          src={src}
+          alt={title}
+          fullHeight
+          loading="eager"
+          unsized
+          maxHeight={450}
+        />
       </SignalLink>
     </Link>
 

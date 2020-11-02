@@ -3,7 +3,7 @@
     "key": "building-a-better-buying-experience-at-agworld",
     "title": "Building a Better Buying Experience at Agworld",
     "href": "writing/building-a-better-buying-experience-at-agworld",
-    "src": "writing/building-a-better-buying-experience-at-agworld/index",
+    "src": "/writing/building-a-better-buying-experience-at-agworld/index.webp",
     "published": "23 December 2019",
     "category": "Agworld",
     "description": "Improving the experience of buying subscriptions for Agworld's customers",
@@ -13,50 +13,40 @@
     "key": "aligning-agworlds-platform-experiences",
     "title": "Aligning Agworld's Platform Experiences",
     "href": "writing/aligning-agworlds-platform-experiences",
-    "src": "writing/aligning-agworlds-platform-experiences/index",
+    "src": "/writing/aligning-agworlds-platform-experiences/index.webp",
     "published": "17 August 2019",
     "category": "Agworld",
     "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
     "tags": ["Design", "Front-end Development"]
   },
   {
-    "key": "building-a-better-buying-experience-at-agworld-2",
-    "title": "Building a Better Buying Experience at Agworld",
-    "href": "writing/building-a-better-buying-experience-at-agworld",
-    "src": "writing/building-a-better-buying-experience-at-agworld/index",
-    "published": "23 December 2019",
+    "key": "signal-design-system",
+    "title": "Signal - Agworld's Design System",
+    "href": "writing/signal-design-system",
+    "src": "/writing/signal-design-system/index.webp",
+    "published": "xx November 2020",
     "category": "Agworld",
-    "description": "Improving the experience of buying subscriptions for Agworld's customers",
+    "description": "Scaling design and frontend practices at Agworld",
+    "tags": ["Design", "Research", "Front-end Development", "Design System"]
+  },
+  {
+    "key": "refactoring-10-years-of-legacy",
+    "title": "Refactoring 10 Years of Legacy",
+    "href": "writing/refactoring-10-years-of-legacy",
+    "src": "/writing/refactoring-10-years-of-legacy/index.webp",
+    "published": "xx November 2020",
+    "category": "Agworld",
+    "description": "Unravelling and refactoring an extremely challenging frontend codebase",
+    "tags": ["Front-end Development", "Architecture"]
+  },
+  {
+    "key": "making-agworld-responsive",
+    "title": "Making Agworld Responsive",
+    "href": "writing/making-agworld-responsive",
+    "src": "/writing/making-agworld-responsive/index.webp",
+    "published": "xx November 2020",
+    "category": "Agworld",
+    "description": "Implementing a much requested experience in Agworld",
     "tags": ["Design", "Research", "Front-end Development"]
-  },
-  {
-    "key": "aligning-agworlds-platform-experiences-2",
-    "title": "Aligning Agworld's Platform Experiences",
-    "href": "writing/aligning-agworlds-platform-experiences",
-    "src": "writing/aligning-agworlds-platform-experiences/index",
-    "published": "17 August 2019",
-    "category": "Agworld",
-    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
-    "tags": ["Design", "Front-end Development"]
-  },
-  {
-    "key": "building-a-better-buying-experience-at-agworld-3",
-    "title": "Building a Better Buying Experience at Agworld",
-    "href": "writing/building-a-better-buying-experience-at-agworld",
-    "src": "writing/building-a-better-buying-experience-at-agworld/index",
-    "published": "23 December 2019",
-    "category": "Agworld",
-    "description": "Improving the experience of buying subscriptions for Agworld's customers",
-    "tags": ["Design", "Research", "Front-end Development"]
-  },
-  {
-    "key": "aligning-agworlds-platform-experiences-3",
-    "title": "Aligning Agworld's Platform Experiences",
-    "href": "writing/aligning-agworlds-platform-experiences",
-    "src": "writing/aligning-agworlds-platform-experiences/index",
-    "published": "17 August 2019",
-    "category": "Agworld",
-    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
-    "tags": ["Design", "Front-end Development"]
   }
 ]

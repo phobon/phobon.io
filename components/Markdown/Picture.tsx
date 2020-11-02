@@ -1,35 +1,37 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/react";
 import React from "react";
-import { Box, BoxProps, ImageProps } from "@phobon/base";
+import { Box, BoxProps } from "@phobon/base";
+import Image from "next/image";
 
 export interface IPictureProps {
-  fallbackExtension: "jpg" | "png";
-  fallbackType: "jpeg" | "png";
-  loading?: any;
+  unsized?: boolean;
+  loading?: "lazy" | "eager";
 }
 
 export type PictureProps = IPictureProps &
   BoxProps &
-  ImageProps &
   React.DetailedHTMLProps<
     React.ImgHTMLAttributes<HTMLImageElement>,
     HTMLImageElement
   >;
 
-export const Picture = React.forwardRef<HTMLImageElement, PictureProps>(
-  ({ src, fallbackExtension, fallbackType, alt, loading, ...props }, ref) => {
-    const fallback = `${src}.${fallbackExtension}`;
-    return (
-      <Box as="picture" {...props}>
-        <source srcSet={`${src}.webp`} type="image/webp" />
-        <source srcSet={fallback} type={`image/${fallbackType}`} />
-        <img src={fallback} alt={alt} {...props} loading={loading} ref={ref} />
-      </Box>
-    );
-  }
+export const Picture = ({ src, alt, loading, unsized, ...props }) => (
+  <Box
+    fullWidth
+    {...props}
+    css={{
+      border: "1px solid green",
+      img: {
+        width: "100%",
+        height: "auto",
+      },
+    }}
+  >
+    <Image src={src} alt={alt} loading={loading} unsized />
+  </Box>
 );
 
 Picture.defaultProps = {
-  fallbackExtension: "jpg",
-  fallbackType: "jpeg",
   loading: "lazy",
 };

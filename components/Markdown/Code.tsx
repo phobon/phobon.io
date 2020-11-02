@@ -2,6 +2,8 @@
 import { jsx } from "@emotion/react";
 import { Text } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 export const Code = (props) => (
   <Text
     as="span"
@@ -14,6 +16,7 @@ export const Code = (props) => (
     px={2}
     py={1}
     css={{ borderRadius: 8 }}
+    gridColumn={spanAllColumns}
     {...props}
   />
 );

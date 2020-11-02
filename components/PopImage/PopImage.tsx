@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { Box, BoxProps } from "@phobon/base";
+import Image from "next/image";
 
 export interface IPopImageProps {
-  fallbackExtension?: "jpg" | "png";
-  fallbackType?: "jpeg" | "png";
-  loading?: any;
+  loading?: "eager" | "lazy";
+  unsized?: boolean;
 }
 
 export type PopImageProps = IPopImageProps &
@@ -18,20 +18,19 @@ export type PopImageProps = IPopImageProps &
 export const PopImage: React.FunctionComponent<PopImageProps> = ({
   src,
   alt,
-  fallbackExtension,
-  fallbackType,
-  loading,
+  color = "accent",
+  loading = "lazy",
+  width,
+  height,
+  unsized,
   ...props
 }) => {
-  const fallback = `${src}.${fallbackExtension}`;
+  const isUnsized = !unsized || !width || !height;
   return (
     <Box
-      as="picture"
       css={(theme) => ({
-        background: theme.colors[props.color][6],
         transition: "opacity 0.5s ease-out",
         position: "relative",
-        display: "flex",
         "&::before, &::after": {
           content: "''",
           width: 0,
@@ -41,23 +40,33 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
           transition: "transform 90ms ease-out",
         },
         "&::before": {
-          borderRightColor: theme.colors[props.color][6],
-          borderBottomColor: theme.colors[props.color][6],
+          borderRightColor: theme.colors[color][6],
+          borderBottomColor: theme.colors[color][6],
           left: 0,
           top: -8,
           transform: "translateY(8px)",
         },
         "&::after": {
-          borderLeftColor: theme.colors[props.color][6],
-          borderTopColor: theme.colors[props.color][6],
+          borderLeftColor: theme.colors[color][6],
+          borderTopColor: theme.colors[color][6],
           right: -8,
-          bottom: 0,
+          bottom: 5,
           transform: "translateX(-8px)",
         },
+        "> span": {
+          "&::before": {
+            content: "''",
+            background: theme.colors[color][6],
+            position: "absolute",
+            width: "100%",
+            height: "calc(100% - 5px)",
+          },
+        },
         img: {
-          width: "100%",
-          height: "auto",
           position: "relative",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          height: "auto",
           objectFit: "cover",
           transition: "transform 90ms ease-out",
           zIndex: 1,
@@ -71,18 +80,19 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
           },
         },
       })}
+      width={width}
+      height={height}
       {...props}
     >
-      <source srcSet={`${src}.webp`} type="image/webp" />
-      <source srcSet={fallback} type={`image/${fallbackType}`} />
-      <img src={fallback} alt={alt} loading={loading} />
+      <span>
+        <Image
+          src={src}
+          alt={alt}
+          unsized={isUnsized}
+          width={width}
+          height={height}
+        />
+      </span>
     </Box>
   );
-};
-
-PopImage.defaultProps = {
-  color: "accent",
-  fallbackType: "jpeg",
-  fallbackExtension: "jpg",
-  loading: "lazy",
 };

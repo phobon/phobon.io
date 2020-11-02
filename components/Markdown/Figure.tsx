@@ -18,6 +18,8 @@ import {
   GridPositionProps,
 } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 const figureSystem = compose(space, color, flexbox, gridPosition);
 
 export interface IFigureProps {
@@ -37,6 +39,7 @@ const StyledFigure = styled("figure", { shouldForwardProp })<FigureProps>(
     flex: "none",
     flexDirection: "column",
     width: "100%",
+    border: "1px solid purple",
   },
   figureSystem
 );
@@ -63,4 +66,5 @@ Figure.defaultProps = {
   mb: 5,
   justifyContent: "center",
   alignItems: "center",
+  gridColumn: spanAllColumns,
 };

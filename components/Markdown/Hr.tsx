@@ -1,16 +1,25 @@
-import { space, SpaceProps } from "styled-system";
+import {
+  compose,
+  gridColumn,
+  space,
+  SpaceProps,
+  GridColumnProps,
+} from "styled-system";
 import styled from "@emotion/styled";
 
-export const Hr = styled("hr")<SpaceProps>(
+import { spanAllColumns } from "@/data/constants";
+
+export const Hr = styled("hr")<SpaceProps & GridColumnProps>(
   (props) => ({
     borderWidth: 2,
     borderStyle: "solid",
     width: "5%",
     borderColor: props.theme.colors.accent[9],
   }),
-  space
+  compose(space, gridColumn)
 );
 
 Hr.defaultProps = {
   my: 5,
+  gridColumn: spanAllColumns,
 };

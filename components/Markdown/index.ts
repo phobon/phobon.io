@@ -1,7 +1,6 @@
 import { Table } from "@phobon/base";
 
-import { Main } from "@/components/Layout/Main";
-
+import { Wrapper } from "./Wrapper";
 import { Paragraph } from "./Paragraph";
 import { H1, H2, H3 } from "./Headings";
 import { Code } from "./Code";
@@ -17,7 +16,7 @@ export * from "./Picture";
 export * from "./Span";
 
 export default {
-  wrapper: Main,
+  wrapper: Wrapper,
   p: Paragraph,
   h1: H1,
   h2: H2,

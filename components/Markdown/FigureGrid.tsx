@@ -2,18 +2,21 @@
 import { jsx } from "@emotion/react";
 import { Grid } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 import { Figure } from "./Figure";
 
 export const FigureGrid = ({ children, caption, ...props }) => (
   <Figure caption={caption}>
     <Grid
       {...props}
-      css={`
-        > picture {
-          width: 100%;
-          justify-self: center;
-        }
-      `}
+      css={{
+        border: "1px solid red",
+        "> picture": {
+          width: "100%",
+          justifySelf: "center",
+        },
+      }}
       fullWidth
     >
       {children}
@@ -24,4 +27,5 @@ export const FigureGrid = ({ children, caption, ...props }) => (
 FigureGrid.defaultProps = {
   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
   gridGap: 5,
+  gridColumn: spanAllColumns,
 };

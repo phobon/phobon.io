@@ -1,18 +1,25 @@
 import React from "react";
 import { Text } from "@phobon/base";
 
+import { spanAllColumns } from "@/data/constants";
+
 const defaultProps = {
   color: "foreground",
   fontWeight: "light",
   lineHeight: 1,
   mt: 0,
   mb: 4,
+  gridColumn: spanAllColumns,
 };
 
 export const H1 = React.forwardRef<HTMLHeadingElement, any>(
-  ({ children, ...props }, ref) => (
-    <Text as="h1" fontSize={[8, 10]} {...defaultProps} {...props} ref={ref} />
-  )
+  ({ children, ...props }, ref) => {
+    return (
+      <Text as="h1" fontSize={[8, 10]} {...defaultProps} {...props} ref={ref}>
+        {children}
+      </Text>
+    );
+  }
 );
 
 export const H2 = React.forwardRef<HTMLHeadingElement, any>(
@@ -24,7 +31,9 @@ export const H2 = React.forwardRef<HTMLHeadingElement, any>(
       mt={7}
       {...props}
       ref={ref}
-    />
+    >
+      {children}
+    </Text>
   )
 );
 
@@ -37,6 +46,8 @@ export const H3 = React.forwardRef<HTMLHeadingElement, any>(
       mt={7}
       {...props}
       ref={ref}
-    />
+    >
+      {children}
+    </Text>
   )
 );

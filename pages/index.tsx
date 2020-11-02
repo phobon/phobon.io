@@ -9,6 +9,7 @@ import { SlideLink, FluidStudy, Project, Experience } from "@/components";
 import { Meta } from "@/components/Meta";
 import { Main } from "@/components/Layout/Main";
 import { ShowcaseGrid } from "@/components/ShowcaseGrid";
+import { maxWidth, spanAllColumns } from "@/data/constants";
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -40,11 +41,11 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         fullWidth
         fontSize={[9, 10]}
         lineHeight={[2, 3]}
-        maxWidth={1400}
+        maxWidth={maxWidth}
         mb={[5, 0]}
         color="grayscale.3"
         fontWeight="light"
-        gridColumn="1 / span 12"
+        gridColumn={spanAllColumns}
         css={(theme) => ({
           "> span": {
             display: "inline-block",
@@ -95,7 +96,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         <ShowcaseGrid
           id="writing"
           as="section"
-          gridColumn="1 / span 12"
+          gridColumn={spanAllColumns}
           gridRowGap={9}
           css={{
             alignItems: "flex-start",
@@ -147,11 +148,11 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       {experiences && (
         <MotionStack
           fullWidth
-          maxWidth={1400}
+          maxWidth={maxWidth}
           alignSelf="center"
           alignItems="flex-start"
           space={[6, 9]}
-          gridColumn="1 / span 12"
+          gridColumn={spanAllColumns}
           as="section"
           variants={{
             visible: {
@@ -181,13 +182,13 @@ const Index = ({ projects, writing, experiences, ...props }) => (
 
       {projects && (
         <MotionGrid
-          maxWidth={1400}
+          maxWidth={maxWidth}
           fullWidth
           gridTemplateColumns={["1fr", "repeat(2, 1fr)"]}
           gridAutoRows="auto"
           css={{ alignSelf: "center" }}
           gridGap={6}
-          gridColumn="1 / span 12"
+          gridColumn={spanAllColumns}
           as="section"
           variants={{
             visible: {

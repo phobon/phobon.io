@@ -7,14 +7,7 @@ import { SlideLink } from "../SlideLink";
 import { PopImage } from "../PopImage";
 
 export const Project = ({ project, ...props }) => {
-  const {
-    name,
-    description,
-    image,
-    fallbackType,
-    fallbackExtension,
-    url,
-  } = project;
+  const { name, description, image, url } = project;
   return (
     <Box
       as="article"
@@ -25,12 +18,7 @@ export const Project = ({ project, ...props }) => {
     >
       {/* When this becomes a link to an internal project, it needs a Link */}
       <a href={url} css={{ width: 200 }}>
-        <PopImage
-          src={image}
-          fallbackType={fallbackType}
-          fallbackExtension={fallbackExtension}
-          alt={name}
-        />
+        <PopImage src={image} alt={name} unsized loading="lazy" />
       </a>
       <Stack
         flex={1}
