@@ -10,6 +10,8 @@ import Link from "next/link";
 
 import { PopImage } from "../PopImage";
 import { SlideLink } from "../SlideLink";
+import { TiltImage } from "../TiltImage";
+import { ShiftImage } from "../ShiftImage";
 
 export interface IFluidStudyProps {
   href?: string;
@@ -38,7 +40,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   <Stack as="article" alignItems="flex-start" fullWidth {...props}>
     <Link href={href} passHref>
       <SignalLink fullWidth mb={5}>
-        <PopImage
+        <ShiftImage
           fullWidth
           src={src}
           alt={title}

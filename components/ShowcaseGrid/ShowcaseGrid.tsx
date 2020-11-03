@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-import React from "react";
+import React, { SyntheticEvent, useEffect, useRef } from "react";
 import { Grid, GridProps } from "@phobon/base";
-import { Spacer } from "@phobon/grimoire";
 import { motion } from "framer-motion";
 
 import { gridGap, gridTemplateColumns } from "@/data/constants";
@@ -16,6 +15,48 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   children,
   ...props
 }) => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mouseEnter = (e) => {
+      if (!e.target.classList.contains("showcase")) {
+        return;
+      }
+
+      e.stopPropagation();
+
+      requestAnimationFrame(() => {
+        e.target.classList.add("showcase--hover");
+        const notHovered = gridRef.current.querySelectorAll(
+          ":not(.showcase--hover)"
+        );
+        notHovered.forEach((nh) => nh.classList.add("showcase--grayscale"));
+      });
+    };
+    const mouseLeave = (e) => {
+      if (!e.target.classList.contains("showcase--hover")) {
+        return;
+      }
+
+      e.stopPropagation();
+      requestAnimationFrame(() => {
+        e.target.classList.remove("showcase--hover");
+        const grayscaled = gridRef.current.querySelectorAll(
+          ".showcase--grayscale"
+        );
+        grayscaled.forEach((nh) => nh.classList.remove("showcase--grayscale"));
+      });
+    };
+
+    gridRef.current.addEventListener("mouseenter", mouseEnter, true);
+    gridRef.current.addEventListener("mouseleave", mouseLeave, true);
+
+    return () => {
+      gridRef.current.removeEventListener("mouseenter", mouseEnter);
+      gridRef.current.removeEventListener("mouseleave", mouseLeave);
+    };
+  }, []);
+
   // We want to alternate the size and position of the elements as
   // we go, so index 0 should be large, 1 should be small, 2 should be small, 3 should be large
   const columnSizes = {
@@ -25,20 +66,12 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   let row = 1;
   let rowCount = 0;
   const mappedChildren = React.Children.map(children, (c: any, i) => {
-    // if (row === 1) {
-    //   const clonedElement = React.cloneElement(c, {
-    //     gridRow: row,
-    //     gridColumn: "1 / span 12",
-    //   });
-    //   row += 1;
-    //   return clonedElement;
-    // }
-
     let columnSize = columnSizes[row % 2];
     let column = columnSize[rowCount];
 
     const clonedElement = React.cloneElement(c, {
       gridColumn: ["1 / span 8", column],
+      className: "showcase",
     });
 
     // Increment the row count to determine appropriate layout
@@ -55,9 +88,24 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   return (
     <MotionGrid
       fullWidth
-      {...props}
+      ref={gridRef}
       gridColumnGap={gridGap}
       gridTemplateColumns={gridTemplateColumns}
+      css={{
+        placeItems: "start",
+        pointerEvents: "none",
+        "> .showcase": {
+          pointerEvents: "all",
+          transition: "filter 240ms ease-out, opacity 240ms ease-out",
+          filter: "grayscale(0)",
+          opacity: 1,
+        },
+        "> .showcase--grayscale": {
+          filter: "grayscale(100%) blur(1px)",
+          opacity: 0.6,
+        },
+      }}
+      {...props}
     >
       {mappedChildren}
     </MotionGrid>
