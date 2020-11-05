@@ -2,7 +2,6 @@
 import { jsx } from "@emotion/react";
 import { useRef, useEffect } from "react";
 import { Box, BoxProps, Image } from "@phobon/base";
-import { animate } from "popmotion";
 import { motion } from "framer-motion";
 
 const MotionImage = motion.custom(Image);
@@ -54,15 +53,11 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
         const halfWidth = width / 2;
         const halfHeight = height / 2;
 
-        const x = e.offsetX;
-        const y = e.offsetY;
-
         // Normalise around origin
-        const normalizeY = ((x - halfWidth) / halfWidth) * factor;
-        const normalizeX = (-(y - halfHeight) / halfHeight) * factor;
+        const normalizeY = ((e.offsetX - halfWidth) / halfWidth) * factor;
+        const normalizeX = (-(e.offsetY - halfHeight) / halfHeight) * factor;
 
         const transform = `rotateY(${normalizeY}deg) rotateX(${normalizeX}deg)`;
-        console.log(transform);
         planeRef.current.style.transform = transform;
       });
     };
@@ -91,6 +86,9 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
           width: "100%",
           height: "auto",
           objectFit: "cover",
+          maxWidth: "inherit",
+          maxHeight: "inherit",
+          willChange: "transform",
         },
       }}
       {...props}
