@@ -97,11 +97,11 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
         "> .showcase": {
           pointerEvents: "all",
           transition: "filter 240ms ease-out, opacity 240ms ease-out",
-          filter: "grayscale(0)",
+          filter: "grayscale(0) blur(0)",
           opacity: 1,
         },
         "> .showcase--grayscale": {
-          filter: "grayscale(100%) blur(1px)",
+          filter: "grayscale(100%) blur(0)",
           opacity: 0.6,
         },
       }}

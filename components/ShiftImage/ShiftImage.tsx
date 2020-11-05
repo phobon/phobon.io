@@ -26,8 +26,6 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
   loading = "lazy",
   width,
   height,
-  maxWidth,
-  maxHeight,
   factor = 8,
   ...props
 }) => {
