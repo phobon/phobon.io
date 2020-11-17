@@ -31,8 +31,7 @@ export type SlideLinkProps = ISlideLinkProps &
   SpaceProps &
   FontSizeProps &
   FontWeightProps &
-  LineHeightProps &
-  React.DetailedHTMLProps<
+  LineHeightProps & { as?: React.ElementType } & React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   >;

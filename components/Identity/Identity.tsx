@@ -4,7 +4,8 @@ import React from "react";
 import { jsx } from "@emotion/react";
 import { Vector, Box, BoxProps } from "@phobon/base";
 
-export type IdentityProps = BoxProps & React.HTMLAttributes<HTMLDivElement>;
+export type IdentityProps = BoxProps &
+  React.HTMLAttributes<HTMLDivElement> & { as?: React.ElementType };
 
 export const Identity = React.forwardRef<HTMLDivElement, IdentityProps>(
   (props, ref) => (
