@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
@@ -5,7 +6,6 @@ import { Box, BoxProps } from "@phobon/base";
 import Image from "next/image";
 
 export interface IPictureProps {
-  unsized?: boolean;
   loading?: "lazy" | "eager";
 }
 
@@ -16,22 +16,19 @@ export type PictureProps = IPictureProps &
     HTMLImageElement
   >;
 
-export const Picture = ({ src, alt, loading, unsized, ...props }) => (
-  <Box
-    fullWidth
-    {...props}
-    css={{
-      border: "1px solid green",
-      img: {
-        width: "100%",
-        height: "auto",
-      },
-    }}
-  >
-    <Image src={src} alt={alt} loading={loading} unsized />
+export const Picture = ({ src, alt, loading, width, height, ...props }) => (
+  <Box fullWidth {...props}>
+    <Image
+      src={src}
+      alt={alt}
+      loading={loading}
+      width={width}
+      height={height}
+    />
   </Box>
 );
 
 Picture.defaultProps = {
   loading: "lazy",
+  layout: "intrinsic",
 };

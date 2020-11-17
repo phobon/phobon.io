@@ -55,7 +55,6 @@ export const GlobalStyles = (): React.ReactElement => {
       flexDirection: "column",
       placeItems: "center",
       backgroundColor: "var(--c-background)",
-      overflowX: "hidden",
     },
   };
   return <Global styles={styles} />;

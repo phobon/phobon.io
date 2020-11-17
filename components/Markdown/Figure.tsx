@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
@@ -39,7 +40,7 @@ const StyledFigure = styled("figure", { shouldForwardProp })<FigureProps>(
     flex: "none",
     flexDirection: "column",
     width: "100%",
-    border: "1px solid purple",
+    position: "relative",
   },
   figureSystem
 );

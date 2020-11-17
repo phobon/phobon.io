@@ -19,7 +19,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
             </AnimatePresence>
           </MDXProvider>
         </Layout>
-        <GridHelper />
+        {/* <GridHelper /> */}
       </Provider>
     </ThemeProvider>
   );

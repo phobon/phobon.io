@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { useRef, useEffect } from "react";
@@ -8,7 +9,6 @@ const MotionImage = motion.custom(Image);
 
 export interface ITiltImageProps {
   loading?: "eager" | "lazy";
-  unsized?: boolean;
   factor?: number;
   perspective?: number;
 }

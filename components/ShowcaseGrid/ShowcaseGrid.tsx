@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { SyntheticEvent, useEffect, useRef } from "react";
@@ -16,6 +17,7 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   ...props
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const mouseEnter = (e) => {
@@ -25,7 +27,7 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
 
       e.stopPropagation();
 
-      requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(() => {
         e.target.classList.add("showcase--hover");
         const notHovered = gridRef.current.querySelectorAll(
           ":not(.showcase--hover)"
@@ -39,7 +41,7 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
       }
 
       e.stopPropagation();
-      requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(() => {
         e.target.classList.remove("showcase--hover");
         const grayscaled = gridRef.current.querySelectorAll(
           ".showcase--grayscale"
@@ -52,8 +54,14 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
     gridRef.current.addEventListener("mouseleave", mouseLeave, true);
 
     return () => {
-      gridRef.current.removeEventListener("mouseenter", mouseEnter);
-      gridRef.current.removeEventListener("mouseleave", mouseLeave);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+
+      if (gridRef.current) {
+        gridRef.current.removeEventListener("mouseenter", mouseEnter);
+        gridRef.current.removeEventListener("mouseleave", mouseLeave);
+      }
     };
   }, []);
 

@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
@@ -36,22 +37,36 @@ export type SlideLinkProps = ISlideLinkProps &
     HTMLAnchorElement
   >;
 
-export const SlideLink = React.forwardRef<HTMLSpanElement, SlideLinkProps>(
-  ({ children, href, title, rel, current, slideColor, ...props }, ref) => (
+export const SlideLink = React.forwardRef<HTMLAnchorElement, SlideLinkProps>(
+  (
+    {
+      children,
+      href,
+      title,
+      rel,
+      current,
+      slideColor,
+      fontSize = "inherit",
+      as,
+      ...props
+    },
+    ref
+  ) => (
     <Anchor
       href={href}
       title={title}
       rel={rel}
+      as={as}
       css={{
         overflow: "hidden",
         zIndex: 1,
         lineHeight: "inherit",
-        fontSize: "inherit",
         fontFamily: "inherit",
         "&:visited, &:focus": {
           textDecoration: "none",
         },
       }}
+      fontSize={fontSize}
       {...props}
     >
       <span

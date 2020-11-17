@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
@@ -32,11 +33,21 @@ export const Header = ({ title, ...props }) => {
   return (
     <Stack
       fullWidth
-      css={{
-        position: "sticky",
+      css={(theme) => ({
         top: 0,
+        position: "sticky",
         zIndex: 2,
-      }}
+        overflow: "hidden",
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          backgroundColor: theme.colors.background,
+          opacity: 0.7,
+          zIndex: -1,
+        },
+      })}
       {...props}
     >
       <Box
@@ -44,22 +55,12 @@ export const Header = ({ title, ...props }) => {
         fullWidth
         py={[4, 5]}
         justifyContent="space-between"
-        css={(theme) => ({
-          position: "relative",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            backgroundColor: theme.colors.background,
-            opacity: 0.9,
-            backdropFilter: "blur(8px)",
-            zIndex: -1,
-          },
-        })}
+        css={{
+          backdropFilter: "blur(12px)",
+        }}
       >
-        <Link href="/">
-          <Identity />
+        <Link href="/" passHref>
+          <Identity as="a" />
         </Link>
 
         <Stack as="nav" flexDirection="row" space={5} alignItems="center">

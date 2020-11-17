@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { Box, BoxProps } from "@phobon/base";
@@ -5,7 +6,6 @@ import Image from "next/image";
 
 export interface IPopImageProps {
   loading?: "eager" | "lazy";
-  unsized?: boolean;
 }
 
 export type PopImageProps = IPopImageProps &
@@ -22,10 +22,8 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
   loading = "lazy",
   width,
   height,
-  unsized,
   ...props
 }) => {
-  const isUnsized = !unsized || !width || !height;
   return (
     <Box
       css={(theme) => ({
@@ -85,13 +83,7 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
       {...props}
     >
       <span>
-        <Image
-          src={src}
-          alt={alt}
-          unsized={isUnsized}
-          width={width}
-          height={height}
-        />
+        <Image src={src} alt={alt} width={width} height={height} />
       </span>
     </Box>
   );

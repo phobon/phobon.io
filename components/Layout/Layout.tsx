@@ -13,7 +13,7 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({
   title,
   children,
 }) => (
-  <>
+  <React.Fragment>
     <Header
       key="header"
       title={title}
@@ -22,5 +22,5 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({
     />
     {children}
     <Footer key="footer" maxWidth={maxWidth} px={horizontalPadding} />
-  </>
+  </React.Fragment>
 );

@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
@@ -5,44 +6,42 @@ import { Stack, Box, Text } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
 import { PopImage } from "../PopImage";
+import { ShiftImage } from "../ShiftImage";
+import Link from "next/link";
 
 export const Project = ({ project, ...props }) => {
   const { name, description, image, url } = project;
   return (
-    <Box
-      as="article"
-      {...props}
-      fullWidth
-      flexDirection={["column", "row"]}
-      alignItems={["center", "flex-start"]}
-    >
-      {/* When this becomes a link to an internal project, it needs a Link */}
-      <a href={url} css={{ width: 200 }}>
-        <PopImage src={image} alt={name} unsized loading="lazy" />
-      </a>
-      <Stack
-        flex={1}
+    <Link href={url} passHref>
+      <Box
+        as="a"
+        {...props}
+        fullWidth
+        flexDirection={["column", "row"]}
         alignItems={["center", "flex-start"]}
-        ml={[0, 5]}
-        mt={[3, 0]}
       >
-        <SlideLink
-          fontSize={[5, 6]}
-          fontWeight="bold"
-          lineHeight={2}
-          mb={[2, 0]}
-          href={url}
+        {/* When this becomes a link to an internal project, it needs a Link */}
+
+        <ShiftImage src={image} alt={name} loading="lazy" width={200} />
+        <Stack
+          flex={1}
+          alignItems={["center", "flex-start"]}
+          ml={[0, 5]}
+          mt={[3, 0]}
+          space={2}
         >
-          {name}
-        </SlideLink>
-        <Text
-          fontSize={[4, 5]}
-          color="grayscale.3"
-          textAlign={["center", "left"]}
-        >
-          {description}
-        </Text>
-      </Stack>
-    </Box>
+          <SlideLink as="h3" fontSize={[4, 5]} fontWeight="light">
+            {name}
+          </SlideLink>
+          <Text
+            fontSize={[4, 5]}
+            color="grayscale.3"
+            textAlign={["center", "left"]}
+          >
+            {description}
+          </Text>
+        </Stack>
+      </Box>
+    </Link>
   );
 };

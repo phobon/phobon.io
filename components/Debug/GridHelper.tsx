@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React, { useState, useCallback } from "react";
@@ -29,7 +30,7 @@ export const GridHelper: React.FunctionComponent<
   useMediaQuery("screen and (max-width: 48em)", onMediaQueryChanged);
 
   return (
-    <>
+    <React.Fragment>
       <Button
         borderRadius={0}
         onClick={() =>
@@ -80,6 +81,6 @@ export const GridHelper: React.FunctionComponent<
             ))}
         </Grid>
       )}
-    </>
+    </React.Fragment>
   );
 };

@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { Grid } from "@phobon/base";
@@ -8,7 +9,6 @@ export const ImageGrid = ({ children, ...props }) => (
   <Grid
     {...props}
     css={{
-      border: "1px solid red",
       "> img": {
         justifySelf: "center",
       },

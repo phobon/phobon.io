@@ -1,7 +1,8 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { Box, Stack, Text, StackProps } from "@phobon/base";
+import { Box, Stack, Grid, StackProps } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
 import { Paragraph, Span } from "../Markdown";
@@ -61,13 +62,13 @@ export const Footer: React.FunctionComponent<
       <span>online</span>
     </Paragraph>
 
-    <Stack
+    <Grid
       as="ul"
-      flexDirection={["column", "row"]}
-      justifyContent="flex-start"
-      alignItems="flex-start"
+      gridTemplateColumns={["1fr", `repeat(${links.length}, 1fr)`]}
+      gridTemplateRows={[`repeat(${links.length}, auto)`, "auto"]}
+      gridGap={[2, 5]}
       css={(theme) => ({
-        gridGap: theme.space[5],
+        placeItems: "start",
       })}
     >
       {links.map((l) => (
@@ -77,6 +78,6 @@ export const Footer: React.FunctionComponent<
           </SlideLink>
         </Box>
       ))}
-    </Stack>
+    </Grid>
   </Stack>
 );

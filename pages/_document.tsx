@@ -34,10 +34,10 @@ HighSeasonDocument.getInitialProps = async (ctx) => {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) => (
-          <>
+          <React.Fragment>
             <GlobalStyles />
             <App {...props} />
-          </>
+          </React.Fragment>
         ),
       });
 

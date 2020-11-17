@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
@@ -33,7 +34,7 @@ const MotionGrid = motion.custom(Grid);
 const MotionSpacer = motion.custom(Spacer);
 
 const Index = ({ projects, writing, experiences, ...props }) => (
-  <>
+  <React.Fragment>
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
       <MotionHeading
@@ -46,14 +47,11 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         color="grayscale.3"
         fontWeight="light"
         gridColumn={spanAllColumns}
-        css={(theme) => ({
+        css={{
           "> span": {
             display: "inline-block",
           },
-          "> * + *": {
-            marginLeft: theme.space[2],
-          },
-        })}
+        }}
         variants={{
           visible: {
             translateY: 0,
@@ -71,7 +69,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         }}
         {...motionProps}
       >
-        <span>Hi, I'm</span>
+        <span>Hi, I'm&nbsp;</span>
         <span>
           <SlideLink
             href="https://www.instagram.com/thenoumenon/"
@@ -79,17 +77,17 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           >
             Ben
           </SlideLink>
-          .
+          .&nbsp;
         </span>
-        <span>I'm a</span>
+        <span>I'm a&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.violets[5] })}>
-          developer
+          developer&nbsp;
         </span>
-        <span>&</span>
+        <span>&&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.accent[5] })}>
-          designer
+          designer&nbsp;
         </span>
-        <span>based in Perth</span>
+        <span>based in Perth&nbsp;</span>
       </MotionHeading>
 
       {writing && (
@@ -106,9 +104,10 @@ const Index = ({ projects, writing, experiences, ...props }) => (
               translateY: 0,
               opacity: 1,
               transition: {
-                duration: 0.5,
+                duration: 0.75,
                 delay: 0.15,
                 ease,
+                staggerChildren: 0.25,
               },
             },
             initial: {
@@ -126,9 +125,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
 
       <MotionSpacer
         length="100%"
-        css={{
-          gridColumn: "1 / span 12",
-        }}
+        gridColumn={spanAllColumns}
         variants={{
           visible: {
             opacity: 1,
@@ -215,9 +212,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
 
       <MotionSpacer
         length="100%"
-        css={{
-          gridColumn: "1 / span 12",
-        }}
+        gridColumn={spanAllColumns}
         variants={{
           visible: {
             opacity: 1,
@@ -234,7 +229,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         {...motionProps}
       />
     </Main>
-  </>
+  </React.Fragment>
 );
 
 export const getStaticProps = async () => {

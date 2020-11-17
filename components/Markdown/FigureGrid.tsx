@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { Grid } from "@phobon/base";
@@ -11,7 +12,6 @@ export const FigureGrid = ({ children, caption, ...props }) => (
     <Grid
       {...props}
       css={{
-        border: "1px solid red",
         "> picture": {
           width: "100%",
           justifySelf: "center",

@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import { useRef, useEffect } from "react";
@@ -8,7 +9,6 @@ const MotionImage = motion.custom(Image);
 
 export interface IShiftImageProps {
   loading?: "eager" | "lazy";
-  unsized?: boolean;
   factor?: number;
   perspective?: number;
 }
@@ -33,6 +33,7 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
   const planeRef = useRef<HTMLImageElement>(null);
   const hovered = useRef<boolean>(false);
   const boundingRef = useRef<{ width?: number; height?: number }>(null);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     boundingRef.current = planeRef.current.getBoundingClientRect();
@@ -43,7 +44,7 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
 
     const leave = () => {
       hovered.current = false;
-      requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(() => {
         planeRef.current.style.transform = "scale(1) translate3d(0, 0, 0)";
       });
     };
@@ -62,7 +63,7 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
       const normalizeX = ((e.offsetY - halfHeight) / halfHeight) * factor;
       const transform = `scale(1) translate3d(${normalizeY}px, ${normalizeX}px, 0)`;
 
-      requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(() => {
         planeRef.current.style.transform = transform;
       });
     };
@@ -72,9 +73,15 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
     sceneRef.current.addEventListener("mousemove", layoutShift);
 
     return () => {
-      sceneRef.current.removeEventListener("mouseenter", enter);
-      sceneRef.current.removeEventListener("mouseleave", leave);
-      sceneRef.current.removeEventListener("mousemove", layoutShift);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+
+      if (sceneRef.current) {
+        sceneRef.current.removeEventListener("mouseenter", enter);
+        sceneRef.current.removeEventListener("mouseleave", leave);
+        sceneRef.current.removeEventListener("mousemove", layoutShift);
+      }
     };
   }, []);
 
