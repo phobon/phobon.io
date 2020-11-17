@@ -1,0 +1,74 @@
+import { Image, Grid } from "@phobon/base";
+import { Picture, Figure, FigureGrid, ImageGrid } from "@/components";
+import { Meta } from "@/components/Meta";
+
+<Meta
+  description="Refactoring 10 Years of Legacy"
+  url="https://phobon.io/writing/refactoring-10-years-of-legacy"
+  image="https://phobon.io/writing/refactoring-10-years-of-legacy/index.webp"
+/>
+
+# Refactoring 10 Years of Legacy
+
+- Embarked on a several-months-long project
+- Repay some of the technical, and design-debt built up over 10 years
+- Another part of a multi-year refactor
+
+## Four Bootstrap-sized Problems
+
+- Debt was certainly a product of its time(s)
+- The Agworld codebase is an interesting study of history
+- Serving four versions of Bootstrap on every page
+- All resources blocked rendering (js, css, etc.)
+- Performance metrics and budgets were completely blown out
+- Problem existed across SSR and CSR contexts
+- Several different layouts all serving different resources
+- All pages were developed with the knowledge that everything would be available, even if it was not appropriate
+
+## How to Eat an Elephant
+
+- Make the Change Easy, then Make the Easy Change
+- Far easier than it sounds
+- Extremely difficult to see the entire breadth of the project, so dividing things into contexts and then dividing those contexts into steps that could be changed incrementally
+
+## Defer-loading Resources
+
+- Initially, getting those key metrics of Time to Interactive and First Contentful Paint was really important
+- The biggest problem here was clearly the size of resources that needed to be loaded, but also when they were loaded
+- Refactoring these resources would need to come later, so the first change to make was to make sure these resources were defer-loaded, or loaded asynchronously
+- Completing this improved these key metrics by orders of magnitude and allowed more severe refactoring to occur
+
+## Spltting and Removing CSS Dead Wood
+
+- One of the biggest problems that needed to be addressed is the massive size of the CSS payload that users were forced to download often several times a day
+- The great majority of this CSS was unused - on some of the main traffic pages of the site, over 95% of the served CSS was unused
+- The main issue here were three layouts each with different sets of resources
+- This was split to only serve what was required
+- Several efforts over weeks to remove as much unused CSS as possible safely
+
+## Consolidating layout
+
+- The last really important piece of the puzzle was to consolidate the three vastly different layouts into a single layout
+- Doing this would massively unblock efforts for future refactoring, working on responsive layout for Agworld (see other post), and dramatically reduce the burden and complexity on developers working on new and existing features
+
+## Sandbox Resources
+
+- 3 different layouts with vastly different resources
+- Content layout had to be protected to ensure legacy content still behaved correctly
+- Common layout - the navigation / shell - could be abstracted
+- Used a sandboxing strategy to isolate resources, layout and content based on layout contexts
+- Each layout context serves specific content layout and resources that is namespaced and protected from overall layout specifics
+- ... more stuff on layout contexts?
+
+## Improving Experience - Perceived performance
+
+- Deferring resources created FOUC
+- While resource asset sizes are high and content is loaded, it was important to provide some improved perceived performance
+- Like all things - sensible default and opt-in for improved loading experiences
+
+## Clearing the Path Forward
+
+- Significantly reducing the complexity of the frontend for developers
+- Significantly improving recorded performance metrics
+- Improving perceived performance
+- Improved general user experience by making things more coherent
