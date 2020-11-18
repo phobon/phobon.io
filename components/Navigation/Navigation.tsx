@@ -93,37 +93,23 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
         </Box>
       )}
 
-      <Grid
-        fullWidth
+      <Stack
+        as="nav"
         maxWidth={maxWidth}
-        gridTemplateColumns={gridTemplateColumns}
-        gridAutoRows="1fr auto auto 1fr"
-        gridRowGap={6}
-        gridColumnGap={gridGap}
-        px={horizontalPadding}
-        css={{
-          placeItems: "start",
-          justifySelf: "center",
-        }}
+        space={3}
+        alignItems="center"
+        fullWidth
       >
-        <Stack
-          as="nav"
-          space={3}
-          alignItems="start"
-          fullWidth
-          gridArea="2 / 8 / span 2 / span 3"
-        >
-          {navigationLinks.map(({ id, ...rest }) => (
-            <NavigationLink
-              key={id}
-              id={id}
-              {...rest}
-              color={color}
-              onClick={closeNavigation}
-            />
-          ))}
-        </Stack>
-      </Grid>
+        {navigationLinks.map(({ id, ...rest }) => (
+          <NavigationLink
+            key={id}
+            id={id}
+            {...rest}
+            color={color}
+            onClick={closeNavigation}
+          />
+        ))}
+      </Stack>
     </MotionGrid>
   );
 };
