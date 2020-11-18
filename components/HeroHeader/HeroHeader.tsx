@@ -22,7 +22,6 @@ export const HeroHeader = ({ children, ...props }) => (
     fontSize={[9, 11]}
     lineHeight={[2, 1]}
     maxWidth={maxWidth}
-    mb={[5, 0]}
     color="foreground"
     fontWeight="light"
     gridColumn={spanAllColumns}

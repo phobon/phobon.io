@@ -1,6 +1,8 @@
 import React from "react";
 import { Text } from "@phobon/base";
 
+import { HeroHeader } from "@/components/HeroHeader";
+
 import { spanAllColumns } from "@/data/constants";
 
 const defaultProps = {
@@ -15,9 +17,9 @@ const defaultProps = {
 export const H1 = React.forwardRef<HTMLHeadingElement, any>(
   ({ children, ...props }, ref) => {
     return (
-      <Text as="h1" fontSize={[8, 10]} {...defaultProps} {...props} ref={ref}>
+      <HeroHeader {...defaultProps} mb={[7, 0]} {...props} ref={ref}>
         {children}
-      </Text>
+      </HeroHeader>
     );
   }
 );
