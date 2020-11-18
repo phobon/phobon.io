@@ -55,6 +55,7 @@ export const GlobalStyles = (): React.ReactElement => {
       flexDirection: "column",
       placeItems: "center",
       backgroundColor: "var(--c-background)",
+      position: "relative",
     },
   };
   return <Global styles={styles} />;

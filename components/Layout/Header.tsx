@@ -4,31 +4,20 @@ import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { Box, Stack } from "@phobon/base";
 import { useTheme } from "@phobon/hooks";
-import { Toggle, Spacer } from "@phobon/grimoire";
+import { Toggle, Spacer, Button } from "@phobon/grimoire";
 import Link from "next/link";
 
 import { getTheme } from "@/hooks/getTheme";
 
 import { Identity } from "../Identity";
-import { SlideLink } from "../SlideLink";
+import { HamburgerGlyph } from "../Glyphs";
 
-const nav = [
-  { pathname: "/#writing", label: "Writing" },
-  { pathname: "/#contact", label: "Contact" },
-];
-
-export const Header = ({ title, ...props }) => {
+export const Header = ({ title, px, openNavigation, ...props }) => {
   const [theme, setTheme] = useTheme("light", getTheme);
   const toggleTheme = useCallback(
     () => setTheme(theme === "light" ? "dark" : "light"),
     [theme]
   );
-
-  const navItems = nav.map((n) => (
-    <Link href={n.pathname} passHref key={n.pathname}>
-      <SlideLink fontSize={[3, 5]}>{n.label}</SlideLink>
-    </Link>
-  ));
 
   return (
     <Stack
@@ -38,6 +27,7 @@ export const Header = ({ title, ...props }) => {
         position: "sticky",
         zIndex: 2,
         overflow: "hidden",
+        backdropFilter: "blur(8px)",
         "&::after": {
           content: '""',
           position: "absolute",
@@ -54,25 +44,30 @@ export const Header = ({ title, ...props }) => {
         as="header"
         fullWidth
         py={[4, 5]}
+        px={px}
         justifyContent="space-between"
-        css={{
-          backdropFilter: "blur(12px)",
-        }}
       >
+        <Button
+          variant="tertiary"
+          shape="square"
+          onClick={() => openNavigation()}
+        >
+          <HamburgerGlyph />
+        </Button>
+
         <Link href="/" passHref>
           <Identity as="a" />
         </Link>
 
-        <Stack as="nav" flexDirection="row" space={5} alignItems="center">
-          {navItems}
-          <Toggle
-            toggled={theme === "dark"}
-            onClick={toggleTheme}
-            aria-label="Toggle Theme"
-          />
-        </Stack>
+        <Toggle
+          toggled={theme === "dark"}
+          onClick={toggleTheme}
+          aria-label="Toggle Theme"
+        />
       </Box>
-      <Spacer length="100%" />
+      <Box px={px} fullWidth>
+        <Spacer length="100%" />
+      </Box>
     </Stack>
   );
 };
