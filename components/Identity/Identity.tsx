@@ -38,6 +38,6 @@ export const Identity = React.forwardRef<HTMLDivElement, IdentityProps>(
 );
 
 Identity.defaultProps = {
-  width: [32, 40],
-  height: [32, 40],
+  width: [28, 32],
+  height: [28, 32],
 };

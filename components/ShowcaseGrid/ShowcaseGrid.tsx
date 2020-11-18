@@ -78,7 +78,7 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
     let column = columnSize[rowCount];
 
     const clonedElement = React.cloneElement(c, {
-      gridColumn: ["1 / span 8", column],
+      gridColumn: ["1 / span 8", "auto / span 8", column],
       className: "showcase",
     });
 

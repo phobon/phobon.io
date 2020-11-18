@@ -33,7 +33,7 @@ export const Experience: React.FunctionComponent<any> = ({
       fullWidth
       space={[0, 2]}
     >
-      <Heading as="h3" mr={[2, 0]}>
+      <Heading as="h3" mr={[2, 0]} color="foreground">
         <SlideLink href={href}>{employ}</SlideLink>
       </Heading>
       <Text fontSize={5} color="grayscale.4">

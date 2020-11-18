@@ -11,6 +11,7 @@ import { Meta } from "@/components/Meta";
 import { Main } from "@/components/Layout/Main";
 import { ShowcaseGrid } from "@/components/ShowcaseGrid";
 import { maxWidth, spanAllColumns } from "@/data/constants";
+import { HeroHeader } from "@/components/HeroHeader";
 
 const ease = [0.33, 1, 0.68, 1];
 
@@ -29,7 +30,6 @@ const motionProps = {
 };
 
 const MotionStack = motion.custom(Stack);
-const MotionHeading = motion.custom(Text);
 const MotionGrid = motion.custom(Grid);
 const MotionSpacer = motion.custom(Spacer);
 
@@ -37,38 +37,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
   <React.Fragment>
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
-      <MotionHeading
-        as="h1"
-        fullWidth
-        fontSize={[9, 10]}
-        lineHeight={[2, 3]}
-        maxWidth={maxWidth}
-        mb={[5, 0]}
-        color="grayscale.3"
-        fontWeight="light"
-        gridColumn={spanAllColumns}
-        css={{
-          "> span": {
-            display: "inline-block",
-          },
-        }}
-        variants={{
-          visible: {
-            translateY: 0,
-            opacity: 1,
-            transition: {
-              duration: 0.5,
-              delay: 0,
-              ease,
-            },
-          },
-          initial: {
-            translateY: 16,
-            opacity: 0,
-          },
-        }}
-        {...motionProps}
-      >
+      <HeroHeader>
         <span>Hi, I'm&nbsp;</span>
         <span>
           <SlideLink
@@ -88,7 +57,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           designer&nbsp;
         </span>
         <span>based in Perth&nbsp;</span>
-      </MotionHeading>
+      </HeroHeader>
 
       {writing && (
         <ShowcaseGrid
@@ -209,35 +178,24 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           ))}
         </MotionGrid>
       )}
-
-      <MotionSpacer
-        length="100%"
-        gridColumn={spanAllColumns}
-        variants={{
-          visible: {
-            opacity: 1,
-            transition: {
-              duration: 0.3,
-              delay: 0.5,
-              ease,
-            },
-          },
-          initial: {
-            opacity: 0,
-          },
-        }}
-        {...motionProps}
-      />
     </Main>
   </React.Fragment>
 );
 
 export const getStaticProps = async () => {
   const { default: projects = [] } = await import("../data/projects.json");
-  const { default: writing = [] } = await import("../data/writing.json");
-  const { default: experiences = [] } = await import(
+  const { default: unsortedWriting = [] } = await import(
+    "../data/writing.json"
+  );
+  const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
   );
+
+  // Sort writing chronologically and only take the first 4
+  const writing = unsortedWriting.reverse().slice(0, 4);
+
+  // Sort experiences chronologically as well
+  const experiences = unsortedExperiences.reverse();
   return {
     props: {
       projects,

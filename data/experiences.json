@@ -1,38 +1,6 @@
 [
   {
-    "key": 1,
-    "employ": "Agworld",
-    "href": "https://agworld.com",
-    "title": "Senior UX Engineer",
-    "timeframe": "2018 - Current",
-    "description": "I was hired to help drive design at Agworld in 2018. I'm now responsible for creating and maintaining design systems, designing thoughtful, accessible digital experiences; & mentoring others in design & front-end development",
-    "achievements": [
-      {
-        "key": "created-signal",
-        "title": "Signal",
-        "description": "Design system",
-        "href": "http://signal.agworld.com"
-      },
-      {
-        "key": "front-end-development",
-        "title": "Front-end Development",
-        "description": "Multiple projects"
-      },
-      {
-        "key": "research-design-process",
-        "title": "User research & design",
-        "description": "Implementing processes"
-      },
-      {
-        "key": "agworld-product-design",
-        "title": "Product design",
-        "description": "Multiple projects",
-        "href": "https://dribbble.com/shots/8236047-Agworld-Shopping-Experience-Checkout-Concept"
-      }
-    ]
-  },
-  {
-    "key": 2,
+    "key": "experience__acquire",
     "employ": "acQuire",
     "href": "https://acquire.com.au",
     "title": "Full Stack Engineer & Designer",
@@ -64,5 +32,38 @@
       }
     ],
     "colour": "purples.5"
+  },
+  {
+    "key": "experience__agworld",
+    "employ": "Agworld",
+    "href": "https://agworld.com",
+    "title": "Senior UX Engineer",
+    "timeframe": "2018 - 2020",
+    "description": "I was hired to help drive design at Agworld in 2018. I was responsible for creating and maintaining design systems, designing thoughtful, accessible digital experiences; mentoring others in design & front-end development",
+    "achievements": [
+      {
+        "key": "created-signal",
+        "title": "Signal",
+        "description": "Design system",
+        "href": "http://signal.agworld.com"
+      },
+      {
+        "key": "front-end-development",
+        "title": "Front-end Development",
+        "description": "Product",
+        "href": "/writing/building-a-better-buying-experience-at-agworld"
+      },
+      {
+        "key": "research-design-process",
+        "title": "User research & design",
+        "description": "Implementing processes"
+      },
+      {
+        "key": "agworld-product-design",
+        "title": "Product design",
+        "description": "Design and development",
+        "href": "https://dribbble.com/shots/8236047-Agworld-Shopping-Experience-Checkout-Concept"
+      }
+    ]
   }
 ]

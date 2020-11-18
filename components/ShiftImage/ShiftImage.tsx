@@ -36,6 +36,10 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
+    if (!planeRef.current) {
+      return;
+    }
+
     boundingRef.current = planeRef.current.getBoundingClientRect();
 
     const enter = () => {
@@ -45,6 +49,10 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
     const leave = () => {
       hovered.current = false;
       rafRef.current = requestAnimationFrame(() => {
+        if (!planeRef.current) {
+          return;
+        }
+
         planeRef.current.style.transform = "scale(1) translate3d(0, 0, 0)";
       });
     };
@@ -83,7 +91,7 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
         sceneRef.current.removeEventListener("mousemove", layoutShift);
       }
     };
-  }, []);
+  }, [planeRef.current]);
 
   return (
     <Box
