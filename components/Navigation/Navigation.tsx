@@ -6,12 +6,8 @@ import { Stack, Box, Grid } from "@phobon/base";
 import { motion } from "framer-motion";
 import { Button } from "@phobon/grimoire";
 
-import {
-  maxWidth,
-  gridTemplateColumns,
-  gridGap,
-  horizontalPadding,
-} from "@/data/constants";
+import { maxWidth } from "@/data/constants";
+import { navigationLinks } from "@/data/links";
 
 import { NavigationLink } from "./NavigationLink";
 import { CloseGlyph } from "@/components/Glyphs";
@@ -19,11 +15,6 @@ import { CloseGlyph } from "@/components/Glyphs";
 const MotionGrid = motion.custom(Grid);
 
 const ease = [0.33, 1, 0.68, 1];
-
-const navigationLinks = [
-  { id: "navlink__writing", href: "/writing", label: "Writing" },
-  { id: "navlink__about", href: "/about", label: "About" },
-];
 
 export interface NavigationProps {
   closeNavigation: () => void;

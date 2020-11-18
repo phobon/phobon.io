@@ -178,35 +178,24 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           ))}
         </MotionGrid>
       )}
-
-      <MotionSpacer
-        length="100%"
-        gridColumn={spanAllColumns}
-        variants={{
-          visible: {
-            opacity: 1,
-            transition: {
-              duration: 0.3,
-              delay: 0.5,
-              ease,
-            },
-          },
-          initial: {
-            opacity: 0,
-          },
-        }}
-        {...motionProps}
-      />
     </Main>
   </React.Fragment>
 );
 
 export const getStaticProps = async () => {
   const { default: projects = [] } = await import("../data/projects.json");
-  const { default: writing = [] } = await import("../data/writing.json");
-  const { default: experiences = [] } = await import(
+  const { default: unsortedWriting = [] } = await import(
+    "../data/writing.json"
+  );
+  const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
   );
+
+  // Sort writing chronologically and only take the first 4
+  const writing = unsortedWriting.reverse().slice(0, 4);
+
+  // Sort experiences chronologically as well
+  const experiences = unsortedExperiences.reverse();
   return {
     props: {
       projects,

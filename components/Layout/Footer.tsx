@@ -7,16 +7,7 @@ import { Box, Stack, Grid, StackProps } from "@phobon/base";
 import { SlideLink } from "../SlideLink";
 import { Paragraph, Span } from "../Markdown";
 
-const links = [
-  { label: "Dribbble", url: "https://dribbble.com/phobon" },
-  { label: "Github", url: "https://github.com/phobon" },
-  { label: "Instagram", url: "http://instagram.com/thenoumenon" },
-  {
-    label: "LinkedIn",
-    url: "https://www.linkedin.com/in/ben-mccormick-a373304/",
-  },
-  { label: "Twitter", url: "https://twitter.com/thenoumenon" },
-];
+import { socialLinks } from "@/data/links";
 
 export const Footer: React.FunctionComponent<
   StackProps & React.HTMLAttributes<HTMLDivElement>
@@ -64,17 +55,17 @@ export const Footer: React.FunctionComponent<
 
     <Grid
       as="ul"
-      gridTemplateColumns={["1fr", `repeat(${links.length}, 1fr)`]}
-      gridTemplateRows={[`repeat(${links.length}, auto)`, "auto"]}
+      gridTemplateColumns={["1fr", `repeat(${socialLinks.length}, 1fr)`]}
+      gridTemplateRows={[`repeat(${socialLinks.length}, auto)`, "auto"]}
       gridGap={[2, 5]}
-      css={(theme) => ({
+      css={{
         placeItems: "start",
-      })}
+      }}
     >
-      {links.map((l) => (
-        <Box as="li" key={l.label} mr={5} mb={3}>
-          <SlideLink href={l.url} fontSize={[3, 5]}>
-            {l.label}
+      {socialLinks.map(({ id, label, href }) => (
+        <Box as="li" key={id} mr={5} mb={3}>
+          <SlideLink href={href} fontSize={[3, 5]}>
+            {label}
           </SlideLink>
         </Box>
       ))}

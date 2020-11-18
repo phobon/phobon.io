@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { Stack } from "@phobon/base";
-import { Spacer } from "@phobon/grimoire";
+import { Spacer, useNotifications } from "@phobon/grimoire";
 import { motion } from "framer-motion";
 
 import { SlideLink, Experience } from "@/components";
@@ -85,9 +85,11 @@ const AboutMe = ({ projects, writing, experiences, ...props }) => (
 );
 
 export const getStaticProps = async () => {
-  const { default: experiences = [] } = await import(
+  const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
   );
+
+  const experiences = unsortedExperiences.reverse();
   return {
     props: {
       experiences,

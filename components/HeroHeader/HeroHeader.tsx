@@ -19,7 +19,7 @@ export const HeroHeader = ({ children, ...props }) => (
   <MotionHeading
     as="h1"
     fullWidth
-    fontSize={[10, 11]}
+    fontSize={[9, 11]}
     lineHeight={[2, 1]}
     maxWidth={maxWidth}
     mb={[5, 0]}
@@ -28,7 +28,7 @@ export const HeroHeader = ({ children, ...props }) => (
     gridColumn={spanAllColumns}
     css={{
       "> span": {
-        display: "inline-block",
+        display: "inline-table",
       },
     }}
     variants={{

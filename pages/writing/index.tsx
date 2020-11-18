@@ -2,10 +2,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
+import { Stack } from "@phobon/base";
 import { Spacer } from "@phobon/grimoire";
 import { motion } from "framer-motion";
 
-import { FluidStudy } from "@/components";
+import { FluidStudy } from "@/components/FluidStudy";
+import { FlatStudy } from "@/components/FlatStudy";
 import { Meta } from "@/components/Meta";
 import { Main } from "@/components/Layout/Main";
 import { ShowcaseGrid } from "@/components/ShowcaseGrid";
@@ -19,80 +21,61 @@ const motionProps = {
   animate: "visible",
 };
 
-const MotionSpacer = motion.custom(Spacer);
+const MotionStack = motion.custom(Stack);
 
 const Writing = ({ writing, ...props }) => (
   <React.Fragment>
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
+        <span>Some&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.violets[5] })}>
-          Projects&nbsp;
+          writing&nbsp;
         </span>
-        <span>and&nbsp;</span>
+        <span>about&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.accent[5] })}>
-          case studies&nbsp;
+          projects
         </span>
+        <span>I've worked on</span>
       </HeroHeader>
 
-      {writing && (
-        <ShowcaseGrid
-          id="writing"
-          as="section"
-          gridColumn={spanAllColumns}
-          gridRowGap={9}
-          css={{
-            alignItems: "flex-start",
-          }}
-          variants={{
-            visible: {
-              translateY: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.75,
-                delay: 0.15,
-                ease,
-                staggerChildren: 0.25,
-              },
-            },
-            initial: {
-              translateY: 16,
-              opacity: 0,
-            },
-          }}
-          {...motionProps}
-        >
-          {writing.map(({ key, ...s }) => (
-            <FluidStudy {...s} key={key} />
-          ))}
-        </ShowcaseGrid>
-      )}
-
-      <MotionSpacer
-        length="100%"
+      <MotionStack
+        id="writing"
+        as="section"
         gridColumn={spanAllColumns}
+        space={9}
         variants={{
           visible: {
+            translateY: 0,
             opacity: 1,
             transition: {
-              duration: 0.3,
+              duration: 0.75,
               delay: 0.15,
               ease,
+              staggerChildren: 0.25,
             },
           },
           initial: {
+            translateY: 16,
             opacity: 0,
           },
         }}
         {...motionProps}
-      />
+      >
+        {writing.map(({ key, ...s }) => (
+          <FlatStudy {...s} key={key} />
+        ))}
+      </MotionStack>
     </Main>
   </React.Fragment>
 );
 
 export const getStaticProps = async () => {
-  const { default: writing = [] } = await import("../../data/writing.json");
+  const { default: unsortedWriting = [] } = await import(
+    "../../data/writing.json"
+  );
 
+  const writing = unsortedWriting.reverse();
   return {
     props: {
       writing,
