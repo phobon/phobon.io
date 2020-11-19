@@ -18,5 +18,35 @@
     "category": "Agworld",
     "description": "Improving the experience of buying subscriptions for Agworld's customers",
     "tags": ["Design", "Research", "Front-end Development"]
+  },
+  {
+    "key": "signal-design-system",
+    "title": "Signal - Agworld's Design System",
+    "href": "writing/signal-design-system",
+    "src": "/writing/signal-design-system/index.webp",
+    "published": "xx November 2020",
+    "category": "Agworld",
+    "description": "Scaling design and frontend practices at Agworld",
+    "tags": ["Design", "Research", "Front-end Development", "Design System"]
+  },
+  {
+    "key": "refactoring-10-years-of-legacy",
+    "title": "Refactoring 10 Years of Legacy",
+    "href": "writing/refactoring-10-years-of-legacy",
+    "src": "/writing/refactoring-10-years-of-legacy/index.webp",
+    "published": "xx November 2020",
+    "category": "Agworld",
+    "description": "Unravelling and refactoring an extremely challenging frontend codebase",
+    "tags": ["Front-end Development", "Architecture"]
+  },
+  {
+    "key": "making-agworld-responsive",
+    "title": "Making Agworld Responsive",
+    "href": "writing/making-agworld-responsive",
+    "src": "/writing/making-agworld-responsive/index.webp",
+    "published": "xx November 2020",
+    "category": "Agworld",
+    "description": "Implementing a much requested experience in Agworld",
+    "tags": ["Design", "Research", "Front-end Development"]
   }
 ]
