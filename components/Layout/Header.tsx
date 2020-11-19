@@ -48,6 +48,7 @@ export const Header = ({ title, px, openNavigation, ...props }) => {
         justifyContent="space-between"
       >
         <Button
+          aria-label="Open menu"
           variant="tertiary"
           shape="square"
           onClick={() => openNavigation()}
@@ -56,7 +57,7 @@ export const Header = ({ title, px, openNavigation, ...props }) => {
         </Button>
 
         <Link href="/" passHref>
-          <Identity as="a" />
+          <Identity as="a" aria-label="Go home" />
         </Link>
 
         <Toggle

@@ -74,6 +74,7 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
           maxWidth={maxWidth}
         >
           <Button
+            aria-label="Close menu"
             variant="tertiary"
             shape="square"
             onClick={closeNavigation}

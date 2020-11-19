@@ -32,6 +32,7 @@ export const GridHelper: React.FunctionComponent<
   return (
     <React.Fragment>
       <Button
+        aria-label="Toggle grid helper"
         borderRadius={0}
         onClick={() =>
           setDebug((a) => ({

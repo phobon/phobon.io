@@ -62,7 +62,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
         maxHeight={450}
       />
 
-      <Text fontSize={[3, 4]} color="grayscale.4">
+      <Text fontSize={[3, 4]} color="grayscale.3">
         {published}
       </Text>
       <SlideLink

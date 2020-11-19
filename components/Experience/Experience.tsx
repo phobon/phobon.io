@@ -36,7 +36,7 @@ export const Experience: React.FunctionComponent<any> = ({
       <Heading as="h3" mr={[2, 0]} color="foreground">
         <SlideLink href={href}>{employ}</SlideLink>
       </Heading>
-      <Text fontSize={5} color="grayscale.4">
+      <Text fontSize={5} color="grayscale.3">
         {timeframe}
       </Text>
     </Stack>
@@ -71,7 +71,7 @@ export const Experience: React.FunctionComponent<any> = ({
                   {title}
                 </Text>
               )}
-              <Text fontSize={[4, 5]} color="grayscale.4">
+              <Text fontSize={[4, 5]} color="grayscale.3">
                 {description}
               </Text>
             </Stack>

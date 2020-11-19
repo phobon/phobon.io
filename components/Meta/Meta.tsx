@@ -19,6 +19,7 @@ export const Meta: FunctionComponent<MetaProps> = ({
   const metaTitle = title || `phbn | ${description}`;
   return (
     <Head>
+      <html lang="en" />
       <title>{metaTitle}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="title" content={metaTitle} />
