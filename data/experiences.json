@@ -44,13 +44,13 @@
       {
         "key": "created-signal",
         "title": "Signal",
-        "description": "Design system",
+        "description": "Agworld's Design System",
         "href": "http://signal.agworld.com"
       },
       {
         "key": "front-end-development",
-        "title": "Front-end Development",
-        "description": "Product",
+        "title": "Front-end development",
+        "description": "Product development",
         "href": "/writing/building-a-better-buying-experience-at-agworld"
       },
       {
@@ -63,6 +63,26 @@
         "title": "Product design",
         "description": "Design and development",
         "href": "https://dribbble.com/shots/8236047-Agworld-Shopping-Experience-Checkout-Concept"
+      }
+    ]
+  },
+  {
+    "key": "experience__speakeasy",
+    "employ": "Speakeasy",
+    "href": "https://speakeasy.to",
+    "title": "Senior UX Engineer",
+    "timeframe": "2020 - current",
+    "description": "I was hired to help deliver an exciting new vision of client communications with a small, talented team; utilising strong front-end development skills",
+    "achievements": [
+      {
+        "key": "created-design-system",
+        "title": "Design System",
+        "description": "Connecting design and engineering"
+      },
+      {
+        "key": "front-end-development",
+        "title": "Front-end development",
+        "description": "Product development"
       }
     ]
   }

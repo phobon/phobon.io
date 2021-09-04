@@ -38,7 +38,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
-        <span>Hi, I'm&nbsp;</span>
+        <span>I'm&nbsp;</span>
         <span>
           <SlideLink
             href="https://www.instagram.com/thenoumenon/"
@@ -190,10 +190,11 @@ export const getStaticProps = async () => {
   )
 
   // Sort writing chronologically and only take the first 4
-  const writing = unsortedWriting.reverse().slice(0, 4)
+  const writing = [...unsortedWriting].reverse().slice(0, 4)
 
   // Sort experiences chronologically as well
-  const experiences = unsortedExperiences.reverse()
+  const experiences = [...unsortedExperiences].reverse()
+
   return {
     props: {
       projects,
