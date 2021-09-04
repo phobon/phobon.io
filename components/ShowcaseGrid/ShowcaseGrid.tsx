@@ -1,97 +1,96 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React, { SyntheticEvent, useEffect, useRef } from "react";
-import { Grid, GridProps } from "@phobon/base";
-import { motion } from "framer-motion";
+import { jsx } from "@emotion/react"
+import React, { SyntheticEvent, useEffect, useRef } from "react"
+import { Grid, GridProps } from "@phobon/base"
+import { motion } from "framer-motion"
 
-import { gridGap, gridTemplateColumns } from "@/data/constants";
+import { gridGap, gridTemplateColumns } from "@/data/constants"
 
-const MotionGrid = motion.custom(Grid);
+const MotionGrid = motion(Grid, { forwardMotionProps: true })
 
-export type ShowcaseGridProps = GridProps &
-  React.HTMLAttributes<HTMLDivElement>;
+export type ShowcaseGridProps = GridProps & React.HTMLAttributes<HTMLDivElement>
 
 export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
   children,
   ...props
 }) => {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>(0);
+  const gridRef = useRef<HTMLDivElement>(null)
+  const rafRef = useRef<number>(0)
 
   useEffect(() => {
     const mouseEnter = (e) => {
       if (!e.target.classList.contains("showcase")) {
-        return;
+        return
       }
 
-      e.stopPropagation();
+      e.stopPropagation()
 
       rafRef.current = requestAnimationFrame(() => {
-        e.target.classList.add("showcase--hover");
+        e.target.classList.add("showcase--hover")
         const notHovered = gridRef.current.querySelectorAll(
           ":not(.showcase--hover)"
-        );
-        notHovered.forEach((nh) => nh.classList.add("showcase--grayscale"));
-      });
-    };
+        )
+        notHovered.forEach((nh) => nh.classList.add("showcase--grayscale"))
+      })
+    }
     const mouseLeave = (e) => {
       if (!e.target.classList.contains("showcase--hover")) {
-        return;
+        return
       }
 
-      e.stopPropagation();
+      e.stopPropagation()
       rafRef.current = requestAnimationFrame(() => {
-        e.target.classList.remove("showcase--hover");
+        e.target.classList.remove("showcase--hover")
         const grayscaled = gridRef.current.querySelectorAll(
           ".showcase--grayscale"
-        );
-        grayscaled.forEach((nh) => nh.classList.remove("showcase--grayscale"));
-      });
-    };
+        )
+        grayscaled.forEach((nh) => nh.classList.remove("showcase--grayscale"))
+      })
+    }
 
-    gridRef.current.addEventListener("mouseenter", mouseEnter, true);
-    gridRef.current.addEventListener("mouseleave", mouseLeave, true);
+    gridRef.current.addEventListener("mouseenter", mouseEnter, true)
+    gridRef.current.addEventListener("mouseleave", mouseLeave, true)
 
     return () => {
       if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
+        cancelAnimationFrame(rafRef.current)
       }
 
       if (gridRef.current) {
-        gridRef.current.removeEventListener("mouseenter", mouseEnter);
-        gridRef.current.removeEventListener("mouseleave", mouseLeave);
+        gridRef.current.removeEventListener("mouseenter", mouseEnter)
+        gridRef.current.removeEventListener("mouseleave", mouseLeave)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   // We want to alternate the size and position of the elements as
   // we go, so index 0 should be large, 1 should be small, 2 should be small, 3 should be large
   const columnSizes = {
     1: ["auto / span 7", "auto / span 5"],
     0: ["auto / span 5", "auto / span 7"],
-  };
-  let row = 1;
-  let rowCount = 0;
+  }
+  let row = 1
+  let rowCount = 0
   const mappedChildren = React.Children.map(children, (c: any, i) => {
-    let columnSize = columnSizes[row % 2];
-    let column = columnSize[rowCount];
+    let columnSize = columnSizes[row % 2]
+    let column = columnSize[rowCount]
 
     const clonedElement = React.cloneElement(c, {
       gridColumn: ["1 / span 8", "auto / span 8", column],
       className: "showcase",
-    });
+    })
 
     // Increment the row count to determine appropriate layout
     if (rowCount === 1) {
-      rowCount = 0;
-      row += 1;
+      rowCount = 0
+      row += 1
     } else {
-      rowCount += 1;
+      rowCount += 1
     }
 
-    return clonedElement;
-  });
+    return clonedElement
+  })
 
   return (
     <MotionGrid
@@ -117,5 +116,5 @@ export const ShowcaseGrid: React.FunctionComponent<ShowcaseGridProps & any> = ({
     >
       {mappedChildren}
     </MotionGrid>
-  );
-};
+  )
+}

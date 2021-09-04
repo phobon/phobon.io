@@ -1,18 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import { Stack } from "@phobon/base";
-import { Spacer, useNotifications } from "@phobon/grimoire";
-import { motion } from "framer-motion";
+import { jsx } from "@emotion/react"
+import React from "react"
+import { Stack } from "@phobon/base"
+import { Spacer, useNotifications } from "@phobon/grimoire"
+import { motion } from "framer-motion"
 
-import { SlideLink, Experience } from "@/components";
-import { Meta } from "@/components/Meta";
-import { Main } from "@/components/Layout/Main";
-import { maxWidth, spanAllColumns } from "@/data/constants";
-import { HeroHeader } from "@/components/HeroHeader";
+import { SlideLink, Experience } from "@/components"
+import { Meta } from "@/components/Meta"
+import { Main } from "@/components/Layout/Main"
+import { maxWidth, spanAllColumns } from "@/data/constants"
+import { HeroHeader } from "@/components/HeroHeader"
 
-const ease = [0.33, 1, 0.68, 1];
+const ease = [0.33, 1, 0.68, 1]
 
 const container = {
   visible: {
@@ -21,14 +21,14 @@ const container = {
   hidden: {
     opacity: 0,
   },
-};
+}
 
 const motionProps = {
   initial: "initial",
   animate: "visible",
-};
+}
 
-const MotionStack = motion.custom(Stack);
+const MotionStack = motion(Stack, { forwardMotionProps: true })
 
 const AboutMe = ({ projects, writing, experiences, ...props }) => (
   <React.Fragment>
@@ -82,19 +82,19 @@ const AboutMe = ({ projects, writing, experiences, ...props }) => (
       )}
     </Main>
   </React.Fragment>
-);
+)
 
 export const getStaticProps = async () => {
   const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
-  );
+  )
 
-  const experiences = unsortedExperiences.reverse();
+  const experiences = unsortedExperiences.reverse()
   return {
     props: {
       experiences,
     },
-  };
-};
+  }
+}
 
-export default AboutMe;
+export default AboutMe

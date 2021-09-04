@@ -1,27 +1,27 @@
-import React from "react";
-import { Box, Stack, Text, Link as SignalLink, StackProps } from "@phobon/base";
-import Link from "next/link";
-import { motion, MotionProps } from "framer-motion";
+import React from "react"
+import { Box, Stack, Text, Link as SignalLink, StackProps } from "@phobon/base"
+import Link from "next/link"
+import { motion, MotionProps } from "framer-motion"
 
-import { SlideLink } from "../SlideLink";
-import { ShiftImage } from "../ShiftImage";
+import { SlideLink } from "../SlideLink"
+import { ShiftImage } from "../ShiftImage"
 
-const MotionStack = motion.custom(Stack);
+const MotionStack = motion(Stack, { forwardMotionProps: true })
 
 export interface IFlatStudyProps {
-  href?: string;
-  src?: string;
-  title?: string;
-  published?: string;
-  description?: string;
-  category?: string;
-  tags?: string[];
+  href?: string
+  src?: string
+  title?: string
+  published?: string
+  description?: string
+  category?: string
+  tags?: string[]
 }
 
 export type FlatStudyProps = IFlatStudyProps &
   StackProps &
   MotionProps &
-  React.HTMLAttributes<HTMLDivElement>;
+  React.HTMLAttributes<HTMLDivElement>
 
 export const FlatStudy: React.FunctionComponent<FlatStudyProps> = ({
   href,
@@ -77,4 +77,4 @@ export const FlatStudy: React.FunctionComponent<FlatStudyProps> = ({
       </Stack>
     </MotionStack>
   </Link>
-);
+)

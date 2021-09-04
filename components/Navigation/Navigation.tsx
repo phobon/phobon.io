@@ -1,23 +1,23 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import { Stack, Box, Grid } from "@phobon/base";
-import { motion } from "framer-motion";
-import { Button } from "@phobon/grimoire";
+import { jsx } from "@emotion/react"
+import React from "react"
+import { Stack, Box, Grid } from "@phobon/base"
+import { motion } from "framer-motion"
+import { Button } from "@phobon/grimoire"
 
-import { maxWidth } from "@/data/constants";
-import { navigationLinks } from "@/data/links";
+import { maxWidth } from "@/data/constants"
+import { navigationLinks } from "@/data/links"
 
-import { NavigationLink } from "./NavigationLink";
-import { CloseGlyph } from "@/components/Glyphs";
+import { NavigationLink } from "./NavigationLink"
+import { CloseGlyph } from "@/components/Glyphs"
 
-const MotionGrid = motion.custom(Grid);
+const MotionGrid = motion(Grid, { forwardMotionProps: true })
 
-const ease = [0.33, 1, 0.68, 1];
+const ease = [0.33, 1, 0.68, 1]
 
 export interface NavigationProps {
-  closeNavigation: () => void;
+  closeNavigation: () => void
 }
 
 export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
@@ -103,5 +103,5 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
         ))}
       </Stack>
     </MotionGrid>
-  );
-};
+  )
+}

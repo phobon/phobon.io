@@ -1,16 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { useRef, useEffect } from "react";
-import { Box, BoxProps, Image } from "@phobon/base";
-import { motion } from "framer-motion";
+import { jsx } from "@emotion/react"
+import { useRef, useEffect } from "react"
+import { Box, BoxProps, Image } from "@phobon/base"
+import { motion } from "framer-motion"
 
-const MotionImage = motion.custom(Image);
+const MotionImage = motion(Image, { forwardMotionProps: true })
 
 export interface ITiltImageProps {
-  loading?: "eager" | "lazy";
-  factor?: number;
-  perspective?: number;
+  loading?: "eager" | "lazy"
+  factor?: number
+  perspective?: number
 }
 
 export type TiltImageProps = ITiltImageProps &
@@ -18,7 +18,7 @@ export type TiltImageProps = ITiltImageProps &
   React.DetailedHTMLProps<
     React.ImgHTMLAttributes<HTMLImageElement>,
     HTMLImageElement
-  >;
+  >
 
 export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
   src,
@@ -30,48 +30,48 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
   perspective = 1000,
   ...props
 }) => {
-  const sceneRef = useRef(null);
-  const planeRef = useRef(null);
+  const sceneRef = useRef(null)
+  const planeRef = useRef(null)
 
   useEffect(() => {
-    let hovered = false;
+    let hovered = false
 
     const enter = () => {
-      hovered = true;
-    };
+      hovered = true
+    }
     const leave = () => {
-      hovered = false;
-      planeRef.current.style.transform = "rotateY(0) rotateX(0)";
-    };
+      hovered = false
+      planeRef.current.style.transform = "rotateY(0) rotateX(0)"
+    }
     const perspectiveShift = (e) => {
       if (!hovered) {
-        return;
+        return
       }
 
       requestAnimationFrame(() => {
-        const { width, height } = planeRef.current.getBoundingClientRect();
-        const halfWidth = width / 2;
-        const halfHeight = height / 2;
+        const { width, height } = planeRef.current.getBoundingClientRect()
+        const halfWidth = width / 2
+        const halfHeight = height / 2
 
         // Normalise around origin
-        const normalizeY = ((e.offsetX - halfWidth) / halfWidth) * factor;
-        const normalizeX = (-(e.offsetY - halfHeight) / halfHeight) * factor;
+        const normalizeY = ((e.offsetX - halfWidth) / halfWidth) * factor
+        const normalizeX = (-(e.offsetY - halfHeight) / halfHeight) * factor
 
-        const transform = `rotateY(${normalizeY}deg) rotateX(${normalizeX}deg)`;
-        planeRef.current.style.transform = transform;
-      });
-    };
+        const transform = `rotateY(${normalizeY}deg) rotateX(${normalizeX}deg)`
+        planeRef.current.style.transform = transform
+      })
+    }
 
-    sceneRef.current.addEventListener("mouseenter", enter);
-    sceneRef.current.addEventListener("mouseleave", leave);
-    sceneRef.current.addEventListener("mousemove", perspectiveShift);
+    sceneRef.current.addEventListener("mouseenter", enter)
+    sceneRef.current.addEventListener("mouseleave", leave)
+    sceneRef.current.addEventListener("mousemove", perspectiveShift)
 
     return () => {
-      sceneRef.current.removeEventListener("mouseenter", enter);
-      sceneRef.current.removeEventListener("mouseleave", leave);
-      sceneRef.current.removeEventListener("mousemove", perspectiveShift);
-    };
-  }, []);
+      sceneRef.current.removeEventListener("mouseenter", enter)
+      sceneRef.current.removeEventListener("mouseleave", leave)
+      sceneRef.current.removeEventListener("mousemove", perspectiveShift)
+    }
+  }, [])
 
   return (
     <Box
@@ -109,5 +109,5 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
         }}
       />
     </Box>
-  );
-};
+  )
+}

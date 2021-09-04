@@ -1,19 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import { Text, Stack, Grid } from "@phobon/base";
-import { Spacer } from "@phobon/grimoire";
-import { motion } from "framer-motion";
+import { jsx } from "@emotion/react"
+import React from "react"
+import { Text, Stack, Grid } from "@phobon/base"
+import { Spacer } from "@phobon/grimoire"
+import { motion } from "framer-motion"
 
-import { SlideLink, FluidStudy, Project, Experience } from "@/components";
-import { Meta } from "@/components/Meta";
-import { Main } from "@/components/Layout/Main";
-import { ShowcaseGrid } from "@/components/ShowcaseGrid";
-import { maxWidth, spanAllColumns } from "@/data/constants";
-import { HeroHeader } from "@/components/HeroHeader";
+import { SlideLink, FluidStudy, Project, Experience } from "@/components"
+import { Meta } from "@/components/Meta"
+import { Main } from "@/components/Layout/Main"
+import { ShowcaseGrid } from "@/components/ShowcaseGrid"
+import { maxWidth, spanAllColumns } from "@/data/constants"
+import { HeroHeader } from "@/components/HeroHeader"
 
-const ease = [0.33, 1, 0.68, 1];
+const ease = [0.33, 1, 0.68, 1]
 
 const container = {
   visible: {
@@ -22,16 +22,16 @@ const container = {
   hidden: {
     opacity: 0,
   },
-};
+}
 
 const motionProps = {
   initial: "initial",
   animate: "visible",
-};
+}
 
-const MotionStack = motion.custom(Stack);
-const MotionGrid = motion.custom(Grid);
-const MotionSpacer = motion.custom(Spacer);
+const MotionStack = motion(Stack, { forwardMotionProps: true })
+const MotionGrid = motion(Grid, { forwardMotionProps: true })
+const MotionSpacer = motion(Spacer, { forwardMotionProps: true })
 
 const Index = ({ projects, writing, experiences, ...props }) => (
   <React.Fragment>
@@ -180,29 +180,27 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       )}
     </Main>
   </React.Fragment>
-);
+)
 
 export const getStaticProps = async () => {
-  const { default: projects = [] } = await import("../data/projects.json");
-  const { default: unsortedWriting = [] } = await import(
-    "../data/writing.json"
-  );
+  const { default: projects = [] } = await import("../data/projects.json")
+  const { default: unsortedWriting = [] } = await import("../data/writing.json")
   const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
-  );
+  )
 
   // Sort writing chronologically and only take the first 4
-  const writing = unsortedWriting.reverse().slice(0, 4);
+  const writing = unsortedWriting.reverse().slice(0, 4)
 
   // Sort experiences chronologically as well
-  const experiences = unsortedExperiences.reverse();
+  const experiences = unsortedExperiences.reverse()
   return {
     props: {
       projects,
       writing,
       experiences,
     },
-  };
-};
+  }
+}
 
-export default Index;
+export default Index

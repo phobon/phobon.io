@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid, GridProps } from "@phobon/base";
-import { motion } from "framer-motion";
+import React from "react"
+import { Grid, GridProps } from "@phobon/base"
+import { motion } from "framer-motion"
 
 import {
   maxWidth,
   gridGap,
   gridTemplateColumns,
   horizontalPadding,
-} from "@/data/constants";
+} from "@/data/constants"
 
 const container = {
   visible: {
@@ -16,11 +16,11 @@ const container = {
   hidden: {
     opacity: 0,
   },
-};
+}
 
-const MotionMain = motion.custom(Grid);
+const MotionMain = motion(Grid, { forwardMotionProps: true })
 
-export type MainProps = GridProps & React.HTMLAttributes<HTMLDivElement>;
+export type MainProps = GridProps & React.HTMLAttributes<HTMLDivElement>
 
 export const Main: React.FunctionComponent<MainProps & any> = ({
   children,
@@ -43,4 +43,4 @@ export const Main: React.FunctionComponent<MainProps & any> = ({
   >
     {children}
   </MotionMain>
-);
+)
