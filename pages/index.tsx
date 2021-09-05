@@ -46,9 +46,9 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           >
             Ben
           </SlideLink>
-          .&nbsp;
+          ,&nbsp;
         </span>
-        <span>I'm a&nbsp;</span>
+        <span>a&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.violets[5] })}>
           developer&nbsp;
         </span>
