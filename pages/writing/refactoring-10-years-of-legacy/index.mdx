@@ -27,6 +27,15 @@ The main problems and pain points that I identified here were:
 - All of these resources blocked rendering (javascript, css, etc)
 - Performance budgets were either well-exceeded, or undefined
 
+<Figure caption="Results from a CSS audit">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/1-audit.webp"
+    alt="Results from a CSS audit"
+    width={2272}
+    height={1848}
+  />
+</Figure>
+
 ## How to Eat an Elephant
 
 > for each desired change, make the change easy (warning: this may be hard), then make the easy change - Kent Beck
@@ -41,11 +50,29 @@ While the largest problem here was clearly the size of the payload that needed t
 
 Reducing the size of the payload would need to come later, so the first change to make here was to make sure that these resources were defer-loaded, or loaded asynchronously, so that it didn't block the critical rendering path.
 
+<Figure caption="A small, but significant improvement">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/3-metrics.webp"
+    alt="Screenshots of Lighthouse outputs for different pages"
+    width={2272}
+    height={1848}
+  />
+</Figure>
+
 Completing this improved these key metrics by orders of magnitude, and allowed some of the other more impactful refactoring to take place
 
 ### Splitting and Removing CSS Dead Wood
 
 As mentioned earlier, one of the biggest issues we faced was the massive size of the CSS payload that users were forced to download - often several times a day given how often Agworld as a team shipped work.
+
+<Figure caption="Significant, blocking resources">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/2-blocking_payloads.webp"
+    alt="Graph showing size and impact of web resources"
+    width={905}
+    height={535}
+  />
+</Figure>
 
 The great majority of this payload was unused - meaning it had literally no impact on the final product. On some of the most heavily used pages of the site, over 95% of the served CSS was unused.
 
@@ -53,11 +80,29 @@ This was made even more complicated given that each page could be using one of 3
 
 The solution here was to split these resources up to serve only what was required for one particular page or layout.
 
+<Figure caption="Removing resources">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/5-payloads.webp"
+    alt="Screenshots of Github comments and PRs showing number of lines removed"
+    width={676}
+    height={439}
+  />
+</Figure>
+
 This was a significant refactor and re-architecture effort that was potentially very volatile, so significant time and effort was put into ensuring this was completed safely.
 
 ### Consolidating layout
 
-The last really important step in this effort was to concolidate the three vastly different layouts into one single experience.
+The last really important step in this effort was to consolidate the three vastly different layouts into one single experience.
+
+<Figure caption="Auditing layouts in Agworld's web product">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/4-layouts.webp"
+    alt="Spreadsheet showing an audit of layouts and pages"
+    width={1100}
+    height={1136}
+  />
+</Figure>
 
 Doing this would massively unblock efforts for future refactoring, working on responsive layout for Agworld, and dramatically reducing the burden and complexity on developers working on new and existing features.
 
@@ -65,7 +110,31 @@ Doing this would massively unblock efforts for future refactoring, working on re
 
 The problem here was was figuring out how to ensure legacy content and experiences still behaved as desired with a common layout.
 
+<Figure caption="Uh oh!">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/uh_oh.webp"
+    alt="The broken layouts along the way"
+    width={1163}
+    height={890}
+  />
+</Figure>
+
 I decided to use a sandboxing strategy to isolate resources, layout, and content based on the different layout "contexts" that I identified. Each layout context served namespaced layout, resets, and resources required for that layout - effectively shielding it from other, potentially damaging influences.
+
+<FigureGrid caption="Subtle changes and improvements in consistency of experience">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/consistent_design.webp"
+    alt="Small changes in overall design"
+    width={692}
+    height={209}
+  />
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/consistent_design2.webp"
+    alt="Small changes in overall design"
+    width={1130}
+    height={579}
+  />
+</FigureGrid>
 
 This meant that legacy content could safely be maintained, regardless of other work that had been undertaken - a huge win!
 
@@ -74,6 +143,15 @@ This meant that legacy content could safely be maintained, regardless of other w
 Improving performance metrics is certainly a great way to improve the overall experience that someone has with your product, but there are times when doing this can unintentionally create a poor experience. Deferring the loading of styling assets - in this instance - created quite a significany Flash of Unstyled Content (FOUC). This is where the structure of a page loads in a raw, unstyled form before styling is loaded and applied.
 
 While the product loaded significantly faster than it did before, the overall experience _felt_ worse because of this FOUC, so I created a flexible "loading experience" for developers to opt into and customise to the experience that they wanted to achieve.
+
+<Figure caption="A simple loading experience">
+  <Picture
+    src="/writing/refactoring-10-years-of-legacy/fouc.gif"
+    alt="Animated image demonstrating the simple loading experience"
+    width={1270}
+    height={806}
+  />
+</Figure>
 
 Like all things, making sensible defaults and opt-in experiences is important to improving the overall developer experience.
 
