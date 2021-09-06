@@ -1,6 +1,6 @@
-import { Image, Grid } from "@phobon/base";
-import { Picture, Figure, FigureGrid, ImageGrid } from "@/components";
-import { Meta } from "@/components/Meta";
+import { Image, Grid } from "@phobon/base"
+import { Picture, Figure, FigureGrid, ImageGrid } from "@/components"
+import { Meta } from "@/components/Meta"
 
 <Meta
   description="Refactoring 10 Years of Legacy"
@@ -10,65 +10,78 @@ import { Meta } from "@/components/Meta";
 
 # Refactoring 10 Years of Legacy
 
-- Embarked on a several-months-long project
-- Repay some of the technical, and design-debt built up over 10 years
-- Another part of a multi-year refactor
+During my time at Agworld, I was empowered to embark on a project to repay back some of the technical, and design-debt that had built up in their core product over a decade. The specific area to look at here was the way the web product handled styling to improve performance, legibility, accessibility, and overall developer experience.
+
+Agworld takes its technology very seriously, so this was seen as an extremely important project that I was well-suited to tackle.
 
 ## Four Bootstrap-sized Problems
 
-- Debt was certainly a product of its time(s)
-- The Agworld codebase is an interesting study of history
-- Serving four versions of Bootstrap on every page
-- All resources blocked rendering (js, css, etc.)
-- Performance metrics and budgets were completely blown out
-- Problem existed across SSR and CSR contexts
-- Several different layouts all serving different resources
-- All pages were developed with the knowledge that everything would be available, even if it was not appropriate
+The Agworld codebase at the time was an interesting study of its history. Interesting decisions around styling in an environment that was constantly in flux. Tastes change, personnel change, and "best practices" change, and that was all represented quite prominently.
+
+Agworld is a Ruby-on-Rails codebase with a multi-page, micro-frontend architecture; this gave the flexibility to be able to serve any type of experience written in any way easily, but also created significant technical, design and logical issues.
+
+The main problems and pain points that I identified here were:
+
+- Every page potentially used a different layout, so while they _looked_ very similar, the underlying code was actually very different - leading to questionable architectural decisions in regards to global accessibility of data and functions
+- Every page served 4 (FOUR) versions of the popular styling library Bootstrap
+- All of these resources blocked rendering (javascript, css, etc)
+- Performance budgets were either well-exceeded, or undefined
 
 ## How to Eat an Elephant
 
-- Make the Change Easy, then Make the Easy Change
-- Far easier than it sounds
-- Extremely difficult to see the entire breadth of the project, so dividing things into contexts and then dividing those contexts into steps that could be changed incrementally
+> for each desired change, make the change easy (warning: this may be hard), then make the easy change - Kent Beck
 
-## Defer-loading Resources
+This is far easier than it sounds - hence the warning! It was extremely difficult to visualise the entire breadth of the project, so I divided work into high-level contexts, and then those contexts into steps that could be shipped incrementally. The entire project was completed over the course of 3 months in a team dedicated to technical improvements. I led the project with assistence from others in that team
 
-- Initially, getting those key metrics of Time to Interactive and First Contentful Paint was really important
-- The biggest problem here was clearly the size of resources that needed to be loaded, but also when they were loaded
-- Refactoring these resources would need to come later, so the first change to make was to make sure these resources were defer-loaded, or loaded asynchronously
-- Completing this improved these key metrics by orders of magnitude and allowed more severe refactoring to occur
+### Defer-loading Resources
 
-## Spltting and Removing CSS Dead Wood
+Initially, identifying key performance budgets and metrics was the top priority for this project. Time to Interactive (TTI) and First Contentful Paint (FCP) were identified as the most important metrics to concentrate on.
 
-- One of the biggest problems that needed to be addressed is the massive size of the CSS payload that users were forced to download often several times a day
-- The great majority of this CSS was unused - on some of the main traffic pages of the site, over 95% of the served CSS was unused
-- The main issue here were three layouts each with different sets of resources
-- This was split to only serve what was required
-- Several efforts over weeks to remove as much unused CSS as possible safely
+While the largest problem here was clearly the size of the payload that needed to be served, the order that it was loaded was also something that needed to be rectified.
 
-## Consolidating layout
+Reducing the size of the payload would need to come later, so the first change to make here was to make sure that these resources were defer-loaded, or loaded asynchronously, so that it didn't block the critical rendering path.
 
-- The last really important piece of the puzzle was to consolidate the three vastly different layouts into a single layout
-- Doing this would massively unblock efforts for future refactoring, working on responsive layout for Agworld (see other post), and dramatically reduce the burden and complexity on developers working on new and existing features
+Completing this improved these key metrics by orders of magnitude, and allowed some of the other more impactful refactoring to take place
 
-## Sandbox Resources
+### Splitting and Removing CSS Dead Wood
 
-- 3 different layouts with vastly different resources
-- Content layout had to be protected to ensure legacy content still behaved correctly
-- Common layout - the navigation / shell - could be abstracted
-- Used a sandboxing strategy to isolate resources, layout and content based on layout contexts
-- Each layout context serves specific content layout and resources that is namespaced and protected from overall layout specifics
-- ... more stuff on layout contexts?
+As mentioned earlier, one of the biggest issues we faced was the massive size of the CSS payload that users were forced to download - often several times a day given how often Agworld as a team shipped work.
 
-## Improving Experience - Perceived performance
+The great majority of this payload was unused - meaning it had literally no impact on the final product. On some of the most heavily used pages of the site, over 95% of the served CSS was unused.
 
-- Deferring resources created FOUC
-- While resource asset sizes are high and content is loaded, it was important to provide some improved perceived performance
-- Like all things - sensible default and opt-in for improved loading experiences
+This was made even more complicated given that each page could be using one of 3 different base layouts, that each utilised different resources in a single - massive - payload, regardless of whether they were needed or not. For example, one layout my be using a combination of Bootstrap 3, and other custom styles, and another may be using Bootstrap 4 with its own custom styles.
 
-## Clearing the Path Forward
+The solution here was to split these resources up to serve only what was required for one particular page or layout.
 
-- Significantly reducing the complexity of the frontend for developers
-- Significantly improving recorded performance metrics
-- Improving perceived performance
-- Improved general user experience by making things more coherent
+This was a significant refactor and re-architecture effort that was potentially very volatile, so significant time and effort was put into ensuring this was completed safely.
+
+### Consolidating layout
+
+The last really important step in this effort was to concolidate the three vastly different layouts into one single experience.
+
+Doing this would massively unblock efforts for future refactoring, working on responsive layout for Agworld, and dramatically reducing the burden and complexity on developers working on new and existing features.
+
+#### Sandbox Resources
+
+The problem here was was figuring out how to ensure legacy content and experiences still behaved as desired with a common layout.
+
+I decided to use a sandboxing strategy to isolate resources, layout, and content based on the different layout "contexts" that I identified. Each layout context served namespaced layout, resets, and resources required for that layout - effectively shielding it from other, potentially damaging influences.
+
+This meant that legacy content could safely be maintained, regardless of other work that had been undertaken - a huge win!
+
+### Improving Experience - Perceived performance
+
+Improving performance metrics is certainly a great way to improve the overall experience that someone has with your product, but there are times when doing this can unintentionally create a poor experience. Deferring the loading of styling assets - in this instance - created quite a significany Flash of Unstyled Content (FOUC). This is where the structure of a page loads in a raw, unstyled form before styling is loaded and applied.
+
+While the product loaded significantly faster than it did before, the overall experience _felt_ worse because of this FOUC, so I created a flexible "loading experience" for developers to opt into and customise to the experience that they wanted to achieve.
+
+Like all things, making sensible defaults and opt-in experiences is important to improving the overall developer experience.
+
+### Clearing the Path Forward
+
+This was one of the most impactful technological projects I undertook during my time at Agworld; taking 10 years of legacy front-end code, and achieving some significant outcomes:
+
+- The complexity of the developer experience was significantly reduced
+- Performance metrics improved by orders of magnitude
+- Drastically improved real and perceived performance
+- Solidified overall user experience to create a cohesive, consitent product

@@ -41,7 +41,9 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
     }
     const leave = () => {
       hovered = false
-      planeRef.current.style.transform = "rotateY(0) rotateX(0)"
+      if (planeRef.current) {
+        planeRef.current.style.transform = "rotateY(0) rotateX(0)"
+      }
     }
     const perspectiveShift = (e) => {
       if (!hovered) {
