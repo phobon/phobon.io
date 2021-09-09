@@ -10,22 +10,20 @@ import { Meta } from "@/components/Meta"
 
 # Refactoring 10 Years of Legacy
 
-During my time at Agworld, I was empowered to embark on a project to repay back some of the technical, and design-debt that had built up in their core product over a decade. The specific area to look at here was the way the web product handled styling to improve performance, legibility, accessibility, and overall developer experience.
+In my time at [Agworld](https://agworld.com), I embarked on a long-lasting project to pack back some of the [technical, and design-debt](https://en.wikipedia.org/wiki/Technical_debt) that had built up in its core web product over a decade. Specifically focused on the way we handled styling, with a view to improve performance, legibility, accessibility and overall developer experience.
 
 Agworld takes its technology very seriously, so this was seen as an extremely important project that I was well-suited to tackle.
 
 ## Four Bootstrap-sized Problems
 
-The Agworld codebase at the time was an interesting study of its history. Interesting decisions around styling in an environment that was constantly in flux. Tastes change, personnel change, and "best practices" change, and that was all represented quite prominently.
-
-Agworld is a Ruby-on-Rails codebase with a multi-page, micro-frontend architecture; this gave the flexibility to be able to serve any type of experience written in any way easily, but also created significant technical, design and logical issues.
+The Agworld codebase at the time was a study of its history; filled with interesting artefacts and decisions around styling in an environment constantly in flux. Over the years tastes, personnel, technology and "best practices" evolve, and these were represented prominently, which made it a significantly challenging landscape to work in.
 
 The main problems and pain points that I identified here were:
 
-- Every page potentially used a different layout, so while they _looked_ very similar, the underlying code was actually very different - leading to questionable architectural decisions in regards to global accessibility of data and functions
-- Every page served 4 (FOUR) versions of the popular styling library Bootstrap
-- All of these resources blocked rendering (javascript, css, etc)
-- Performance budgets were either well-exceeded, or undefined
+- Every page could use a different layout; so while things _appeared_ very similar, the underlying code was actually very different, which posed a maintainence issue
+- Every page bundled up and served **4 (FOUR)** versions of the popular styling library [Bootstrap](https://getbootstrap.com/); which made the overall CSS bundle size enormous
+- All Javascript and CSS resources blocked rendering, leading to a very large First Contentful Paint (FCP) time
+- There were no clearly defined performance budgets, so we didn't know just how poorly we were doing
 
 <Figure caption="Results from a CSS audit">
   <Picture
@@ -38,17 +36,19 @@ The main problems and pain points that I identified here were:
 
 ## How to Eat an Elephant
 
-> for each desired change, make the change easy (warning: this may be hard), then make the easy change - Kent Beck
+> for each desired change, make the change easy (warning: this may be hard), then make the easy change - [Kent Beck](https://twitter.com/kentbeck/status/250733358307500032)
 
-This is far easier than it sounds - hence the warning! It was extremely difficult to visualise the entire breadth of the project, so I divided work into high-level contexts, and then those contexts into steps that could be shipped incrementally. The entire project was completed over the course of 3 months in a team dedicated to technical improvements. I led the project with assistence from others in that team
+A colleague of mine mentioned this quote around the time that this project was kicking off, and it's certainly far easier than it sounds! It was extremely difficult to get a broad understanding of the breadth of the change that I needed to make, so I approached it by dividing work into high-level _themes_, and then those _themes_ into steps and stages that could be shipped incrementally.
+
+I led the project over the course of 3 _sprints_ lasting 6 weeks each; with the assistance from members of a team dedicated to technical improvements.
 
 ### Defer-loading Resources
 
-Initially, identifying key performance budgets and metrics was the top priority for this project. Time to Interactive (TTI) and First Contentful Paint (FCP) were identified as the most important metrics to concentrate on.
+Initially, identifying key performance budgets and metrics was my top priority for this project. Understanding how we were performing, and targeting changes specifically to improve these scores provided a great baseline for work. I focused primarily on First Contentful Paint (FCP) with this work, with an eye to improving Time to Interactive (TTI)
 
-While the largest problem here was clearly the size of the payload that needed to be served, the order that it was loaded was also something that needed to be rectified.
+Certainly, the largest problem here was the size of the payload that needed to be served, but the order that it was loaded was also something that needed to be rectified.
 
-Reducing the size of the payload would need to come later, so the first change to make here was to make sure that these resources were defer-loaded, or loaded asynchronously, so that it didn't block the critical rendering path.
+The first change I decided to make here was to make sure that these resources were defer-loaded, or loaded asynchronously, so that it didn't block the critical rendering path.
 
 <Figure caption="A small, but significant improvement">
   <Picture
@@ -59,13 +59,13 @@ Reducing the size of the payload would need to come later, so the first change t
   />
 </Figure>
 
-Completing this improved these key metrics by orders of magnitude, and allowed some of the other more impactful refactoring to take place
+From the figures above, the measurable FCP score saw improvements of ~50% on some pages, and from not measurable to well below 3s on others - which is a significant improvement, and allowed some of the other more impactful refactoring to take place
 
 ### Splitting and Removing CSS Dead Wood
 
-As mentioned earlier, one of the biggest issues we faced was the massive size of the CSS payload that users were forced to download - often several times a day given how often Agworld as a team shipped work.
+Agworld's engineering team values a high shipping cadence, and spent significant resources improving this over the time I worked there, and while at one stage was shipping several times per day, and dozens of times per week; the core product's architecture forced a refreshed asset payload on a large number of those deployments; and when the payload is as large as this was, that could be extremely impactful on users - particularly those located in remote areas; so it was _extremely important_ that these assets were cut down to size.
 
-<Figure caption="Significant, blocking resources">
+<Figure caption="Significant, blocking resource payloads">
   <Picture
     src="/writing/refactoring-10-years-of-legacy/2-blocking_payloads.webp"
     alt="Graph showing size and impact of web resources"
@@ -74,13 +74,11 @@ As mentioned earlier, one of the biggest issues we faced was the massive size of
   />
 </Figure>
 
-The great majority of this payload was unused - meaning it had literally no impact on the final product. On some of the most heavily used pages of the site, over 95% of the served CSS was unused.
+The great majority of this payload was unused - meaning it had literally no impact on the final product. On some of the most heavily used pages of the site, over 95% of the served CSS was unused. This was due to the fact that all resources were bundled together, even if they were relevant to that particular page. So one page may be using Bootstrap 3, another with Bootstrap 4, and all of it was downloaded together.
 
-This was made even more complicated given that each page could be using one of 3 different base layouts, that each utilised different resources in a single - massive - payload, regardless of whether they were needed or not. For example, one layout my be using a combination of Bootstrap 3, and other custom styles, and another may be using Bootstrap 4 with its own custom styles.
+The solution I embarked on was to split these resources and only serve what was required for a particular page.
 
-The solution here was to split these resources up to serve only what was required for one particular page or layout.
-
-<Figure caption="Removing resources">
+<Figure caption="Removing and splitting resources">
   <Picture
     src="/writing/refactoring-10-years-of-legacy/5-payloads.webp"
     alt="Screenshots of Github comments and PRs showing number of lines removed"
@@ -89,11 +87,11 @@ The solution here was to split these resources up to serve only what was require
   />
 </Figure>
 
-This was a significant refactor and re-architecture effort that was potentially very volatile, so significant time and effort was put into ensuring this was completed safely.
+In real-world numbers, the overall size of the bundle was ~430kb. Spltting this up into what was required for different pages meant potentially some only needed to download **~131kb**, and others **~162kb**. Any reduction here is welcome, but this represented one of the `most signifcant, technical savings to the company in the running of the core product`. This work was also volatile, so I along with help from the technical team put in significant testing time and effort to ensure high quality.
 
 ### Consolidating layout
 
-The last really important step in this effort was to consolidate the three vastly different layouts into one single experience.
+The final step in this refactoring project was to consolidate the three, vastly different layouts into a single one.
 
 <Figure caption="Auditing layouts in Agworld's web product">
   <Picture
@@ -104,11 +102,11 @@ The last really important step in this effort was to consolidate the three vastl
   />
 </Figure>
 
-Doing this would massively unblock efforts for future refactoring, working on responsive layout for Agworld, and dramatically reducing the burden and complexity on developers working on new and existing features.
+I was particularly interested in completing this, as this would not only unblock further work I would go onto undertake around responsive layout, but also dramatically reduce the cognitive load and complexity facing developers working on new and existing features. A real win for the developer experience at Agworld.
 
 #### Sandbox Resources
 
-The problem here was was figuring out how to ensure legacy content and experiences still behaved as desired with a common layout.
+The main problem I faced here was determining how to ensure that legacy content and experiences still behaved as desired with a single layout.
 
 <Figure caption="Uh oh!">
   <Picture
@@ -119,7 +117,7 @@ The problem here was was figuring out how to ensure legacy content and experienc
   />
 </Figure>
 
-I decided to use a sandboxing strategy to isolate resources, layout, and content based on the different layout "contexts" that I identified. Each layout context served namespaced layout, resets, and resources required for that layout - effectively shielding it from other, potentially damaging influences.
+I decided to use a sandboxing strategy to isolate resources, layout, and content based on the different - what I termed - layout "contexts" identified in the audit shown above. Each of these served namespaced layout, resets, and resources required for content within it - effectively shielding it from other, potentially damaging influences.
 
 <FigureGrid caption="Subtle changes and improvements in consistency of experience">
   <Picture
@@ -136,11 +134,11 @@ I decided to use a sandboxing strategy to isolate resources, layout, and content
   />
 </FigureGrid>
 
-This meant that legacy content could safely be maintained, regardless of other work that had been undertaken - a huge win!
+Completing this meant that legacy content could safely be maintained, regardless of other work that had been undertaken - a major win for maintainability!
 
 ### Improving Experience - Perceived performance
 
-Improving performance metrics is certainly a great way to improve the overall experience that someone has with your product, but there are times when doing this can unintentionally create a poor experience. Deferring the loading of styling assets - in this instance - created quite a significany Flash of Unstyled Content (FOUC). This is where the structure of a page loads in a raw, unstyled form before styling is loaded and applied.
+Improving performance metrics is certainly a great way to improve the overall experience that someone has with your product, but there are times when doing this can unintentionally create a poor experience. Deferring the loading of styling assets - in this instance - created quite a significan [Flash of Unstyled Content (FOUC)](https://en.wikipedia.org/wiki/Flash_of_unstyled_content). This is where the structure of a page loads in a raw, unstyled format before styling is loaded and applied.
 
 While the product loaded significantly faster than it did before, the overall experience _felt_ worse because of this FOUC, so I created a flexible "loading experience" for developers to opt into and customise to the experience that they wanted to achieve.
 
@@ -157,9 +155,10 @@ Like all things, making sensible defaults and opt-in experiences is important to
 
 ### Clearing the Path Forward
 
-This was one of the most impactful technological projects I undertook during my time at Agworld; taking 10 years of legacy front-end code, and achieving some significant outcomes:
+This was one of the most impactful technological projects I undertook during my time at Agworld; working in the context of 10 years of legacy front-end code; and achieving some significant outcomes:
 
 - The complexity of the developer experience was significantly reduced
-- Performance metrics improved by orders of magnitude
+- Performance metrics improved by orders of magnitude (by over 50% in some cases)
+- Split the asset payload into several bundles rather than a single one, reducing it by almost 70% in some cases
 - Drastically improved real and perceived performance
 - Solidified overall user experience to create a cohesive, consitent product
