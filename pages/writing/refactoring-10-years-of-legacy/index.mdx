@@ -22,7 +22,7 @@ The main problems and pain points that I identified here were:
 
 - Every page could use a different layout; so while things _appeared_ very similar, the underlying code was actually very different, which posed a maintainence issue
 - Every page bundled up and served **4 (FOUR)** versions of the popular styling library [Bootstrap](https://getbootstrap.com/); which made the overall CSS bundle size enormous
-- All Javascript and CSS resources blocked rendering, leading to a very large First Contentful Paint (FCP) time
+- All Javascript and CSS resources blocked rendering, leading to a very large [First Contentful Paint (FCP)](https://web.dev/first-contentful-paint/) time
 - There were no clearly defined performance budgets, so we didn't know just how poorly we were doing
 
 <Figure caption="Results from a CSS audit">
@@ -44,7 +44,7 @@ I led the project over the course of 3 _sprints_ lasting 6 weeks each; with the 
 
 ### Defer-loading Resources
 
-Initially, identifying key performance budgets and metrics was my top priority for this project. Understanding how we were performing, and targeting changes specifically to improve these scores provided a great baseline for work. I focused primarily on First Contentful Paint (FCP) with this work, with an eye to improving Time to Interactive (TTI)
+Initially, identifying key performance budgets and metrics was my top priority for this project. Understanding how we were performing, and targeting changes specifically to improve these scores provided a great baseline for work. I focused primarily on First Contentful Paint (FCP) with this work, with an eye to improving [Time to Interactive (TTI)](https://web.dev/interactive/)
 
 Certainly, the largest problem here was the size of the payload that needed to be served, but the order that it was loaded was also something that needed to be rectified.
 
