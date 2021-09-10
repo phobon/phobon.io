@@ -1,12 +1,12 @@
-import React from "react";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "@phobon/tokens";
-import { MDXProvider } from "@mdx-js/react";
-import { AnimatePresence } from "framer-motion";
-import { Provider } from "jotai";
+import React from "react"
+import { ThemeProvider } from "@emotion/react"
+import { theme } from "@phobon/tokens"
+import { MDXProvider } from "@mdx-js/react"
+import { AnimatePresence } from "framer-motion"
+import { Provider } from "jotai"
 
-import { Layout, markdown } from "@/components";
-import { GridHelper } from "@/components/Debug/GridHelper";
+import { Layout, markdown } from "@/components"
+import { GridHelper } from "@/components/Debug/GridHelper"
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
@@ -14,7 +14,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
       <Provider>
         <Layout>
           <MDXProvider components={markdown}>
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence>
               <Component {...pageProps} key={router.route} />
             </AnimatePresence>
           </MDXProvider>
@@ -22,7 +22,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
         {/* <GridHelper /> */}
       </Provider>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default PhobonApp;
+export default PhobonApp

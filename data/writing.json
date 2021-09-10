@@ -24,9 +24,9 @@
     "title": "Refactoring 10 Years of Legacy",
     "href": "writing/refactoring-10-years-of-legacy",
     "src": "/writing/refactoring-10-years-of-legacy/index.webp",
-    "published": "30 November 2020",
+    "published": "11 September 2021",
     "category": "Agworld",
-    "description": "Working in a legacy codebase is a challenge",
+    "description": "Improving performance, accessibility and developer experience in a legacy codebase",
     "tags": ["Design", "Research", "Front-end Development"]
   }
 ]
