@@ -4,14 +4,14 @@ import { jsx } from "@emotion/react"
 import React, { useCallback } from "react"
 import { Box, Stack } from "@phobon/base"
 import { useTheme } from "@phobon/hooks"
-import { Toggle, Spacer, Button } from "@phobon/grimoire"
+import { Spacer, Button } from "@phobon/grimoire"
 import Link from "next/link"
 import { navigationLinks } from "@/data/links"
 
 import { getTheme } from "@/hooks/getTheme"
 
 import { Identity } from "../Identity"
-import { HamburgerGlyph } from "../Glyphs"
+import { HamburgerGlyph, SunGlyph, MoonGlyph } from "../Glyphs"
 import { NavigationLink } from "../Navigation"
 
 export const Header = ({ title, px, openNavigation, ...props }) => {
@@ -68,11 +68,14 @@ export const Header = ({ title, px, openNavigation, ...props }) => {
           ))}
         </Stack>
 
-        <Toggle
-          toggled={theme === "dark"}
+        <Button
           onClick={toggleTheme}
           aria-label="Toggle Theme"
-        />
+          size="m"
+          shape="square"
+        >
+          {theme === "light" ? <MoonGlyph /> : <SunGlyph />}
+        </Button>
       </Box>
 
       <Box
@@ -96,11 +99,14 @@ export const Header = ({ title, px, openNavigation, ...props }) => {
           <Identity as="a" aria-label="Go home" />
         </Link>
 
-        <Toggle
-          toggled={theme === "dark"}
+        <Button
           onClick={toggleTheme}
           aria-label="Toggle Theme"
-        />
+          size="m"
+          shape="square"
+        >
+          {theme === "light" ? <MoonGlyph /> : <SunGlyph />}
+        </Button>
       </Box>
 
       <Box px={px} fullWidth>

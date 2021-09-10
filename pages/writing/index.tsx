@@ -75,7 +75,7 @@ export const getStaticProps = async () => {
     "../../data/writing.json"
   )
 
-  const writing = unsortedWriting.reverse()
+  const writing = [...unsortedWriting].reverse()
   return {
     props: {
       writing,

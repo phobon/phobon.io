@@ -80,9 +80,11 @@ const AboutMe = ({ projects, writing, experiences, ...props }) => (
             },
           })}
         >
-          I've spent the last 16 years designing and building thoughtful,
+          {`I've spent the last ${
+            (new Date()?.getFullYear() || 2021) - 2005
+          } years designing and building thoughtful,
           accessible digital experiences across a wide range of industries; from
-          mining, to agriculture, to digital communications
+          mining, to agriculture, to digital communications`}
         </Paragraph>
 
         <Paragraph
