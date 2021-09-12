@@ -72,6 +72,10 @@ export const ShiftImage: React.FunctionComponent<ShiftImageProps> = ({
       const transform = `scale(1) translate3d(${normalizeY}px, ${normalizeX}px, 0)`
 
       rafRef.current = requestAnimationFrame(() => {
+        if (!planeRef.current) {
+          return
+        }
+
         planeRef.current.style.transform = transform
       })
     }

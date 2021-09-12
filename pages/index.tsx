@@ -5,6 +5,7 @@ import React from "react"
 import { Text, Stack, Grid } from "@phobon/base"
 import { Spacer } from "@phobon/grimoire"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 import { SlideLink, FluidStudy, Project, Experience } from "@/components"
 import { Meta } from "@/components/Meta"
@@ -40,15 +41,12 @@ const Index = ({ projects, writing, experiences, ...props }) => (
       <HeroHeader>
         <span>I'm&nbsp;</span>
         <span>
-          <SlideLink
-            href="https://www.instagram.com/thenoumenon/"
-            color="inherit"
-          >
-            Ben
-          </SlideLink>
-          .&nbsp;
+          <Link href="/about" passHref>
+            <SlideLink color="inherit">Ben</SlideLink>
+          </Link>
+          ,&nbsp;
         </span>
-        <span>I'm a&nbsp;</span>
+        <span>a&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.violets[5] })}>
           developer&nbsp;
         </span>
@@ -193,7 +191,7 @@ export const getStaticProps = async () => {
   const writing = [...unsortedWriting].reverse().slice(0, 4)
 
   // Sort experiences chronologically as well
-  const experiences = [...unsortedExperiences].reverse()
+  const experiences = [...unsortedExperiences].reverse().slice(0, 3)
 
   return {
     props: {

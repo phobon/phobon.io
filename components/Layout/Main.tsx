@@ -1,6 +1,6 @@
 import React from "react"
 import { Grid, GridProps } from "@phobon/base"
-import { motion } from "framer-motion"
+import { motion, MotionProps } from "framer-motion"
 
 import {
   maxWidth,
@@ -20,9 +20,11 @@ const container = {
 
 const MotionMain = motion(Grid, { forwardMotionProps: true })
 
-export type MainProps = GridProps & React.HTMLAttributes<HTMLDivElement>
+export type MainProps = GridProps &
+  React.HTMLAttributes<HTMLDivElement> &
+  MotionProps
 
-export const Main: React.FunctionComponent<MainProps & any> = ({
+export const Main: React.FunctionComponent<MainProps> = ({
   children,
   ...props
 }) => (

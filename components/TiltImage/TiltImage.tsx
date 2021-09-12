@@ -41,7 +41,9 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
     }
     const leave = () => {
       hovered = false
-      planeRef.current.style.transform = "rotateY(0) rotateX(0)"
+      if (planeRef.current) {
+        planeRef.current.style.transform = "rotateY(0) rotateX(0)"
+      }
     }
     const perspectiveShift = (e) => {
       if (!hovered) {
@@ -49,6 +51,10 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
       }
 
       requestAnimationFrame(() => {
+        if (!planeRef.current) {
+          return
+        }
+
         const { width, height } = planeRef.current.getBoundingClientRect()
         const halfWidth = width / 2
         const halfHeight = height / 2

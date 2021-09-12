@@ -1,19 +1,19 @@
-import { Table } from "@phobon/base";
+import { Table } from "@phobon/base"
 
-import { Wrapper } from "./Wrapper";
-import { Paragraph } from "./Paragraph";
-import { H1, H2, H3 } from "./Headings";
-import { Code } from "./Code";
-import { Pre } from "./Pre";
-import { Hr } from "./Hr";
-import { Blockquote } from "./Blockquote";
-import { Ul, Li } from "./Lists";
+import { Wrapper } from "./Wrapper"
+import { Paragraph } from "./Paragraph"
+import { H1, H2, H3 } from "./Headings"
+import { Code } from "./Code"
+import { Pre } from "./Pre"
+import { Hr } from "./Hr"
+import { Blockquote } from "./Blockquote"
+import { Ul, Li } from "./Lists"
 
-export * from "./Figure";
-export * from "./FigureGrid";
-export * from "./ImageGrid";
-export * from "./Picture";
-export * from "./Span";
+export * from "./Figure"
+export * from "./FigureGrid"
+export * from "./ImageGrid"
+export * from "./Picture"
+export * from "./Span"
 
 export default {
   wrapper: Wrapper,
@@ -28,6 +28,6 @@ export default {
   li: Li,
   hr: Hr,
   blockquote: Blockquote,
-};
+}
 
-export { Paragraph };
+export { Paragraph }

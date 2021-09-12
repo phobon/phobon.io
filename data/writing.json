@@ -18,5 +18,15 @@
     "category": "Agworld",
     "description": "Improving the experience of buying subscriptions for Agworld's customers",
     "tags": ["Design", "Research", "Front-end Development"]
+  },
+  {
+    "key": "refactoring-10-years-of-legacy",
+    "title": "Refactoring 10 Years of Legacy",
+    "href": "writing/refactoring-10-years-of-legacy",
+    "src": "/writing/refactoring-10-years-of-legacy/index.webp",
+    "published": "11 September 2021",
+    "category": "Agworld",
+    "description": "Improving performance, accessibility and developer experience in a legacy codebase",
+    "tags": ["Design", "Research", "Front-end Development"]
   }
 ]

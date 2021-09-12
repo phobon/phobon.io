@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import { Box, Stack, Grid, StackProps } from "@phobon/base";
+import { jsx } from "@emotion/react"
+import React from "react"
+import { Box, Stack, Grid, StackProps } from "@phobon/base"
 
-import { SlideLink } from "../SlideLink";
-import { Paragraph, Span } from "../Markdown";
+import { SlideLink } from "../SlideLink"
+import { Paragraph, Span } from "../Markdown"
 
-import { socialLinks } from "@/data/links";
+import { socialLinks } from "@/data/links"
 
 export const Footer: React.FunctionComponent<
   StackProps & React.HTMLAttributes<HTMLDivElement>
@@ -23,36 +23,6 @@ export const Footer: React.FunctionComponent<
     space={5}
     {...props}
   >
-    <Paragraph
-      color="grayscale.3"
-      mb={0}
-      css={(theme) => ({
-        "> * + *": {
-          marginLeft: theme.space[1],
-        },
-      })}
-    >
-      <span>You'll often find me enjoying time with my</span>
-      <span>
-        <SlideLink href="https://www.instagram.com/thestudiophysio/">
-          amazing partner
-        </SlideLink>
-        ,
-      </span>
-      <span>and my</span>
-      <span>
-        <SlideLink href="https://www.instagram.com/kodi_lab/">
-          best friend
-        </SlideLink>
-        ;
-      </span>
-      <span>or</span>
-      <Span color="inherit" css={{ textDecoration: "line-through" }}>
-        shitposting
-      </Span>
-      <span>online</span>
-    </Paragraph>
-
     <Grid
       as="ul"
       gridTemplateColumns={["1fr", `repeat(${socialLinks.length}, 1fr)`]}
@@ -71,4 +41,4 @@ export const Footer: React.FunctionComponent<
       ))}
     </Grid>
   </Stack>
-);
+)
