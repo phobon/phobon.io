@@ -51,6 +51,10 @@ export const TiltImage: React.FunctionComponent<TiltImageProps> = ({
       }
 
       requestAnimationFrame(() => {
+        if (!planeRef.current) {
+          return
+        }
+
         const { width, height } = planeRef.current.getBoundingClientRect()
         const halfWidth = width / 2
         const halfHeight = height / 2
