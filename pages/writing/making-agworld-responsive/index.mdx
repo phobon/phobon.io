@@ -1,6 +1,6 @@
-import { Image, Grid } from "@phobon/base";
-import { Picture, Figure, FigureGrid } from "@/components";
-import { Meta } from "@/components/Meta";
+import { Image, Grid } from "@phobon/base"
+import { Picture, Figure, FigureGrid } from "@/components"
+import { Meta } from "@/components/Meta"
 
 <Meta
   description="Making Agworld Responsive"
@@ -10,20 +10,69 @@ import { Meta } from "@/components/Meta";
 
 # Making [Agworld](https://agworld.com) Responsive
 
-- Agworld hasn't been able to address customers with Android devices
-- Part of Agworld's mission is to help alleviate the stress their customers feel by utilising data and insights taken straight from their farms using their own devices
-- From very early in Agworld's life, they have offered a rich web product, as well as Apple-device-specific apps
-- As the web product was built to be viewed only on a large monitor, customers with Android devices often felt that they were being ignored or were being steered towards using Apple devices
+One of the highly impactful projects that I delivered during my time at [Agworld](https://agworld.com) was to integrate a fully-featured, responsive, mobile design and experience into their highly-rated core web product. This was particularly important as it enabled customers who used Android devices capture data and receive insights out in the field which was previously not possible.
+
+I led this project over the course of 8 weeks towards the end of 2020; with support from members of a team dedicated to technical improvements.
 
 ## The Addressable Market Problem
 
-- Becoming extremely difficult to expand that addressable market
-- For years, customers have been asking for an Android solution
-- Discussed ideas around React Native, Android Native
+Part of [Agworld's](https://agworld.com) mission is to help alleviate the stress their customers feel, by capturing and utilising data and insights taken straight from the field using their own personal devices. This has proved to be an extremely productive and popular way to work for the industry.
+
+Agworld offers a rich, desktop-focused web product; as well as very popular and highly rated mobile apps that solve specific problems, but only for Apple devices.
+
+At the time, we received a lot of feedback and comments from customers with Android devices who often felt that they were being ignored in favour of those with Apple devices.
+
+<Figure caption="Agworld's previous experience on a mobile device">
+  <Picture
+    src="/writing/making-agworld-responsive/previous.png"
+    alt="Agworld's previous experience on a mobile device"
+    width={393}
+    height={888}
+  />
+</Figure>
+
+It was something that we had wanted to address for years, but had to prioritise other parts of the platform. I have great empathy for people who are told that they are a priority, but then don't actually see any progress or action; so I was very motivated to try and alleviate the situation.
+
+As for how we actually wanted to tackle the problem, do we...
+
+- Hire Android developers to build native apps?
+- Focus on our main skillset as an engineering team and look at React Native?
+- Invest in refactoring the existing web product to work on a wider range of devices?
+
+My priority was always to try and create the most accessible, performant core product possible; and improving the product that was already in thousands of customers' hands would have a much greater impact than investing in technology that we hadn't used before.
 
 ## A More Adaptive, Responsive Layout
 
+It's important to define the goals and constraints of a project like this one; it's tempting to try and attack multiple different angles and create the `perfect` solution, but when there are thousands of people using a platform, it's very important to ensure that the scope remains managable, and any problems are ironed out quickly. With that in mind, the goals and constraints for this project were:
+
+- Protect and maintain the current desktop experience
+- Only build mobile-first experiences for `new features`
+- Adapt existing features as necessary, only refactor as a last resort
+
+### Adapting and Sandboxing
+
 - Important to protect and maintain the current layout
+
+<Figure caption="Identifying and protecting existing layouts">
+  <Picture
+    src="/writing/making-agworld-responsive/the_work.png"
+    alt="Screenshot of a spreadsheet identifying the different layouts in Agworld's core product"
+    width={989}
+    height={1258}
+  />
+</Figure>
+
+<Figure caption="The work...">
+  <Picture
+    src="/writing/making-agworld-responsive/the_work.png"
+    alt="Screenshot of pull requests required to complete the project"
+    width={989}
+    height={1258}
+  />
+</Figure>
+
+### What are New Features?
+
 - Sandboxing CSS changes
 - Utilising breakpoints and light javascript actions
 - CSS Zen Garden

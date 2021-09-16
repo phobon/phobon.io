@@ -28,5 +28,15 @@
     "category": "Agworld",
     "description": "Improving performance, accessibility and developer experience in a legacy codebase",
     "tags": ["Design", "Research", "Front-end Development"]
+  },
+  {
+    "key": "making-agworld-responsive",
+    "title": "Making Agworld Responsive",
+    "href": "writing/making-agworld-responsive",
+    "src": "/writing/making-agworld-responsive/index.webp",
+    "published": "20 September 2021",
+    "category": "Agworld",
+    "description": "Taking Agworld's web experience, and making it mobile",
+    "tags": ["Design", "Research", "Front-end Development"]
   }
 ]
