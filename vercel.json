@@ -1,8 +1,5 @@
 {
   "version": 2,
   "name": "phobonio",
-  "alias": ["phobon.io", "www.phobon.io"],
-  "builds": [
-    { "src": "next.config.js", "use": "@now/next" }
-  ]
+  "alias": ["phobon.io", "www.phobon.io"]
 }
