@@ -12,6 +12,11 @@ export const navigationLinks: INavigationLink[] = [
 
 export const socialLinks: INavigationLink[] = [
   {
+    id: "social__polywork",
+    label: "Polywork",
+    href: "https://www.polywork.com/phobon",
+  },
+  {
     id: "social__dribbble",
     label: "Dribbble",
     href: "https://dribbble.com/phobon",
@@ -23,13 +28,13 @@ export const socialLinks: INavigationLink[] = [
     href: "http://instagram.com/thenoumenon",
   },
   {
-    id: "social__linkedin",
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ben-mccormick-a373304/",
-  },
-  {
     id: "social__twitter",
     label: "Twitter",
     href: "https://twitter.com/thenoumenon",
+  },
+  {
+    id: "social__linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ben-mccormick-a373304/",
   },
 ];
