@@ -1,5 +1,15 @@
 [
   {
+    "name": "Actions by Moleskine Studios",
+    "status": "Live",
+    "description": "Landing page for Actions by Moleskine Studios",
+    "image": "/projects/actions.webp",
+    "fallbackType": "png",
+    "fallbackExtension": "png",
+    "url": "https://moleskinestudio.com/actions/",
+    "tags": ["Product Design", "Front-End Development", "WebGL"]
+  },
+  {
     "name": "Signal",
     "status": "Live",
     "description": "Agworld's design system built with React and CSS-in-JS",
