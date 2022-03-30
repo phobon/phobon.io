@@ -70,7 +70,7 @@
     "employ": "Speakeasy",
     "href": "https://speakeasy.to",
     "title": "Senior UX Engineer",
-    "timeframe": "2020 - current",
+    "timeframe": "2020 - 2021",
     "description": "Helping deliver an exciting new vision of client communications. Responsible for front-end architecture and systems; delivering core product experiences",
     "achievements": [
       {
@@ -87,6 +87,22 @@
         "key": "cross-platform",
         "title": "Cross-platform development",
         "description": "Electron and cordova"
+      }
+    ]
+  },
+  {
+    "key": "experience__bonobo",
+    "employ": "Bonobo",
+    "href": "https://bonobolabs.com/",
+    "title": "Senior Product Engineer (Great Ape)",
+    "timeframe": "2021 - current",
+    "description": "Helping build rich web presence and experiences with the incredibly talented team at Bonobo. Responsible for full-stack systems across a suite of products, as well as design and development of rich web experiences",
+    "achievements": [
+      {
+        "key": "actions-landing-page",
+        "title": "Actions by Moleskine Studios",
+        "description": "WebGL, React and Gatsby",
+        "href": "https://moleskinestudio.com/actions/"
       }
     ]
   }
