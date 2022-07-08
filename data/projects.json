@@ -1,8 +1,18 @@
 [
   {
-    "name": "Actions by Moleskine Studios",
+    "name": "Timepage macOS by Moleskine Studio",
     "status": "Live",
-    "description": "Landing page for Actions by Moleskine Studios",
+    "description": "Landing page for the macOS version of Timepage by Moleskine Studio",
+    "image": "/projects/timepage_macos.webp",
+    "fallbackType": "png",
+    "fallbackExtension": "png",
+    "url": "https://moleskinestudio.com/timepage/macos/",
+    "tags": ["Product Design", "Front-End Development", "WebGL", "GSAP"]
+  },
+  {
+    "name": "Actions by Moleskine Studio",
+    "status": "Live",
+    "description": "Landing page for Actions by Moleskine Studio",
     "image": "/projects/actions.webp",
     "fallbackType": "png",
     "fallbackExtension": "png",

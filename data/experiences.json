@@ -100,9 +100,15 @@
     "achievements": [
       {
         "key": "actions-landing-page",
-        "title": "Actions by Moleskine Studios",
+        "title": "Actions by Moleskine Studio",
         "description": "WebGL, React and Gatsby",
         "href": "https://moleskinestudio.com/actions/"
+      },
+      {
+        "key": "timepage-macos-landing-page",
+        "title": "Timepage macOS by Moleskine Studio",
+        "description": "WebGL, React GSAP and Gatsby",
+        "href": "https://moleskinestudio.com/timepage/macos/"
       }
     ]
   }
