@@ -1,3 +1,4 @@
+import React from "react";
 import { Main } from "@/components/Layout/Main";
 
 export const Wrapper = ({ children, ...props }) => (

@@ -1,9 +1,9 @@
-import React from "react"
-import { Text } from "@phobon/base"
+import React from "react";
+import { Text } from "@phobon/base";
 
-import { HeroHeader } from "@/components/HeroHeader"
+import { HeroHeader } from "@/components/HeroHeader";
 
-import { spanAllColumns } from "@/data/constants"
+import { spanAllColumns } from "@/data/constants";
 
 const defaultProps = {
   color: "foreground",
@@ -12,7 +12,7 @@ const defaultProps = {
   mt: 0,
   mb: 4,
   gridColumn: spanAllColumns,
-}
+};
 
 export const H1 = React.forwardRef<HTMLHeadingElement, any>(
   ({ children, ...props }, ref) => {
@@ -20,9 +20,10 @@ export const H1 = React.forwardRef<HTMLHeadingElement, any>(
       <HeroHeader {...defaultProps} mb={[7, 6]} {...props} ref={ref}>
         {children}
       </HeroHeader>
-    )
+    );
   }
-)
+);
+H1.displayName = "H1";
 
 export const H2 = React.forwardRef<HTMLHeadingElement, any>(
   ({ children, ...props }, ref) => (
@@ -37,7 +38,8 @@ export const H2 = React.forwardRef<HTMLHeadingElement, any>(
       {children}
     </Text>
   )
-)
+);
+H2.displayName = "H2";
 
 export const H3 = React.forwardRef<HTMLHeadingElement, any>(
   ({ children, ...props }, ref) => (
@@ -52,4 +54,5 @@ export const H3 = React.forwardRef<HTMLHeadingElement, any>(
       {children}
     </Text>
   )
-)
+);
+H3.displayName = "H3";

@@ -1,25 +1,25 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react"
-import React, { useCallback } from "react"
-import { Box, Stack } from "@phobon/base"
-import { useTheme } from "@phobon/hooks"
-import { Spacer, Button } from "@phobon/grimoire"
-import Link from "next/link"
-import { navigationLinks } from "@/data/links"
+import { jsx } from "@emotion/react";
+import React, { useCallback } from "react";
+import { Box, Stack } from "@phobon/base";
+import { useTheme } from "@phobon/hooks";
+import { Spacer, Button } from "@phobon/grimoire";
+import Link from "next/link";
+import { navigationLinks } from "@/data/links";
 
-import { getTheme } from "@/hooks/getTheme"
+import { getTheme } from "@/hooks/getTheme";
 
-import { Identity } from "../Identity"
-import { HamburgerGlyph, SunGlyph, MoonGlyph } from "../Glyphs"
-import { NavigationLink } from "../Navigation"
+import { Identity } from "../Identity";
+import { HamburgerGlyph, SunGlyph, MoonGlyph } from "../Glyphs";
+import { NavigationLink } from "../Navigation";
 
-export const Header = ({ title, px, openNavigation, ...props }) => {
-  const [theme, setTheme] = useTheme("light", getTheme)
+export const Header = ({ px, openNavigation, ...props }) => {
+  const [theme, setTheme] = useTheme("light", getTheme);
   const toggleTheme = useCallback(
     () => setTheme(theme === "light" ? "dark" : "light"),
-    [theme]
-  )
+    [theme, setTheme]
+  );
 
   return (
     <Stack
@@ -113,5 +113,5 @@ export const Header = ({ title, px, openNavigation, ...props }) => {
         <Spacer length="100%" />
       </Box>
     </Stack>
-  )
-}
+  );
+};

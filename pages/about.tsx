@@ -1,41 +1,32 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react"
-import React from "react"
-import { Spacer, useNotifications } from "@phobon/grimoire"
-import { motion } from "framer-motion"
-import { Grid, Heading, Stack, Text } from "@phobon/base"
+import { jsx } from "@emotion/react";
+import React from "react";
+import { Spacer } from "@phobon/grimoire";
+import { motion } from "framer-motion";
+import { Stack } from "@phobon/base";
 
-import { SlideLink, Experience, Paragraph, Span } from "@/components"
-import { Meta } from "@/components/Meta"
-import { Main } from "@/components/Layout/Main"
-import { maxWidth, spanAllColumns } from "@/data/constants"
-import { HeroHeader } from "@/components/HeroHeader"
+import { SlideLink, Experience, Paragraph, Span } from "@/components";
+import { Meta } from "@/components/Meta";
+import { Main } from "@/components/Layout/Main";
+import { maxWidth, spanAllColumns } from "@/data/constants";
+import { HeroHeader } from "@/components/HeroHeader";
 
-const ease = [0.33, 1, 0.68, 1]
-
-const container = {
-  visible: {
-    opacity: 1,
-  },
-  hidden: {
-    opacity: 0,
-  },
-}
+const ease = [0.33, 1, 0.68, 1];
 
 const motionProps = {
   initial: "initial",
   animate: "visible",
-}
+};
 
-const MotionStack = motion(Stack, { forwardMotionProps: true })
+const MotionStack = motion(Stack, { forwardMotionProps: true });
 
-const AboutMe = ({ projects, writing, experiences, ...props }) => (
+const AboutMe = ({ experiences, ...props }) => (
   <React.Fragment>
     <Meta title="phbn" description="about" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
-        <span>I'm Ben,&nbsp;</span>
+        <span>I&apos;m Ben,&nbsp;</span>
         <span>a&nbsp;</span>
         <span css={(theme) => ({ color: theme.colors.violets[5] })}>
           developer&nbsp;
@@ -109,7 +100,7 @@ const AboutMe = ({ projects, writing, experiences, ...props }) => (
             },
           })}
         >
-          <span>You'll often find me enjoying time with my</span>
+          <span>You&apos;ll often find me enjoying time with my</span>
           <span>
             <SlideLink href="https://www.instagram.com/thestudiophysio/">
               amazing partner
@@ -139,19 +130,19 @@ const AboutMe = ({ projects, writing, experiences, ...props }) => (
       </MotionStack>
     </Main>
   </React.Fragment>
-)
+);
 
 export const getStaticProps = async () => {
   const { default: unsortedExperiences = [] } = await import(
     "../data/experiences.json"
-  )
+  );
 
-  const experiences = [...unsortedExperiences].reverse()
+  const experiences = [...unsortedExperiences].reverse();
   return {
     props: {
       experiences,
     },
-  }
-}
+  };
+};
 
-export default AboutMe
+export default AboutMe;

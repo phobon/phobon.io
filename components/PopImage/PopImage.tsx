@@ -19,7 +19,7 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
   src,
   alt,
   color = "accent",
-  loading = "lazy",
+  // loading = "lazy",
   width,
   height,
   ...props

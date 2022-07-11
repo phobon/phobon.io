@@ -13,6 +13,7 @@ export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
     </Text>
   )
 );
+Paragraph.displayName = "Paragraph";
 
 Paragraph.defaultProps = {
   fontSize: [4, 5],

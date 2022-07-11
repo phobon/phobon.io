@@ -27,7 +27,6 @@ export const Experience: React.FunctionComponent<any> = ({
   timeframe,
   description,
   achievements,
-  colour,
   ...props
 }) => (
   <Grid

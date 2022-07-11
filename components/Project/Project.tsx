@@ -5,7 +5,6 @@ import React from "react";
 import { Stack, Box, Text } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
-import { PopImage } from "../PopImage";
 import { ShiftImage } from "../ShiftImage";
 import Link from "next/link";
 

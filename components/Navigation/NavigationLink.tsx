@@ -3,18 +3,9 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import Link from "next/link";
-import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 import { Box, destructureLayoutProps } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
-
-const Container = styled(motion.div)({
-  transformOrigin: "0 0",
-});
-
-const easeIn = [0.5, 0.21, 0.32, 1];
-const easeOut = [0.71, 0.04, 0.45, 0.91];
 
 export interface NavigationLinkProps {
   id?: string | number;
@@ -26,15 +17,7 @@ export interface NavigationLinkProps {
 
 export const NavigationLink: React.FunctionComponent<
   NavigationLinkProps & any
-> = ({
-  id,
-  label,
-  href,
-  fontSize = 7,
-  external = false,
-  onClick,
-  ...props
-}) => {
+> = ({ label, href, fontSize = 7, external = false, onClick, ...props }) => {
   const [layoutProps, rest] = destructureLayoutProps(props);
 
   return (

@@ -1,27 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react"
-import React from "react"
-import { Stack } from "@phobon/base"
-import { Spacer } from "@phobon/grimoire"
-import { motion } from "framer-motion"
+import { jsx } from "@emotion/react";
+import React from "react";
+import { Stack } from "@phobon/base";
+import { motion } from "framer-motion";
 
-import { FluidStudy } from "@/components/FluidStudy"
-import { FlatStudy } from "@/components/FlatStudy"
-import { Meta } from "@/components/Meta"
-import { Main } from "@/components/Layout/Main"
-import { ShowcaseGrid } from "@/components/ShowcaseGrid"
-import { spanAllColumns } from "@/data/constants"
-import { HeroHeader } from "@/components/HeroHeader"
+import { FlatStudy } from "@/components/FlatStudy";
+import { Meta } from "@/components/Meta";
+import { Main } from "@/components/Layout/Main";
+import { spanAllColumns } from "@/data/constants";
+import { HeroHeader } from "@/components/HeroHeader";
 
-const ease = [0.33, 1, 0.68, 1]
+const ease = [0.33, 1, 0.68, 1];
 
 const motionProps = {
   initial: "initial",
   animate: "visible",
-}
+};
 
-const MotionStack = motion(Stack, { forwardMotionProps: true })
+const MotionStack = motion(Stack, { forwardMotionProps: true });
 
 const Writing = ({ writing, ...props }) => (
   <React.Fragment>
@@ -36,7 +33,7 @@ const Writing = ({ writing, ...props }) => (
         <span css={(theme) => ({ color: theme.colors.accent[5] })}>
           projects
         </span>
-        <span>I've worked on</span>
+        <span>I&apos;ve worked on</span>
       </HeroHeader>
 
       <MotionStack
@@ -68,19 +65,19 @@ const Writing = ({ writing, ...props }) => (
       </MotionStack>
     </Main>
   </React.Fragment>
-)
+);
 
 export const getStaticProps = async () => {
   const { default: unsortedWriting = [] } = await import(
     "../../data/writing.json"
-  )
+  );
 
-  const writing = [...unsortedWriting].reverse()
+  const writing = [...unsortedWriting].reverse();
   return {
     props: {
       writing,
     },
-  }
-}
+  };
+};
 
-export default Writing
+export default Writing;

@@ -48,7 +48,7 @@ const StyledFigure = styled("figure", { shouldForwardProp })<FigureProps>(
 export const Figure = React.forwardRef<
   HTMLDivElement & IFigureProps,
   FigureProps
->(({ caption, children, bg, ...props }, ref) => (
+>(({ caption, children, ...props }, ref) => (
   <StyledFigure ref={ref} {...props}>
     {children}
     <Text

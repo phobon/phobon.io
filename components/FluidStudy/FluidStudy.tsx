@@ -1,35 +1,27 @@
-import React from "react"
-import {
-  Heading,
-  Stack,
-  Text,
-  Link as SignalLink,
-  StackProps,
-} from "@phobon/base"
-import Link from "next/link"
-import { motion, MotionProps } from "framer-motion"
+import React from "react";
+import { Stack, Text, StackProps } from "@phobon/base";
+import Link from "next/link";
+import { motion, MotionProps } from "framer-motion";
 
-import { PopImage } from "../PopImage"
-import { SlideLink } from "../SlideLink"
-import { TiltImage } from "../TiltImage"
-import { ShiftImage } from "../ShiftImage"
+import { SlideLink } from "../SlideLink";
+import { ShiftImage } from "../ShiftImage";
 
-const MotionStack = motion(Stack, { forwardMotionProps: true })
+const MotionStack = motion(Stack, { forwardMotionProps: true });
 
 export interface IFluidStudyProps {
-  href?: string
-  src?: string
-  title?: string
-  published?: string
-  description?: string
-  category?: string
-  tags?: string[]
+  href?: string;
+  src?: string;
+  title?: string;
+  published?: string;
+  description?: string;
+  category?: string;
+  tags?: string[];
 }
 
 export type FluidStudyProps = IFluidStudyProps &
   StackProps &
   MotionProps &
-  React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement>;
 
 export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   href,
@@ -37,8 +29,6 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   title,
   published,
   description,
-  category,
-  tags,
   ...props
 }) => (
   <Link href={href} passHref>
@@ -81,4 +71,4 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
       </SlideLink>
     </MotionStack>
   </Link>
-)
+);

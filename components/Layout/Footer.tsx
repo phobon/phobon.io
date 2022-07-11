@@ -1,13 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react"
-import React from "react"
-import { Box, Stack, Grid, StackProps } from "@phobon/base"
+import { jsx } from "@emotion/react";
+import React from "react";
+import { Box, Stack, Grid, StackProps } from "@phobon/base";
 
-import { SlideLink } from "../SlideLink"
-import { Paragraph, Span } from "../Markdown"
+import { SlideLink } from "../SlideLink";
 
-import { socialLinks } from "@/data/links"
+import { socialLinks } from "@/data/links";
 
 export const Footer: React.FunctionComponent<
   StackProps & React.HTMLAttributes<HTMLDivElement>
@@ -41,4 +40,4 @@ export const Footer: React.FunctionComponent<
       ))}
     </Grid>
   </Stack>
-)
+);
