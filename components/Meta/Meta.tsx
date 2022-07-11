@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import Head from "next/head";
+import { ErrorBoundary } from "../ErrorBoundary";
 
 interface MetaProps {
   title?: string;
@@ -18,28 +19,29 @@ export const Meta: FunctionComponent<MetaProps> = ({
 }) => {
   const metaTitle = title || `phbn | ${description}`;
   return (
-    <Head>
-      <html lang="en" />
-      <title>{metaTitle}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="title" content={metaTitle} />
-      <meta name="description" content={description} />
+    <ErrorBoundary>
+      <Head>
+        <title>{metaTitle}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="title" content={metaTitle} />
+        <meta name="description" content={description} />
 
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" />
 
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={metaTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
 
-      <meta property="twitter:card" content={twitterCard} />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={metaTitle} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
-    </Head>
+        <meta property="twitter:card" content={twitterCard} />
+        <meta property="twitter:url" content={url} />
+        <meta property="twitter:title" content={metaTitle} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+      </Head>
+    </ErrorBoundary>
   );
 };
 

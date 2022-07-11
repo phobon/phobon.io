@@ -26,7 +26,7 @@ const MotionGrid = motion(Grid, { forwardMotionProps: true });
 const MotionSpacer = motion(Spacer, { forwardMotionProps: true });
 
 const Index = ({ projects, writing, experiences, ...props }) => (
-  <React.Fragment>
+  <>
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
@@ -168,7 +168,7 @@ const Index = ({ projects, writing, experiences, ...props }) => (
         </MotionGrid>
       )}
     </Main>
-  </React.Fragment>
+  </>
 );
 
 export const getStaticProps = async () => {
