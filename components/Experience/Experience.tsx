@@ -2,9 +2,23 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import React from "react";
-import { Grid, Heading, Stack, Text } from "@phobon/base";
+import { Grid, Stack, Text } from "@phobon/base";
 
 import { SlideLink } from "../SlideLink";
+
+const Heading = ({ children, ...props }) => (
+  <Text
+    as="h3"
+    color="grayscale.1"
+    fontWeight="light"
+    textAlign="left"
+    fontSize={[4, 6]}
+    lineHeight={1}
+    {...props}
+  >
+    {children}
+  </Text>
+);
 
 export const Experience: React.FunctionComponent<any> = ({
   employ,
@@ -33,7 +47,7 @@ export const Experience: React.FunctionComponent<any> = ({
       fullWidth
       space={[0, 2]}
     >
-      <Heading as="h3" mr={[2, 0]} color="foreground">
+      <Heading mr={[2, 0]} color="foreground">
         <SlideLink href={href}>{employ}</SlideLink>
       </Heading>
       <Text fontSize={5} color="grayscale.3">
@@ -42,9 +56,7 @@ export const Experience: React.FunctionComponent<any> = ({
     </Stack>
 
     <Stack fullWidth alignItems="flex-start" space={4}>
-      <Heading as="h3" color="foreground">
-        {title}
-      </Heading>
+      <Heading color="foreground">{title}</Heading>
       <Text as="p" fontSize={[4, 5]} color="grayscale.3" mt={2}>
         {description}
       </Text>

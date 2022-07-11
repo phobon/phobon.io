@@ -8,9 +8,9 @@ import { Navigation } from "../Navigation";
 
 import { maxWidth, horizontalPadding } from "@/data/constants";
 
-export type LayoutProps = {
+export type LayoutProps = React.PropsWithChildren<{
   title?: string;
-};
+}>;
 
 export const Layout: React.FunctionComponent<LayoutProps> = ({
   title,
