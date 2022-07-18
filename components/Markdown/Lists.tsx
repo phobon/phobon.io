@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { Stack, Text, Box } from "@phobon/base";
 
 import { spanAllColumns } from "@/data/constants";
@@ -32,12 +29,7 @@ export const Li = ({ children, ...props }) => (
       },
     }}
   >
-    <Text
-      fontSize={[4, 5]}
-      lineHeight={1.8}
-      maxWidth="80ch"
-      color="grayscale.3"
-    >
+    <Text fontSize={[4, 5]} lineHeight={1.8} maxWidth="80ch" color="$gray3">
       {children}
     </Text>
   </Box>

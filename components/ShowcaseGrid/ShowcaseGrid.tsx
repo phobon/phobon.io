@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useEffect, useRef } from "react";
 import { Grid, GridProps } from "@phobon/base";
 import { motion } from "framer-motion";

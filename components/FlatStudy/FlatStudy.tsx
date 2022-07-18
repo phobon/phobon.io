@@ -55,18 +55,13 @@ export const FlatStudy: React.FunctionComponent<FlatStudyProps> = ({
       </Box>
 
       <Stack alignItems="flex-start" py={[0, 3]} space={3}>
-        <Text fontSize={[3, 4]} color="grayscale.3">
+        <Text fontSize={[3, 4]} color="$gray3">
           {published}
         </Text>
-        <SlideLink
-          as="h2"
-          fontSize={[6, 7]}
-          fontWeight="light"
-          color="grayscale.0"
-        >
+        <SlideLink as="h2" fontSize={[6, 7]} fontWeight="light" color="$gray0">
           {title}
         </SlideLink>
-        <Text as="p" fontSize={[4, 5]} color="grayscale.3">
+        <Text as="p" fontSize={[4, 5]} color="$gray3">
           {description}
         </Text>
         <SlideLink as="span" fontSize={[4, 5]}>

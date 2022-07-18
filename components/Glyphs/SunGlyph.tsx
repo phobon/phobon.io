@@ -1,10 +1,10 @@
-import React from "react"
-import { Vector, VectorProps } from "@phobon/base"
+import React from "react";
+import { Vector, VectorProps } from "@phobon/base";
 
 export const SunGlyph: React.FunctionComponent<VectorProps> = ({
   width = 16,
   height = 16,
-  stroke = "grayscale.0",
+  stroke = "$gray0",
   ...props
 }) => (
   <Vector
@@ -100,6 +100,6 @@ export const SunGlyph: React.FunctionComponent<VectorProps> = ({
       </g>
     </g>
   </Vector>
-)
+);
 
-SunGlyph.displayName = "SunGlyph"
+SunGlyph.displayName = "SunGlyph";

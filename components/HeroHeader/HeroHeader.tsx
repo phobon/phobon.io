@@ -1,19 +1,16 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react"
-import { Text } from "@phobon/base"
-import { motion } from "framer-motion"
+import { Text } from "@phobon/base";
+import { motion } from "framer-motion";
 
-import { maxWidth, spanAllColumns } from "@/data/constants"
+import { maxWidth, spanAllColumns } from "@/data/constants";
 
-const ease = [0.33, 1, 0.68, 1]
+const ease = [0.33, 1, 0.68, 1];
 
 const motionProps = {
   initial: "initial",
   animate: "visible",
-}
+};
 
-const MotionHeading = motion(Text, { forwardMotionProps: true })
+const MotionHeading = motion(Text, { forwardMotionProps: true });
 
 export const HeroHeader = ({ children, ...props }) => (
   <MotionHeading
@@ -50,4 +47,4 @@ export const HeroHeader = ({ children, ...props }) => (
   >
     {children}
   </MotionHeading>
-)
+);

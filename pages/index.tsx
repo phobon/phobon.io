@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { Stack, Grid } from "@phobon/base";
 import { Spacer } from "@phobon/grimoire";
@@ -127,10 +124,10 @@ const Index = ({ projects, writing, experiences, ...props }) => (
           {...motionProps}
         >
           {experiences.map(({ key, ...e }) => (
-            <React.Fragment key={key}>
+            < key={key}>
               <Experience {...e} />
               <Spacer length="100%" />
-            </React.Fragment>
+            </>
           ))}
         </MotionStack>
       )}

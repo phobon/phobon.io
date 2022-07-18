@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { Text } from "@phobon/base";
 
@@ -30,8 +27,8 @@ Pre.defaultProps = {
   lineHeight: 1.8,
   mt: 0,
   mb: 5,
-  bg: "grayscale.1",
-  color: "grayscale.9",
+  bg: "$gray1",
+  color: "$gray9",
   px: 3,
   py: 2,
 };

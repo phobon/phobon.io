@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React from "react";
-import { jsx } from "@emotion/react";
+
 import { Vector, Box, BoxProps } from "@phobon/base";
 
 export type IdentityProps = BoxProps &
@@ -14,7 +12,7 @@ export const Identity = React.forwardRef<HTMLDivElement, IdentityProps>(
         width="100%"
         height="100%"
         viewBox="0 0 16 16"
-        fill="grayscale.3"
+        fill="$gray3"
         css={(theme) => ({
           transition: "transform 90ms ease-out",
           "&:hover": {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack } from "@phobon/base";
+import { Stack } from "@/components/primitives";
 
 import { Experience } from "./Experience";
 
@@ -42,7 +42,7 @@ const experiences: any = [
 ];
 
 export const withVaryingTextLengths = () => (
-  <Stack fullWidth space={6}>
+  <Stack gap={6} css={{ width: "100%" }}>
     {experiences.map(({ key, ...s }) => (
       <Experience key={key} {...s} />
     ))}

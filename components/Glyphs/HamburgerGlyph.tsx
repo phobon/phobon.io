@@ -4,7 +4,7 @@ import { Vector, VectorProps } from "@phobon/base";
 export const HamburgerGlyph: React.FunctionComponent<VectorProps> = ({
   width = 16,
   height = 16,
-  fill = "grayscale.0",
+  fill = "$gray0",
   ...props
 }) => (
   <Vector

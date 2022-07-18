@@ -1,10 +1,10 @@
-import React from "react"
-import { Vector, VectorProps } from "@phobon/base"
+import React from "react";
+import { Vector, VectorProps } from "@phobon/base";
 
 export const MoonGlyph: React.FunctionComponent<VectorProps> = ({
   width = 16,
   height = 16,
-  fill = "grayscale.0",
+  fill = "$gray0",
   ...props
 }) => (
   <Vector width={width} height={height} viewBox="0 0 48 48" {...props}>
@@ -18,6 +18,6 @@ export const MoonGlyph: React.FunctionComponent<VectorProps> = ({
       ></path>
     </g>
   </Vector>
-)
+);
 
-MoonGlyph.displayName = "MoonGlyph"
+MoonGlyph.displayName = "MoonGlyph";

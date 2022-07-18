@@ -2129,16 +2129,6 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@phobon/base@^3.1.10":
-  version "3.1.10"
-  resolved "https://registry.yarnpkg.com/@phobon/base/-/base-3.1.10.tgz#383b4ead6f0f6141e89f84c9f13841600f228614"
-  integrity sha512-iCFTKjpOJQwwlxzH0CmnWhWrVuYc4YcWM55IeOn4e6iTKzk7XgKomI/ds0izlAUM2eWt9sdcuehjejulY6c61w==
-
-"@phobon/grimoire@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@phobon/grimoire/-/grimoire-1.1.5.tgz#5365017e23e9897d28387e4f107fc02f1d23e453"
-  integrity sha512-nGi0sPNC+5dRGpugikS/p6XjlDAsX4ovJW9ovfJFsF46zyPg8Am20jcZrbz3zuZQcWZ3ullLATu8M8xlnBp4xA==
-
 "@phobon/hooks@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@phobon/hooks/-/hooks-2.2.5.tgz#6ee64d6700e144c2737d682c7e6209b00a4059bb"
@@ -2163,6 +2153,16 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
     source-map "^0.7.3"
+
+"@radix-ui/colors@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@radix-ui/colors/-/colors-0.1.8.tgz#b08c62536fc462a87632165fb28e9b18f9bd047e"
+  integrity sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==
+
+"@stitches/react@^1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.8.tgz#954f8008be8d9c65c4e58efa0937f32388ce3a38"
+  integrity sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==
 
 "@storybook/addons@6.5.9", "@storybook/addons@^6.5.9":
   version "6.5.9"

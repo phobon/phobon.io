@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { Stack } from "@phobon/base";
 import { motion } from "framer-motion";
@@ -21,7 +18,7 @@ const motionProps = {
 const MotionStack = motion(Stack, { forwardMotionProps: true });
 
 const Writing = ({ writing, ...props }) => (
-  <React.Fragment>
+  <>
     <Meta title="phbn" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
@@ -64,7 +61,7 @@ const Writing = ({ writing, ...props }) => (
         ))}
       </MotionStack>
     </Main>
-  </React.Fragment>
+  </>
 );
 
 export const getStaticProps = async () => {

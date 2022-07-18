@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { Spacer } from "@phobon/grimoire";
 import { motion } from "framer-motion";
@@ -22,7 +19,7 @@ const motionProps = {
 const MotionStack = motion(Stack, { forwardMotionProps: true });
 
 const AboutMe = ({ experiences, ...props }) => (
-  <React.Fragment>
+  <>
     <Meta title="phbn" description="about" twitterCard="summary" />
     <Main {...props}>
       <HeroHeader>
@@ -64,7 +61,7 @@ const AboutMe = ({ experiences, ...props }) => (
         {...motionProps}
       >
         <Paragraph
-          color="grayscale.3"
+          color="$gray3"
           css={(theme) => ({
             "> * + *": {
               marginLeft: theme.space[1],
@@ -79,7 +76,7 @@ const AboutMe = ({ experiences, ...props }) => (
         </Paragraph>
 
         <Paragraph
-          color="grayscale.3"
+          color="$gray3"
           css={(theme) => ({
             "> * + *": {
               marginLeft: theme.space[1],
@@ -92,7 +89,7 @@ const AboutMe = ({ experiences, ...props }) => (
         </Paragraph>
 
         <Paragraph
-          color="grayscale.3"
+          color="$gray3"
           mb={0}
           css={(theme) => ({
             "> * + *": {
@@ -122,14 +119,14 @@ const AboutMe = ({ experiences, ...props }) => (
         </Paragraph>
         <Spacer length="100%" />
         {experiences?.map(({ key, ...e }) => (
-          <React.Fragment key={key}>
+          < key={key}>
             <Experience {...e} />
             <Spacer length="100%" />
-          </React.Fragment>
+          </>
         ))}
       </MotionStack>
     </Main>
-  </React.Fragment>
+  </>
 );
 
 export const getStaticProps = async () => {

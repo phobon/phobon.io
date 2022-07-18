@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import Link from "next/link";
 import { Box, destructureLayoutProps } from "@phobon/base";

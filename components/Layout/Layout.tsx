@@ -26,7 +26,7 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({
   const closeNavigation = useCallback(() => setNavigationOpen(false), []);
 
   return (
-    <React.Fragment>
+    <>
       <Header
         key="header"
         title={title}
@@ -52,6 +52,6 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({
           />
         )}
       </AnimatePresence>
-    </React.Fragment>
+    </>
   );
 };

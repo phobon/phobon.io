@@ -5,7 +5,7 @@ import { Normalize, Box } from "@phobon/base";
 
 const StoryBox = ({ children, ...props }) => (
   <ThemeProvider theme={theme}>
-    <React.Fragment>
+    <>
       <Box
         className="storybox"
         justifyContent="flex-start"
@@ -16,7 +16,7 @@ const StoryBox = ({ children, ...props }) => (
         {children}
       </Box>
       <Normalize />
-    </React.Fragment>
+    </>
   </ThemeProvider>
 );
 

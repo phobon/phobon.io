@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import styled from "@emotion/styled";
 import {
@@ -55,7 +52,7 @@ export const Figure = React.forwardRef<
       mt={2}
       as="figcaption"
       fontSize={2}
-      color="grayscale.3"
+      color="$gray3"
       css={{ alignSelf: "flex-start" }}
     >
       {caption}

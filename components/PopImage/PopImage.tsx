@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { Box, BoxProps } from "@phobon/base";
 import Image from "next/image";
 

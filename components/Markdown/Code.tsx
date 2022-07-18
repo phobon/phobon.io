@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import { Text } from "@phobon/base";
 
 import { spanAllColumns } from "@/data/constants";

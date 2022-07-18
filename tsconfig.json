@@ -2,31 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components": [
-        "components/index"
-      ],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/hooks/*": [
-        "hooks/*"
-      ],
-      "@/atoms/*": [
-        "atoms/*"
-      ],
-      "@/data/*": [
-        "data/*"
-      ],
-      "@/api/*": [
-        "pages/api/*"
-      ]
+      "@/components": ["components/index"],
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/atoms/*": ["atoms/*"],
+      "@/data/*": ["data/*"],
+      "@/api/*": ["pages/api/*"],
+      "@/design": ["design/index"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -48,7 +33,5 @@
     "node_modules/@phobon/base/**/*.d.ts",
     "node_modules/@phobon/grimoire/**/*.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

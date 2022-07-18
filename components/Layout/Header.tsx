@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useCallback } from "react";
 import { Box, Stack } from "@phobon/base";
 import { useTheme } from "@phobon/hooks";

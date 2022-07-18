@@ -1,9 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React, { useState, useCallback } from "react";
-import { Grid, GridProps } from "@phobon/base";
-import { Button } from "@phobon/grimoire";
+import { Grid, Button } from "@/components/primitives";
 import { useAtom } from "jotai";
 
 import {
@@ -18,7 +14,7 @@ import { debugAtom } from "@/atoms/debugAtom";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export const GridHelper: React.FunctionComponent<
-  GridProps & React.HTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement>
 > = ({ ...props }) => {
   const [{ showGrid }, setDebug] = useAtom(debugAtom);
   const [columns, setColumns] = useState<number>(gridColumns[1]);
@@ -30,10 +26,9 @@ export const GridHelper: React.FunctionComponent<
   useMediaQuery("screen and (max-width: 48em)", onMediaQueryChanged);
 
   return (
-    <React.Fragment>
+    <>
       <Button
         aria-label="Toggle grid helper"
-        borderRadius={0}
         onClick={() =>
           setDebug((a) => ({
             ...a,
@@ -41,23 +36,19 @@ export const GridHelper: React.FunctionComponent<
           }))
         }
         variant="primary"
-        shape="square"
         css={{
           position: "fixed",
           left: 0,
           bottom: 0,
           zIndex: 9999,
+          borderRadius: 0,
         }}
       />
       {showGrid && (
         <Grid
-          fullWidth
-          fullHeight
-          gridTemplateColumns={gridTemplateColumns}
-          gridTemplateRows="1fr"
-          gridGap={gridGap}
-          px={horizontalPadding}
-          css={(theme) => ({
+          css={{
+            width: "100%",
+            height: "100%",
             maxWidth,
             position: "fixed",
             top: 0,
@@ -66,13 +57,17 @@ export const GridHelper: React.FunctionComponent<
             margin: "0 auto",
             pointerEvents: "none",
             zIndex: 9999,
+            gridTemplateColumns: `$${gridTemplateColumns}`,
+            gridTemplateRows: "1fr",
+            gridGap: `$${gridGap}`,
+            padding: `0 $${horizontalPadding}`,
             "> div": {
               width: "100%",
               height: "100%",
-              backgroundColor: theme.colors.reds[5],
+              backgroundColor: "$red5",
               opacity: 0.4,
             },
-          })}
+          }}
           {...props}
         >
           {Array(columns)
@@ -82,6 +77,6 @@ export const GridHelper: React.FunctionComponent<
             ))}
         </Grid>
       )}
-    </React.Fragment>
+    </>
   );
 };

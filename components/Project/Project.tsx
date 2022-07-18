@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import React from "react";
 import { Stack, Box, Text } from "@phobon/base";
 
@@ -32,11 +29,7 @@ export const Project = ({ project, ...props }) => {
           <SlideLink as="h3" fontSize={[4, 5]} fontWeight="light">
             {name}
           </SlideLink>
-          <Text
-            fontSize={[4, 5]}
-            color="grayscale.3"
-            textAlign={["center", "left"]}
-          >
+          <Text fontSize={[4, 5]} color="$gray3" textAlign={["center", "left"]}>
             {description}
           </Text>
         </Stack>
