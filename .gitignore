@@ -41,3 +41,4 @@ report.*.json
 # .vscode Debugging
 .vscode/*-debug-profile
 
+/__old/
