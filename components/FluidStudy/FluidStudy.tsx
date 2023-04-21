@@ -33,10 +33,11 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   published,
   description,
   gridColumn,
+  className,
   ...props
 }) => {
   return (
-    <StyledLink href={href} gridColumn={gridColumn}>
+    <StyledLink href={href} gridColumn={gridColumn} className={className}>
       <MotionStack
         alignItems='flex-start'
         fullWidth

@@ -1,16 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Box, BoxProps } from '@phobon/base'
+import { Box } from '@phobon/base'
 import Image from 'next/image'
 
 export interface IPopImageProps {
   loading?: 'eager' | 'lazy'
 }
 
-export type PopImageProps = IPopImageProps &
-  BoxProps &
-  React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+export type PopImageProps = IPopImageProps & {
+  src?: string
+  width?: any
+  height?: any
+  color?: string
+} & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 
 export const PopImage: React.FunctionComponent<PopImageProps> = ({
   src,
