@@ -1,1 +1,1 @@
-export * from "./FluidStudy";
+export * from './FluidStudy'

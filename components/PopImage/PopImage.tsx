@@ -1,24 +1,21 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { Box, BoxProps } from "@phobon/base";
-import Image from "next/image";
+import { jsx } from '@emotion/react'
+import { Box, BoxProps } from '@phobon/base'
+import Image from 'next/image'
 
 export interface IPopImageProps {
-  loading?: "eager" | "lazy";
+  loading?: 'eager' | 'lazy'
 }
 
 export type PopImageProps = IPopImageProps &
   BoxProps &
-  React.DetailedHTMLProps<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    HTMLImageElement
-  >;
+  React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 
 export const PopImage: React.FunctionComponent<PopImageProps> = ({
   src,
   alt,
-  color = "accent",
+  color = 'accent',
   // loading = "lazy",
   width,
   height,
@@ -27,54 +24,54 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
   return (
     <Box
       css={(theme) => ({
-        transition: "opacity 0.5s ease-out",
-        position: "relative",
-        "&::before, &::after": {
+        transition: 'opacity 0.5s ease-out',
+        position: 'relative',
+        '&::before, &::after': {
           content: "''",
           width: 0,
           height: 0,
-          border: "4px solid transparent",
-          position: "absolute",
-          transition: "transform 90ms ease-out",
+          border: '4px solid transparent',
+          position: 'absolute',
+          transition: 'transform 90ms ease-out',
         },
-        "&::before": {
+        '&::before': {
           borderRightColor: theme.colors[color][6],
           borderBottomColor: theme.colors[color][6],
           left: 0,
           top: -8,
-          transform: "translateY(8px)",
+          transform: 'translateY(8px)',
         },
-        "&::after": {
+        '&::after': {
           borderLeftColor: theme.colors[color][6],
           borderTopColor: theme.colors[color][6],
           right: -8,
           bottom: 5,
-          transform: "translateX(-8px)",
+          transform: 'translateX(-8px)',
         },
-        "> span": {
-          "&::before": {
+        '> span': {
+          '&::before': {
             content: "''",
             background: theme.colors[color][6],
-            position: "absolute",
-            width: "100%",
-            height: "calc(100% - 5px)",
+            position: 'absolute',
+            width: '100%',
+            height: 'calc(100% - 5px)',
           },
         },
         img: {
-          position: "relative",
-          maxWidth: "100%",
-          maxHeight: "100%",
-          height: "auto",
-          objectFit: "cover",
-          transition: "transform 90ms ease-out",
+          position: 'relative',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          height: 'auto',
+          objectFit: 'cover',
+          transition: 'transform 90ms ease-out',
           zIndex: 1,
         },
-        "&:hover": {
-          "&::before, &::after": {
-            transform: "translate(0, 0)",
+        '&:hover': {
+          '&::before, &::after': {
+            transform: 'translate(0, 0)',
           },
           img: {
-            transform: "translate(8px, -8px)",
+            transform: 'translate(8px, -8px)',
           },
         },
       })}
@@ -86,5 +83,5 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
         <Image src={src} alt={alt} width={width} height={height} />
       </span>
     </Box>
-  );
-};
+  )
+}

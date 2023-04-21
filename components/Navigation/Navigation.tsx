@@ -1,16 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react"
-import React from "react"
-import { Stack, Box, Grid } from "@phobon/base"
-import { motion } from "framer-motion"
-import { Button } from "@phobon/grimoire"
+import { jsx } from '@emotion/react'
+import React from 'react'
+import { Stack, Box, Grid } from '@phobon/base'
+import { motion } from 'framer-motion'
+import { Button } from '@phobon/grimoire'
 
-import { maxWidth } from "@/data/constants"
-import { navigationLinks } from "@/data/links"
+import { maxWidth } from '@/data/constants'
+import { navigationLinks } from '@/data/links'
 
-import { NavigationLink } from "./NavigationLink"
-import { CloseGlyph } from "@/components/Glyphs"
+import { NavigationLink } from './NavigationLink'
+import { CloseGlyph } from '@/components/Glyphs'
 
 const MotionGrid = motion(Grid, { forwardMotionProps: true })
 
@@ -28,11 +28,11 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
 }) => {
   return (
     <MotionGrid
-      as="aside"
-      gridTemplateRows="auto 1fr"
-      gridTemplateColumns="1fr"
+      as='aside'
+      gridTemplateRows='auto 1fr'
+      gridTemplateColumns='1fr'
       css={{
-        placeItems: "center",
+        placeItems: 'center',
       }}
       {...props}
       variants={{
@@ -60,46 +60,21 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
           },
         },
       }}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
+      initial='hidden'
+      animate='visible'
+      exit='exit'
     >
       {closeNavigation && (
-        <Box
-          py={[4, 5]}
-          px={px}
-          justifySelf="center"
-          justifyContent="flex-start"
-          fullWidth
-          maxWidth={maxWidth}
-        >
-          <Button
-            aria-label="Close menu"
-            variant="tertiary"
-            shape="square"
-            onClick={closeNavigation}
-            toggled
-          >
-            <CloseGlyph fill="white" />
+        <Box py={[4, 5]} px={px} justifySelf='center' justifyContent='flex-start' fullWidth maxWidth={maxWidth}>
+          <Button aria-label='Close menu' variant='tertiary' shape='square' onClick={closeNavigation} toggled>
+            <CloseGlyph fill='white' />
           </Button>
         </Box>
       )}
 
-      <Stack
-        as="nav"
-        maxWidth={maxWidth}
-        space={3}
-        alignItems="center"
-        fullWidth
-      >
+      <Stack as='nav' maxWidth={maxWidth} space={3} alignItems='center' fullWidth>
         {navigationLinks.map(({ id, ...rest }) => (
-          <NavigationLink
-            key={id}
-            id={id}
-            {...rest}
-            color={color}
-            onClick={closeNavigation}
-          />
+          <NavigationLink key={id} id={id} {...rest} color={color} onClick={closeNavigation} />
         ))}
       </Stack>
     </MotionGrid>

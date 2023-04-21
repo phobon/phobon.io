@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-export const useMediaQuery = (
-  query: string,
-  onMediaQueryChanged: (mql?: MediaQueryList) => void
-) => {
-  const [mediaQuery, setMediaQuery] = useState<MediaQueryList>(() => null);
+export const useMediaQuery = (query: string, onMediaQueryChanged: (mql?: MediaQueryList) => void) => {
+  const [mediaQuery, setMediaQuery] = useState<MediaQueryList>(() => null)
 
   useEffect(() => {
-    const mql = window.matchMedia(query);
+    const mql = window.matchMedia(query)
     if (mql.matches) {
-      onMediaQueryChanged(mql);
+      onMediaQueryChanged(mql)
     }
 
-    const mqlChanged = () => onMediaQueryChanged(mql);
+    const mqlChanged = () => onMediaQueryChanged(mql)
 
-    mql.addEventListener("change", mqlChanged);
+    mql.addEventListener('change', mqlChanged)
 
-    setMediaQuery(mediaQuery);
+    setMediaQuery(mediaQuery)
 
-    return () => mql.removeEventListener("change", mqlChanged);
-  }, []);
-};
+    return () => mql.removeEventListener('change', mqlChanged)
+  }, [mediaQuery, onMediaQueryChanged, query])
+}

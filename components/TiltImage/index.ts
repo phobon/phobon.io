@@ -1,1 +1,1 @@
-export * from "./TiltImage";
+export * from './TiltImage'

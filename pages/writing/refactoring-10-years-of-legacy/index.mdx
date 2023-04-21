@@ -1,11 +1,11 @@
-import { Image, Grid } from "@phobon/base"
-import { Picture, Figure, FigureGrid, ImageGrid } from "@/components"
-import { Meta } from "@/components/Meta"
+import { Image, Grid } from '@phobon/base'
+import { Picture, Figure, FigureGrid, ImageGrid } from '@/components'
+import { Meta } from '@/components/Meta'
 
 <Meta
-  description="Refactoring 10 Years of Legacy"
-  url="https://phobon.io/writing/refactoring-10-years-of-legacy"
-  image="https://phobon.io/writing/refactoring-10-years-of-legacy/index.webp"
+  description='Refactoring 10 Years of Legacy'
+  url='https://phobon.io/writing/refactoring-10-years-of-legacy'
+  image='https://phobon.io/writing/refactoring-10-years-of-legacy/index.webp'
 />
 
 # Refactoring 10 Years of Legacy
@@ -25,10 +25,10 @@ The main problems and pain points that I identified here were:
 - All Javascript and CSS resources blocked rendering, leading to a very large [First Contentful Paint (FCP)](https://web.dev/first-contentful-paint/) time
 - There were no clearly defined performance budgets, so we didn't know just how poorly we were doing, or where to focus
 
-<Figure caption="Results from a CSS audit">
+<Figure caption='Results from a CSS audit'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/1-audit.webp"
-    alt="Results from a CSS audit"
+    src='/writing/refactoring-10-years-of-legacy/1-audit.webp'
+    alt='Results from a CSS audit'
     width={2272}
     height={1848}
   />
@@ -48,10 +48,10 @@ Certainly, the largest problem here was the size of the payload that needed to b
 
 The first change I decided to make here was to make sure that these resources were defer-loaded, or loaded asynchronously, so that it didn't block the critical rendering path.
 
-<Figure caption="A small, but significant improvement">
+<Figure caption='A small, but significant improvement'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/3-metrics.webp"
-    alt="Screenshots of Lighthouse outputs for different pages"
+    src='/writing/refactoring-10-years-of-legacy/3-metrics.webp'
+    alt='Screenshots of Lighthouse outputs for different pages'
     width={2272}
     height={1848}
   />
@@ -63,10 +63,10 @@ From the figures above, the measurable FCP score saw improvements of ~50% on som
 
 Agworld's engineering team employs a high shipping cadence, and has spent significant resources improving this over the time I worked there. At one stage we - as a team - went from shipping a large update every 2-4 months, to shipping several times per day, and dozens of times per week. This exposed an issue with the core product's architecture, where it forced a refreshed asset payload on a large number of those deployments. When the payload is as large as this was, that could be extremely impactful on users - particularly those located in remote areas; so it was _extremely important_ that these assets were cut down to size.
 
-<Figure caption="Significant, blocking resource payloads">
+<Figure caption='Significant, blocking resource payloads'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/2-blocking_payloads.webp"
-    alt="Graph showing size and impact of web resources"
+    src='/writing/refactoring-10-years-of-legacy/2-blocking_payloads.webp'
+    alt='Graph showing size and impact of web resources'
     width={905}
     height={535}
   />
@@ -76,10 +76,10 @@ The great majority of this payload was `actually unused` - meaning it had litera
 
 The solution I embarked on was to split these resources and only serve what was required for a particular page.
 
-<Figure caption="Removing and splitting resources">
+<Figure caption='Removing and splitting resources'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/5-payloads.webp"
-    alt="Screenshots of Github comments and PRs showing number of lines removed"
+    src='/writing/refactoring-10-years-of-legacy/5-payloads.webp'
+    alt='Screenshots of Github comments and PRs showing number of lines removed'
     width={676}
     height={439}
   />
@@ -93,8 +93,8 @@ The final step in this refactoring project was to consolidate the three, vastly 
 
 <Figure caption="Auditing layouts in Agworld's web product">
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/4-layouts.webp"
-    alt="Spreadsheet showing an audit of layouts and pages"
+    src='/writing/refactoring-10-years-of-legacy/4-layouts.webp'
+    alt='Spreadsheet showing an audit of layouts and pages'
     width={1100}
     height={1136}
   />
@@ -106,10 +106,10 @@ This work would unblock further initiatives I would go onto undertake around mak
 
 Initially, the first problem that I faced here was determining how to ensure that legacy content and experiences still behaved as desired with a single layout. It was important to ensure that features that people were using out in the field were not disrupted.
 
-<Figure caption="Uh oh! I think I broke something...">
+<Figure caption='Uh oh! I think I broke something...'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/uh_oh.webp"
-    alt="The broken layouts along the way"
+    src='/writing/refactoring-10-years-of-legacy/uh_oh.webp'
+    alt='The broken layouts along the way'
     width={1163}
     height={890}
   />
@@ -117,16 +117,16 @@ Initially, the first problem that I faced here was determining how to ensure tha
 
 I decided to use a `sandboxing strategy` to isolate resources, layout, and content based on the different layout "contexts" (my words) identified in the audit shown above. Each of these served namespaced layout, resets, and resources required for content within it - effectively shielding it from other, potentially damaging influences.
 
-<FigureGrid caption="Subtle changes and improvements in consistency of experience">
+<FigureGrid caption='Subtle changes and improvements in consistency of experience'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/consistent_design.webp"
-    alt="Small changes in overall design"
+    src='/writing/refactoring-10-years-of-legacy/consistent_design.webp'
+    alt='Small changes in overall design'
     width={692}
     height={209}
   />
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/consistent_design2.webp"
-    alt="Small changes in overall design"
+    src='/writing/refactoring-10-years-of-legacy/consistent_design2.webp'
+    alt='Small changes in overall design'
     width={1130}
     height={579}
   />
@@ -140,10 +140,10 @@ Improving performance metrics is certainly a great way to improve the overall ex
 
 While the product loaded significantly faster than it did before, the overall experience _felt_ worse because of this FOUC; so I created a flexible "loading experience" for developers to opt into and customise to the experience that they wanted to achieve. This could be as simple as a loading spinner, or as complex as an animated skeleton, or loading screen.
 
-<Figure caption="A simple loading experience">
+<Figure caption='A simple loading experience'>
   <Picture
-    src="/writing/refactoring-10-years-of-legacy/fouc.gif"
-    alt="Animated image demonstrating the simple loading experience"
+    src='/writing/refactoring-10-years-of-legacy/fouc.gif'
+    alt='Animated image demonstrating the simple loading experience'
     width={1270}
     height={806}
   />

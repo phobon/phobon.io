@@ -1,1 +1,1 @@
-export * from "./PopImage";
+export * from './PopImage'

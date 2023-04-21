@@ -1,13 +1,8 @@
-import React from "react"
-import { Grid, GridProps } from "@phobon/base"
-import { motion, MotionProps } from "framer-motion"
+import React from 'react'
+import { Grid, GridProps } from '@phobon/base'
+import { motion, MotionProps } from 'framer-motion'
 
-import {
-  maxWidth,
-  gridGap,
-  gridTemplateColumns,
-  horizontalPadding,
-} from "@/data/constants"
+import { maxWidth, gridGap, gridTemplateColumns, horizontalPadding } from '@/data/constants'
 
 const container = {
   visible: {
@@ -20,16 +15,11 @@ const container = {
 
 const MotionMain = motion(Grid, { forwardMotionProps: true })
 
-export type MainProps = GridProps &
-  React.HTMLAttributes<HTMLDivElement> &
-  MotionProps
+export type MainProps = GridProps & React.HTMLAttributes<HTMLDivElement> & MotionProps
 
-export const Main: React.FunctionComponent<MainProps> = ({
-  children,
-  ...props
-}) => (
+export const Main: React.FunctionComponent<MainProps> = ({ children, ...props }) => (
   <MotionMain
-    as="main"
+    as='main'
     fullWidth
     maxWidth={maxWidth}
     px={horizontalPadding}
@@ -38,9 +28,9 @@ export const Main: React.FunctionComponent<MainProps> = ({
     gridColumnGap={gridGap}
     gridRowGap={[7, 10]}
     variants={container}
-    initial="hidden"
-    animate="visible"
-    exit="hidden"
+    initial='hidden'
+    animate='visible'
+    exit='hidden'
     {...props}
   >
     {children}

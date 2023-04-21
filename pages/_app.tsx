@@ -1,12 +1,12 @@
-import React from "react";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "@phobon/tokens";
-import { MDXProvider } from "@mdx-js/react";
-import { AnimatePresence } from "framer-motion";
-import { Provider } from "jotai";
+import React from 'react'
+import { ThemeProvider } from '@emotion/react'
+import { theme } from '@phobon/tokens'
+import { MDXProvider } from '@mdx-js/react'
+import { AnimatePresence } from 'framer-motion'
+import { Provider } from 'jotai'
 
-import { Layout, markdown } from "@/components";
-import { GlobalStyles } from "@/components/GlobalStyles";
+import { Layout, markdown } from '@/components'
+import { GlobalStyles } from '@/components/GlobalStyles'
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
@@ -25,7 +25,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
         </Provider>
       </ThemeProvider>
     </>
-  );
-};
+  )
+}
 
-export default PhobonApp;
+export default PhobonApp

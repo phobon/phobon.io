@@ -1,30 +1,17 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import styled from "@emotion/styled";
-import {
-  compose,
-  space,
-  color,
-  flexbox,
-  SpaceProps,
-  FlexboxProps,
-  ColorProps,
-} from "styled-system";
-import {
-  Text,
-  gridPosition,
-  shouldForwardProp,
-  GridPositionProps,
-} from "@phobon/base";
+import { jsx } from '@emotion/react'
+import React from 'react'
+import styled from '@emotion/styled'
+import { compose, space, color, flexbox, SpaceProps, FlexboxProps, ColorProps } from 'styled-system'
+import { Text, gridPosition, shouldForwardProp, GridPositionProps } from '@phobon/base'
 
-import { spanAllColumns } from "@/data/constants";
+import { spanAllColumns } from '@/data/constants'
 
-const figureSystem = compose(space, color, flexbox, gridPosition);
+const figureSystem = compose(space, color, flexbox, gridPosition)
 
 export interface IFigureProps {
-  caption?: string;
+  caption?: string
 }
 
 export type FigureProps = IFigureProps &
@@ -32,40 +19,33 @@ export type FigureProps = IFigureProps &
   FlexboxProps &
   GridPositionProps &
   ColorProps &
-  React.HTMLAttributes<HTMLDivElement>;
+  React.HTMLAttributes<HTMLDivElement>
 
-const StyledFigure = styled("figure", { shouldForwardProp })<FigureProps>(
+const StyledFigure = styled('figure', { shouldForwardProp })<FigureProps>(
   {
-    display: "flex",
-    flex: "none",
-    flexDirection: "column",
-    width: "100%",
-    position: "relative",
+    display: 'flex',
+    flex: 'none',
+    flexDirection: 'column',
+    width: '100%',
+    position: 'relative',
   },
-  figureSystem
-);
+  figureSystem,
+)
 
-export const Figure = React.forwardRef<
-  HTMLDivElement & IFigureProps,
-  FigureProps
->(({ caption, children, ...props }, ref) => (
-  <StyledFigure ref={ref} {...props}>
-    {children}
-    <Text
-      mt={2}
-      as="figcaption"
-      fontSize={2}
-      color="grayscale.3"
-      css={{ alignSelf: "flex-start" }}
-    >
-      {caption}
-    </Text>
-  </StyledFigure>
-));
+export const Figure = React.forwardRef<HTMLDivElement & IFigureProps, FigureProps>(
+  ({ caption, children, ...props }, ref) => (
+    <StyledFigure ref={ref} {...props}>
+      {children}
+      <Text mt={2} as='figcaption' fontSize={2} color='grayscale.3' css={{ alignSelf: 'flex-start' }}>
+        {caption}
+      </Text>
+    </StyledFigure>
+  ),
+)
 
 Figure.defaultProps = {
   mb: 5,
-  justifyContent: "center",
-  alignItems: "center",
+  justifyContent: 'center',
+  alignItems: 'center',
   gridColumn: spanAllColumns,
-};
+}

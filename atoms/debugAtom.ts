@@ -1,7 +1,7 @@
-import { atom } from "jotai";
+import { atom } from 'jotai'
 
 export interface IDebugAtom {
-  showGrid: boolean;
+  showGrid: boolean
 }
 
-export const debugAtom = atom<IDebugAtom>({ showGrid: false });
+export const debugAtom = atom<IDebugAtom>({ showGrid: false })

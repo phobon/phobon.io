@@ -1,12 +1,12 @@
 [
   {
-    "name": "Timepage macOS by Moleskine Studio",
+    "name": "Timepage by Moleskine Studio",
     "status": "Live",
-    "description": "Landing page for the macOS version of Timepage by Moleskine Studio",
+    "description": "Landing page for Timepage by Moleskine Studio",
     "image": "/projects/timepage_macos.webp",
     "fallbackType": "png",
     "fallbackExtension": "png",
-    "url": "https://moleskinestudio.com/timepage/macos/",
+    "url": "https://moleskinestudio.com/timepage/",
     "tags": ["Product Design", "Front-End Development", "WebGL", "GSAP"]
   },
   {
@@ -27,12 +27,7 @@
     "fallbackType": "png",
     "fallbackExtension": "png",
     "url": "http://signal.agworld.com",
-    "tags": [
-      "Product Design",
-      "Front-End Development",
-      "Accessibility",
-      "Identity"
-    ]
+    "tags": ["Product Design", "Front-End Development", "Accessibility", "Identity"]
   },
   {
     "name": "The Studio",

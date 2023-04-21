@@ -1,1 +1,1 @@
-export * from "./SlideLink";
+export * from './SlideLink'

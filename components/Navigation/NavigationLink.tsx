@@ -1,27 +1,32 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import React from "react";
-import Link from "next/link";
-import { Box, destructureLayoutProps } from "@phobon/base";
+import { jsx } from '@emotion/react'
+import React from 'react'
+import Link from 'next/link'
+import { Box, destructureLayoutProps } from '@phobon/base'
 
-import { SlideLink } from "../SlideLink";
+import { SlideLink } from '../SlideLink'
 
 export interface NavigationLinkProps {
-  id?: string | number;
-  label?: string;
-  href?: string;
-  external?: boolean;
-  fontSize?: number;
+  id?: string | number
+  label?: string
+  href?: string
+  external?: boolean
+  fontSize?: number
 }
 
-export const NavigationLink: React.FunctionComponent<
-  NavigationLinkProps & any
-> = ({ label, href, fontSize = 7, external = false, onClick, ...props }) => {
-  const [layoutProps, rest] = destructureLayoutProps(props);
+export const NavigationLink: React.FunctionComponent<NavigationLinkProps & any> = ({
+  label,
+  href,
+  fontSize = 7,
+  external = false,
+  onClick,
+  ...props
+}) => {
+  const [layoutProps, rest] = destructureLayoutProps(props)
 
   return (
-    <Box css={{ overflow: "hidden" }} {...layoutProps}>
+    <Box css={{ overflow: 'hidden' }} {...layoutProps}>
       {/* <Container
         variants={{
           visible: {
@@ -51,13 +56,13 @@ export const NavigationLink: React.FunctionComponent<
           {label}
         </SlideLink>
       ) : (
-        <Link href={href} passHref>
-          <SlideLink fontSize={fontSize} onClick={onClick} {...rest}>
+        <Link href={href}>
+          <SlideLink as='div' fontSize={fontSize} onClick={onClick} {...rest}>
             {label}
           </SlideLink>
         </Link>
       )}
       {/* </Container> */}
     </Box>
-  );
-};
+  )
+}

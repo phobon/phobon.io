@@ -1,1 +1,1 @@
-export * from "./ShiftImage";
+export * from './ShiftImage'
