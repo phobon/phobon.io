@@ -40,21 +40,21 @@ export const Header = ({ px, openNavigation, ...props }) => {
       {...props}
     >
       <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['none', 'flex']}>
-        <Stack as='nav' space={3} alignItems='center' fullWidth flexDirection='row'>
-          <Box mr={5}>
-            <Link href='/'>
-              <Identity aria-label='Go home' />
-            </Link>
-          </Box>
-
-          {navigationLinks.slice(1).map(({ id, ...rest }) => (
+      <Link href='/'>
+          <Identity aria-label='Go home' />
+        </Link>
+        <Stack as='nav' space={3} alignItems='center' flexDirection='row'>
+        {navigationLinks.slice(1).map(({ id, ...rest }) => (
             <NavigationLink key={id} id={id} fontSize={5} {...rest} />
           ))}
-        </Stack>
 
-        <Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
+          
+<Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
           {theme === 'light' ? <MoonGlyph /> : <SunGlyph />}
         </Button>
+        </Stack>
+        
+        
       </Box>
 
       <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['flex', 'none']}>
