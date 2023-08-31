@@ -1,11 +1,39 @@
 [
   {
-    "key": "experience__acquire",
-    "employ": "acQuire",
-    "href": "https://acquire.com.au",
-    "title": "Full Stack Engineer & Designer",
-    "timeframe": "2005 - 2017",
-    "description": "Responsible for building and maintaining front-end architecture & systems; as well as designing the user experience and visual design of core products",
+    "key": "experience__bonobo",
+    "employ": "Bonobo",
+    "href": "https://bonobolabs.com/",
+    "title": "Senior Product Engineer (Great Ape)",
+    "timeframe": "2021 - current",
+    "description": "Helping build rich web presence and experiences with the incredibly talented team at Bonobo. Responsible for full-stack systems across a suite of products, as well as design and development of rich web experiences",
+    "achievements": [
+      {
+        "key": "flow-web-companion",
+        "title": "Flow Web",
+        "description": "React, Framer Motion built on Vite",
+        "href": "https://flowapp.moleskinestudio.com/"
+      },
+      {
+        "key": "moleskine-studio-landing-pages",
+        "title": "Moleskine Studio Suite",
+        "description": "WebGL, React, GSAP and Gatsby",
+        "href": "https://moleskinestudio.com/"
+      },
+      {
+        "key": "flow-gallery",
+        "title": "Flow Gallery",
+        "description": "React and Gatsby",
+        "href": "https://moleskinestudio.com/flow/gallery"
+      }
+    ]
+  },
+  {
+    "key": "experience__speakeasy",
+    "employ": "Speakeasy",
+    "href": "https://speakeasy.to",
+    "title": "Senior UX Engineer",
+    "timeframe": "2020 - 2021",
+    "description": "Helping deliver an exciting new vision of client communications. Responsible for front-end architecture and systems; delivering core product experiences",
     "achievements": [
       {
         "key": "front-end-development",
@@ -13,25 +41,18 @@
         "description": "Architecture and product"
       },
       {
-        "key": "acquire-product-design",
-        "title": "Product design",
-        "description": "Design and development",
-        "href": "https://dribbble.com/shots/3970129-Security-dashboard"
+        "key": "created-design-system",
+        "title": "Design System",
+        "description": "Instigating and curating systems"
       },
       {
-        "key": "created-blip",
-        "title": "Blip",
-        "description": "Functional CSS library",
-        "href": "https://github.com/phobon/blip"
-      },
-      {
-        "key": "created-opal",
-        "title": "Opal",
-        "description": "Chrome extension",
-        "href": "https://dribbble.com/shots/3946014-Opal"
+        "key": "cross-platform",
+        "title": "Cross-platform development",
+        "description": "Electron and cordova"
       }
     ]
   },
+
   {
     "key": "experience__agworld",
     "employ": "Agworld",
@@ -66,12 +87,12 @@
     ]
   },
   {
-    "key": "experience__speakeasy",
-    "employ": "Speakeasy",
-    "href": "https://speakeasy.to",
-    "title": "Senior UX Engineer",
-    "timeframe": "2020 - 2021",
-    "description": "Helping deliver an exciting new vision of client communications. Responsible for front-end architecture and systems; delivering core product experiences",
+    "key": "experience__acquire",
+    "employ": "acQuire",
+    "href": "https://acquire.com.au",
+    "title": "Full Stack Engineer & Designer",
+    "timeframe": "2005 - 2017",
+    "description": "Responsible for building and maintaining front-end architecture & systems; as well as designing the user experience and visual design of core products",
     "achievements": [
       {
         "key": "front-end-development",
@@ -79,42 +100,22 @@
         "description": "Architecture and product"
       },
       {
-        "key": "created-design-system",
-        "title": "Design System",
-        "description": "Instigating and curating systems"
+        "key": "acquire-product-design",
+        "title": "Product design",
+        "description": "Design and development",
+        "href": "https://dribbble.com/shots/3970129-Security-dashboard"
       },
       {
-        "key": "cross-platform",
-        "title": "Cross-platform development",
-        "description": "Electron and cordova"
-      }
-    ]
-  },
-  {
-    "key": "experience__bonobo",
-    "employ": "Bonobo",
-    "href": "https://bonobolabs.com/",
-    "title": "Senior Product Engineer (Great Ape)",
-    "timeframe": "2021 - current",
-    "description": "Helping build rich web presence and experiences with the incredibly talented team at Bonobo. Responsible for full-stack systems across a suite of products, as well as design and development of rich web experiences",
-    "achievements": [
-      {
-        "key": "flow-web-companion",
-        "title": "Flow Web",
-        "description": "React, Framer Motion built on Vite",
-        "href": "https://flowapp.moleskinestudio.com/"
+        "key": "created-blip",
+        "title": "Blip",
+        "description": "Functional CSS library",
+        "href": "https://github.com/phobon/blip"
       },
       {
-        "key": "moleskine-studio-landing-pages",
-        "title": "Moleskine Studio Suite",
-        "description": "WebGL, React, GSAP and Gatsby",
-        "href": "https://moleskinestudio.com/"
-      },
-      {
-        "key": "flow-gallery",
-        "title": "Flow Gallery",
-        "description": "React and Gatsby",
-        "href": "https://moleskinestudio.com/flow/gallery"
+        "key": "created-opal",
+        "title": "Opal",
+        "description": "Chrome extension",
+        "href": "https://dribbble.com/shots/3946014-Opal"
       }
     ]
   }
