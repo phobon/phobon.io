@@ -23,16 +23,6 @@ export const socialLinks: INavigationLink[] = [
   },
   { id: 'social__github', label: 'Github', href: 'https://github.com/phobon' },
   {
-    id: 'social__instagram',
-    label: 'Instagram',
-    href: 'http://instagram.com/thenoumenon',
-  },
-  {
-    id: 'social__twitter',
-    label: 'Twitter',
-    href: 'https://twitter.com/thenoumenon',
-  },
-  {
     id: 'social__linkedin',
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/ben-mccormick-a373304/',

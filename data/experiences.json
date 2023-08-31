@@ -99,22 +99,22 @@
     "description": "Helping build rich web presence and experiences with the incredibly talented team at Bonobo. Responsible for full-stack systems across a suite of products, as well as design and development of rich web experiences",
     "achievements": [
       {
-        "key": "moleskine-studio-landing-page",
-        "title": "Moleskine Studio",
-        "description": "React, GSAP and Gatsby",
+        "key": "flow-web-companion",
+        "title": "Flow Web",
+        "description": "React, Framer Motion built on Vite",
+        "href": "https://flowapp.moleskinestudio.com/"
+      },
+      {
+        "key": "moleskine-studio-landing-pages",
+        "title": "Moleskine Studio Suite",
+        "description": "WebGL, React, GSAP and Gatsby",
         "href": "https://moleskinestudio.com/"
       },
       {
-        "key": "actions-landing-page",
-        "title": "Actions by Moleskine Studio",
-        "description": "WebGL, React and Gatsby",
-        "href": "https://moleskinestudio.com/actions/"
-      },
-      {
-        "key": "timepage-landing-page",
-        "title": "Timepage by Moleskine Studio",
-        "description": "WebGL, React, GSAP and Gatsby",
-        "href": "https://moleskinestudio.com/timepage/"
+        "key": "flow-gallery",
+        "title": "Flow Gallery",
+        "description": "React and Gatsby",
+        "href": "https://moleskinestudio.com/flow/gallery"
       }
     ]
   }
