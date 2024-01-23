@@ -1,8 +1,8 @@
 import {
   slate,
   slateDark,
-  // purple,
-  // purpleDark,
+  purple,
+  purpleDark,
   // green,
   // orange,
   // teal,
@@ -51,7 +51,7 @@ const transformThemedColorPrimitive = (
 const _slate = transformColorPrimitive(slate, '$slate')
 const _slateDark = transformColorPrimitive(slateDark, '$slateDark')
 // const _purple = transformColorPrimitive(purple)
-// const _purpleDark = transformColorPrimitive(purpleDark, 'purpleDark')
+// const _purpleDark = transformColorPrimitive(purpleDark, '$purpleDark')
 // const _green = transformColorPrimitive(green)
 // const _orange = transformColorPrimitive(orange)
 // const _teal = transformColorPrimitive(teal)
@@ -62,7 +62,7 @@ const _slateDark = transformColorPrimitive(slateDark, '$slateDark')
 // const _yellow = transformColorPrimitive(yellow)
 
 const slateLightDark = transformThemedColorPrimitive(_slate, '$slate', '$slateDark', Object.keys(slate).length)
-// const purpleLightDark = transformThemedColorPrimitive('purple', 'purpleDark', Object.keys(purple).length)
+// const purpleLightDark = transformThemedColorPrimitive(_purple, '$purple', '$purpleDark', Object.keys(purple).length)
 
 const colors = {
   ..._slate,

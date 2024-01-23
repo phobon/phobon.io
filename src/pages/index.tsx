@@ -6,7 +6,8 @@ import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { SlideLink, FluidStudy, Project, Experience } from '@/components'
+import { FluidStudy, Project, Experience } from '@/components'
+import { SlideLink } from '@/components/slide_link'
 import Meta from '@/components/layout/meta'
 import { Main } from '@/components/layout/main'
 import { ShowcaseGrid } from '@/components/v6/ShowcaseGrid'
@@ -55,11 +56,7 @@ const Index = ({ ...props }) => {
         <HeroHeader>
           <span>I&apos;m&nbsp;</span>
           <span>
-            <Link href='/about'>
-              <SlideLink as='div' color='inherit'>
-                Ben
-              </SlideLink>
-            </Link>
+            <SlideLink href='/about'>Ben</SlideLink>
           </span>
           <span>, a&nbsp;</span>
           <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
