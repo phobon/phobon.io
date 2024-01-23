@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, GridProps } from '@/components/Base/Core'
+import { Grid, GridProps } from '@/components/v6/Base/Core'
 import { motion, MotionProps } from 'framer-motion'
 
 import { maxWidth, gridGap, gridTemplateColumns, horizontalPadding } from '@/data/constants'

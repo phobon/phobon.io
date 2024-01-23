@@ -3,16 +3,16 @@
 import { jsx } from '@emotion/react'
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/Base/Button'
+import { Button } from '@/components/v6/Base/Button'
 
 import { maxWidth } from '@/data/constants'
 import { navigationLinks } from '@/data/links'
 
 import { NavigationLink } from './navigation_link'
-import { CloseGlyph } from '@/components/Glyphs'
-import { Box } from '@/components/Base/Core/Box'
-import { Stack } from '@/components/Base/Core/Stack'
-import { Grid } from '@/components/Base/Core/Grid'
+import { CloseGlyph } from '@/components/v6/Glyphs'
+import { Box } from '@/components/v6/Base/Core/Box'
+import { Stack } from '@/components/v6/Base/Core/Stack'
+import { Grid } from '@/components/v6/Base/Core/Grid'
 
 const MotionGrid = motion(Grid, { forwardMotionProps: true })
 

@@ -2,18 +2,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React, { useCallback } from 'react'
-import { Button } from '@/components/Base/Button'
-import { Spacer } from '@/components/Base/Spacer'
+import { Button } from '@/components/v6/Base/Button'
+import { Spacer } from '@/components/v6/Base/Spacer'
 import Link from 'next/link'
 import { navigationLinks } from '@/data/links'
 
 import { getTheme } from '@/hooks/getTheme'
 
-import { Identity } from '@/components/Identity'
-import { HamburgerGlyph, SunGlyph, MoonGlyph } from '@/components/Glyphs'
+import { Identity } from '@/components/v6/Identity'
+import { HamburgerGlyph, SunGlyph, MoonGlyph } from '@/components/v6/Glyphs'
 import { NavigationLink } from '@/components/layout/navigation'
-import { Stack } from '@/components/Base/Core/Stack'
-import { Box } from '@/components/Base/Core/Box'
+import { Stack } from '@/components/v6/Base/Core/Stack'
+import { Box } from '@/components/v6/Base/Core/Box'
 import { useTheme } from '@/hooks/index'
 
 export const Header = ({ px, openNavigation, ...props }) => {

@@ -2,19 +2,19 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Spacer } from '@/components/Base/Spacer'
+import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 import { SlideLink, FluidStudy, Project, Experience } from '@/components'
 import Meta from '@/components/layout/meta'
 import { Main } from '@/components/layout/main'
-import { ShowcaseGrid } from '@/components/ShowcaseGrid'
+import { ShowcaseGrid } from '@/components/v6/ShowcaseGrid'
 import { maxWidth, spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/HeroHeader'
+import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
-import { Stack } from '@/components/Base/Core/Stack'
-import { Grid } from '@/components/Base/Core/Grid'
+import { Stack } from '@/components/v6/Base/Core/Stack'
+import { Grid } from '@/components/v6/Base/Core/Grid'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 

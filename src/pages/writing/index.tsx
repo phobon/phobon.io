@@ -2,14 +2,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Stack } from '@/components/Base/Core'
+import { Stack } from '@/components/v6/Base/Core'
 import { motion } from 'framer-motion'
 
-import { FlatStudy } from '@/components/FlatStudy'
+import { FlatStudy } from '@/components/v6/FlatStudy'
 import Meta from '@/components/layout/meta'
 import { Main } from '@/components/layout/main'
 import { spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/HeroHeader'
+import { HeroHeader } from '@/components/v6/HeroHeader'
 
 const ease = [0.33, 1, 0.68, 1]
 

@@ -2,16 +2,16 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Spacer } from '@/components/Base/Spacer'
+import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 
 import { SlideLink, Experience, Paragraph, Span } from '@/components'
 import Meta from '@/components/layout/meta'
 import { Main } from '@/components/layout/main'
 import { maxWidth, spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/HeroHeader'
+import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
-import { Stack } from '@/components/Base/Core/Stack'
+import { Stack } from '@/components/v6/Base/Core/Stack'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 

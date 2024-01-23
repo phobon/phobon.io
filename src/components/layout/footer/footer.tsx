@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Box, Stack, Grid, StackProps } from '@/components/Base/Core'
+import { Box, Stack, Grid, StackProps } from '@/components/v6/Base/Core'
 
-import { SlideLink } from '@/components/SlideLink'
+import { SlideLink } from '@/components/v6/SlideLink'
 
 import { socialLinks } from '@/data/links'
 
