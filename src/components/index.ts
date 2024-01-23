@@ -1,4 +1,3 @@
-export * from './LayoutOld'
 export * from './Project'
 export * from './FluidStudy'
 export * from './Experience'

@@ -4,7 +4,7 @@ import { jsx } from '@emotion/react'
 import React from 'react'
 import { Box, Stack, Grid, StackProps } from '@/components/Base/Core'
 
-import { SlideLink } from '../SlideLink'
+import { SlideLink } from '@/components/SlideLink'
 
 import { socialLinks } from '@/data/links'
 

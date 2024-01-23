@@ -8,11 +8,11 @@ import { Button } from '@/components/Base/Button'
 import { maxWidth } from '@/data/constants'
 import { navigationLinks } from '@/data/links'
 
-import { NavigationLink } from './NavigationLink'
+import { NavigationLink } from './navigation_link'
 import { CloseGlyph } from '@/components/Glyphs'
-import { Box } from '../Base/Core/Box'
-import { Stack } from '../Base/Core/Stack'
-import { Grid } from '../Base/Core/Grid'
+import { Box } from '@/components/Base/Core/Box'
+import { Stack } from '@/components/Base/Core/Stack'
+import { Grid } from '@/components/Base/Core/Grid'
 
 const MotionGrid = motion(Grid, { forwardMotionProps: true })
 

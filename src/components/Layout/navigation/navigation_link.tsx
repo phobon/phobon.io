@@ -5,8 +5,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Box } from '@/components/Base/Core'
 
-import { SlideLink } from '../SlideLink'
-import { destructureLayoutProps } from '../Base/utils'
+import { SlideLink } from '@/components/SlideLink'
+import { destructureLayoutProps } from '@/components/Base/utils'
 
 export interface NavigationLinkProps {
   id?: string | number

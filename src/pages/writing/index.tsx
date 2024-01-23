@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 import { FlatStudy } from '@/components/FlatStudy'
 import Meta from '@/components/layout/meta'
-import { Main } from '@/components/LayoutOld/Main'
+import { Main } from '@/components/layout/main'
 import { spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
 
