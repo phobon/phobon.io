@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@phobon/base'
+import { Stack } from '@/components/Base/Core/Stack'
 
 import { Experience } from './Experience'
 

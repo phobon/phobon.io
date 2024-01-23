@@ -2,8 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Stack, Grid } from '@phobon/base'
-import { Spacer } from '@phobon/grimoire'
+import { Spacer } from '@/components/Base/Spacer'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -14,6 +13,8 @@ import { ShowcaseGrid } from '@/components/ShowcaseGrid'
 import { maxWidth, spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
 import useSWR from 'swr'
+import { Stack } from '@/components/Base/Core/Stack'
+import { Grid } from '@/components/Base/Core/Grid'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 

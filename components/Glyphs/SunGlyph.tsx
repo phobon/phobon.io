@@ -1,5 +1,5 @@
 import React from 'react'
-import { Vector, VectorProps } from '@phobon/base'
+import { Vector, VectorProps } from '@/components/Base/Core'
 
 export const SunGlyph: React.FunctionComponent<VectorProps> = ({
   width = 16,

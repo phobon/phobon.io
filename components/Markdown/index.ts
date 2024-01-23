@@ -1,4 +1,4 @@
-import { Table } from '@phobon/base'
+import { Table } from '@/components/Base/Core'
 
 import { Wrapper } from './Wrapper'
 import { Paragraph } from './Paragraph'

@@ -2,14 +2,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React, { useState, useCallback } from 'react'
-import { Grid, GridProps } from '@phobon/base'
-import { Button } from '@phobon/grimoire'
+import { Button } from '@/components/Base/Button'
 import { useAtom } from 'jotai'
 
 import { maxWidth, gridColumns, gridTemplateColumns, gridGap, horizontalPadding } from '@/data/constants'
 
 import { debugAtom } from '@/atoms/debugAtom'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Grid, GridProps } from '@/components/Base/Core/Grid'
 
 export const GridHelper: React.FunctionComponent<GridProps & React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
   const [{ showGrid }, setDebug] = useAtom(debugAtom)

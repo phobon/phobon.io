@@ -1,6 +1,6 @@
 import React from 'react'
-import { Stack } from '@phobon/base'
-import { theme } from '@phobon/tokens'
+import { Stack } from '@/components/Base/Core'
+import { theme } from '@/theme/index'
 
 import { SlideLink } from './SlideLink'
 

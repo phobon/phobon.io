@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import { useRef, useEffect } from 'react'
-import { Box, BoxProps, Image } from '@phobon/base'
+import { Box, BoxProps, Image } from '@/components/Base/Core'
 import { motion } from 'framer-motion'
 
 const MotionImage = motion(Image, { forwardMotionProps: true })

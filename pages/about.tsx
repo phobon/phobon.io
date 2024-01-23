@@ -2,9 +2,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Spacer } from '@phobon/grimoire'
+import { Spacer } from '@/components/Base/Spacer'
 import { motion } from 'framer-motion'
-import { Stack } from '@phobon/base'
 
 import { SlideLink, Experience, Paragraph, Span } from '@/components'
 import { Meta } from '@/components/Meta'
@@ -12,6 +11,7 @@ import { Main } from '@/components/Layout/Main'
 import { maxWidth, spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
 import useSWR from 'swr'
+import { Stack } from '@/components/Base/Core/Stack'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 

@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { jsx } from '@emotion/react'
-import { Vector, Box, BoxProps } from '@phobon/base'
+import { Vector, Box, BoxProps } from '@/components/Base/Core'
 
 export type IdentityProps = BoxProps & React.HTMLAttributes<HTMLDivElement> & { as?: React.ElementType }
 

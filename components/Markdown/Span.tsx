@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps } from '@phobon/base'
+import { Box, BoxProps } from '@/components/Base/Core'
 import { LineHeightProps } from 'styled-system'
 
 export type SpanProps = BoxProps & LineHeightProps & React.HTMLAttributes<HTMLSpanElement>

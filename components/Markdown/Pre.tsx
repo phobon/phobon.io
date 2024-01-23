@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Text } from '@phobon/base'
+import { Text } from '@/components/Base/Core'
 
-// TODO: Export TextProps from @phobon/base
+// TODO: Export TextProps from @/components/Base/Core
 
 export const Pre = React.forwardRef<HTMLPreElement, any>(({ children, ...props }, ref) => (
   <Text

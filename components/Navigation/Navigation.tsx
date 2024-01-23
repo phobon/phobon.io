@@ -2,15 +2,17 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Stack, Box, Grid } from '@phobon/base'
 import { motion } from 'framer-motion'
-import { Button } from '@phobon/grimoire'
+import { Button } from '@/components/Base/Button'
 
 import { maxWidth } from '@/data/constants'
 import { navigationLinks } from '@/data/links'
 
 import { NavigationLink } from './NavigationLink'
 import { CloseGlyph } from '@/components/Glyphs'
+import { Box } from '../Base/Core/Box'
+import { Stack } from '../Base/Core/Stack'
+import { Grid } from '../Base/Core/Grid'
 
 const MotionGrid = motion(Grid, { forwardMotionProps: true })
 

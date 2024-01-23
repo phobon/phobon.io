@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Stack, Text, Box } from '@phobon/base'
+import { Stack, Text, Box } from '@/components/Base/Core'
 
 import { spanAllColumns } from '@/data/constants'
 

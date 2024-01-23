@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@phobon/base'
+import { Stack } from '@/components/Base/Core'
 
 import { Project } from './Project'
 

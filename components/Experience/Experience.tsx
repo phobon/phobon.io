@@ -2,9 +2,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Grid, Stack, Text } from '@phobon/base'
+import { Text } from '../Base/Core/Text'
 
 import { SlideLink } from '../SlideLink'
+import { Grid } from '../Base/Core/Grid'
+import { Stack } from '../Base/Core/Stack'
 
 const Heading = ({ children, ...props }) => (
   <Text as='h3' color='grayscale.1' fontWeight='light' textAlign='left' fontSize={[4, 6]} lineHeight={1} {...props}>

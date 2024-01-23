@@ -2,9 +2,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React, { useCallback } from 'react'
-import { Box, Stack } from '@phobon/base'
-import { useTheme } from '@phobon/hooks'
-import { Spacer, Button } from '@phobon/grimoire'
+import { Button } from '@/components/Base/Button'
+import { Spacer } from '@/components/Base/Spacer'
 import Link from 'next/link'
 import { navigationLinks } from '@/data/links'
 
@@ -13,6 +12,9 @@ import { getTheme } from '@/hooks/getTheme'
 import { Identity } from '../Identity'
 import { HamburgerGlyph, SunGlyph, MoonGlyph } from '../Glyphs'
 import { NavigationLink } from '../Navigation'
+import { Stack } from '../Base/Core/Stack'
+import { Box } from '../Base/Core/Box'
+import { useTheme } from '@/hooks/index'
 
 export const Header = ({ px, openNavigation, ...props }) => {
   const [theme, setTheme] = useTheme('light', getTheme)
@@ -40,21 +42,18 @@ export const Header = ({ px, openNavigation, ...props }) => {
       {...props}
     >
       <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['none', 'flex']}>
-      <Link href='/'>
+        <Link href='/'>
           <Identity aria-label='Go home' />
         </Link>
         <Stack as='nav' space={3} alignItems='center' flexDirection='row'>
-        {navigationLinks.slice(1).map(({ id, ...rest }) => (
+          {navigationLinks.slice(1).map(({ id, ...rest }) => (
             <NavigationLink key={id} id={id} fontSize={5} {...rest} />
           ))}
 
-          
-<Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
-          {theme === 'light' ? <MoonGlyph /> : <SunGlyph />}
-        </Button>
+          <Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
+            {theme === 'light' ? <MoonGlyph /> : <SunGlyph />}
+          </Button>
         </Stack>
-        
-        
       </Box>
 
       <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['flex', 'none']}>

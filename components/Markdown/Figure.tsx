@@ -4,9 +4,11 @@ import { jsx } from '@emotion/react'
 import React from 'react'
 import styled from '@emotion/styled'
 import { compose, space, color, flexbox, SpaceProps, FlexboxProps, ColorProps } from 'styled-system'
-import { Text, gridPosition, shouldForwardProp, GridPositionProps } from '@phobon/base'
+import { gridPosition, GridPositionProps } from '@/components/Base/Core'
+import { Text } from '@/components/Base/Core/Text'
 
 import { spanAllColumns } from '@/data/constants'
+import { shouldForwardProp } from '../Base/utils'
 
 const figureSystem = compose(space, color, flexbox, gridPosition)
 

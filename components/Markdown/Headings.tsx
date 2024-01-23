@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@phobon/base'
+import { Text } from '@/components/Base/Core'
 
 import { HeroHeader } from '@/components/HeroHeader'
 

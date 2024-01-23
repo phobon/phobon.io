@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { compose, space, gridColumn, SpaceProps, GridColumnProps } from 'styled-system'
-import { shouldForwardProp } from '@phobon/base'
 
 import { spanAllColumns } from '@/data/constants'
+import { shouldForwardProp } from '../Base/utils'
 
 export const Blockquote = styled('blockquote', { shouldForwardProp })<SpaceProps & GridColumnProps>(
   (props) => ({

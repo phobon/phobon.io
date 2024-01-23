@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Box, BoxProps } from '@phobon/base'
+import { Box, BoxProps } from '@/components/Base/Core'
 import Image from 'next/image'
 
 export interface IPictureProps {

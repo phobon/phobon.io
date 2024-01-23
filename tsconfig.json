@@ -5,6 +5,7 @@
       "@/components": ["components/index"],
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/theme/*": ["theme/*"],
       "@/atoms/*": ["atoms/*"],
       "@/data/*": ["data/*"],
       "@/api/*": ["pages/api/*"]
@@ -25,12 +26,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "node_modules/@phobon/base/**/*.d.ts",
-    "node_modules/@phobon/grimoire/**/*.d.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

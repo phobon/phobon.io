@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Text, StackProps } from '@phobon/base'
+import { Stack, StackProps, Text } from '@/components/Base/Core'
 import Link from 'next/link'
 import { motion, MotionProps } from 'framer-motion'
 
@@ -7,7 +7,7 @@ import { SlideLink } from '../SlideLink'
 import { ShiftImage } from '../ShiftImage'
 import styled from '@emotion/styled'
 import { grid } from 'styled-system'
-import shouldForwardProp from '@styled-system/should-forward-prop'
+import { shouldForwardProp } from '../Base/utils'
 
 const MotionStack = motion(Stack, { forwardMotionProps: true })
 const StyledLink = styled(Link, {

@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React, { useEffect, useRef } from 'react'
-import { Grid, GridProps } from '@phobon/base'
+import { Grid, GridProps } from '@/components/Base/Core'
 import { motion } from 'framer-motion'
 
 import { gridGap, gridTemplateColumns } from '@/data/constants'

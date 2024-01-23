@@ -3,9 +3,10 @@
 import { jsx } from '@emotion/react'
 import React from 'react'
 import Link from 'next/link'
-import { Box, destructureLayoutProps } from '@phobon/base'
+import { Box } from '@/components/Base/Core'
 
 import { SlideLink } from '../SlideLink'
+import { destructureLayoutProps } from '../Base/utils'
 
 export interface NavigationLinkProps {
   id?: string | number

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { useOnKeyPress } from '@phobon/hooks'
+import { useOnKeyPress } from '@/hooks/index'
 
 import { Header } from './Header'
 import { Footer } from './Footer'

@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Grid } from '@phobon/base'
+import { Grid } from '@/components/Base/Core'
 
 import { spanAllColumns } from '@/data/constants'
 

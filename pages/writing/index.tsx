@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Stack } from '@phobon/base'
+import { Stack } from '@/components/Base/Core'
 import { motion } from 'framer-motion'
 
 import { FlatStudy } from '@/components/FlatStudy'

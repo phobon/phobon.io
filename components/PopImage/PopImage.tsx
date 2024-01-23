@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import { Box } from '@phobon/base'
+import { Box } from '@/components/Base/Core'
 import Image from 'next/image'
 
 export interface IPopImageProps {

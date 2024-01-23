@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { theme } from '@phobon/tokens'
+import { theme } from '@/theme/index'
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 import { Provider } from 'jotai'

@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Stack, Box, Text } from '@phobon/base'
+import { Stack, Box, Text } from '@/components/Base/Core'
 
 import { SlideLink } from '../SlideLink'
 import { ShiftImage } from '../ShiftImage'

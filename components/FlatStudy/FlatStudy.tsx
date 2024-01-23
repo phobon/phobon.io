@@ -1,10 +1,12 @@
 import React from 'react'
-import { Box, Stack, Text, StackProps } from '@phobon/base'
 import Link from 'next/link'
 import { motion, MotionProps } from 'framer-motion'
 
+import { Text } from '../Base/Core/Text'
 import { SlideLink } from '../SlideLink'
 import { ShiftImage } from '../ShiftImage'
+import { Stack, StackProps } from '../Base/Core/Stack'
+import { Box } from '../Base/Core/Box'
 
 const MotionStack = motion(Stack, { forwardMotionProps: true })
 

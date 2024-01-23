@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TypographyProps } from '@phobon/base'
+import { Text, TypographyProps } from '@/components/Base/Core'
 
 import { spanAllColumns } from '@/data/constants'
 

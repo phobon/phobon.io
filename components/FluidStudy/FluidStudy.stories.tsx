@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack } from '@phobon/base'
 
 import { FluidStudy } from './FluidStudy'
+import { Stack } from '../Base/Core/Stack'
 
 export default {
   component: FluidStudy,
