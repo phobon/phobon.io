@@ -26,9 +26,9 @@ const Writing = ({ writing, ...props }) => (
     <Main {...props}>
       <HeroHeader>
         <span>Some&nbsp;</span>
-        <span css={(theme) => ({ color: theme.colors.violets[5] })}>writing&nbsp;</span>
+        <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>writing&nbsp;</span>
         <span>about&nbsp;</span>
-        <span css={(theme) => ({ color: theme.colors.accent[5] })}>projects</span>
+        <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>projects</span>
         <span>I&apos;ve worked on</span>
       </HeroHeader>
 

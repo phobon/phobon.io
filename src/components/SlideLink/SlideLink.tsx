@@ -59,7 +59,7 @@ export const SlideLink = React.forwardRef<HTMLAnchorElement, SlideLinkProps>(
       {...props}
     >
       <span
-        css={(theme) => ({
+        css={(theme: any) => ({
           lineHeight: 'inherit',
           fontSize: 'inherit',
           fontFamily: 'inherit',
@@ -71,7 +71,7 @@ export const SlideLink = React.forwardRef<HTMLAnchorElement, SlideLinkProps>(
       >
         <span
           ref={ref}
-          css={(theme) => ({
+          css={(theme: any) => ({
             lineHeight: 'inherit',
             fontSize: 'inherit',
             fontFamily: 'inherit',

@@ -23,7 +23,7 @@ export const Header = ({ px, openNavigation, ...props }) => {
   return (
     <Stack
       fullWidth
-      css={(theme) => ({
+      css={(theme: any) => ({
         top: 0,
         position: 'sticky',
         zIndex: 2,

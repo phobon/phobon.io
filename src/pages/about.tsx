@@ -34,9 +34,9 @@ const AboutMe = ({ ...props }) => {
         <HeroHeader>
           <span>I&apos;m Ben,&nbsp;</span>
           <span>a&nbsp;</span>
-          <span css={(theme) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
+          <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
           <span>&&nbsp;</span>
-          <span css={(theme) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
+          <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
           <span>based in Perth&nbsp;</span>
         </HeroHeader>
 
@@ -67,7 +67,7 @@ const AboutMe = ({ ...props }) => {
         >
           <Paragraph
             color='grayscale.3'
-            css={(theme) => ({
+            css={(theme: any) => ({
               '> * + *': {
                 marginLeft: theme.space[1],
               },
@@ -80,7 +80,7 @@ const AboutMe = ({ ...props }) => {
 
           <Paragraph
             color='grayscale.3'
-            css={(theme) => ({
+            css={(theme: any) => ({
               '> * + *': {
                 marginLeft: theme.space[1],
               },
@@ -93,7 +93,7 @@ const AboutMe = ({ ...props }) => {
           <Paragraph
             color='grayscale.3'
             mb={0}
-            css={(theme) => ({
+            css={(theme: any) => ({
               '> * + *': {
                 marginLeft: theme.space[1],
               },

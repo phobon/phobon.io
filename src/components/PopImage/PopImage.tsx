@@ -26,7 +26,7 @@ export const PopImage: React.FunctionComponent<PopImageProps> = ({
 }) => {
   return (
     <Box
-      css={(theme) => ({
+      css={(theme: any) => ({
         transition: 'opacity 0.5s ease-out',
         position: 'relative',
         '&::before, &::after': {

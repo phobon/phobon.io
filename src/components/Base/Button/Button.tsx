@@ -216,7 +216,7 @@ type StyledButtonProps = IButtonProps &
 const StyledButton = styled('button', {
   shouldForwardProp,
 })<ButtonProps>(
-  ({ theme }) => ({
+  ({ theme }: any) => ({
     boxSizing: 'border-box',
     position: 'relative',
     cursor: 'pointer',

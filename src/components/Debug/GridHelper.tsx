@@ -48,7 +48,7 @@ export const GridHelper: React.FunctionComponent<GridProps & React.HTMLAttribute
           gridTemplateRows='1fr'
           gridGap={gridGap}
           px={horizontalPadding}
-          css={(theme) => ({
+          css={(theme: any) => ({
             maxWidth,
             position: 'fixed',
             top: 0,

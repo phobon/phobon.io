@@ -4,6 +4,7 @@ export * from './Stack'
 export * from './Grid'
 export * from './Vector'
 export * from './Image'
+export * from './Table'
 
 export * from './typographyProps'
 export * from './containerProps'

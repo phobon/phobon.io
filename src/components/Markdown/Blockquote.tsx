@@ -5,7 +5,7 @@ import { spanAllColumns } from '@/data/constants'
 import { shouldForwardProp } from '../Base/utils'
 
 export const Blockquote = styled('blockquote', { shouldForwardProp })<SpaceProps & GridColumnProps>(
-  (props) => ({
+  (props: any) => ({
     position: 'relative',
     '&::before': {
       position: 'absolute',

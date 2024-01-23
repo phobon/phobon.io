@@ -62,9 +62,9 @@ const Index = ({ ...props }) => {
             </Link>
           </span>
           <span>, a&nbsp;</span>
-          <span css={(theme) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
+          <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
           <span>&&nbsp;</span>
-          <span css={(theme) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
+          <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
           <span>based in Perth&nbsp;</span>
         </HeroHeader>
 

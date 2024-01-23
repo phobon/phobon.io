@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { spanAllColumns } from '@/data/constants'
 
 export const Hr = styled('hr')<SpaceProps & GridColumnProps>(
-  (props) => ({
+  (props: any) => ({
     borderWidth: 2,
     borderStyle: 'solid',
     width: '5%',

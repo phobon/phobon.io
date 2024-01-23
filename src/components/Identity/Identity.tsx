@@ -13,7 +13,7 @@ export const Identity = React.forwardRef<HTMLDivElement, IdentityProps>((props, 
       height='100%'
       viewBox='0 0 16 16'
       fill='grayscale.3'
-      css={(theme) => ({
+      css={(theme: any) => ({
         transition: 'transform 90ms ease-out',
         '&:hover': {
           transform: 'scale(1.1)',
