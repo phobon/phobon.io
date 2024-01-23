@@ -5,23 +5,21 @@ import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 
 import { markdown } from '@/components'
-import { GlobalStyles } from '@/components/GlobalStyles'
 import { Layout } from '@/components/layout/layout'
+
+import './global.css'
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
-    <>
-      <GlobalStyles />
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <MDXProvider components={markdown}>
-            <AnimatePresence>
-              <Component {...pageProps} key={router.route} />
-            </AnimatePresence>
-          </MDXProvider>
-        </Layout>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <MDXProvider components={markdown}>
+          <AnimatePresence>
+            <Component {...pageProps} key={router.route} />
+          </AnimatePresence>
+        </MDXProvider>
+      </Layout>
+    </ThemeProvider>
   )
 }
 
