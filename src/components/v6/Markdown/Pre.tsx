@@ -4,7 +4,7 @@ import { jsx } from '@emotion/react'
 import React from 'react'
 import { Text } from '@/components/v6/Base/Core'
 
-// TODO: Export TextProps from @/components/Base/Core
+// TODO: Export TextProps from @/components/v6/Base/Core
 
 export const Pre = React.forwardRef<HTMLPreElement, any>(({ children, ...props }, ref) => (
   <Text
