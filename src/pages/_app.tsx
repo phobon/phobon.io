@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 
 import { markdown } from '@/components'
 import { GlobalStyles } from '@/components/GlobalStyles'
-import { Layout } from '@/components/layout/layout'
+import { Layout } from '@/components/layout_test/layout'
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (

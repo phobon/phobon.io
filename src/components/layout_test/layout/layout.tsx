@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { useOnKeyPress } from '@/hooks/index'
 
-import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
-import { Navigation } from '@/components/layout/navigation'
+import { Header } from '@/components/layout_test/header'
+import { Footer } from '@/components/layout_test/footer'
+import { Navigation } from '@/components/layout_test/navigation'
 
 import { maxWidth, horizontalPadding } from '@/data/constants'
 

@@ -6,8 +6,8 @@ import { Stack } from '@/components/Base/Core'
 import { motion } from 'framer-motion'
 
 import { FlatStudy } from '@/components/FlatStudy'
-import Meta from '@/components/layout/meta'
-import { Main } from '@/components/layout/main'
+import Meta from '@/components/layout_test/meta'
+import { Main } from '@/components/layout_test/main'
 import { spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
 
