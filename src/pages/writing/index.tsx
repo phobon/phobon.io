@@ -6,7 +6,7 @@ import { Stack } from '@/components/Base/Core'
 import { motion } from 'framer-motion'
 
 import { FlatStudy } from '@/components/FlatStudy'
-import { Meta } from '@/components/Meta'
+import Meta from '@/components/Layout/meta'
 import { Main } from '@/components/Layout/Main'
 import { spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
@@ -22,7 +22,7 @@ const MotionStack = motion(Stack, { forwardMotionProps: true })
 
 const Writing = ({ writing, ...props }) => (
   <React.Fragment>
-    <Meta title='phbn' twitterCard='summary' />
+    <Meta />
     <Main {...props}>
       <HeroHeader>
         <span>Some&nbsp;</span>

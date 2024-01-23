@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 import { SlideLink, FluidStudy, Project, Experience } from '@/components'
-import { Meta } from '@/components/Meta'
+import Meta from '@/components/Layout/meta'
 import { Main } from '@/components/Layout/Main'
 import { ShowcaseGrid } from '@/components/ShowcaseGrid'
 import { maxWidth, spanAllColumns } from '@/data/constants'
@@ -50,7 +50,7 @@ const Index = ({ ...props }) => {
 
   return (
     <>
-      <Meta title='phbn' twitterCard='summary' />
+      <Meta />
       <Main {...props}>
         <HeroHeader>
           <span>I&apos;m&nbsp;</span>

@@ -6,7 +6,7 @@ import { Spacer } from '@/components/Base/Spacer'
 import { motion } from 'framer-motion'
 
 import { SlideLink, Experience, Paragraph, Span } from '@/components'
-import { Meta } from '@/components/Meta'
+import Meta from '@/components/Layout/meta'
 import { Main } from '@/components/Layout/Main'
 import { maxWidth, spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/HeroHeader'
@@ -29,7 +29,7 @@ const AboutMe = ({ ...props }) => {
   const experiences = data ? JSON.parse(data) : []
   return (
     <>
-      <Meta title='phbn' description='about' twitterCard='summary' />
+      <Meta description='about' />
       <Main {...props}>
         <HeroHeader>
           <span>I&apos;m Ben,&nbsp;</span>
