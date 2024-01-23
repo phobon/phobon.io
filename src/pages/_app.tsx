@@ -3,7 +3,6 @@ import { ThemeProvider } from '@emotion/react'
 import { theme } from '@/theme/index'
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
-import { Provider } from 'jotai'
 
 import { Layout, markdown } from '@/components'
 import { GlobalStyles } from '@/components/GlobalStyles'
@@ -13,15 +12,13 @@ const PhobonApp = ({ Component, pageProps, router }) => {
     <>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <Provider>
-          <Layout>
-            <MDXProvider components={markdown}>
-              <AnimatePresence>
-                <Component {...pageProps} key={router.route} />
-              </AnimatePresence>
-            </MDXProvider>
-          </Layout>
-        </Provider>
+        <Layout>
+          <MDXProvider components={markdown}>
+            <AnimatePresence>
+              <Component {...pageProps} key={router.route} />
+            </AnimatePresence>
+          </MDXProvider>
+        </Layout>
       </ThemeProvider>
     </>
   )

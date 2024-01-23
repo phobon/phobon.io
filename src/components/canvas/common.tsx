@@ -1,9 +1,6 @@
 'use client'
 
-import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
-import { OrbitControls, View as ViewImpl } from '@react-three/drei'
-import { Three } from '@/helpers/three'
-import { motion } from 'framer-motion'
+import { Suspense } from 'react'
 import { ScreenSizeCamera } from '@/helpers/screen_size_camera'
 
 export type CommonProps = {
@@ -28,22 +25,3 @@ export const Common = ({ screenSizeCamera = false, color, basicLighting = false 
     {screenSizeCamera ? <ScreenSizeCamera makeDefault /> : null}
   </Suspense>
 )
-
-export const View = forwardRef<any, any>(({ children, orbit, ...props }, ref) => {
-  const localRef = useRef(null)
-  useImperativeHandle(ref, () => localRef.current)
-
-  return (
-    <>
-      <motion.div ref={localRef} {...props} />
-      <Three>
-        <ViewImpl track={localRef}>
-          {children}
-          {orbit && <OrbitControls />}
-        </ViewImpl>
-      </Three>
-    </>
-  )
-})
-
-View.displayName = 'View'

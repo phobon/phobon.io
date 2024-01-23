@@ -22,20 +22,19 @@
     "@react-three/drei": "^9.96.1",
     "@react-three/fiber": "^8.15.14",
     "@react-three/postprocessing": "^2.15.12",
-    "@studio-freight/lenis": "^1.0.33",
     "@studio-freight/react-lenis": "^0.0.43",
     "@styled-system/should-forward-prop": "^5.1.5",
     "@uidotdev/usehooks": "^2.4.1",
     "framer-motion": "^10.18.0",
     "hsluv": "^1.0.1",
-    "jotai": "^2.6.2",
     "js-cookie": "^3.0.5",
     "next": "^14.1.0",
     "next-cookies": "^2.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-system": "^5.1.5",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",

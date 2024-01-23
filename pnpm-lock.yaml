@@ -41,9 +41,6 @@ dependencies:
   '@react-three/postprocessing':
     specifier: ^2.15.12
     version: 2.15.12(@react-three/fiber@8.15.14)(@types/three@0.160.0)(react@18.2.0)(three@0.160.1)
-  '@studio-freight/lenis':
-    specifier: ^1.0.33
-    version: 1.0.34
   '@studio-freight/react-lenis':
     specifier: ^0.0.43
     version: 0.0.43(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
@@ -59,9 +56,6 @@ dependencies:
   hsluv:
     specifier: ^1.0.1
     version: 1.0.1
-  jotai:
-    specifier: ^2.6.2
-    version: 2.6.2(@types/react@18.2.48)(react@18.2.0)
   js-cookie:
     specifier: ^3.0.5
     version: 3.0.5
@@ -83,6 +77,9 @@ dependencies:
   swr:
     specifier: ^2.2.4
     version: 2.2.4(react@18.2.0)
+  zustand:
+    specifier: ^4.5.0
+    version: 4.5.0(@types/react@18.2.48)(react@18.2.0)
 
 devDependencies:
   '@babel/core':
@@ -3811,22 +3808,6 @@ packages:
       '@types/node': 20.11.5
       merge-stream: 2.0.0
       supports-color: 8.1.1
-
-  /jotai@2.6.2(@types/react@18.2.48)(react@18.2.0):
-    resolution: {integrity: sha512-kl4KguU1Fr+tFiLi3A3h9qPEzhvLTTDA10DO3QZAz6k7BEaQJ+qvSBwolzonnfNI4QzEovyQfUqVgnRxfnnQVQ==}
-    engines: {node: '>=12.20.0'}
-    peerDependencies:
-      '@types/react': '>=17.0.0'
-      react: '>=17.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 18.2.48
-      react: 18.2.0
-    dev: false
 
   /js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
