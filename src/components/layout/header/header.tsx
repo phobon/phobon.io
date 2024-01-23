@@ -11,7 +11,7 @@ import { getTheme } from '@/hooks/getTheme'
 
 import { Identity } from '@/components/Identity'
 import { HamburgerGlyph, SunGlyph, MoonGlyph } from '@/components/Glyphs'
-import { NavigationLink } from '@/components/layout_test/navigation'
+import { NavigationLink } from '@/components/layout/navigation'
 import { Stack } from '@/components/Base/Core/Stack'
 import { Box } from '@/components/Base/Core/Box'
 import { useTheme } from '@/hooks/index'
