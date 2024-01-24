@@ -1,10 +1,12 @@
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
-import { motion } from 'framer-motion'
+import { HTMLMotionProps, motion } from 'framer-motion'
 
 const ease = [0.33, 1, 0.68, 1]
 
-export const HeroHeader = ({ className, children, ...props }) => (
+export type HeroHeaderProps = {} & React.HTMLAttributes<HTMLHeadingElement> & HTMLMotionProps<'h1'>
+
+export const HeroHeader = ({ className, children, ...props }: HeroHeaderProps) => (
   <motion.h1
     className={cn(
       css({

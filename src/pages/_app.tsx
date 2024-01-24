@@ -1,6 +1,4 @@
 import React from 'react'
-import { ThemeProvider } from '@emotion/react'
-import { theme } from '@/theme/index'
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 
@@ -21,7 +19,7 @@ const Footer = dynamic(() => import('@/components/layout/footer'), { ssr: false 
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Header />
 
       <Main>
@@ -33,7 +31,7 @@ const PhobonApp = ({ Component, pageProps, router }) => {
       </Main>
 
       <Footer />
-    </ThemeProvider>
+    </>
   )
 }
 

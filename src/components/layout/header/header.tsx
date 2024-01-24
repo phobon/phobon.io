@@ -8,7 +8,7 @@ import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
 import { Spacer } from '@/components/primitives/spacer'
 import { Button } from '@/components/primitives/button'
-import { HamburgerGlyph } from '@/components/glyphs/hambrger_glyph'
+import { HamburgerGlyph } from '@/components/glyphs/hamburger_glyph'
 import Identity from '@/components/identity'
 
 export const Header = ({ ...props }) => {
