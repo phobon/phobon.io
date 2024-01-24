@@ -22,10 +22,11 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   published,
   description,
   className,
+  style,
   ...props
 }) => {
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} style={style}>
       <motion.div
         className={css({
           display: 'flex',

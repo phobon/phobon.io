@@ -55,34 +55,6 @@ export const ShowcaseGrid: React.FunctionComponent<React.HTMLAttributes<HTMLDivE
     }
   }, [])
 
-  // We want to alternate the size and position of the elements as
-  // we go, so index 0 should be large, 1 should be small, 2 should be small, 3 should be large
-  const columnSizes = {
-    1: ['auto / span 7', 'auto / span 5'],
-    0: ['auto / span 5', 'auto / span 7'],
-  }
-  let row = 1
-  let rowCount = 0
-  const mappedChildren = React.Children.map(children, (c: any) => {
-    const columnSize = columnSizes[row % 2]
-    const column = columnSize[rowCount]
-
-    const clonedElement = React.cloneElement(c, {
-      // gridColumn: ['1 / span 8', 'auto / span 8', column],
-      className: 'showcase',
-    })
-
-    // Increment the row count to determine appropriate layout
-    if (rowCount === 1) {
-      rowCount = 0
-      row += 1
-    } else {
-      rowCount += 1
-    }
-
-    return clonedElement
-  })
-
   return (
     <motion.section
       className={css({
@@ -97,11 +69,8 @@ export const ShowcaseGrid: React.FunctionComponent<React.HTMLAttributes<HTMLDivE
         },
         alignItems: 'flex-start',
         gridRowGap: '$9',
-        gridTemplateColumns: {
-          base: 'repeat(6, 1fr)',
-          md: 'repeat(8, 1fr)',
-          lg: 'repeat(12, 1fr)',
-        },
+        gridTemplateColumns: 'subgrid',
+        gridTemplateRows: 'subgrid',
         gridColumn: '1 / -1',
         '&> .showcase': {
           pointerEvents: 'all',
@@ -117,7 +86,7 @@ export const ShowcaseGrid: React.FunctionComponent<React.HTMLAttributes<HTMLDivE
       ref={gridRef}
       {...props}
     >
-      {mappedChildren}
+      {children}
     </motion.section>
   )
 }

@@ -10,6 +10,7 @@ import { Spacer } from '@/components/primitives/spacer'
 import { Button } from '@/components/primitives/button'
 import { HamburgerGlyph } from '@/components/glyphs/hamburger_glyph'
 import Identity from '@/components/identity'
+import { gridStyles } from '../common'
 
 export const Header = ({ ...props }) => {
   return (
@@ -37,6 +38,7 @@ export const Header = ({ ...props }) => {
             zIndex: -1,
           },
         }),
+        gridStyles,
         'phbn__header',
       )}
       {...props}

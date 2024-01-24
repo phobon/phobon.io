@@ -1,7 +1,5 @@
 @layer layout {
   :root {
-    --mainGridColumns: 12;
-    --mainGridRows: 1;
     --mainGridGutter: 0;
     --mainGridMargin: 16px;
 
@@ -36,8 +34,6 @@
   .phbn__footer {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(var(--mainGridColumns), 1fr);
-    grid-template-rows: repeat(var(--mainGridRows), 1fr);
   }
 
   .phbn__header {
@@ -71,8 +67,6 @@
     width: 100dvw;
     height: 100dvh;
     display: grid;
-    grid-template-columns: repeat(var(--mainGridColumns), 1fr);
-    grid-template-rows: repeat(var(--mainGridRows), 1fr);
     place-items: end;
     pointer-events: none;
     padding: 0 var(--mainGridMargin) !important;

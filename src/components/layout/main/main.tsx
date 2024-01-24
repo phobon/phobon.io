@@ -8,6 +8,7 @@ import Scene, { SceneProps } from '@/components/canvas/scene'
 import { ReactLenis } from '@studio-freight/react-lenis'
 import { useSearchParams } from 'next/navigation'
 import DebugGrid from '../debug_grid'
+import { gridStyles } from '../common'
 
 export type MainProps = {
   debug?: boolean
@@ -15,7 +16,6 @@ export type MainProps = {
 } & Partial<SceneProps>
 
 export const Main = ({ showLoader = false, children }: MainProps) => {
-  const gridStyles = useGridConfigurationStyles()
   const ref = useRef()
 
   const searchParams = useSearchParams()
@@ -34,9 +34,9 @@ export const Main = ({ showLoader = false, children }: MainProps) => {
               overflow: 'auto',
               touchAction: 'auto',
             }),
+            gridStyles,
             'phbn__main',
           )}
-          style={gridStyles}
         >
           <Suspense fallback={null}>{children}</Suspense>
           <Scene

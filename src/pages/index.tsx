@@ -43,135 +43,147 @@ const Index = ({ ...props }) => {
     <>
       <Meta />
 
-      <HeroHeader>
-        <span>I&apos;m&nbsp;</span>
-        <span>
-          <SlideLink href='/about'>Ben</SlideLink>
-        </span>
-        <span>, a&nbsp;</span>
-        <span
-          className={css({
-            color: '$purple10',
-          })}
-        >
-          developer&nbsp;
-        </span>
-        <span>&&nbsp;</span>
-        <span
-          className={css({
-            color: '$purple10',
-          })}
-        >
-          designer&nbsp;
-        </span>
-        <span>based in Perth&nbsp;</span>
-      </HeroHeader>
+      <div
+        className={css({
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: 'subgrid',
+          gridAutoRows: 'subgrid',
+          gridRowGap: '$8',
+          gridColumn: '1 / -1',
+        })}
+      >
+        <HeroHeader>
+          <span>I&apos;m&nbsp;</span>
+          <span>
+            <SlideLink href='/about'>Ben</SlideLink>
+          </span>
+          <span>, a&nbsp;</span>
+          <span
+            className={css({
+              color: '$purple10',
+            })}
+          >
+            developer&nbsp;
+          </span>
+          <span>&&nbsp;</span>
+          <span
+            className={css({
+              color: '$purple10',
+            })}
+          >
+            designer&nbsp;
+          </span>
+          <span>based in Perth&nbsp;</span>
+        </HeroHeader>
 
-      {writing && (
-        <ShowcaseGrid
-          id='writing'
-          variants={{
-            visible: {
-              translateY: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.75,
-                delay: 0.15,
-                ease,
-                staggerChildren: 0.25,
+        {writing && (
+          <ShowcaseGrid
+            id='writing'
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.75,
+                  delay: 0.15,
+                  ease,
+                  staggerChildren: 0.25,
+                },
               },
-            },
-            initial: {
-              translateY: 16,
-              opacity: 0,
-            },
-          }}
-          {...motionProps}
-        >
-          {writing.map(({ key, ...s }) => (
-            <FluidStudy {...s} key={key} />
-          ))}
-        </ShowcaseGrid>
-      )}
-
-      <Spacer />
-
-      {experiences && (
-        <motion.section
-          className={css({
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignSelf: 'center',
-            alignItems: 'flex-start',
-            gap: {
-              base: '$6',
-              md: '$9',
-            },
-            gridColumn: '1 / -1',
-          })}
-          variants={{
-            visible: {
-              translateY: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.5,
-                delay: 0.3,
-                ease,
+              initial: {
+                translateY: 16,
+                opacity: 0,
               },
-            },
-            initial: {
-              opacity: 0,
-              translateY: 16,
-            },
-          }}
-          {...motionProps}
-        >
-          {experiences.map(({ key, ...e }) => (
-            <span key={key}>
-              <Experience {...e} />
-              <Spacer />
-            </span>
-          ))}
-        </motion.section>
-      )}
+            }}
+            {...motionProps}
+          >
+            {writing.map(({ key, ...s }, index) => {
+              const gridColumn = index % 2 === 0 ? '1 / span 4' : '4 / -1'
+              return <FluidStudy {...s} key={key} style={{ gridColumn }} />
+            })}
+          </ShowcaseGrid>
+        )}
 
-      {projects && (
-        <motion.section
-          className={css({
-            width: '100%',
-            display: 'grid',
-            gridTemplateColumns: {
-              base: '1fr',
-              md: 'repeat(2, 1fr)',
-            },
-            gridAutoRows: 'auto',
-            alignSelf: 'center',
-            gridGap: '$6',
-            gridColumn: '1 / -1',
-          })}
-          variants={{
-            visible: {
-              translateY: 0,
-              opacity: 1,
-              transition: {
-                duration: 0.5,
-                delay: 0.5,
-                ease,
+        <Spacer />
+
+        {experiences && (
+          <motion.section
+            className={css({
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignSelf: 'center',
+              alignItems: 'flex-start',
+              gap: {
+                base: '$6',
+                md: '$9',
               },
-            },
-            initial: {
-              opacity: 0,
-              translateY: 16,
-            },
-          }}
-          {...motionProps}
-        >
-          {projects.map((p) => (
-            <Project key={p.name} project={p} />
-          ))}
-        </motion.section>
-      )}
+              gridColumn: '1 / -1',
+            })}
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.3,
+                  ease,
+                },
+              },
+              initial: {
+                opacity: 0,
+                translateY: 16,
+              },
+            }}
+            {...motionProps}
+          >
+            {experiences.map(({ key, ...e }) => (
+              <span key={key}>
+                <Experience {...e} />
+                <Spacer />
+              </span>
+            ))}
+          </motion.section>
+        )}
+
+        {projects && (
+          <motion.section
+            className={css({
+              width: '100%',
+              display: 'grid',
+              gridTemplateColumns: {
+                base: '1fr',
+                md: 'repeat(2, 1fr)',
+              },
+              gridAutoRows: 'auto',
+              alignSelf: 'center',
+              gridGap: '$6',
+              gridColumn: '1 / -1',
+            })}
+            variants={{
+              visible: {
+                translateY: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: 0.5,
+                  ease,
+                },
+              },
+              initial: {
+                opacity: 0,
+                translateY: 16,
+              },
+            }}
+            {...motionProps}
+          >
+            {projects.map((p) => (
+              <Project key={p.name} project={p} />
+            ))}
+          </motion.section>
+        )}
+      </div>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { socialLinks } from '@/data/links'
 import SlideLink from '@/components/slide_link'
 import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
+import { gridStyles } from '../common'
 
 export const Footer = ({ ...props }) => (
   <footer
@@ -21,6 +22,7 @@ export const Footer = ({ ...props }) => (
         },
         pb: '$3',
       }),
+      gridStyles,
       'phbn__footer',
     )}
     {...props}

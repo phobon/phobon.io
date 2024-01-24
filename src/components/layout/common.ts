@@ -1,4 +1,4 @@
-import { cva } from '@/design/css'
+import { css, cva } from '@/design/css'
 
 export const layoutContainerStyles = cva({
   base: {
@@ -36,5 +36,13 @@ export const layoutContainerStyles = cva({
   defaultVariants: {
     position: 'absolute',
     snap: 'top',
+  },
+})
+
+export const gridStyles = css({
+  gridTemplateColumns: {
+    base: 'repeat(6, 1fr)',
+    md: 'repeat(8, 1fr)',
+    lg: 'repeat(12, 1fr)',
   },
 })
