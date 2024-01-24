@@ -5,8 +5,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Box } from '@/components/v6/Base/Core'
 
-import { SlideLink } from '@/components/v6/SlideLink'
 import { destructureLayoutProps } from '@/components/v6/Base/utils'
+import { SlideLink } from '@/components/slide_link'
 
 export interface NavigationLinkProps {
   id?: string | number
@@ -57,11 +57,9 @@ export const NavigationLink: React.FunctionComponent<NavigationLinkProps & any> 
           {label}
         </SlideLink>
       ) : (
-        <Link href={href}>
-          <SlideLink as='div' fontSize={fontSize} onClick={onClick} {...rest}>
-            {label}
-          </SlideLink>
-        </Link>
+        <SlideLink href={href} fontSize={fontSize} onClick={onClick} {...rest}>
+          {label}
+        </SlideLink>
       )}
       {/* </Container> */}
     </Box>

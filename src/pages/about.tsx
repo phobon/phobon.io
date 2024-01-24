@@ -5,13 +5,14 @@ import React from 'react'
 import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 
-import { SlideLink, Experience, Paragraph, Span } from '@/components'
+import { Experience, Paragraph, Span } from '@/components'
 import Meta from '@/components/layout/meta'
 import { Main } from '@/components/layout/main'
 import { maxWidth, spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
 import { Stack } from '@/components/v6/Base/Core/Stack'
+import { SlideLink } from '@/components/slide_link'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 

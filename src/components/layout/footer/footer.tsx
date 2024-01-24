@@ -4,9 +4,8 @@ import { jsx } from '@emotion/react'
 import React from 'react'
 import { Box, Stack, Grid, StackProps } from '@/components/v6/Base/Core'
 
-import { SlideLink } from '@/components/v6/SlideLink'
-
 import { socialLinks } from '@/data/links'
+import { SlideLink } from '@/components/slide_link'
 
 export const Footer: React.FunctionComponent<StackProps & React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => (
   <Stack

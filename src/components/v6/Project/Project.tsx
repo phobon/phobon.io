@@ -4,9 +4,9 @@ import { jsx } from '@emotion/react'
 import React from 'react'
 import { Stack, Box, Text } from '@/components/v6/Base/Core'
 
-import { SlideLink } from '../SlideLink'
 import { ShiftImage } from '../ShiftImage'
 import Link from 'next/link'
+import { SlideLink } from '@/components/slide_link'
 
 export const Project = ({ project, ...props }) => {
   const { name, description, image, url } = project
@@ -17,9 +17,9 @@ export const Project = ({ project, ...props }) => {
 
         <ShiftImage src={image} alt={name} loading='lazy' width={200} />
         <Stack flex={1} alignItems={['flex-start']} ml={[0, 5]} mt={[3, 0]} space={2}>
-          <SlideLink as='h3' fontSize={[4, 5]} fontWeight='light'>
+          <Text as='h3' fontSize={[4, 5]}>
             {name}
-          </SlideLink>
+          </Text>
           <Text fontSize={[4, 5]} color='grayscale.3' textAlign={['left']}>
             {description}
           </Text>

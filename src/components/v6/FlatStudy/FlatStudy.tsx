@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { motion, MotionProps } from 'framer-motion'
 
 import { Text } from '../Base/Core/Text'
-import { SlideLink } from '../SlideLink'
 import { ShiftImage } from '../ShiftImage'
 import { Stack, StackProps } from '../Base/Core/Stack'
 import { Box } from '../Base/Core/Box'
+import { SlideLink } from '@/components/slide_link'
 
 const MotionStack = motion(Stack, { forwardMotionProps: true })
 
@@ -49,15 +49,15 @@ export const FlatStudy: React.FunctionComponent<FlatStudyProps> = ({
         <Text fontSize={[3, 4]} color='grayscale.3'>
           {published}
         </Text>
-        <SlideLink as='h2' fontSize={[6, 7]} fontWeight='light' color='grayscale.0'>
+        <Text as='h2' fontSize={[6, 7]} color='grayscale.0'>
           {title}
-        </SlideLink>
+        </Text>
         <Text as='p' fontSize={[4, 5]} color='grayscale.3'>
           {description}
         </Text>
-        <SlideLink as='span' fontSize={[4, 5]}>
+        <Text as='span' fontSize={[4, 5]}>
           Read more
-        </SlideLink>
+        </Text>
       </Stack>
     </MotionStack>
   </Link>
