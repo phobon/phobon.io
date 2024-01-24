@@ -1,78 +1,88 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React, { useCallback } from 'react'
-import { Button } from '@/components/v6/Base/Button'
-import { Spacer } from '@/components/v6/Base/Spacer'
 import Link from 'next/link'
 import { navigationLinks } from '@/data/links'
 
-import { getTheme } from '@/hooks/getTheme'
-
 import { Identity } from '@/components/v6/Identity'
-import { HamburgerGlyph, SunGlyph, MoonGlyph } from '@/components/v6/Glyphs'
 import { NavigationLink } from '@/components/layout/navigation'
-import { Stack } from '@/components/v6/Base/Core/Stack'
-import { Box } from '@/components/v6/Base/Core/Box'
-import { useTheme } from '@/hooks/index'
+import { cn } from '@/helpers/cn'
+import { css } from '@/design/css'
+import { Spacer } from '@/components/primitives/spacer'
+import { Button } from '@/components/primitives/button'
+import { HamburgerGlyph } from '@/components/glyphs/hambrger_glyph'
 
-export const Header = ({ px, openNavigation, ...props }) => {
-  const [theme, setTheme] = useTheme('light', getTheme)
-  const toggleTheme = useCallback(() => setTheme(theme === 'light' ? 'dark' : 'light'), [theme, setTheme])
-
+export const Header = ({ openNavigation, ...props }) => {
   return (
-    <Stack
-      fullWidth
-      css={(theme: any) => ({
-        top: 0,
-        position: 'sticky',
-        zIndex: 2,
-        overflow: 'hidden',
-        backdropFilter: 'blur(8px)',
-        '&::after': {
-          content: '""',
-          position: 'absolute',
+    <header
+      className={cn(
+        css({
           width: '100%',
-          height: '100%',
-          backgroundColor: theme.colors.background,
-          opacity: 0.7,
-          zIndex: -1,
-        },
-      })}
+          top: 0,
+          position: 'sticky',
+          zIndex: 2,
+          overflow: 'hidden',
+          backdropFilter: 'blur(8px)',
+
+          display: 'flex',
+          flexDirection: 'column',
+          px: '$5',
+
+          _after: {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundColor: '$slate1',
+            opacity: 0.7,
+            zIndex: -1,
+          },
+        }),
+        'phbn__header',
+      )}
       {...props}
     >
-      <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['none', 'flex']}>
+      <section
+        className={css({
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          py: '$4',
+        })}
+      >
         <Link href='/'>
           <Identity aria-label='Go home' />
         </Link>
-        <Stack as='nav' space={3} alignItems='center' flexDirection='row'>
+        <nav
+          className={css({
+            display: {
+              base: 'none',
+              md: 'flex',
+            },
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '$3',
+          })}
+        >
           {navigationLinks.slice(1).map(({ id, ...rest }) => (
             <NavigationLink key={id} id={id} fontSize={5} {...rest} />
           ))}
+        </nav>
 
-          <Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
-            {theme === 'light' ? <MoonGlyph /> : <SunGlyph />}
-          </Button>
-        </Stack>
-      </Box>
-
-      <Box as='header' fullWidth py={[4, 5]} px={px} justifyContent='space-between' display={['flex', 'none']}>
-        <Button aria-label='Open menu' variant='tertiary' shape='square' onClick={() => openNavigation()}>
+        <Button
+          aria-label='Open menu'
+          variant='tertiary'
+          onClick={() => openNavigation()}
+          className={css({
+            display: {
+              base: 'flex',
+              md: 'none',
+            },
+          })}
+        >
           <HamburgerGlyph />
         </Button>
+      </section>
 
-        <Link href='/'>
-          <Identity aria-label='Go home' />
-        </Link>
-
-        <Button onClick={toggleTheme} aria-label='Toggle Theme' size='m' shape='square'>
-          {theme === 'light' ? <MoonGlyph /> : <SunGlyph />}
-        </Button>
-      </Box>
-
-      <Box px={px} fullWidth>
-        <Spacer length='100%' />
-      </Box>
-    </Stack>
+      <Spacer />
+    </header>
   )
 }

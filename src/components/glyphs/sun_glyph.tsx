@@ -1,13 +1,16 @@
 import React from 'react'
-import { Vector, VectorProps } from '@/components/v6/Base/Core'
 
-export const SunGlyph: React.FunctionComponent<VectorProps> = ({
-  width = 16,
-  height = 16,
-  stroke = 'grayscale.0',
-  ...props
-}) => (
-  <Vector width={width} height={height} viewBox='0 0 48 48' fill='none' stroke={stroke} {...props}>
+export const SunGlyph = ({ width = 16, height = 16, fill = '$slate11', ...props }) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox='0 0 16 16'
+    xmlns='http://www.w3.org/2000/svg'
+    style={{
+      fill,
+    }}
+    {...props}
+  >
     <g transform='matrix(3.4285714285714284,0,0,3.4285714285714284,0,0)'>
       <g>
         <circle cx='7' cy='7' r='2.5' stroke='inherit' strokeLinecap='round' strokeLinejoin='round'></circle>
@@ -53,7 +56,5 @@ export const SunGlyph: React.FunctionComponent<VectorProps> = ({
         ></line>
       </g>
     </g>
-  </Vector>
+  </svg>
 )
-
-SunGlyph.displayName = 'SunGlyph'

@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 const Meta = ({
   url = 'https://phobon.io',
   description = 'Portfolio of Ben McCormick, a multidisciplinary developer based in Perth, Western Australia',
@@ -6,8 +8,9 @@ const Meta = ({
   image = 'https://phobon.io/phbn.webp',
 }) => {
   const title = `phbn — ${description}`
+
   return (
-    <>
+    <Head>
       {/* Recommended Meta Tags */}
       <meta charSet='utf-8' />
       <meta name='language' content='english' />
@@ -25,9 +28,9 @@ const Meta = ({
       />
       <meta name='robots' content='index,follow' />
       <meta name='distribution' content='web' />
-      {/* 
+      {/*
       Facebook Open Graph meta tags
-        documentation: https://developers.facebook.com/docs/sharing/opengraph */}
+      documentation: https://developers.facebook.com/docs/sharing/opengraph */}
       <meta name='og:title' content={title} />
       <meta name='og:type' content='site' />
       <meta name='og:url' content={url} />
@@ -45,17 +48,17 @@ const Meta = ({
 
       {/* Meta Tags for HTML pages on Mobile */}
       {/* <meta name="format-detection" content="telephone=yes"/>
-        <meta name="HandheldFriendly" content="true"/>  */}
+      <meta name="HandheldFriendly" content="true"/>  */}
       <meta name='viewport' content='width=device-width, minimum-scale=1, initial-scale=1.0' />
       <meta name='theme-color' content='#000' />
 
-      {/* 
+      {/*
       Twitter Summary card
-        documentation: https://dev.twitter.com/cards/getting-started
-        Be sure validate your Twitter card markup on the documentation site. */}
+      documentation: https://dev.twitter.com/cards/getting-started
+      Be sure validate your Twitter card markup on the documentation site. */}
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:site' content={twitter} />
-    </>
+    </Head>
   )
 }
 

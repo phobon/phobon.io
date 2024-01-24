@@ -1,13 +1,16 @@
 import React from 'react'
-import { Vector, VectorProps } from '@/components/v6/Base/Core'
 
-export const MoonGlyph: React.FunctionComponent<VectorProps> = ({
-  width = 16,
-  height = 16,
-  fill = 'grayscale.0',
-  ...props
-}) => (
-  <Vector width={width} height={height} viewBox='0 0 48 48' {...props}>
+export const MoonGlyph = ({ width = 16, height = 16, fill = '$slate11', ...props }) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox='0 0 16 16'
+    xmlns='http://www.w3.org/2000/svg'
+    style={{
+      fill,
+    }}
+    {...props}
+  >
     <g transform='matrix(3.4285714285714284,0,0,3.4285714285714284,0,0)'>
       <path
         fill='inherit'
@@ -17,7 +20,5 @@ export const MoonGlyph: React.FunctionComponent<VectorProps> = ({
         d='M12,10.48A6.55,6.55,0,0,1,6.46.5a6.55,6.55,0,0,0,1,13A6.46,6.46,0,0,0,13,10.39,6.79,6.79,0,0,1,12,10.48Z'
       ></path>
     </g>
-  </Vector>
+  </svg>
 )
-
-MoonGlyph.displayName = 'MoonGlyph'

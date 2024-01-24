@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -16,6 +15,7 @@ import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
 import { Stack } from '@/components/v6/Base/Core/Stack'
 import { Grid } from '@/components/v6/Base/Core/Grid'
+import { Spacer } from '@/components/primitives/spacer'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -52,6 +52,7 @@ const Index = ({ ...props }) => {
   return (
     <>
       <Meta />
+
       <Main {...props}>
         <HeroHeader>
           <span>I&apos;m&nbsp;</span>
@@ -99,8 +100,6 @@ const Index = ({ ...props }) => {
         )}
 
         <MotionSpacer
-          length='100%'
-          gridColumn={spanAllColumns}
           variants={{
             visible: {
               opacity: 1,
@@ -146,7 +145,7 @@ const Index = ({ ...props }) => {
             {experiences.map(({ key, ...e }) => (
               <React.Fragment key={key}>
                 <Experience {...e} />
-                <Spacer length='100%' />
+                <Spacer />
               </React.Fragment>
             ))}
           </MotionStack>

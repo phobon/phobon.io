@@ -6,6 +6,8 @@ import { Box, Stack, Grid, StackProps } from '@/components/v6/Base/Core'
 
 import { socialLinks } from '@/data/links'
 import { SlideLink } from '@/components/slide_link'
+import { cn } from '@/helpers/cn'
+import { css } from '@/design/css'
 
 export const Footer: React.FunctionComponent<StackProps & React.HTMLAttributes<HTMLDivElement>> = ({ ...props }) => (
   <Stack
@@ -17,6 +19,7 @@ export const Footer: React.FunctionComponent<StackProps & React.HTMLAttributes<H
     pt={[0, 6]}
     pb={3}
     space={5}
+    className={cn(css({}), 'phbn__footer')}
     {...props}
   >
     <Grid

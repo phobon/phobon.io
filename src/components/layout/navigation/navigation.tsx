@@ -9,10 +9,10 @@ import { maxWidth } from '@/data/constants'
 import { navigationLinks } from '@/data/links'
 
 import { NavigationLink } from './navigation_link'
-import { CloseGlyph } from '@/components/v6/Glyphs'
 import { Box } from '@/components/v6/Base/Core/Box'
 import { Stack } from '@/components/v6/Base/Core/Stack'
 import { Grid } from '@/components/v6/Base/Core/Grid'
+import { CloseGlyph } from '@/components/glyphs/close_glyph'
 
 const MotionGrid = motion(Grid, { forwardMotionProps: true })
 

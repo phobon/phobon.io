@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { Spacer } from '@/components/v6/Base/Spacer'
 import { motion } from 'framer-motion'
 
 import { Experience, Paragraph, Span } from '@/components'
@@ -13,6 +12,7 @@ import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
 import { Stack } from '@/components/v6/Base/Core/Stack'
 import { SlideLink } from '@/components/slide_link'
+import { Spacer } from '@/components/primitives/spacer'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -114,11 +114,11 @@ const AboutMe = ({ ...props }) => {
             </Span>
             <span>online</span>
           </Paragraph>
-          <Spacer length='100%' />
+          <Spacer />
           {experiences.map(({ key, ...e }) => (
             <React.Fragment key={key}>
               <Experience {...e} />
-              <Spacer length='100%' />
+              <Spacer />
             </React.Fragment>
           ))}
         </MotionStack>
