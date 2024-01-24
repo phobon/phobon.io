@@ -1,67 +1,29 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React from 'react'
-import Link from 'next/link'
-import { Box } from '@/components/v6/Base/Core'
-
-import { destructureLayoutProps } from '@/components/v6/Base/utils'
 import { SlideLink } from '@/components/slide_link'
+import { css } from '@/design/css'
 
-export interface NavigationLinkProps {
+export type NavigationLinkProps = {
   id?: string | number
   label?: string
   href?: string
   external?: boolean
   fontSize?: number
-}
+} & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 
-export const NavigationLink: React.FunctionComponent<NavigationLinkProps & any> = ({
-  label,
-  href,
-  fontSize = 7,
-  external = false,
-  onClick,
-  ...props
-}) => {
-  const [layoutProps, rest] = destructureLayoutProps(props)
-
+export const NavigationLink = ({ label, href, external = false, onClick, ...props }: NavigationLinkProps) => {
   return (
-    <Box css={{ overflow: 'hidden' }} {...layoutProps}>
-      {/* <Container
-        variants={{
-          visible: {
-            translateY: 0,
-            skewY: 0,
-            transition: {
-              ease: easeIn,
-            },
-          },
-          hidden: {
-            translateY: '100%',
-            skewY: 40,
-            transition: {
-              ease: easeIn,
-            },
-          },
-          exit: {
-            opacity: 0,
-            translateY: '-100%',
-            transition: {
-              ease: easeOut,
-            },
-          },
-        }}> */}
+    <span
+      className={css({
+        overflow: 'hidden',
+      })}
+      {...props}
+    >
       {external ? (
-        <SlideLink href={href} fontSize={fontSize} {...rest}>
-          {label}
-        </SlideLink>
+        <SlideLink href={href}>{label}</SlideLink>
       ) : (
-        <SlideLink href={href} fontSize={fontSize} onClick={onClick} {...rest}>
+        <SlideLink href={href} onClick={onClick}>
           {label}
         </SlideLink>
       )}
-      {/* </Container> */}
-    </Box>
+    </span>
   )
 }

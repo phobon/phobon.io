@@ -1,41 +1,28 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/v6/Base/Button'
+import { HTMLMotionProps, motion } from 'framer-motion'
 
-import { maxWidth } from '@/data/constants'
 import { navigationLinks } from '@/data/links'
 
 import { NavigationLink } from './navigation_link'
-import { Box } from '@/components/v6/Base/Core/Box'
-import { Stack } from '@/components/v6/Base/Core/Stack'
-import { Grid } from '@/components/v6/Base/Core/Grid'
 import { CloseGlyph } from '@/components/glyphs/close_glyph'
-
-const MotionGrid = motion(Grid, { forwardMotionProps: true })
+import { css } from '@/design/css'
+import { Button } from '@/components/primitives/button'
 
 const ease = [0.33, 1, 0.68, 1]
 
-export interface NavigationProps {
+export type NavigationProps = {
   closeNavigation: () => void
-}
+} & React.HTMLAttributes<HTMLDivElement> &
+  HTMLMotionProps<'aside'>
 
-export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
-  px,
-  color,
-  closeNavigation,
-  ...props
-}) => {
+export const Navigation = ({ color, closeNavigation, ...props }: NavigationProps) => {
   return (
-    <MotionGrid
-      as='aside'
-      gridTemplateRows='auto 1fr'
-      gridTemplateColumns='1fr'
-      css={{
+    <motion.aside
+      className={css({
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr',
+        gridTemplateColumns: '1fr',
         placeItems: 'center',
-      }}
+      })}
       {...props}
       variants={{
         visible: {
@@ -67,18 +54,39 @@ export const Navigation: React.FunctionComponent<NavigationProps & any> = ({
       exit='exit'
     >
       {closeNavigation && (
-        <Box py={[4, 5]} px={px} justifySelf='center' justifyContent='flex-start' fullWidth maxWidth={maxWidth}>
-          <Button aria-label='Close menu' variant='tertiary' shape='square' onClick={closeNavigation} toggled>
+        <div
+          className={css({
+            py: {
+              base: '$4',
+              md: '$5',
+            },
+            px: '$5',
+            display: 'flex',
+            width: '100%',
+            justifySelf: 'center',
+            justifyContent: 'flex-start',
+          })}
+        >
+          <Button aria-label='Close menu' variant='tertiary' onClick={closeNavigation} toggled>
             <CloseGlyph fill='white' />
           </Button>
-        </Box>
+        </div>
       )}
 
-      <Stack as='nav' maxWidth={maxWidth} space={3} alignItems='center' fullWidth>
+      <nav
+        className={css({
+          display: 'flex',
+          width: '100%',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '$3',
+        })}
+      >
         {navigationLinks.map(({ id, ...rest }) => (
           <NavigationLink key={id} id={id} {...rest} color={color} onClick={closeNavigation} />
         ))}
-      </Stack>
-    </MotionGrid>
+      </nav>
+    </motion.aside>
   )
 }
