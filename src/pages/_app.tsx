@@ -5,20 +5,28 @@ import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 
 import { markdown } from '@/components'
-import { Layout } from '@/components/layout/layout'
 
 import './global.css'
+import dynamic from 'next/dynamic'
+
+const Header = dynamic(() => import('@/components/layout/header'), { ssr: false })
+const Main = dynamic(() => import('@/components/layout/main'), { ssr: false })
+const Footer = dynamic(() => import('@/components/layout/footer'), { ssr: false })
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Layout>
+      <Header />
+
+      <Main>
         <MDXProvider components={markdown}>
           <AnimatePresence>
             <Component {...pageProps} key={router.route} />
           </AnimatePresence>
         </MDXProvider>
-      </Layout>
+      </Main>
+
+      <Footer />
     </ThemeProvider>
   )
 }

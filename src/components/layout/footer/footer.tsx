@@ -1,3 +1,5 @@
+'use client'
+
 import { socialLinks } from '@/data/links'
 import { SlideLink } from '@/components/slide_link'
 import { cn } from '@/helpers/cn'

@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 
 import { Experience, Paragraph, Span } from '@/components'
 import Meta from '@/components/layout/meta'
-import { Main } from '@/components/layout/main'
 import { maxWidth, spanAllColumns } from '@/data/constants'
 import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
@@ -31,7 +30,7 @@ const AboutMe = ({ ...props }) => {
   return (
     <>
       <Meta description='about' />
-      <Main {...props}>
+      <>
         <HeroHeader>
           <span>I&apos;m Ben,&nbsp;</span>
           <span>a&nbsp;</span>
@@ -122,7 +121,7 @@ const AboutMe = ({ ...props }) => {
             </React.Fragment>
           ))}
         </MotionStack>
-      </Main>
+      </>
     </>
   )
 }

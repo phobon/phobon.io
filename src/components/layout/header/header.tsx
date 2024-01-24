@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { navigationLinks } from '@/data/links'
 
@@ -9,7 +11,7 @@ import { Spacer } from '@/components/primitives/spacer'
 import { Button } from '@/components/primitives/button'
 import { HamburgerGlyph } from '@/components/glyphs/hambrger_glyph'
 
-export const Header = ({ openNavigation, ...props }) => {
+export const Header = ({ ...props }) => {
   return (
     <header
       className={cn(
@@ -70,7 +72,9 @@ export const Header = ({ openNavigation, ...props }) => {
         <Button
           aria-label='Open menu'
           variant='tertiary'
-          onClick={() => openNavigation()}
+          onClick={() => {
+            // TODO
+          }}
           className={css({
             display: {
               base: 'flex',
