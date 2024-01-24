@@ -4,10 +4,16 @@ import { theme } from '@/theme/index'
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 
-import { markdown } from '@/components'
+import markdownComponents from '@/components/markdown'
+
+const markdown: any = {
+  ...markdownComponents,
+  a: SlideLink,
+}
 
 import './global.css'
 import dynamic from 'next/dynamic'
+import SlideLink from '@/components/slide_link'
 
 const Header = dynamic(() => import('@/components/layout/header'), { ssr: false })
 const Main = dynamic(() => import('@/components/layout/main'), { ssr: false })

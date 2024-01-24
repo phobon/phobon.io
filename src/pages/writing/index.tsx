@@ -1,14 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React from 'react'
-import { Stack } from '@/components/v6/Base/Core'
 import { motion } from 'framer-motion'
 
-import { FlatStudy } from '@/components/v6/FlatStudy'
 import Meta from '@/components/layout/meta'
-import { spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/v6/HeroHeader'
+import HeroHeader from '@/components/hero_header'
+import FluidStudy from '@/components/fluid_study'
+import { css } from '@/design/css'
 
 const ease = [0.33, 1, 0.68, 1]
 
@@ -17,24 +12,35 @@ const motionProps = {
   animate: 'visible',
 }
 
-const MotionStack = motion(Stack, { forwardMotionProps: true })
-
 const Writing = ({ writing, ...props }) => (
-  <React.Fragment>
+  <>
     <Meta />
     <HeroHeader>
       <span>Some&nbsp;</span>
-      <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>writing&nbsp;</span>
+      <span
+        className={css({
+          color: '$purple8',
+        })}
+      >
+        writing&nbsp;
+      </span>
       <span>about&nbsp;</span>
-      <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>projects</span>
+      <span
+        className={css({
+          color: '$purple8',
+        })}
+      >
+        projects
+      </span>
       <span>I&apos;ve worked on</span>
     </HeroHeader>
 
-    <MotionStack
+    <motion.section
       id='writing'
-      as='section'
-      gridColumn={spanAllColumns}
-      space={9}
+      className={css({
+        gridColumn: '1 / -1',
+        gap: '$9',
+      })}
       variants={{
         visible: {
           translateY: 0,
@@ -54,10 +60,10 @@ const Writing = ({ writing, ...props }) => (
       {...motionProps}
     >
       {writing.map(({ key, ...s }) => (
-        <FlatStudy {...s} key={key} />
+        <FluidStudy {...s} key={key} />
       ))}
-    </MotionStack>
-  </React.Fragment>
+    </motion.section>
+  </>
 )
 
 export const getStaticProps = async () => {

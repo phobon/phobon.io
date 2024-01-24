@@ -1,4 +1,4 @@
-import { SlideLink } from '@/components/slide_link'
+import SlideLink from '@/components/slide_link'
 import { css } from '@/design/css'
 
 export type NavigationLinkProps = {

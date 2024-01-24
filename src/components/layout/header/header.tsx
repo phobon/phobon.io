@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import { navigationLinks } from '@/data/links'
 
-import { Identity } from '@/components/v6/Identity'
 import { NavigationLink } from '@/components/layout/navigation'
 import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
 import { Spacer } from '@/components/primitives/spacer'
 import { Button } from '@/components/primitives/button'
 import { HamburgerGlyph } from '@/components/glyphs/hambrger_glyph'
+import Identity from '@/components/identity'
 
 export const Header = ({ ...props }) => {
   return (

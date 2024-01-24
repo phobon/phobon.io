@@ -1,20 +1,15 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React from 'react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-
-import { FluidStudy, Project, Experience } from '@/components'
-import { SlideLink } from '@/components/slide_link'
-import Meta from '@/components/layout/meta'
-import { ShowcaseGrid } from '@/components/v6/ShowcaseGrid'
-import { maxWidth, spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/v6/HeroHeader'
+import { css } from '@/design/css'
 import useSWR from 'swr'
-import { Stack } from '@/components/v6/Base/Core/Stack'
-import { Grid } from '@/components/v6/Base/Core/Grid'
+
+import SlideLink from '@/components/slide_link'
+import Meta from '@/components/layout/meta'
 import { Spacer } from '@/components/primitives/spacer'
+import Project from '@/components/project'
+import HeroHeader from '@/components/hero_header'
+import Experience from '@/components/experience'
+import ShowcaseGrid from '@/components/showcase_grid'
+import FluidStudy from '@/components/fluid_study'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -24,10 +19,6 @@ const motionProps = {
   initial: 'initial',
   animate: 'visible',
 }
-
-const MotionStack = motion(Stack, { forwardMotionProps: true })
-const MotionGrid = motion(Grid, { forwardMotionProps: true })
-const MotionSpacer = motion(Spacer, { forwardMotionProps: true })
 
 const useData = () => {
   const { data: projectsData, error: projectsError } = useSWR('/api/projects', fetcher)
@@ -58,21 +49,27 @@ const Index = ({ ...props }) => {
           <SlideLink href='/about'>Ben</SlideLink>
         </span>
         <span>, a&nbsp;</span>
-        <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
+        <span
+          className={css({
+            color: '$purple10',
+          })}
+        >
+          developer&nbsp;
+        </span>
         <span>&&nbsp;</span>
-        <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
+        <span
+          className={css({
+            color: '$purple10',
+          })}
+        >
+          designer&nbsp;
+        </span>
         <span>based in Perth&nbsp;</span>
       </HeroHeader>
 
       {writing && (
         <ShowcaseGrid
           id='writing'
-          as='section'
-          gridColumn={spanAllColumns}
-          gridRowGap={9}
-          css={{
-            alignItems: 'flex-start',
-          }}
           variants={{
             visible: {
               translateY: 0,
@@ -97,32 +94,22 @@ const Index = ({ ...props }) => {
         </ShowcaseGrid>
       )}
 
-      <MotionSpacer
-        variants={{
-          visible: {
-            opacity: 1,
-            transition: {
-              duration: 0.3,
-              delay: 0.15,
-              ease,
-            },
-          },
-          initial: {
-            opacity: 0,
-          },
-        }}
-        {...motionProps}
-      />
+      <Spacer />
 
       {experiences && (
-        <MotionStack
-          fullWidth
-          maxWidth={maxWidth}
-          alignSelf='center'
-          alignItems='flex-start'
-          space={[6, 9]}
-          gridColumn={spanAllColumns}
-          as='section'
+        <motion.section
+          className={css({
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignSelf: 'center',
+            alignItems: 'flex-start',
+            gap: {
+              base: '$6',
+              md: '$9',
+            },
+            gridColumn: '1 / -1',
+          })}
           variants={{
             visible: {
               translateY: 0,
@@ -141,24 +128,28 @@ const Index = ({ ...props }) => {
           {...motionProps}
         >
           {experiences.map(({ key, ...e }) => (
-            <React.Fragment key={key}>
+            <span key={key}>
               <Experience {...e} />
               <Spacer />
-            </React.Fragment>
+            </span>
           ))}
-        </MotionStack>
+        </motion.section>
       )}
 
       {projects && (
-        <MotionGrid
-          maxWidth={maxWidth}
-          fullWidth
-          gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}
-          gridAutoRows='auto'
-          css={{ alignSelf: 'center' }}
-          gridGap={6}
-          gridColumn={spanAllColumns}
-          as='section'
+        <motion.section
+          className={css({
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: {
+              base: '1fr',
+              md: 'repeat(2, 1fr)',
+            },
+            gridAutoRows: 'auto',
+            alignSelf: 'center',
+            gridGap: '$6',
+            gridColumn: '1 / -1',
+          })}
           variants={{
             visible: {
               translateY: 0,
@@ -177,9 +168,9 @@ const Index = ({ ...props }) => {
           {...motionProps}
         >
           {projects.map((p) => (
-            <Project key={p.name} project={p} alignSelf='flex-start' />
+            <Project key={p.name} project={p} />
           ))}
-        </MotionGrid>
+        </motion.section>
       )}
     </>
   )

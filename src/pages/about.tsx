@@ -1,17 +1,14 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
-import React from 'react'
 import { motion } from 'framer-motion'
 
-import { Experience, Paragraph, Span } from '@/components'
 import Meta from '@/components/layout/meta'
-import { maxWidth, spanAllColumns } from '@/data/constants'
-import { HeroHeader } from '@/components/v6/HeroHeader'
 import useSWR from 'swr'
-import { Stack } from '@/components/v6/Base/Core/Stack'
-import { SlideLink } from '@/components/slide_link'
+import SlideLink from '@/components/slide_link'
 import { Spacer } from '@/components/primitives/spacer'
+import Experience from '@/components/experience'
+import HeroHeader from '@/components/hero_header'
+import { Paragraph } from '@/components/markdown/paragraph'
+import { Span } from '@/components/markdown/span'
+import { css } from '@/design/css'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -21,8 +18,6 @@ const motionProps = {
   initial: 'initial',
   animate: 'visible',
 }
-
-const MotionStack = motion(Stack, { forwardMotionProps: true })
 
 const AboutMe = ({ ...props }) => {
   const { data, error } = useSWR('/api/experiences', fetcher)
@@ -34,20 +29,38 @@ const AboutMe = ({ ...props }) => {
         <HeroHeader>
           <span>I&apos;m Ben,&nbsp;</span>
           <span>a&nbsp;</span>
-          <span css={(theme: any) => ({ color: theme.colors.violets[5] })}>developer&nbsp;</span>
+          <span
+            className={css({
+              color: '$purple10',
+            })}
+          >
+            developer&nbsp;
+          </span>
           <span>&&nbsp;</span>
-          <span css={(theme: any) => ({ color: theme.colors.accent[5] })}>designer&nbsp;</span>
+          <span
+            className={css({
+              color: '$purple10',
+            })}
+          >
+            designer&nbsp;
+          </span>
           <span>based in Perth&nbsp;</span>
         </HeroHeader>
 
-        <MotionStack
-          fullWidth
-          maxWidth={maxWidth}
-          alignSelf='center'
-          alignItems='flex-start'
-          space={[6, 9]}
-          gridColumn={spanAllColumns}
-          as='section'
+        <motion.section
+          className={css({
+            width: '100%',
+            gridColumn: '1 / -1',
+            display: 'flex',
+            alignSelf: 'center',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            gap: {
+              base: '$6',
+              md: '$9',
+            },
+          })}
           variants={{
             visible: {
               translateY: 0,
@@ -66,10 +79,10 @@ const AboutMe = ({ ...props }) => {
           {...motionProps}
         >
           <Paragraph
-            color='grayscale.3'
-            css={(theme: any) => ({
-              '> * + *': {
-                marginLeft: theme.space[1],
+            className={css({
+              color: '$slate10',
+              '&> * + *': {
+                marginLeft: '$1',
               },
             })}
           >
@@ -79,10 +92,10 @@ const AboutMe = ({ ...props }) => {
           </Paragraph>
 
           <Paragraph
-            color='grayscale.3'
-            css={(theme: any) => ({
-              '> * + *': {
-                marginLeft: theme.space[1],
+            className={css({
+              color: '$slate10',
+              '&> * + *': {
+                marginLeft: '$1',
               },
             })}
           >
@@ -91,11 +104,11 @@ const AboutMe = ({ ...props }) => {
           </Paragraph>
 
           <Paragraph
-            color='grayscale.3'
-            mb={0}
-            css={(theme: any) => ({
-              '> * + *': {
-                marginLeft: theme.space[1],
+            className={css({
+              color: '$slate10',
+              mb: 0,
+              '&> * + *': {
+                marginLeft: '$1',
               },
             })}
           >
@@ -108,19 +121,24 @@ const AboutMe = ({ ...props }) => {
               <SlideLink href='https://www.instagram.com/kodi_lab/'>best friend</SlideLink>;
             </span>
             <span>or</span>
-            <Span color='inherit' css={{ textDecoration: 'line-through' }}>
+            <Span
+              className={css({
+                color: 'inherit',
+                textDecoration: 'line-through',
+              })}
+            >
               shitposting
             </Span>
             <span>online</span>
           </Paragraph>
           <Spacer />
           {experiences.map(({ key, ...e }) => (
-            <React.Fragment key={key}>
+            <span key={key}>
               <Experience {...e} />
               <Spacer />
-            </React.Fragment>
+            </span>
           ))}
-        </MotionStack>
+        </motion.section>
       </>
     </>
   )

@@ -1,0 +1,15 @@
+import { css } from '@/design/css'
+import { cn } from '@/helpers/cn'
+
+export type HRProps = {} & React.HTMLAttributes<HTMLHRElement>
+
+export const hrStyles = css({
+  borderWidth: 2,
+  borderStyle: 'solid',
+  width: '5%',
+  borderColor: '$purple10',
+  my: '$5',
+  gridColumn: '1 / -1',
+})
+
+export const Hr = ({ className, ...props }: HRProps) => <hr className={cn(hrStyles, className)} {...props} />
