@@ -90,7 +90,7 @@ export const ShiftImage = ({ src, alt, loading = 'lazy', width, height, factor =
           objectFit: 'cover',
           maxWidth: 'inherit',
           maxHeight: 'inherit',
-          willChange: 'transform',
+          // willChange: 'transform',
         },
       })}
       style={{

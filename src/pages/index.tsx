@@ -1,24 +1,48 @@
-import { motion } from 'framer-motion'
-import { css } from '@/design/css'
-import useSWR from 'swr'
+'use client'
 
+import { css } from '@/design/css'
+import { cn } from '@/helpers/cn'
+// import { useLenis } from '@studio-freight/react-lenis'
+import { useEffect, useRef } from 'react'
+import normalizeWheel from 'normalize-wheel'
+import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
+// import { View } from '@/components/canvas/view'
+import { useFrame } from '@react-three/fiber'
+import TextReveal from '@/components/text_reveal'
+import dynamic from 'next/dynamic'
+import InfiniteScroll from '@/components/infinite_scroll'
+import ScrollSection from '@/components/infinite_scroll/scroll_section'
+// import WebGLText from '@/components/webgl_text'
+import { slate } from '@radix-ui/colors'
 import SlideLink from '@/components/slide_link'
-import Meta from '@/components/layout/meta'
-import { Spacer } from '@/components/primitives/spacer'
-import Project from '@/components/project'
 import HeroHeader from '@/components/hero_header'
-import Experience from '@/components/experience'
-import ShowcaseGrid from '@/components/showcase_grid'
+import useSWR from 'swr'
 import FluidStudy from '@/components/fluid_study'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const ease = [0.33, 1, 0.68, 1]
+const View = dynamic(() => import('@react-three/drei').then((mod) => mod.View), {
+  ssr: false,
+  loading: () => (
+    <div className='flex h-96 w-full flex-col items-center justify-center'>
+      <svg
+        style={{ width: 40, height: 40 }}
+        className='-ml-1 mr-3 h-5 w-5 animate-spin text-black'
+        fill='none'
+        viewBox='0 0 24 24'
+      >
+        <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
+        <path
+          className='opacity-75'
+          fill='currentColor'
+          d='M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+        />
+      </svg>
+    </div>
+  ),
+})
 
-const motionProps = {
-  initial: 'initial',
-  animate: 'visible',
-}
+const WebGLText = dynamic(() => import('@/components/webgl_text').then((mod) => mod), { ssr: false })
 
 const useData = () => {
   const { data: projectsData, error: projectsError } = useSWR('/api/projects', fetcher)
@@ -36,23 +60,11 @@ const useData = () => {
   }
 }
 
-const Index = ({ ...props }) => {
+export default function Page() {
   const { projects, experiences, writing } = useData()
-
   return (
-    <>
-      <Meta />
-
-      <div
-        className={css({
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: 'subgrid',
-          gridAutoRows: 'subgrid',
-          gridRowGap: '$8',
-          gridColumn: '1 / -1',
-        })}
-      >
+    <InfiniteScroll>
+      <ScrollSection index={1} className={sectionStyles} style={{ backgroundColor: slate.slate3 }}>
         <HeroHeader>
           <span>I&apos;m&nbsp;</span>
           <span>
@@ -76,116 +88,52 @@ const Index = ({ ...props }) => {
           </span>
           <span>based in Perth&nbsp;</span>
         </HeroHeader>
+      </ScrollSection>
 
-        {writing && (
-          <ShowcaseGrid
-            id='writing'
-            variants={{
-              visible: {
-                translateY: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.75,
-                  delay: 0.15,
-                  ease,
-                  staggerChildren: 0.25,
-                },
-              },
-              initial: {
-                translateY: 16,
-                opacity: 0,
-              },
-            }}
-            {...motionProps}
+      {writing.map(({ key, ...s }, i) => {
+        return (
+          <ScrollSection
+            key={key}
+            index={2 + i}
+            className={sectionStyles}
+            style={{ backgroundColor: slate[`slate${i + 4}`] }}
           >
-            {writing.map(({ key, ...s }, index) => {
-              const gridColumn = index % 2 === 0 ? '1 / span 4' : '4 / -1'
-              return <FluidStudy {...s} key={key} style={{ gridColumn }} />
-            })}
-          </ShowcaseGrid>
-        )}
-
-        <Spacer />
-
-        {experiences && (
-          <motion.section
-            className={css({
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignSelf: 'center',
-              alignItems: 'flex-start',
-              gap: {
-                base: '$6',
-                md: '$9',
-              },
-              gridColumn: '1 / -1',
-            })}
-            variants={{
-              visible: {
-                translateY: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.5,
-                  delay: 0.3,
-                  ease,
-                },
-              },
-              initial: {
-                opacity: 0,
-                translateY: 16,
-              },
-            }}
-            {...motionProps}
-          >
-            {experiences.map(({ key, ...e }) => (
-              <span key={key}>
-                <Experience {...e} />
-                <Spacer />
-              </span>
-            ))}
-          </motion.section>
-        )}
-
-        {projects && (
-          <motion.section
-            className={css({
-              width: '100%',
-              display: 'grid',
-              gridTemplateColumns: {
-                base: '1fr',
-                md: 'repeat(2, 1fr)',
-              },
-              gridAutoRows: 'auto',
-              alignSelf: 'center',
-              gridGap: '$6',
-              gridColumn: '1 / -1',
-            })}
-            variants={{
-              visible: {
-                translateY: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.5,
-                  delay: 0.5,
-                  ease,
-                },
-              },
-              initial: {
-                opacity: 0,
-                translateY: 16,
-              },
-            }}
-            {...motionProps}
-          >
-            {projects.map((p) => (
-              <Project key={p.name} project={p} />
-            ))}
-          </motion.section>
-        )}
-      </div>
-    </>
+            <FluidStudy {...s} />
+          </ScrollSection>
+        )
+      })}
+    </InfiniteScroll>
   )
 }
 
-export default Index
+const Placeholder = ({ color }) => {
+  const meshRef = useRef<any>()
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.x += 0.01
+      meshRef.current.rotation.y += 0.01
+    }
+  })
+  return (
+    <mesh ref={meshRef}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color={color} />
+    </mesh>
+  )
+}
+
+const sectionStyles = css({
+  height: '100dvh',
+  width: '100%',
+  display: 'grid',
+  gridColumn: '1 / -1',
+  gridTemplateColumns: 'subgrid',
+  position: 'relative',
+})
+
+const viewStyles = css({
+  gridColumn: '1 / -1',
+  inset: 0,
+  position: 'absolute',
+})

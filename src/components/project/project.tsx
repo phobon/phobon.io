@@ -20,7 +20,7 @@ export const Project = ({ project, ...props }) => {
         })}
       >
         {/* When this becomes a link to an internal project, it needs a Link */}
-        <ShiftImage src={image} alt={name} loading='lazy' width={200} />
+        {/* <ShiftImage src={image} alt={name} loading='lazy' width={200} /> */}
 
         <div
           className={css({

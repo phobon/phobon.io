@@ -27,7 +27,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
 }) => {
   return (
     <Link href={href} className={className} style={style}>
-      <motion.div
+      <div
         className={css({
           display: 'flex',
           flexDirection: 'column',
@@ -35,13 +35,9 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
           width: '100%',
           gap: '$3',
         })}
-        variants={{
-          initial: { translateY: 16, opacity: 0 },
-          visible: { translateY: 0, opacity: 1 },
-        }}
         {...props}
       >
-        <ShiftImage src={src} alt={title} loading='eager' />
+        {/* <ShiftImage src={src} alt={title} loading='eager' /> */}
 
         <span
           className={css({
@@ -86,7 +82,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
         >
           Read more
         </span>
-      </motion.div>
+      </div>
     </Link>
   )
 }
