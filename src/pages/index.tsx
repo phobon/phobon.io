@@ -1,21 +1,15 @@
 'use client'
 
 import { css } from '@/design/css'
-import { cn } from '@/helpers/cn'
-// import { useLenis } from '@studio-freight/react-lenis'
-import { useEffect, useRef } from 'react'
-import normalizeWheel from 'normalize-wheel'
-import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
+import { useRef } from 'react'
 // import { View } from '@/components/canvas/view'
 import { useFrame } from '@react-three/fiber'
-import TextReveal from '@/components/text_reveal'
 import dynamic from 'next/dynamic'
 import InfiniteScroll from '@/components/infinite_scroll'
 import ScrollSection from '@/components/infinite_scroll/scroll_section'
 // import WebGLText from '@/components/webgl_text'
 import { slate } from '@radix-ui/colors'
 import SlideLink from '@/components/slide_link'
-import HeroHeader from '@/components/hero_header'
 import useSWR from 'swr'
 import FluidStudy from '@/components/fluid_study'
 
@@ -65,7 +59,25 @@ export default function Page() {
   return (
     <InfiniteScroll>
       <ScrollSection index={1} className={sectionStyles} style={{ backgroundColor: slate.slate3 }}>
-        <HeroHeader>
+        <h1
+          className={css({
+            width: '100%',
+            color: '$slate12',
+            fontWeight: 'light',
+            gridColumn: '1 / -1',
+            fontSize: {
+              base: '$9',
+              md: '$11',
+            },
+            lineHeight: {
+              base: '$2',
+              md: '$1',
+            },
+            '&> span': {
+              display: 'inline-table',
+            },
+          })}
+        >
           <span>I&apos;m&nbsp;</span>
           <span>
             <SlideLink href='/about'>Ben</SlideLink>
@@ -87,7 +99,7 @@ export default function Page() {
             designer&nbsp;
           </span>
           <span>based in Perth&nbsp;</span>
-        </HeroHeader>
+        </h1>
       </ScrollSection>
 
       {writing.map(({ key, ...s }, i) => {

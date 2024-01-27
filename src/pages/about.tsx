@@ -5,7 +5,6 @@ import useSWR from 'swr'
 import SlideLink from '@/components/slide_link'
 import { Spacer } from '@/components/primitives/spacer'
 import Experience from '@/components/experience'
-import HeroHeader from '@/components/hero_header'
 import { Paragraph } from '@/components/markdown/paragraph'
 import { Span } from '@/components/markdown/span'
 import { css } from '@/design/css'
@@ -26,7 +25,25 @@ const AboutMe = ({ ...props }) => {
     <>
       <Meta description='about' />
       <>
-        <HeroHeader>
+        <h1
+          className={css({
+            width: '100%',
+            color: '$slate12',
+            fontWeight: 'light',
+            gridColumn: '1 / -1',
+            fontSize: {
+              base: '$9',
+              md: '$11',
+            },
+            lineHeight: {
+              base: '$2',
+              md: '$1',
+            },
+            '&> span': {
+              display: 'inline-table',
+            },
+          })}
+        >
           <span>I&apos;m Ben,&nbsp;</span>
           <span>a&nbsp;</span>
           <span
@@ -45,7 +62,7 @@ const AboutMe = ({ ...props }) => {
             designer&nbsp;
           </span>
           <span>based in Perth&nbsp;</span>
-        </HeroHeader>
+        </h1>
 
         <motion.section
           className={css({

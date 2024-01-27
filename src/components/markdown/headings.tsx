@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import HeroHeader from '../hero_header'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
+import { motion } from 'framer-motion'
 
 const headingStyles = css({
   color: '$slate12',
@@ -12,24 +12,57 @@ const headingStyles = css({
   gridColumn: '1 / -1',
 })
 
+const ease = [0.33, 1, 0.68, 1]
+
 export const H1 = forwardRef<HTMLHeadingElement, any>(({ className, children, ...props }, ref) => {
   return (
-    <HeroHeader
+    <motion.h1
       className={cn(
         headingStyles,
         css({
+          width: '100%',
+          color: '$slate12',
+          fontWeight: 'light',
+          gridColumn: '1 / -1',
+          fontSize: {
+            base: '$9',
+            md: '$11',
+          },
           mb: {
             base: '$7',
             md: '$6',
           },
+          lineHeight: {
+            base: '$2',
+            md: '$1',
+          },
+          '&> span': {
+            display: 'inline-table',
+          },
         }),
         className,
       )}
+      variants={{
+        visible: {
+          translateY: 0,
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+            delay: 0,
+            ease,
+          },
+        },
+        initial: {
+          translateY: 16,
+          opacity: 0,
+        },
+      }}
+      initial='initial'
+      animate='visible'
       {...props}
-      ref={ref}
     >
       {children}
-    </HeroHeader>
+    </motion.h1>
   )
 })
 H1.displayName = 'H1'

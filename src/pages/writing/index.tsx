@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 
 import Meta from '@/components/layout/meta'
-import HeroHeader from '@/components/hero_header'
 import FluidStudy from '@/components/fluid_study'
 import { css } from '@/design/css'
 
@@ -15,7 +14,25 @@ const motionProps = {
 const Writing = ({ writing, ...props }) => (
   <>
     <Meta />
-    <HeroHeader>
+    <h1
+      className={css({
+        width: '100%',
+        color: '$slate12',
+        fontWeight: 'light',
+        gridColumn: '1 / -1',
+        fontSize: {
+          base: '$9',
+          md: '$11',
+        },
+        lineHeight: {
+          base: '$2',
+          md: '$1',
+        },
+        '&> span': {
+          display: 'inline-table',
+        },
+      })}
+    >
       <span>Some&nbsp;</span>
       <span
         className={css({
@@ -33,7 +50,7 @@ const Writing = ({ writing, ...props }) => (
         projects
       </span>
       <span>I&apos;ve worked on</span>
-    </HeroHeader>
+    </h1>
 
     <motion.section
       id='writing'
