@@ -15,7 +15,7 @@ export type MainProps = {
   showLoader?: boolean
 } & Partial<SceneProps>
 
-export const Main = ({ showLoader = false, children }: MainProps) => {
+export const Main = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
   const ref = useRef()
 
   const searchParams = useSearchParams()
@@ -23,7 +23,6 @@ export const Main = ({ showLoader = false, children }: MainProps) => {
 
   return (
     <>
-      {/* <ReactLenis root> */}
       <main
         ref={ref}
         className={cn(
@@ -35,6 +34,7 @@ export const Main = ({ showLoader = false, children }: MainProps) => {
             touchAction: 'auto',
           }),
           gridStyles,
+          className,
           'phbn__main',
         )}
       >
@@ -52,9 +52,9 @@ export const Main = ({ showLoader = false, children }: MainProps) => {
           eventPrefix='client'
           debug={debug}
           showLoader={showLoader}
+          screenSizeCamera={screenSizeCamera}
         />
       </main>
-      {/* </ReactLenis> */}
 
       {debug ? <DebugGrid /> : null}
     </>

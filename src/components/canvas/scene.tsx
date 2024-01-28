@@ -1,15 +1,11 @@
 'use client'
 
-import { Canvas, addEffect, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 
 import { AdaptiveDpr, Preload, RenderTexture, StatsGl, View } from '@react-three/drei'
-// import { r3f } from '@/helpers/r3f'
 import { Loader } from './loader'
-import { ScreenSizeCamera } from '@/helpers/screen_size_camera'
-// import Lenis from '@studio-freight/lenis'
-
-// const lenis = new Lenis()
-// addEffect((t) => lenis.raf(t))
+import { PerspectiveCamera } from '@/helpers/perspective_camera'
+import { Common } from './common'
 
 export type SceneProps = {
   debug?: boolean
@@ -17,7 +13,13 @@ export type SceneProps = {
   showLoader?: boolean
 } & any
 
-const Scene = ({ debug = false, frameloop = 'always', showLoader = false, ...props }: SceneProps) => {
+const Scene = ({
+  debug = false,
+  frameloop = 'always',
+  showLoader = false,
+  screenSizeCamera = false,
+  ...props
+}: SceneProps) => {
   return (
     <>
       {/* @ts-ignore */}
@@ -26,10 +28,11 @@ const Scene = ({ debug = false, frameloop = 'always', showLoader = false, ...pro
 
         <AdaptiveDpr />
 
-        {/* <r3f.Out /> */}
         <View.Port />
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
+
+        <PerspectiveCamera makeDefault />
       </Canvas>
 
       {showLoader && <Loader className='phbn__loader' />}

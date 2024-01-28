@@ -12,6 +12,7 @@ import { slate } from '@radix-ui/colors'
 import SlideLink from '@/components/slide_link'
 import useSWR from 'swr'
 import FluidStudy from '@/components/fluid_study'
+import Text from '@/components/canvas/webgl_text'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -36,7 +37,7 @@ const View = dynamic(() => import('@react-three/drei').then((mod) => mod.View), 
   ),
 })
 
-const WebGLText = dynamic(() => import('@/components/webgl_text').then((mod) => mod), { ssr: false })
+const WebGLText = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 
 const useData = () => {
   const { data: projectsData, error: projectsError } = useSWR('/api/projects', fetcher)
@@ -58,8 +59,9 @@ export default function Page() {
   const { projects, experiences, writing } = useData()
   return (
     <InfiniteScroll>
-      <ScrollSection index={1} className={sectionStyles} style={{ backgroundColor: slate.slate3 }}>
-        <h1
+      <ScrollSection index={1} className={sectionStyles}>
+        <Text as='div'>ASDF</Text>
+        {/* <h1
           className={css({
             width: '100%',
             color: '$slate12',
@@ -99,7 +101,7 @@ export default function Page() {
             designer&nbsp;
           </span>
           <span>based in Perth&nbsp;</span>
-        </h1>
+        </h1> */}
       </ScrollSection>
 
       {writing.map(({ key, ...s }, i) => {

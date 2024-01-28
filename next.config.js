@@ -15,6 +15,7 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {},
   images: {},
+  transpilePackages: ['geist'],
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({

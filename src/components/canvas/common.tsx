@@ -1,13 +1,13 @@
 'use client'
 
 import { Suspense } from 'react'
-import { ScreenSizeCamera } from '@/helpers/screen_size_camera'
 
 export type CommonProps = {
   screenSizeCamera?: boolean
   color?: string
   basicLighting?: boolean
 }
+
 export const Common = ({ screenSizeCamera = false, color, basicLighting = false }: CommonProps) => (
   <Suspense fallback={null}>
     {/* @ts-ignore */}
@@ -21,7 +21,5 @@ export const Common = ({ screenSizeCamera = false, color, basicLighting = false 
         <pointLight position={[20, 30, 10]} intensity={1} />
       </>
     ) : null}
-
-    {screenSizeCamera ? <ScreenSizeCamera makeDefault /> : null}
   </Suspense>
 )
