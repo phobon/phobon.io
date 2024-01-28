@@ -2,8 +2,10 @@ import { MeshDistortMaterial, View } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { useFrame, useThree } from '@react-three/fiber'
+import { Vector3, useFrame, useThree } from '@react-three/fiber'
 import { Material } from 'three'
+import { PerspectiveCamera } from '@/helpers/perspective_camera'
+import { cn } from '@/helpers/cn'
 
 export type TextProps = {
   font?: string
@@ -21,7 +23,6 @@ const useTracker = () => {
     }
 
     const trackRect = track.getBoundingClientRect()
-    console.log(trackRect)
     setRect(trackRect)
   }, [setRect])
 
@@ -31,7 +32,7 @@ const useTracker = () => {
   }
 }
 
-const Text = ({ children, font, as: Tag = 'span' }: TextProps) => {
+const Text = ({ className, children, font, as: Tag = 'span' }: TextProps) => {
   const { trackRef, rect } = useTracker()
 
   return (
@@ -39,61 +40,35 @@ const Text = ({ children, font, as: Tag = 'span' }: TextProps) => {
       className={css({
         position: 'relative',
       })}
-      style={{
-        height: rect?.height || 0,
-        width: rect?.width || 0,
-      }}
     >
       <Tag
         ref={trackRef}
-        className={css({
-          // opacity: 0,
-          display: 'inline-block',
-        })}
+        className={cn(
+          css({
+            opacity: 0,
+            display: 'inline-block',
+          }),
+          className,
+        )}
       >
         {children}
       </Tag>
 
       <View
+        track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({
           position: 'absolute',
           inset: 0,
         })}
       >
-        {/* <Placeholder /> */}
-        {/* <color attach='background' args={['purple']} /> */}
-        <WebGLText textRef={trackRef} font={font} scale={[50, 50]}>
+        <PerspectiveCamera makeDefault />
+        <WebGLText textRef={trackRef} font={font}>
           {children}
         </WebGLText>
       </View>
     </div>
   )
 }
-
-// const Placeholder = () => {
-//   const meshRef = useRef<any>()
-//   const { size, viewport } = useThree()
-//   console.log(size, viewport)
-
-//   useFrame(({ invalidate }) => {
-//     if (!meshRef.current) {
-//       return
-//     }
-
-//     meshRef.current.rotation.x += 0.01
-//     meshRef.current.rotation.y += 0.01
-//   })
-
-//   const s = viewport.width / 250
-//   console.log(s)
-//   const scale: any = [s, s, s]
-//   return (
-//     <mesh scale={scale} ref={meshRef}>
-//       <boxGeometry args={[1, 1, 1]} />
-//       <meshNormalMaterial />
-//     </mesh>
-//   )
-// }
 
 type WebGLTextProps = {
   textRef: MutableRefObject<HTMLElement>
@@ -165,39 +140,39 @@ export const WebGLText = ({
 
   const yOffset = scale ? scale[1] * 0.5 : size.height * 0.5
 
-  console.log({
-    fontSize,
-    textAlign,
-    lineHeight,
-    letterSpacing,
-    xOffset,
-    yOffset,
-    positionX: xOffset + fontSize * fontOffsetX,
-  })
+  // console.log({
+  //   fontSize,
+  //   textAlign,
+  //   lineHeight,
+  //   letterSpacing,
+  //   xOffset,
+  //   yOffset,
+  //   positionX: xOffset + fontSize * fontOffsetX,
+  // })
+  const position: Vector3 = [xOffset + fontSize * fontOffsetX, yOffset + fontSize * fontOffsetY, 0]
 
   return (
-    <DreiText
-      fontSize={fontSize}
-      maxWidth={scale ? scale[0] : size.width}
-      lineHeight={lineHeight}
-      // @ts-ignore
-      textAlign={textAlign}
-      letterSpacing={letterSpacing}
-      overflowWrap='break-word'
-      font={font}
-      // color={textColor}
-      color='red'
-      // @ts-ignore
-      anchorX={textAlign}
-      anchorY='top' // so text moves down if row breaks
-      // @ts-ignore
-      position={[xOffset + fontSize * fontOffsetX, yOffset + fontSize * fontOffsetY, 0]} // font specific
-      // position={[0, 0, 0]}
-      material={material}
-      {...props}
-    >
-      {children}
-    </DreiText>
+    <group position={[-size.width / 2, 0, 0]}>
+      <DreiText
+        fontSize={fontSize}
+        maxWidth={scale ? scale[0] : size.width}
+        lineHeight={lineHeight}
+        // @ts-ignore
+        textAlign={textAlign}
+        letterSpacing={letterSpacing}
+        overflowWrap='break-word'
+        font={font}
+        color={textColor}
+        // @ts-ignore
+        anchorX={textAlign}
+        anchorY='top' // so text moves down if row breaks
+        position={position}
+        material={material}
+        {...props}
+      >
+        {children}
+      </DreiText>
+    </group>
   )
 }
 

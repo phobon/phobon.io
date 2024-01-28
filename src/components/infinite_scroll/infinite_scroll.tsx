@@ -38,8 +38,9 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
   const directionRef = useRef<number>(0)
 
   // Scrolling parameters
-  const scrollAmplitudeRef = useRef<number>(1)
-  const scroll = useMotionValue(0)
+  const scrollAmplitudeRef = useRef<number>(3)
+  const scroll = useSpring(0, { stiffness: 1000, damping: 200 })
+  // const scroll = useMotionValue(0)
 
   // Scroll the entire viewport container
   useMotionValueEvent(scroll, 'change', (latest) => {

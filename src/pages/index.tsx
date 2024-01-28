@@ -60,7 +60,14 @@ export default function Page() {
   return (
     <InfiniteScroll>
       <ScrollSection index={1} className={sectionStyles}>
-        <Text as='div'>ASDF</Text>
+        <Text
+          className={css({
+            fontSize: '$10',
+          })}
+        >
+          ASDF
+        </Text>
+        <Text>ASDF2</Text>
         {/* <h1
           className={css({
             width: '100%',
