@@ -26,7 +26,6 @@ export const Header = ({ ...props }) => {
 
           display: 'flex',
           flexDirection: 'column',
-          px: '$5',
 
           _after: {
             content: '""',

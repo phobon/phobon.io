@@ -2,22 +2,12 @@
 
 import { Canvas, createPortal, useFrame, useThree } from '@react-three/fiber'
 
-import {
-  AdaptiveDpr,
-  MeshTransmissionMaterial,
-  Preload,
-  RenderTexture,
-  StatsGl,
-  View,
-  useFBO,
-  useGLTF,
-} from '@react-three/drei'
+import { AdaptiveDpr, Preload, StatsGl, View, useFBO, useGLTF } from '@react-three/drei'
 import { Loader } from './loader'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
-import { Common } from './common'
 import { useRef, useState } from 'react'
-import { easing } from 'maath'
 import * as THREE from 'three'
+import SceneFBORenderer from './scene_fbo_renderer'
 
 export type SceneProps = {
   debug?: boolean
@@ -40,9 +30,8 @@ const Scene = ({
 
         <AdaptiveDpr />
 
-        {/* <Lens> */}
         <View.Port />
-        {/* </Lens> */}
+        <SceneFBORenderer />
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
 

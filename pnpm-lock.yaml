@@ -29,6 +29,9 @@ dependencies:
   '@react-three/postprocessing':
     specifier: ^2.15.12
     version: 2.15.12(@react-three/fiber@8.15.15)(@types/three@0.160.0)(react@18.2.0)(three@0.160.1)
+  '@studio-freight/lenis':
+    specifier: ^1.0.34
+    version: 1.0.34
   '@studio-freight/react-lenis':
     specifier: ^0.0.43
     version: 0.0.43(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)

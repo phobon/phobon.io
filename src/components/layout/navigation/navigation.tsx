@@ -60,7 +60,6 @@ export const Navigation = ({ color, closeNavigation, ...props }: NavigationProps
               base: '$4',
               md: '$5',
             },
-            px: '$5',
             display: 'flex',
             width: '100%',
             justifySelf: 'center',

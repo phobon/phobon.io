@@ -32,7 +32,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 'header' '.' 'footer';
-    padding: 0 var(--mainGridMargin) !important;
+    padding: 0;
     place-items: center;
 
     #__next {

@@ -15,7 +15,6 @@ export const Footer = ({ ...props }) => (
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         gap: '$5',
-        px: '$5',
         pt: {
           base: 0,
           md: '$6',
