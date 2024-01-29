@@ -1,20 +1,8 @@
-import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  Children,
-  cloneElement,
-  useLayoutEffect,
-} from 'react'
+import { useMotionValue, useMotionValueEvent } from 'framer-motion'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import normalizeWheel from 'normalize-wheel'
-import { useLenis } from '@studio-freight/react-lenis'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
-import { container } from '@/design/patterns'
 
 export type InfiniteScrollContextType = {
   observer: IntersectionObserver
@@ -38,9 +26,8 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
   const directionRef = useRef<number>(0)
 
   // Scrolling parameters
-  const scrollAmplitudeRef = useRef<number>(3)
-  const scroll = useSpring(0, { stiffness: 1000, damping: 200 })
-  // const scroll = useMotionValue(0)
+  const scrollAmplitudeRef = useRef<number>(1)
+  const scroll = useMotionValue(0)
 
   // Scroll the entire viewport container
   useMotionValueEvent(scroll, 'change', (latest) => {
@@ -111,7 +98,6 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
             // -- entering (section - 2)
             // -- current (section - 1)
             // -- leaving (section)
-
             const childCount = Object.keys(observedChildrenRef.current).length
 
             let previousSection = section
@@ -183,8 +169,6 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
     mutationObserver.observe(container, { childList: true })
 
     return () => {
-      // observedChildrenRef.current = {}
-
       observer.disconnect()
       mutationObserver.disconnect()
 
@@ -201,7 +185,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
           left: 0,
           right: 0,
           top: 0,
-          // willChange: 'transform',
+          willChange: 'transform',
         }),
         className,
       )}

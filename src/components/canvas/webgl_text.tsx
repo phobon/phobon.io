@@ -1,36 +1,17 @@
-import { MeshDistortMaterial, View } from '@react-three/drei'
-import React, { MutableRefObject, ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { View } from '@react-three/drei'
+import React, { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, useFrame, useThree } from '@react-three/fiber'
+import { Vector3, useThree } from '@react-three/fiber'
 import { Material } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
+import { useTracker } from '@/helpers/use_tracker'
 
 export type TextProps = {
   font?: string
   as?: any
 } & React.HTMLAttributes<HTMLDivElement>
-
-const useTracker = () => {
-  const trackRef = useRef<HTMLElement>()
-  const [rect, setRect] = useState<DOMRect>(null)
-
-  useLayoutEffect(() => {
-    const track = trackRef.current
-    if (!track) {
-      return
-    }
-
-    const trackRect = track.getBoundingClientRect()
-    setRect(trackRect)
-  }, [setRect])
-
-  return {
-    trackRef,
-    rect,
-  }
-}
 
 const Text = ({ className, children, font, as: Tag = 'span' }: TextProps) => {
   const { trackRef, rect } = useTracker()

@@ -13,6 +13,7 @@ import SlideLink from '@/components/slide_link'
 import useSWR from 'swr'
 import FluidStudy from '@/components/fluid_study'
 import Text from '@/components/canvas/webgl_text'
+import Image from '@/components/canvas/webgl_image'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -60,14 +61,30 @@ export default function Page() {
   return (
     <InfiniteScroll>
       <ScrollSection index={1} className={sectionStyles}>
-        <Text
+        <div
           className={css({
-            fontSize: '$10',
+            ml: '$10',
           })}
         >
-          ASDF
-        </Text>
+          <Text
+            className={css({
+              fontSize: '$10',
+            })}
+          >
+            ASDF
+          </Text>
+        </div>
+
         <Text>ASDF2</Text>
+
+        <Image
+          src='phbn2.webp'
+          alt='test'
+          className={css({
+            width: '50%',
+            height: 'auto',
+          })}
+        />
         {/* <h1
           className={css({
             width: '100%',
