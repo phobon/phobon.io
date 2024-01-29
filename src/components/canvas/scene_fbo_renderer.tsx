@@ -3,6 +3,7 @@ import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useFBO } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
+import Repeater from '../repeater'
 
 export type SceneFBORendererProps = {}
 
@@ -27,10 +28,11 @@ const SceneFBORenderer = ({}: SceneFBORendererProps) => {
   return (
     <>
       <PerspectiveCamera makeDefault ref={cameraRef} />
-      <mesh ref={meshRef}>
+      <Repeater texture={renderTarget.texture} ref={meshRef} />
+      {/* <mesh ref={meshRef}>
         <planeGeometry args={[width, height]} />
         <meshBasicMaterial transparent map={renderTarget.texture} />
-      </mesh>
+      </mesh> */}
     </>
   )
 }
