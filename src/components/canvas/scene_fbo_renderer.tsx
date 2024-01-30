@@ -3,6 +3,7 @@ import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useFBO } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
+import MouseMask from '../mouse_mask'
 
 export type SceneFBORendererProps = {
   children?: React.ReactNode
@@ -14,6 +15,7 @@ const SceneFBORenderer = ({ children }: SceneFBORendererProps) => {
   const meshRef = useRef<any>()
 
   const renderTarget = useFBO()
+  const mouseRenderTarget = useFBO()
 
   useFrame(({ gl }) => {
     gl.setRenderTarget(renderTarget)
@@ -26,6 +28,7 @@ const SceneFBORenderer = ({ children }: SceneFBORendererProps) => {
     gl.render(scene, cameraRef.current)
 
     meshRef.current.material.uniforms.u_diffuse.value = renderTarget.texture
+    meshRef.current.material.uniforms.u_mouse.value = mouseRenderTarget.texture
   }, 2)
 
   return (
@@ -35,6 +38,8 @@ const SceneFBORenderer = ({ children }: SceneFBORendererProps) => {
         <planeGeometry args={[1, 1]} />
         {children ? children : <meshBasicMaterial transparent />}
       </mesh>
+
+      <MouseMask renderTarget={mouseRenderTarget} />
     </>
   )
 }

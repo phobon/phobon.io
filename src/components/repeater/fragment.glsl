@@ -1,11 +1,11 @@
 uniform vec3 u_camera;
 uniform vec2 u_resolution;
-uniform vec2 u_mouse;
 uniform float u_time;
 uniform float u_progress;
 
 uniform float u_factor;
 
+uniform sampler2D u_mouse;
 uniform sampler2D u_diffuse;
 uniform vec2 u_textureResolution;
 
@@ -31,8 +31,6 @@ float saturateF(float v) {
 void main(void) {
   vec2 pixelCoords = (v_uv - 0.5) * u_resolution;
 
-  vec3 color = vec3(0.0);
-
   vec2 uv = v_uv;
 
   float steps = 20.0;
@@ -40,13 +38,19 @@ void main(void) {
   // displacement += saturateF((floor(uv.y * steps) / steps) - 0.5);
   // float displacement = (floor(uv.x * steps) / steps) - 0.5;
 
+  float mouseMask = texture2D(u_mouse, uv).r;
   vec2 displacedUv = uv - vec2(displacement * u_factor, 0.0);
+  vec4 regularColor = texture2D(u_diffuse, uv);
   vec4 displacedColor = texture2D(u_diffuse, displacedUv);
-  color = displacedColor.rgb;
+
+  vec4 finalColor = displacedColor.rrra;
+  finalColor = mix(finalColor, regularColor, mouseMask);
 
   // color = vec3(displacement);
-  color = correctGamma(color);
+  // color = vec3(mouseMask);
+  finalColor.rgb = correctGamma(finalColor.rgb);
 
-  gl_FragColor = vec4(color, displacedColor.a);
+  // finalColor.rgb = vec3(mouseMask);
+  gl_FragColor = vec4(finalColor);
 }
 

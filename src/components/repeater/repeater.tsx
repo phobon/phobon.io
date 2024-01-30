@@ -10,8 +10,7 @@ const RepeaterMaterial = shaderMaterial(
   {
     u_time: 0,
     u_resolution: [0, 0],
-    u_mouse: [0, 0],
-    u_camera: [0, 0, 0],
+    u_mouse: null,
     u_progress: 0,
     u_diffuse: null,
     u_factor: 0.25,
@@ -42,14 +41,6 @@ const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
       return
     }
 
-    mesh.material.uniforms.u_time.value = clock.elapsedTime
-    mesh.material.uniforms.u_mouse.value.x = pointer.x
-    mesh.material.uniforms.u_mouse.value.y = pointer.y
-
-    mesh.material.uniforms.u_camera.value.x = camera.position.x
-    mesh.material.uniforms.u_camera.value.y = camera.position.y
-    mesh.material.uniforms.u_camera.value.z = camera.position.z
-
     mesh.material.uniforms.u_resolution.value.x = window.innerWidth
     mesh.material.uniforms.u_resolution.value.y = window.innerWidth
   })
@@ -72,14 +63,6 @@ const RepeaterMaterialImpl = forwardRef<any, any>(({ texture, factor = 0.5 }, re
     if (!material) {
       return
     }
-
-    material.uniforms.u_time.value = clock.elapsedTime
-    material.uniforms.u_mouse.value.x = pointer.x
-    material.uniforms.u_mouse.value.y = pointer.y
-
-    material.uniforms.u_camera.value.x = camera.position.x
-    material.uniforms.u_camera.value.y = camera.position.y
-    material.uniforms.u_camera.value.z = camera.position.z
 
     material.uniforms.u_resolution.value.x = window.innerWidth
     material.uniforms.u_resolution.value.y = window.innerWidth
