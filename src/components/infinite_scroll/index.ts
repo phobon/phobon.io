@@ -1,6 +1,3 @@
-import { InfiniteScroll, infiniteScrollContext, InfiniteScrollContextType, useInfiniteScroll } from './infinite_scroll'
-
-export { infiniteScrollContext as InfiniteScrollContext, useInfiniteScroll }
-export type { InfiniteScrollContextType }
+import { InfiniteScroll } from './infinite_scroll'
 
 export default InfiniteScroll

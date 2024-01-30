@@ -165,3 +165,8 @@
 // })
 
 // export default Index
+
+const Index = () => {
+  return <div>old</div>
+}
+export default Index
