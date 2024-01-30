@@ -3,11 +3,12 @@ import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useFBO } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
-import Repeater from '../repeater'
 
-export type SceneFBORendererProps = {}
+export type SceneFBORendererProps = {
+  children?: React.ReactNode
+}
 
-const SceneFBORenderer = ({}: SceneFBORendererProps) => {
+const SceneFBORenderer = ({ children }: SceneFBORendererProps) => {
   const { width, height } = useThree((state) => state.size)
   const cameraRef = useRef<any>()
   const meshRef = useRef<any>()
@@ -23,16 +24,17 @@ const SceneFBORenderer = ({}: SceneFBORendererProps) => {
     gl.setRenderTarget(null)
     gl.setViewport(0, 0, width, height)
     gl.render(scene, cameraRef.current)
+
+    meshRef.current.material.uniforms.u_diffuse.value = renderTarget.texture
   }, 2)
 
   return (
     <>
       <PerspectiveCamera makeDefault ref={cameraRef} />
-      <Repeater texture={renderTarget.texture} ref={meshRef} />
-      {/* <mesh ref={meshRef}>
-        <planeGeometry args={[width, height]} />
-        <meshBasicMaterial transparent map={renderTarget.texture} />
-      </mesh> */}
+      <mesh ref={meshRef} scale={[width, height, 1]}>
+        <planeGeometry args={[1, 1]} />
+        {children ? children : <meshBasicMaterial transparent />}
+      </mesh>
     </>
   )
 }

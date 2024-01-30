@@ -8,6 +8,7 @@ import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 import SceneFBORenderer from './scene_fbo_renderer'
+import RepeaterMaterial from '../repeater'
 
 export type SceneProps = {
   debug?: boolean
@@ -31,7 +32,9 @@ const Scene = ({
         <AdaptiveDpr />
 
         <View.Port />
-        <SceneFBORenderer />
+        <SceneFBORenderer>
+          <RepeaterMaterial />
+        </SceneFBORenderer>
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
 

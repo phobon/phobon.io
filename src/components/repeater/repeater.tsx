@@ -1,4 +1,4 @@
-import { useFrame, extend, useThree } from '@react-three/fiber'
+import { useFrame, extend, useThree, ShaderMaterialProps } from '@react-three/fiber'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 
@@ -22,6 +22,14 @@ const RepeaterMaterial = shaderMaterial(
 RepeaterMaterial.key = uuid()
 
 extend({ RepeaterMaterial })
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      repeaterMaterial: ShaderMaterialProps
+    }
+  }
+}
 
 const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
   const meshRef = useRef<any>()
@@ -54,4 +62,38 @@ const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
     </mesh>
   )
 })
-export default Repeater
+
+const RepeaterMaterialImpl = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
+  const materialRef = useRef<any>()
+  useImperativeHandle(ref, () => materialRef.current)
+
+  useFrame(({ clock, pointer, camera }) => {
+    const material = materialRef.current
+    if (!material) {
+      return
+    }
+
+    material.uniforms.u_time.value = clock.elapsedTime
+    material.uniforms.u_mouse.value.x = pointer.x
+    material.uniforms.u_mouse.value.y = pointer.y
+
+    material.uniforms.u_camera.value.x = camera.position.x
+    material.uniforms.u_camera.value.y = camera.position.y
+    material.uniforms.u_camera.value.z = camera.position.z
+
+    material.uniforms.u_resolution.value.x = window.innerWidth
+    material.uniforms.u_resolution.value.y = window.innerWidth
+  })
+
+  return (
+    <repeaterMaterial
+      ref={materialRef}
+      uniforms-u_diffuse-value={texture}
+      uniforms-u_factor-value={factor}
+      transparent
+      attach='material'
+    />
+  )
+})
+
+export default RepeaterMaterialImpl

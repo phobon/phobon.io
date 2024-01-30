@@ -11,6 +11,7 @@ import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 
 const Image = ({ className, src, alt, ...props }) => {
   const { trackRef, rect } = useImgTracker()
+
   return (
     <div
       className={css({

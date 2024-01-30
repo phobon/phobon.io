@@ -1,38 +1,23 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { useInfiniteScroll } from './infinite_scroll'
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
+import { CurrentSection, useSubscribeCurrentSection } from '@/stores/use_infinite_scroll_store'
 
-const ScrollSection = forwardRef<HTMLDivElement, any>(({ index, className, children, ...props }, ref) => {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const initialisedRef = useRef(false)
+const ScrollSection = forwardRef<HTMLDivElement, any>(({ className, children, ...props }, ref) => {
   useImperativeHandle(ref, () => sectionRef.current)
 
-  const { observer } = useInfiniteScroll() || {}
-  // useEffect(() => {
-  //   const section = sectionRef.current
-  //   const initialised = initialisedRef.current
-  //   if (!observer || !section || initialised) {
-  //     return
-  //   }
+  const cb = useCallback((currentSection: CurrentSection) => {
+    console.log(currentSection)
+  }, [])
 
-  //   initialisedRef.current = true
-
-  //   console.log('observe', section)
-  //   observer.observe(section)
-
-  //   return () => {
-  //     observer.unobserve(section)
-  //   }
-  // }, [observer])
+  const sectionRef = useSubscribeCurrentSection(cb)
 
   return (
     <section
       ref={sectionRef}
-      data-scalar={0}
       className={cn(
         css({
-          // willChange: 'transform',
+          willChange: 'transform',
         }),
         className,
       )}

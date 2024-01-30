@@ -1,21 +1,26 @@
 import { useMotionValue, useMotionValueEvent } from 'framer-motion'
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import normalizeWheel from 'normalize-wheel'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
-
-export type InfiniteScrollContextType = {
-  observer: IntersectionObserver
-}
-
-export const InfiniteScrollContext = createContext<InfiniteScrollContextType>({
-  observer: undefined,
-})
+import { InfiniteScrollStore, useInfiniteScrollStore } from '@/stores/use_infinite_scroll_store'
 
 export type InfiniteScrollProps = {} & React.HTMLAttributes<HTMLDivElement>
 
+const infiniteScrollDataSelector = ({
+  setScroll,
+  setTotalHeight,
+  addSection,
+  reset,
+}): Pick<InfiniteScrollStore, 'setScroll' | 'setTotalHeight' | 'addSection' | 'reset'> => ({
+  setScroll,
+  setTotalHeight,
+  addSection,
+  reset,
+})
+
 export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => {
-  const [scrollObserver, setScrollObserver] = useState<IntersectionObserver>(undefined)
+  const { setScroll, setTotalHeight, addSection, reset } = useInfiniteScrollStore(infiniteScrollDataSelector)
 
   const containerRef = useRef<HTMLDivElement>()
   const observedChildrenRef = useRef<any>({})
@@ -31,6 +36,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
 
   // Scroll the entire viewport container
   useMotionValueEvent(scroll, 'change', (latest) => {
+    setScroll(latest)
     containerRef.current.style.transform = `translate3D(0px, ${-latest}px, 0px)`
   })
 
@@ -69,6 +75,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
       const rect = container.getBoundingClientRect()
       const { height } = rect
       heightRef.current = height
+      setTotalHeight(height)
     }
     onResize()
 
@@ -131,17 +138,24 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
       })
     })
 
-    setScrollObserver(observer)
+    const sections = {}
 
     // Observe any children that exist at time of render
     let childIndex = 0
     for (let i = 0; i < container.children.length; i++) {
       const child = container.children[i]
-      const index = childIndex + i
-      child.setAttribute('data-section', index.toString())
+      const index = `${childIndex + i}`
+      child.setAttribute('data-section', index)
       child.setAttribute('data-scalar', '0')
       observer.observe(child)
       observedChildrenRef.current[childIndex] = child
+
+      // Add the section
+      const { top, bottom } = child.getBoundingClientRect()
+      addSection(index, {
+        start: top,
+        end: bottom,
+      })
       childIndex += 1
     }
 
@@ -152,11 +166,19 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
         if (mutation.addedNodes.length) {
           for (const node of mutation.addedNodes) {
             const child = node as HTMLElement
-            child.setAttribute('data-section', childIndex.toString())
+            const index = `${childIndex}`
+            child.setAttribute('data-section', index)
             child.setAttribute('data-scalar', '0')
             observer.observe(child)
             observedChildrenRef.current[childIndex] = child
             childIndex += 1
+
+            // Add the section
+            const { top, bottom } = child.getBoundingClientRect()
+            addSection(index, {
+              start: top,
+              end: bottom,
+            })
 
             // Recalculate height of container
             onResize()
@@ -173,8 +195,9 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
       mutationObserver.disconnect()
 
       window.removeEventListener('resize', onResize)
+      reset()
     }
-  }, [scroll])
+  }, [addSection, reset, scroll, setTotalHeight])
 
   return (
     <div
@@ -190,11 +213,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
         className,
       )}
     >
-      <InfiniteScrollContext.Provider value={{ observer: scrollObserver }}>{children}</InfiniteScrollContext.Provider>
+      {children}
     </div>
   )
-}
-
-export const useInfiniteScroll = () => {
-  return useContext(InfiniteScrollContext)
 }
