@@ -2,65 +2,24 @@
 
 import { css } from '@/design/css'
 import { useRef } from 'react'
-// import { View } from '@/components/canvas/view'
 import { useFrame } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
 import InfiniteScroll from '@/components/infinite_scroll'
 import ScrollSection from '@/components/infinite_scroll/scroll_section'
-// import WebGLText from '@/components/webgl_text'
 import { slate } from '@radix-ui/colors'
-import SlideLink from '@/components/slide_link'
-import useSWR from 'swr'
 import FluidStudy from '@/components/fluid_study'
-import Text from '@/components/canvas/webgl_text'
-import Image from '@/components/canvas/webgl_image'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import projects from '@/data/projects.json'
+import experiences from '@/data/experiences.json'
+import writing from '@/data/writing.json'
 
-const View = dynamic(() => import('@react-three/drei').then((mod) => mod.View), {
-  ssr: false,
-  loading: () => (
-    <div className='flex h-96 w-full flex-col items-center justify-center'>
-      <svg
-        style={{ width: 40, height: 40 }}
-        className='-ml-1 mr-3 h-5 w-5 animate-spin text-black'
-        fill='none'
-        viewBox='0 0 24 24'
-      >
-        <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-        <path
-          className='opacity-75'
-          fill='currentColor'
-          d='M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-        />
-      </svg>
-    </div>
-  ),
-})
+const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
+const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
 
-const WebGLText = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
-
-const useData = () => {
-  const { data: projectsData, error: projectsError } = useSWR('/api/projects', fetcher)
-  const { data: experiencesData, error: experiencesError } = useSWR('/api/experiences', fetcher)
-  const { data: writingData, error: writingError } = useSWR('/api/writing', fetcher)
-
-  const projects = projectsData ? JSON.parse(projectsData) : []
-  const experiences = experiencesData ? JSON.parse(experiencesData) : []
-  const writing = writingData ? JSON.parse(writingData) : []
-
-  return {
-    projects,
-    experiences,
-    writing,
-  }
-}
-
-export default function Page() {
-  const { projects, experiences, writing } = useData()
+export default function Page({ ...props }) {
   return (
     <InfiniteScroll>
-      <ScrollSection index={1} className={sectionStyles}>
+      <ScrollSection className={sectionStyles}>
         <div
           className={css({
             ml: '$10',
@@ -130,12 +89,7 @@ export default function Page() {
 
       {writing.map(({ key, ...s }, i) => {
         return (
-          <ScrollSection
-            key={key}
-            index={2 + i}
-            className={sectionStyles}
-            style={{ backgroundColor: slate[`slate${i + 4}`] }}
-          >
+          <ScrollSection key={key} className={sectionStyles} style={{ backgroundColor: slate[`slate${i + 4}`] }}>
             <FluidStudy {...s} />
           </ScrollSection>
         )

@@ -7,7 +7,7 @@ const ScrollSection = forwardRef<HTMLDivElement, any>(({ className, children, ..
   useImperativeHandle(ref, () => sectionRef.current)
 
   const cb = useCallback((currentSection: CurrentSection) => {
-    console.log(currentSection)
+    // console.log(currentSection)
   }, [])
 
   const sectionRef = useSubscribeCurrentSection(cb)

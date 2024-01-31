@@ -145,14 +145,14 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
     for (let i = 0; i < container.children.length; i++) {
       const child = container.children[i]
       const index = `${childIndex + i}`
-      child.setAttribute('data-section', index)
+      child.setAttribute('data-section', `${childIndex}`)
       child.setAttribute('data-scalar', '0')
       observer.observe(child)
       observedChildrenRef.current[childIndex] = child
 
       // Add the section
       const { top, bottom } = child.getBoundingClientRect()
-      addSection(index, {
+      addSection(`${childIndex}`, {
         start: top,
         end: bottom,
       })
@@ -166,8 +166,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
         if (mutation.addedNodes.length) {
           for (const node of mutation.addedNodes) {
             const child = node as HTMLElement
-            const index = `${childIndex}`
-            child.setAttribute('data-section', index)
+            child.setAttribute('data-section', `${childIndex}`)
             child.setAttribute('data-scalar', '0')
             observer.observe(child)
             observedChildrenRef.current[childIndex] = child
@@ -175,7 +174,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
 
             // Add the section
             const { top, bottom } = child.getBoundingClientRect()
-            addSection(index, {
+            addSection(`${childIndex}`, {
               start: top,
               end: bottom,
             })
@@ -196,6 +195,12 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
 
       window.removeEventListener('resize', onResize)
       reset()
+
+      for (let i = 0; i < container.children.length; i++) {
+        const child = container.children[i]
+        child.removeAttribute('data-section')
+        child.removeAttribute('data-scalar')
+      }
     }
   }, [addSection, reset, scroll, setTotalHeight])
 
