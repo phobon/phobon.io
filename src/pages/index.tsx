@@ -37,11 +37,11 @@ export default function Page({ ...props }) {
         <Text>ASDF2</Text>
 
         <Image
-          src='phbn2.webp'
+          src='phbn_grayscale.png'
           alt='test'
           className={css({
-            width: '50%',
-            height: 'auto',
+            width: 500,
+            height: 500,
           })}
         />
         {/* <h1

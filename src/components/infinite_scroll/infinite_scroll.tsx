@@ -4,6 +4,7 @@ import normalizeWheel from 'normalize-wheel'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 import { InfiniteScrollStore, useInfiniteScrollStore } from '@/stores/use_infinite_scroll_store'
+import { useDebug } from '@/helpers/use_debug'
 
 export type InfiniteScrollProps = {} & React.HTMLAttributes<HTMLDivElement>
 
@@ -24,6 +25,8 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
 
   const containerRef = useRef<HTMLDivElement>()
   const observedChildrenRef = useRef<any>({})
+
+  const debug = useDebug()
 
   // Height of the container
   const heightRef = useRef<number>(0)
@@ -118,11 +121,13 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
               count -= 1
             }
 
-            console.log({
-              section,
-              childCount,
-              previousSection,
-            })
+            if (debug) {
+              console.log({
+                section,
+                childCount,
+                previousSection,
+              })
+            }
 
             const previousSectionElement = observedChildrenRef.current[previousSection]
 
@@ -131,9 +136,13 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
             previousSectionElement.dataset.scalar = `${scalar}`
           }
 
-          console.log(`${section}: leaving --- scrolling ${isScrollingDown ? 'down' : 'up'}`)
+          if (debug) {
+            console.log(`${section}: leaving --- scrolling ${isScrollingDown ? 'down' : 'up'}`)
+          }
         } else if (entry.isIntersecting) {
-          console.log(`${section}: entering --- scrolling ${isScrollingDown ? 'down' : 'up'}`)
+          if (debug) {
+            console.log(`${section}: entering --- scrolling ${isScrollingDown ? 'down' : 'up'}`)
+          }
         }
       })
     })
