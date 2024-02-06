@@ -1,12 +1,11 @@
 import { View } from '@react-three/drei'
-import React, { MutableRefObject, ReactNode, RefObject, useEffect, useMemo, useRef } from 'react'
+import React, { RefObject, useRef } from 'react'
 import { Image as DreiImage } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, useFrame, useThree } from '@react-three/fiber'
-import { Material } from 'three'
+import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
-import { useImgTracker, useTracker } from '@/helpers/use_tracker'
+import { useImgTracker } from '@/helpers/use_tracker'
 import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 
 const Image = ({ className, src, alt, ...props }) => {
@@ -25,7 +24,7 @@ const Image = ({ className, src, alt, ...props }) => {
         className={cn(
           css({
             opacity: 0,
-            // display: 'inline-block',
+            visibility: 'hidden',
           }),
           className,
         )}
@@ -48,7 +47,7 @@ const Image = ({ className, src, alt, ...props }) => {
 type WebGLImageProps = {
   imgRef: RefObject<HTMLImageElement>
   rect: DOMRect
-} & any
+}
 
 const WebGLImage = ({ imgRef, rect, ...props }: WebGLImageProps) => {
   const ref = useRef<any>()

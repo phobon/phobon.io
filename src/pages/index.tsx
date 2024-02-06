@@ -14,6 +14,8 @@ import experiences from '@/data/experiences.json'
 import writing from '@/data/writing.json'
 import { View, shaderMaterial } from '@react-three/drei'
 import { ShaderMaterial } from 'three'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
@@ -55,8 +57,10 @@ const Placeholder = () => {
 
 export default function Page({ ...props }) {
   return (
-    <InfiniteScroll>
+    <InfiniteScroll as='main'>
       <ScrollSection className={sectionStyles}>
+        <Header />
+
         <View
           className={css({
             position: 'absolute',
@@ -99,57 +103,18 @@ export default function Page({ ...props }) {
             })}
           />
         </div>
-
-        {/* <h1
-          className={css({
-            width: '100%',
-            color: '$slate12',
-            fontWeight: 'light',
-            gridColumn: '1 / -1',
-            fontSize: {
-              base: '$9',
-              md: '$11',
-            },
-            lineHeight: {
-              base: '$2',
-              md: '$1',
-            },
-            '&> span': {
-              display: 'inline-table',
-            },
-          })}
-        >
-          <span>I&apos;m&nbsp;</span>
-          <span>
-            <SlideLink href='/about'>Ben</SlideLink>
-          </span>
-          <span>, a&nbsp;</span>
-          <span
-            className={css({
-              color: '$purple10',
-            })}
-          >
-            developer&nbsp;
-          </span>
-          <span>&&nbsp;</span>
-          <span
-            className={css({
-              color: '$purple10',
-            })}
-          >
-            designer&nbsp;
-          </span>
-          <span>based in Perth&nbsp;</span>
-        </h1> */}
       </ScrollSection>
 
       {writing.map(({ key, ...s }, i) => {
         return (
-          <ScrollSection key={key} className={sectionStyles} style={{ backgroundColor: slate[`slate${i + 4}`] }}>
+          <ScrollSection key={key} className={sectionStyles}>
             <FluidStudy {...s} />
           </ScrollSection>
         )
       })}
+      <ScrollSection className={sectionStyles}>
+        <Footer />
+      </ScrollSection>
     </InfiniteScroll>
   )
 }

@@ -15,7 +15,7 @@ export type MainProps = {
   showLoader?: boolean
 } & Partial<SceneProps>
 
-export const Main = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
+export const MainScene = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
   const ref = useRef()
 
   const searchParams = useSearchParams()
@@ -23,7 +23,7 @@ export const Main = ({ className, screenSizeCamera = false, showLoader = false, 
 
   return (
     <>
-      <main
+      <div
         ref={ref}
         className={cn(
           css({
@@ -53,7 +53,7 @@ export const Main = ({ className, screenSizeCamera = false, showLoader = false, 
           showLoader={showLoader}
           screenSizeCamera={screenSizeCamera}
         />
-      </main>
+      </div>
 
       {debug ? <DebugGrid /> : null}
     </>

@@ -22,20 +22,8 @@ export const Header = ({ ...props }) => {
           position: 'sticky',
           zIndex: 2,
           overflow: 'hidden',
-          backdropFilter: 'blur(8px)',
-
           display: 'flex',
           flexDirection: 'column',
-
-          _after: {
-            content: '""',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '$slate1',
-            opacity: 0.7,
-            zIndex: -1,
-          },
         }),
         gridStyles,
         'phbn__header',
@@ -86,8 +74,6 @@ export const Header = ({ ...props }) => {
           <HamburgerGlyph />
         </Button>
       </section>
-
-      <Spacer />
     </header>
   )
 }

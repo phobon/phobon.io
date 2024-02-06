@@ -3,6 +3,8 @@ import { motion, MotionProps } from 'framer-motion'
 
 import ShiftImage from '@/components/shift_image'
 import { css } from '@/design/css'
+import Image from '../canvas/webgl_image'
+import Text from '../canvas/webgl_text'
 
 export type FluidStudyProps = {
   href?: string
@@ -15,7 +17,7 @@ export type FluidStudyProps = {
 } & MotionProps &
   React.HTMLAttributes<HTMLDivElement>
 
-export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
+export const FluidStudy = ({
   href,
   src,
   title,
@@ -24,7 +26,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
   className,
   style,
   ...props
-}) => {
+}: FluidStudyProps) => {
   return (
     <Link href={href} className={className} style={style}>
       <div
@@ -37,9 +39,9 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
         })}
         {...props}
       >
-        {/* <ShiftImage src={src} alt={title} loading='eager' /> */}
+        <Image src={src} alt={title} className={css({ width: '100%', height: 'auto' })} />
 
-        <span
+        <Text
           className={css({
             fontSize: {
               base: '$3',
@@ -49,8 +51,9 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
           })}
         >
           {published}
-        </span>
-        <h2
+        </Text>
+        <Text
+          as='h2'
           className={css({
             fontSize: {
               base: '$6',
@@ -60,8 +63,9 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
           })}
         >
           {title}
-        </h2>
-        <p
+        </Text>
+        <Text
+          as='p'
           className={css({
             fontSize: {
               base: '$4',
@@ -71,8 +75,8 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
           })}
         >
           {description}
-        </p>
-        <span
+        </Text>
+        <Text
           className={css({
             fontSize: {
               base: '$4',
@@ -81,7 +85,7 @@ export const FluidStudy: React.FunctionComponent<FluidStudyProps> = ({
           })}
         >
           Read more
-        </span>
+        </Text>
       </div>
     </Link>
   )

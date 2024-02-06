@@ -1,5 +1,7 @@
+import Text from '@/components/canvas/webgl_text'
 import SlideLink from '@/components/slide_link'
 import { css } from '@/design/css'
+import Link from 'next/link'
 
 export type NavigationLinkProps = {
   id?: string | number
@@ -18,11 +20,11 @@ export const NavigationLink = ({ label, href, external = false, onClick, ...prop
       {...props}
     >
       {external ? (
-        <SlideLink href={href}>{label}</SlideLink>
+        <a href={href}>{label}</a>
       ) : (
-        <SlideLink href={href} onClick={onClick}>
-          {label}
-        </SlideLink>
+        <Link href={href} onClick={onClick}>
+          <Text>{label}</Text>
+        </Link>
       )}
     </span>
   )

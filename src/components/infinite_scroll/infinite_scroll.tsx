@@ -6,7 +6,9 @@ import { cn } from '@/helpers/cn'
 import { InfiniteScrollStore, useInfiniteScrollStore } from '@/stores/use_infinite_scroll_store'
 import { useDebug } from '@/helpers/use_debug'
 
-export type InfiniteScrollProps = {} & React.HTMLAttributes<HTMLDivElement>
+export type InfiniteScrollProps = {
+  as?: any
+} & React.HTMLAttributes<HTMLDivElement>
 
 const infiniteScrollDataSelector = ({
   setScroll,
@@ -20,7 +22,7 @@ const infiniteScrollDataSelector = ({
   reset,
 })
 
-export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => {
+export const InfiniteScroll = ({ className, children, as: Tag = 'div' }: InfiniteScrollProps) => {
   const { setScroll, setTotalHeight, addSection, reset } = useInfiniteScrollStore(infiniteScrollDataSelector)
 
   const containerRef = useRef<HTMLDivElement>()
@@ -147,8 +149,6 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
       })
     })
 
-    const sections = {}
-
     // Observe any children that exist at time of render
     let childIndex = 0
     for (let i = 0; i < container.children.length; i++) {
@@ -214,7 +214,7 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
   }, [addSection, reset, scroll, setTotalHeight])
 
   return (
-    <div
+    <Tag
       ref={containerRef}
       className={cn(
         css({
@@ -228,6 +228,6 @@ export const InfiniteScroll = ({ className, children }: InfiniteScrollProps) => 
       )}
     >
       {children}
-    </div>
+    </Tag>
   )
 }

@@ -29,6 +29,7 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
           css({
             opacity: 0,
             display: 'inline-block',
+            visibility: 'hidden',
           }),
           className,
         )}
