@@ -34,6 +34,6 @@ void main(void) {
 
   finalColor.rgb = correctGamma(finalColor.rgb);
 
-  gl_FragColor = vec4(finalColor, 1.0);
+  gl_FragColor = vec4(finalColor, baseTexel.a);
 }
 

@@ -7,10 +7,8 @@ import { Loader } from './loader'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
-import SceneFBORenderer from './scene_fbo_renderer'
+// import SceneFBORenderer from './scene_fbo_renderer'
 // import ChromaticAbberationMaterial from '../effects/chromatic_abberation'
-import PixelUv from '../effects/pixel_uv'
-// import RepeaterMaterial from '../effects/repeater'
 
 export type SceneProps = {
   debug?: boolean
@@ -29,17 +27,15 @@ const Scene = ({
     <>
       {/* @ts-ignore */}
       <Canvas id='__canvas' {...props}>
-        <color attach='background' args={['#FFF']} />
         <Preload all />
 
         <AdaptiveDpr />
 
         <View.Port />
 
-        <SceneFBORenderer>
-          {/* <ChromaticAbberationMaterial /> */}
-          <PixelUv />
-        </SceneFBORenderer>
+        {/* <SceneFBORenderer>
+          <ChromaticAbberationMaterial />
+        </SceneFBORenderer> */}
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
 

@@ -30,7 +30,6 @@ const Image = ({ className, src, alt, ...props }) => {
           className,
         )}
         alt={alt}
-        {...props}
       />
       <View
         track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
@@ -49,7 +48,7 @@ const Image = ({ className, src, alt, ...props }) => {
 type WebGLImageProps = {
   imgRef: RefObject<HTMLImageElement>
   rect: DOMRect
-}
+} & any
 
 const WebGLImage = ({ imgRef, rect, ...props }: WebGLImageProps) => {
   const ref = useRef<any>()

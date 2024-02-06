@@ -1,9 +1,9 @@
-import { View } from '@react-three/drei'
+import { View, shaderMaterial } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, useThree } from '@react-three/fiber'
-import { Material } from 'three'
+import { Vector3, extend, useThree } from '@react-three/fiber'
+import { Material, ShaderMaterial } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
 import { useTracker } from '@/helpers/use_tracker'
@@ -11,9 +11,10 @@ import { useTracker } from '@/helpers/use_tracker'
 export type TextProps = {
   font?: string
   as?: any
-} & React.HTMLAttributes<HTMLDivElement>
+} & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
+  React.HTMLAttributes<HTMLDivElement>
 
-const Text = ({ className, children, font, as: Tag = 'span' }: TextProps) => {
+const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextProps) => {
   const { trackRef, rect } = useTracker()
 
   return (
@@ -43,7 +44,7 @@ const Text = ({ className, children, font, as: Tag = 'span' }: TextProps) => {
         })}
       >
         <PerspectiveCamera makeDefault />
-        <WebGLText textRef={trackRef} font={font}>
+        <WebGLText textRef={trackRef} font={font} {...props}>
           {children}
         </WebGLText>
       </View>
