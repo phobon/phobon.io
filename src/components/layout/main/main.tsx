@@ -15,7 +15,7 @@ export type MainProps = {
   showLoader?: boolean
 } & Partial<SceneProps>
 
-export const MainScene = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
+export const Main = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
   const ref = useRef()
 
   const searchParams = useSearchParams()

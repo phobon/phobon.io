@@ -1,3 +1,3 @@
-import { MainScene } from './main'
+import { Main } from './main'
 
-export default MainScene
+export default Main
