@@ -14,17 +14,22 @@ import './global.css'
 import dynamic from 'next/dynamic'
 import SlideLink from '@/components/slide_link'
 
+const Header = dynamic(() => import('@/components/layout/header'), { ssr: false })
 const MainScene = dynamic(() => import('@/components/layout/main_scene'), { ssr: false })
 
 const PhobonApp = ({ Component, pageProps, router }) => {
   return (
-    <MainScene debug screenSizeCamera className={GeistSans.className}>
-      <MDXProvider components={markdown}>
-        <AnimatePresence>
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
-      </MDXProvider>
-    </MainScene>
+    <>
+      <Header />
+
+      <MainScene debug screenSizeCamera className={GeistSans.className}>
+        <MDXProvider components={markdown}>
+          <AnimatePresence>
+            <Component {...pageProps} key={router.route} />
+          </AnimatePresence>
+        </MDXProvider>
+      </MainScene>
+    </>
   )
 }
 

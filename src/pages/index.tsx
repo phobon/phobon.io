@@ -6,7 +6,6 @@ import { extend, useFrame } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
 import InfiniteScroll from '@/components/infinite_scroll'
 import ScrollSection from '@/components/infinite_scroll/scroll_section'
-import { slate } from '@radix-ui/colors'
 import FluidStudy from '@/components/fluid_study'
 
 import projects from '@/data/projects.json'
@@ -14,8 +13,6 @@ import experiences from '@/data/experiences.json'
 import writing from '@/data/writing.json'
 import { View, shaderMaterial } from '@react-three/drei'
 import { ShaderMaterial } from 'three'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
@@ -59,8 +56,6 @@ export default function Page({ ...props }) {
   return (
     <InfiniteScroll as='main'>
       <ScrollSection className={sectionStyles}>
-        <Header />
-
         <View
           className={css({
             position: 'absolute',
@@ -112,9 +107,6 @@ export default function Page({ ...props }) {
           </ScrollSection>
         )
       })}
-      <ScrollSection className={sectionStyles}>
-        <Footer />
-      </ScrollSection>
     </InfiniteScroll>
   )
 }

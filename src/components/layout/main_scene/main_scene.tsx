@@ -23,7 +23,7 @@ export const MainScene = ({ className, screenSizeCamera = false, showLoader = fa
 
   return (
     <>
-      <div
+      <main
         ref={ref}
         className={cn(
           css({
@@ -53,7 +53,7 @@ export const MainScene = ({ className, screenSizeCamera = false, showLoader = fa
           showLoader={showLoader}
           screenSizeCamera={screenSizeCamera}
         />
-      </div>
+      </main>
 
       {debug ? <DebugGrid /> : null}
     </>
