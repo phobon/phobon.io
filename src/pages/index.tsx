@@ -84,6 +84,9 @@ const Hero = () => {
         sectionStyles,
         css({
           height: '100vh',
+          pt: '$12',
+          gridTemplateRows: 'auto auto 1fr',
+          gridRowGap: '$5',
         }),
       )}
     >
@@ -93,12 +96,23 @@ const Hero = () => {
           flexDirection: 'column',
           lineHeight: '$none',
           gridColumn: '2 / -1',
+          width: '100%',
           fontSize: '$11',
         })}
       >
         <Text>Ben McCormick.</Text>
         <Text>Creative Developer</Text>
       </h1>
+
+      <Text
+        as='p'
+        className={css({
+          gridColumn: '2 / span 3',
+        })}
+      >
+        I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
+        beautiful, functional, and accessible digital experiences.
+      </Text>
     </section>
   )
 }

@@ -29,7 +29,7 @@ export const Identity = forwardRef<HTMLDivElement, IdentityProps>(({ className, 
       height='100%'
       viewBox='0 0 16 16'
       className={css({
-        fill: '$slate5',
+        fill: '$slate11',
         transition: 'transform 90ms ease-out',
         _hover: {
           transform: 'scale(1.1)',

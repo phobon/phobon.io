@@ -20,10 +20,10 @@ export const NavigationLink = ({ label, href, external = false, onClick, ...prop
       {...props}
     >
       {external ? (
-        <a href={href}>{label}</a>
+        <SlideLink href={href}>{label}</SlideLink>
       ) : (
         <Link href={href} onClick={onClick}>
-          <Text>{label}</Text>
+          {label}
         </Link>
       )}
     </span>

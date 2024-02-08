@@ -6,7 +6,6 @@ import { navigationLinks } from '@/data/links'
 import { NavigationLink } from '@/components/layout/navigation'
 import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
-import { Spacer } from '@/components/primitives/spacer'
 import { Button } from '@/components/primitives/button'
 import { HamburgerGlyph } from '@/components/glyphs/hamburger_glyph'
 import Identity from '@/components/identity'
@@ -23,56 +22,53 @@ export const Header = ({ ...props }) => {
           zIndex: 2,
           overflow: 'hidden',
           flexDirection: 'column',
+          py: '$4',
         }),
         gridStyles,
         'phbn__header',
       )}
       {...props}
     >
-      <section
+      <Link
+        href='/'
         className={css({
-          display: 'flex',
-          width: '100%',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          py: '$4',
+          gridColumn: '2 / span 1',
         })}
       >
-        <Link href='/'>
-          <Identity aria-label='Go home' />
-        </Link>
-        <nav
-          className={css({
-            display: {
-              base: 'none',
-              md: 'flex',
-            },
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '$3',
-          })}
-        >
-          {navigationLinks.slice(1).map(({ id, ...rest }) => (
-            <NavigationLink key={id} id={id} fontSize={5} {...rest} />
-          ))}
-        </nav>
-
-        <Button
-          aria-label='Open menu'
-          variant='tertiary'
-          onClick={() => {
-            // TODO
-          }}
-          className={css({
-            display: {
-              base: 'flex',
-              md: 'none',
-            },
-          })}
-        >
-          <HamburgerGlyph />
-        </Button>
-      </section>
+        <Identity aria-label='Go home' />
+      </Link>
+      <nav
+        className={css({
+          gridColumn: '3 / -2',
+          display: {
+            base: 'none',
+            md: 'grid',
+          },
+          gridTemplateColumns: 'subgrid',
+          gridTemplateRows: 'subgrid',
+          alignItems: 'center',
+          justifyContent: 'start',
+        })}
+      >
+        {navigationLinks.slice(1).map(({ id, ...rest }) => (
+          <NavigationLink key={id} id={id} fontSize={5} {...rest} />
+        ))}
+      </nav>
+      <Button
+        aria-label='Open menu'
+        variant='tertiary'
+        onClick={() => {
+          // TODO
+        }}
+        className={css({
+          display: {
+            base: 'flex',
+            md: 'none',
+          },
+        })}
+      >
+        <HamburgerGlyph />
+      </Button>
     </header>
   )
 }

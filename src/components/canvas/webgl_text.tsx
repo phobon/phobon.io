@@ -19,10 +19,13 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
 
   return (
     <span
-      className={css({
-        position: 'relative',
-        width: '100%',
-      })}
+      className={cn(
+        css({
+          position: 'relative',
+          width: '100%',
+        }),
+        className,
+      )}
     >
       <Tag
         ref={trackRef}
