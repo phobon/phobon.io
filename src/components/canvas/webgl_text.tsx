@@ -1,9 +1,9 @@
-import { View, shaderMaterial } from '@react-three/drei'
+import { View } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, extend, useThree } from '@react-three/fiber'
-import { Material, ShaderMaterial } from 'three'
+import { Vector3, useThree } from '@react-three/fiber'
+import { Material } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
 import { useTracker } from '@/helpers/use_tracker'
@@ -18,9 +18,10 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
   const { trackRef, rect } = useTracker()
 
   return (
-    <div
+    <span
       className={css({
         position: 'relative',
+        width: '100%',
       })}
     >
       <Tag
@@ -49,7 +50,7 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
           {children}
         </WebGLText>
       </View>
-    </div>
+    </span>
   )
 }
 
