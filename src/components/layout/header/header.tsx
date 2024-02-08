@@ -24,18 +24,6 @@ export const Header = ({ ...props }) => {
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-
-          backdropFilter: 'blur(8px)',
-
-          _after: {
-            content: '""',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '$slate1',
-            opacity: 0.7,
-            zIndex: -1,
-          },
         }),
         gridStyles,
         'phbn__header',

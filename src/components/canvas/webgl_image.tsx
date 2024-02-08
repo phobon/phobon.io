@@ -12,10 +12,13 @@ const Image = ({ className, src, alt, ...props }) => {
   const { trackRef, rect } = useImgTracker()
 
   return (
-    <div
-      className={css({
-        position: 'relative',
-      })}
+    <span
+      className={cn(
+        css({
+          position: 'relative',
+        }),
+        className,
+      )}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -40,7 +43,7 @@ const Image = ({ className, src, alt, ...props }) => {
         <PerspectiveCamera makeDefault />
         {rect ? <WebGLImage imgRef={trackRef} rect={rect} {...props} /> : null}
       </View>
-    </div>
+    </span>
   )
 }
 
