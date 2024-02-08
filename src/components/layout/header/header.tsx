@@ -22,7 +22,6 @@ export const Header = ({ ...props }) => {
           position: 'sticky',
           zIndex: 2,
           overflow: 'hidden',
-          display: 'flex',
           flexDirection: 'column',
         }),
         gridStyles,

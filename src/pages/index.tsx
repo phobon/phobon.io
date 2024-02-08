@@ -8,11 +8,14 @@ import InfiniteScroll from '@/components/infinite_scroll'
 import ScrollSection from '@/components/infinite_scroll/scroll_section'
 import FluidStudy from '@/components/fluid_study'
 
+import { View, shaderMaterial } from '@react-three/drei'
+import { ShaderMaterial } from 'three'
+import { cn } from '@/helpers/cn'
+import { gridStyles } from '@/components/layout/common'
+
 import projects from '@/data/projects.json'
 import experiences from '@/data/experiences.json'
 import writing from '@/data/writing.json'
-import { View, shaderMaterial } from '@react-three/drei'
-import { ShaderMaterial } from 'three'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
@@ -54,12 +57,50 @@ const Placeholder = () => {
 
 export default function Page({ ...props }) {
   return (
-    <InfiniteScroll as='main'>
+    <InfiniteScroll
+      className={cn(
+        css({
+          display: 'grid',
+        }),
+        gridStyles,
+      )}
+    >
       <ScrollSection className={sectionStyles}>
         <View
           className={css({
-            position: 'absolute',
-            inset: 0,
+            width: '100%',
+            height: '100%',
+            gridColumn: 'span 3',
+          })}
+          track={undefined}
+        >
+          <Placeholder />
+        </View>
+        <View
+          className={css({
+            width: '100%',
+            height: '100%',
+            gridColumn: 'span 3',
+          })}
+          track={undefined}
+        >
+          <Placeholder />
+        </View>
+        <View
+          className={css({
+            width: '100%',
+            height: '100%',
+            gridColumn: 'span 3',
+          })}
+          track={undefined}
+        >
+          <Placeholder />
+        </View>
+        <View
+          className={css({
+            width: '100%',
+            height: '100%',
+            gridColumn: 'span 3',
           })}
           track={undefined}
         >
@@ -71,6 +112,7 @@ export default function Page({ ...props }) {
             display: 'flex',
             flexDirection: 'column',
             lineHeight: '$none',
+            gridColumn: '1 / -1',
           })}
         >
           <Text
@@ -103,7 +145,12 @@ export default function Page({ ...props }) {
       {writing.map(({ key, ...s }, i) => {
         return (
           <ScrollSection key={key} className={sectionStyles}>
-            <FluidStudy {...s} />
+            <FluidStudy
+              {...s}
+              className={css({
+                gridColumn: '1 / -1',
+              })}
+            />
           </ScrollSection>
         )
       })}
@@ -117,7 +164,6 @@ const sectionStyles = css({
   display: 'grid',
   gridColumn: '1 / -1',
   gridTemplateColumns: 'subgrid',
-  position: 'relative',
 })
 
 const viewStyles = css({

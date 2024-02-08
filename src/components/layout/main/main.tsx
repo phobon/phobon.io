@@ -33,7 +33,6 @@ export const Main = ({ className, screenSizeCamera = false, showLoader = false, 
             overflow: 'auto',
             touchAction: 'auto',
           }),
-          gridStyles,
           className,
           'phbn__main',
         )}
