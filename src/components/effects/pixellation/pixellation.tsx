@@ -1,6 +1,6 @@
 import { useFrame, extend, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
-import { shaderMaterial, useTexture } from '@react-three/drei'
+import { shaderMaterial } from '@react-three/drei'
 import { v4 as uuid } from 'uuid'
 
 import vertexShader from './vertex.glsl'

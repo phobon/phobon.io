@@ -15,7 +15,7 @@ const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod)
 export default function Page({ ...props }) {
   return (
     <>
-      <Hero />
+      <Hero testIntersection />
 
       <section
         className={cn(
@@ -69,7 +69,7 @@ export default function Page({ ...props }) {
             width: '100%',
           })}
         >
-          <Text>Some other random bullshit.</Text>
+          {/* <Text>Some other random bullshit.</Text> */}
         </h2>
       </section>
       <Hero />
@@ -77,7 +77,7 @@ export default function Page({ ...props }) {
   )
 }
 
-const Hero = () => {
+const Hero = ({ testIntersection = true }) => {
   return (
     <section
       className={cn(
@@ -86,7 +86,7 @@ const Hero = () => {
           height: '100vh',
           pt: '$12',
           gridTemplateRows: 'auto auto 1fr',
-          gridRowGap: '$5',
+          gridRowGap: '$10',
         }),
       )}
     >
@@ -100,19 +100,19 @@ const Hero = () => {
           fontSize: '$11',
         })}
       >
-        <Text>Ben McCormick.</Text>
-        <Text>Creative Developer</Text>
+        <Text testIntersection={testIntersection}>Ben McCormick.</Text>
+        {/* <Text>Creative Developer</Text> */}
       </h1>
 
-      <Text
+      {/* <Text
         as='p'
         className={css({
-          gridColumn: '2 / span 3',
+          gridColumn: '2 / span 2',
         })}
       >
         I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
         beautiful, functional, and accessible digital experiences.
-      </Text>
+      </Text> */}
     </section>
   )
 }

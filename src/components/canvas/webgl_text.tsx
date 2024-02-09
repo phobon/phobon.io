@@ -1,21 +1,26 @@
 import { View } from '@react-three/drei'
-import React, { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
+import React, { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, useThree } from '@react-three/fiber'
+import { Vector3, extend, useFrame, useThree } from '@react-three/fiber'
 import { Material } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
 import { useTracker } from '@/helpers/use_tracker'
+import { MotionValue, useMotionValueEvent } from 'framer-motion'
+import * as THREE from 'three'
+
+import { useGSAP } from '@gsap/react'
 
 export type TextProps = {
   font?: string
   as?: any
+  testIntersection?: boolean
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
   React.HTMLAttributes<HTMLDivElement>
 
-const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextProps) => {
-  const { trackRef, rect } = useTracker()
+const Text = ({ className, children, font, as: Tag = 'span', testIntersection = false, ...props }: TextProps) => {
+  const { trackRef, intersecting } = useTracker()
 
   return (
     <span
@@ -33,7 +38,7 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
           css({
             opacity: 0,
             display: 'inline-block',
-            visibility: 'hidden',
+            // visibility: 'hidden',
           }),
           className,
         )}
@@ -49,7 +54,7 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
         })}
       >
         <PerspectiveCamera makeDefault />
-        <WebGLText textRef={trackRef} font={font} {...props}>
+        <WebGLText textRef={trackRef} font={font} intersecting={intersecting} {...props}>
           {children}
         </WebGLText>
       </View>
@@ -68,6 +73,8 @@ type WebGLTextProps = {
   overrideEmissive?: boolean
   color?: string
   scaleMultiplier?: number
+  intersecting?: MotionValue<boolean>
+  testIntersection?: boolean
 }
 
 export const WebGLText = ({
@@ -81,9 +88,60 @@ export const WebGLText = ({
   overrideEmissive = false,
   color,
   scaleMultiplier = 1,
+  intersecting,
+  testIntersection,
   ...props
 }: WebGLTextProps) => {
   const { size } = useThree()
+  const meshRef = useRef<any>()
+
+  useMotionValueEvent(intersecting, 'change', (latest) => {
+    // if (!testIntersection) {
+    //   return
+    // }
+
+    if (!meshRef.current) {
+      return
+    }
+    console.log(latest)
+
+    meshRef.current.material.uniforms.u_progress.value = latest
+  })
+
+  // console.log(size)
+
+  // const dimensions = (children as string)?.length
+  // useEffect(() => {
+  //   const regenerateDataTexture = () => {
+  //     // Populate data texture with initial values
+  //     const data = new Float32Array(4 * dimensions)
+  //     const step = 1 / dimensions
+  //     let value = 0
+  //     for (let stride = 0; stride < dimensions; stride++) {
+  //       const index = 4 * stride
+  //       console.log(value)
+  //       data[index] = value
+  //       data[index + 1] = value
+  //       data[index + 2] = value
+  //       data[index + 3] = value
+
+  //       value += step
+  //     }
+  //     const dataTexture = new THREE.DataTexture(data, dimensions, 1, THREE.RGBAFormat, THREE.FloatType)
+  //     dataTexture.minFilter = dataTexture.magFilter = THREE.NearestFilter
+  //     dataTexture.needsUpdate = true
+
+  //     meshRef.current.material.uniforms.u_dataTexture.value = dataTexture
+  //     meshRef.current.material.uniforms.u_dataTexture.value.needsUpdate = true
+  //   }
+
+  //   window.addEventListener('resize', regenerateDataTexture)
+  //   regenerateDataTexture()
+
+  //   return () => {
+  //     window.removeEventListener('resize', regenerateDataTexture)
+  //   }
+  // }, [dimensions])
 
   const { textColor, fontSize, textAlign, lineHeight, letterSpacing } = useMemo(() => {
     if (!textRef.current) {
@@ -137,12 +195,14 @@ export const WebGLText = ({
   //   positionX: xOffset + fontSize * fontOffsetX,
   // })
   const position: Vector3 = [xOffset + fontSize * fontOffsetX, yOffset + fontSize * fontOffsetY, 0]
+  const maxWidth = scale ? scale[0] : size.width
 
   return (
     <group position={[-size.width / 2, 0, 0]}>
       <DreiText
+        ref={meshRef}
         fontSize={fontSize}
-        maxWidth={scale ? scale[0] : size.width}
+        maxWidth={maxWidth}
         lineHeight={lineHeight}
         // @ts-ignore
         textAlign={textAlign}
@@ -154,7 +214,8 @@ export const WebGLText = ({
         anchorX={textAlign}
         anchorY='top' // so text moves down if row breaks
         position={position}
-        material={material}
+        material={RevealMaterial}
+        material-uniforms-u_height-value={size.height}
         {...props}
       >
         {children}
@@ -164,3 +225,37 @@ export const WebGLText = ({
 }
 
 export default Text
+
+const RevealMaterial = new THREE.ShaderMaterial({
+  uniforms: {
+    u_height: { value: 0 },
+    u_progress: { value: 0 },
+    // u_dataTexture: { value: null },
+  },
+  vertexShader: `
+    varying vec2 v_uv;
+    // uniform sampler2D u_dataTexture;
+    uniform float u_height;
+    uniform float u_progress;
+
+    void main() {
+      vec3 pos = position;
+      pos.y -= u_progress * u_height;
+
+      vec4 modelPosition = modelMatrix * vec4(pos, 1.0);
+
+      vec4 viewPosition = viewMatrix * modelPosition;
+      vec4 projectedPosition = projectionMatrix * viewPosition;
+      gl_Position = projectedPosition;
+      v_uv = uv;
+    }
+  `,
+  fragmentShader: `
+    // uniform sampler2D u_dataTexture;
+    varying vec2 v_uv;
+    uniform vec3 color;
+    void main() {
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `,
+})
