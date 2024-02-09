@@ -15,7 +15,41 @@ const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod)
 export default function Page({ ...props }) {
   return (
     <>
-      <Hero testIntersection />
+      <section
+        className={cn(
+          sectionStyles,
+          css({
+            height: '100vh',
+            pt: '$12',
+            gridTemplateRows: 'auto auto 1fr',
+            gridRowGap: '$10',
+          }),
+        )}
+      >
+        <h1
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            lineHeight: '$none',
+            gridColumn: '2 / -1',
+            width: '100%',
+            fontSize: '$11',
+          })}
+        >
+          <Text>Ben McCormick.</Text>
+          <Text>Creative Developer</Text>
+        </h1>
+
+        <Text
+          as='p'
+          className={css({
+            gridColumn: '2 / span 2',
+          })}
+        >
+          I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
+          beautiful, functional, and accessible digital experiences.
+        </Text>
+      </section>
 
       <section
         className={cn(
@@ -72,48 +106,7 @@ export default function Page({ ...props }) {
           {/* <Text>Some other random bullshit.</Text> */}
         </h2>
       </section>
-      <Hero />
     </>
-  )
-}
-
-const Hero = ({}) => {
-  return (
-    <section
-      className={cn(
-        sectionStyles,
-        css({
-          height: '100vh',
-          pt: '$12',
-          gridTemplateRows: 'auto auto 1fr',
-          gridRowGap: '$10',
-        }),
-      )}
-    >
-      <h1
-        className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          lineHeight: '$none',
-          gridColumn: '2 / -1',
-          width: '100%',
-          fontSize: '$11',
-        })}
-      >
-        <Text>Ben McCormick.</Text>
-        <Text>Creative Developer</Text>
-      </h1>
-
-      <Text
-        as='p'
-        className={css({
-          gridColumn: '2 / span 2',
-        })}
-      >
-        I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
-        beautiful, functional, and accessible digital experiences.
-      </Text>
-    </section>
   )
 }
 
