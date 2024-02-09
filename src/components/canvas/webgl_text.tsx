@@ -1,4 +1,4 @@
-import { View } from '@react-three/drei'
+import { View, shaderMaterial } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
@@ -8,7 +8,7 @@ import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
 import { useTracker } from '@/helpers/use_tracker'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
-import * as THREE from 'three'
+import { v4 as uuid } from 'uuid'
 
 export type TextProps = {
   font?: string
@@ -35,8 +35,9 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
         className={cn(
           css({
             opacity: 0,
-            display: 'inline-block',
-            // visibility: 'hidden',
+            display: 'block',
+            // backgroundColor: 'orange',
+            visibility: 'hidden',
           }),
           className,
         )}
@@ -71,7 +72,7 @@ type WebGLTextProps = {
   overrideEmissive?: boolean
   color?: string
   scaleMultiplier?: number
-  intersecting?: MotionValue<boolean>
+  intersecting?: MotionValue<number>
 }
 
 export const WebGLText = ({
@@ -95,7 +96,7 @@ export const WebGLText = ({
     if (!meshRef.current) {
       return
     }
-
+    meshRef.current.material.uniforms.u_height.value = size.height
     meshRef.current.material.uniforms.u_progress.value = latest
   })
 
@@ -205,10 +206,10 @@ export const WebGLText = ({
         anchorX={textAlign}
         anchorY='top' // so text moves down if row breaks
         position={position}
-        material={RevealMaterial}
-        material-uniforms-u_height-value={size.height}
         {...props}
       >
+        {/* @ts-ignore */}
+        <revealMaterial uniforms-u_height-value={size.height} />
         {children}
       </DreiText>
     </group>
@@ -217,13 +218,13 @@ export const WebGLText = ({
 
 export default Text
 
-const RevealMaterial = new THREE.ShaderMaterial({
-  uniforms: {
-    u_height: { value: 0 },
-    u_progress: { value: 0 },
+const RevealMaterial = shaderMaterial(
+  {
+    u_height: 0,
+    u_progress: 0,
     // u_dataTexture: { value: null },
   },
-  vertexShader: `
+  `
     varying vec2 v_uv;
     // uniform sampler2D u_dataTexture;
     uniform float u_height;
@@ -241,7 +242,7 @@ const RevealMaterial = new THREE.ShaderMaterial({
       v_uv = uv;
     }
   `,
-  fragmentShader: `
+  `
     // uniform sampler2D u_dataTexture;
     varying vec2 v_uv;
     uniform vec3 color;
@@ -249,4 +250,8 @@ const RevealMaterial = new THREE.ShaderMaterial({
       gl_FragColor = vec4(color, 1.0);
     }
   `,
-})
+)
+
+RevealMaterial.key = uuid()
+
+extend({ RevealMaterial })

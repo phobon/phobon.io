@@ -29,7 +29,7 @@ const Image = ({ className, src, alt, ...props }) => {
         className={cn(
           css({
             opacity: 0,
-            visibility: 'hidden',
+            // visibility: 'hidden',
           }),
           className,
         )}
@@ -41,6 +41,10 @@ const Image = ({ className, src, alt, ...props }) => {
           position: 'absolute',
           inset: 0,
         })}
+        style={{
+          width: rect?.width,
+          height: rect?.height,
+        }}
       >
         <PerspectiveCamera makeDefault />
         {rect ? <WebGLImage imgRef={trackRef} rect={rect} scrollYProgress={scrollYProgress} {...props} /> : null}

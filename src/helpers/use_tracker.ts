@@ -1,10 +1,10 @@
-import { useMotionValue, useScroll, useSpring } from 'framer-motion'
+import { useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
 import { useLayoutEffect, useRef, useState } from 'react'
 
 export const useTracker = <Type extends HTMLElement>() => {
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
-  const intersecting = useSpring(1, { stiffness: 100, damping: 20 })
+  const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
