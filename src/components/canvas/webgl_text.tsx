@@ -10,8 +10,6 @@ import { useTracker } from '@/helpers/use_tracker'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
 import * as THREE from 'three'
 
-import { useGSAP } from '@gsap/react'
-
 export type TextProps = {
   font?: string
   as?: any
@@ -19,7 +17,7 @@ export type TextProps = {
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
   React.HTMLAttributes<HTMLDivElement>
 
-const Text = ({ className, children, font, as: Tag = 'span', testIntersection = false, ...props }: TextProps) => {
+const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextProps) => {
   const { trackRef, intersecting } = useTracker()
 
   return (
@@ -74,7 +72,6 @@ type WebGLTextProps = {
   color?: string
   scaleMultiplier?: number
   intersecting?: MotionValue<boolean>
-  testIntersection?: boolean
 }
 
 export const WebGLText = ({
@@ -89,21 +86,15 @@ export const WebGLText = ({
   color,
   scaleMultiplier = 1,
   intersecting,
-  testIntersection,
   ...props
 }: WebGLTextProps) => {
   const { size } = useThree()
   const meshRef = useRef<any>()
 
   useMotionValueEvent(intersecting, 'change', (latest) => {
-    // if (!testIntersection) {
-    //   return
-    // }
-
     if (!meshRef.current) {
       return
     }
-    console.log(latest)
 
     meshRef.current.material.uniforms.u_progress.value = latest
   })

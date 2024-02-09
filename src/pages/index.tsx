@@ -77,7 +77,7 @@ export default function Page({ ...props }) {
   )
 }
 
-const Hero = ({ testIntersection = true }) => {
+const Hero = ({}) => {
   return (
     <section
       className={cn(
@@ -100,11 +100,11 @@ const Hero = ({ testIntersection = true }) => {
           fontSize: '$11',
         })}
       >
-        <Text testIntersection={testIntersection}>Ben McCormick.</Text>
-        {/* <Text>Creative Developer</Text> */}
+        <Text>Ben McCormick.</Text>
+        <Text>Creative Developer</Text>
       </h1>
 
-      {/* <Text
+      <Text
         as='p'
         className={css({
           gridColumn: '2 / span 2',
@@ -112,7 +112,7 @@ const Hero = ({ testIntersection = true }) => {
       >
         I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
         beautiful, functional, and accessible digital experiences.
-      </Text> */}
+      </Text>
     </section>
   )
 }

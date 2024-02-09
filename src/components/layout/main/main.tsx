@@ -25,7 +25,7 @@ export const Main = ({ className, screenSizeCamera = false, showLoader = false, 
     <ReactLenis
       root
       options={{
-        infinite: true,
+        // infinite: true,
         syncTouch: true,
       }}
     >

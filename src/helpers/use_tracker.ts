@@ -19,7 +19,6 @@ export const useTracker = <Type extends HTMLElement>() => {
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      console.log(entry.isIntersecting)
       intersecting.set(entry.isIntersecting ? 0 : 1)
     })
     observer.observe(track)
