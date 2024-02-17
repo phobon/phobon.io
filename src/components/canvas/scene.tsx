@@ -7,7 +7,7 @@ import { Loader } from './loader'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useRef, useState } from 'react'
 // import * as THREE from 'three'
-// import Pixellation from '../effects/pixellation/pixellation'
+import Pixellation from '../effects/pixellation/pixellation'
 import SceneFBORenderer from './scene_fbo_renderer'
 import DotMatrix from '../effects/dot_matrix'
 // import ChromaticAbberationMaterial from '../effects/chromatic_abberation'
@@ -51,8 +51,8 @@ const FBOScene = ({ ...props }) => {
   const renderTarget = useFBO()
   return (
     <SceneFBORenderer renderTarget={renderTarget} {...props}>
-      {/* <Pixellation texture={renderTarget.texture} /> */}
-      <DotMatrix texture={renderTarget.texture} />
+      <Pixellation texture={renderTarget.texture} />
+      {/* <DotMatrix texture={renderTarget.texture} /> */}
     </SceneFBORenderer>
   )
 }

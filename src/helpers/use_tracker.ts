@@ -48,6 +48,7 @@ export const useTracker = <Type extends HTMLElement>() => {
 
 export const useImgTracker = () => {
   const trackRef = useRef<HTMLImageElement>()
+  const viewRef = useRef<any>()
   const [rect, setRect] = useState<DOMRect>(null)
   const intersecting = useMotionValue(false)
 
@@ -81,11 +82,15 @@ export const useImgTracker = () => {
 
     track.onload = () => {
       const trackRect = track.getBoundingClientRect()
+      const { width, height } = trackRect
+      viewRef.current.style.width = width
+      viewRef.current.style.height = height
       setRect(trackRect)
     }
   }, [setRect])
 
   return {
+    viewRef,
     trackRef,
     rect,
     scrollYProgress,

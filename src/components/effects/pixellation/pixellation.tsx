@@ -39,7 +39,7 @@ const Pixellation = ({ texture }) => {
     mesh.material.uniforms.u_resolution.value.y = window.innerWidth
   })
 
-  const [dataTexture, onMove] = useGridTrailTexture({ grid: 25, radius: 0.1, strength: 0.05, decay: 0.9 })
+  const [dataTexture, onMove] = useGridTrailTexture({ grid: 32, radius: 0.05, strength: 0.02, decay: 0.9 })
 
   return (
     <mesh ref={meshRef} scale={[width, height, 1]} onPointerMove={onMove}>

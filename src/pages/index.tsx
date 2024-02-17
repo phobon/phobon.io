@@ -19,44 +19,51 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: '100vh',
+            height: '45vh',
             pt: '$12',
             gridTemplateRows: 'auto auto 1fr',
-            gridRowGap: '$10',
+            gridRowGap: '$4',
+            px: '$5',
           }),
         )}
       >
         <h1
           className={css({
             display: 'flex',
-            flexDirection: 'column',
+            justifyContent: 'flex-start',
             lineHeight: '$none',
-            gridColumn: '2 / -1',
+            gridColumn: '1 / -1',
             width: '100%',
-            fontSize: '$11',
+            fontSize: '$12',
           })}
         >
-          <Text>Ben McCormick.</Text>
+          <Text>Ben McCormick</Text>
           <Text>Creative Developer</Text>
         </h1>
 
-        <Text
-          as='p'
+        <div
           className={css({
-            gridColumn: '2 / span 2',
+            gridColumn: '1 / -1',
+            height: 1,
+            backgroundColor: '$slate4',
+          })}
+        ></div>
+
+        <div
+          className={css({
+            gridColumn: '1 / span 2',
           })}
         >
-          I&apos;m a creative developer with a focus on design and technology. I&apos;m passionate about creating
-          beautiful, functional, and accessible digital experiences.
-        </Text>
+          <Text as='p'>Perth, Western Australia</Text>
+        </div>
       </section>
 
       <section
         className={cn(
           sectionStyles,
           css({
-            height: '150vh',
             placeItems: 'start',
+            px: '$5',
           }),
         )}
       >
@@ -65,22 +72,53 @@ export default function Page({ ...props }) {
             display: 'grid',
             gridTemplateColumns: 'subgrid',
             placeItems: 'start',
-            gridColumn: '2 / -2',
-            gridRowGap: '$3',
+            gridColumn: '1 / -1',
+            gridRowGap: '$8',
           })}
         >
           {demoData.map(({ id, image, heading, content }) => {
             return (
-              <Image
+              <section
                 key={id}
-                alt={heading}
-                src={image}
                 className={css({
-                  gridColumn: 'span 5',
+                  gridColumn: 'span 3',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  gap: '$3',
                   width: '100%',
-                  height: 'auto',
                 })}
-              />
+              >
+                <Image
+                  alt={heading}
+                  src={image}
+                  className={css({
+                    width: '100%',
+                    height: '45vh',
+                  })}
+                />
+                <div
+                  className={css({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                  })}
+                >
+                  <Text as='h3' className={css({})}>
+                    {heading}
+                  </Text>
+                  <Text
+                    as='p'
+                    className={css({
+                      color: '$slate11',
+                    })}
+                  >
+                    {content}
+                  </Text>
+                </div>
+              </section>
             )
           })}
         </div>

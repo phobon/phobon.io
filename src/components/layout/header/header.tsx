@@ -23,6 +23,7 @@ export const Header = ({ ...props }) => {
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
+          px: '$5',
         }),
         gridStyles,
         'phbn__header',
@@ -32,7 +33,7 @@ export const Header = ({ ...props }) => {
       <Link
         href='/'
         className={css({
-          gridColumn: '2 / span 1',
+          gridColumn: '1 / span 1',
         })}
       >
         <Identity aria-label='Go home' />
@@ -50,9 +51,9 @@ export const Header = ({ ...props }) => {
           justifyContent: 'start',
         })}
       >
-        {navigationLinks.slice(1).map(({ id, ...rest }) => (
+        {/* {navigationLinks.slice(1).map(({ id, ...rest }) => (
           <NavigationLink key={id} id={id} fontSize={5} {...rest} />
-        ))}
+        ))} */}
       </nav>
       <Button
         aria-label='Open menu'

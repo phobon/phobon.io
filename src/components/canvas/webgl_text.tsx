@@ -135,7 +135,7 @@ export const WebGLText = ({
   //   }
   // }, [dimensions])
 
-  const { textColor, fontSize, textAlign, lineHeight, letterSpacing } = useMemo(() => {
+  const { textColor, textColorRgb, fontSize, textAlign, lineHeight, letterSpacing } = useMemo(() => {
     if (!textRef.current) {
       return {}
     }
@@ -147,6 +147,13 @@ export const WebGLText = ({
       textColor = window.getComputedStyle(textRef.current.parentElement).color
     }
 
+    // convert color from an rgb string to an array of rgb values
+    const textColorRgb = textColor
+      .replace('rgb(', '')
+      .replace(')', '')
+      .split(',')
+      .map((c) => parseFloat(c) / 255)
+
     // font size relative letter spacing
     const letterSpacing = (parseFloat(cs.letterSpacing) || 0) / parseFloat(cs.fontSize)
     const lineHeight = (parseFloat(cs.lineHeight) || 0) / parseFloat(cs.fontSize)
@@ -155,6 +162,7 @@ export const WebGLText = ({
       letterSpacing,
       lineHeight,
       textColor,
+      textColorRgb,
       fontSize: parseFloat(cs.fontSize) * scaleMultiplier,
       textAlign: cs.textAlign,
     }
@@ -188,6 +196,7 @@ export const WebGLText = ({
   // })
   const position: Vector3 = [xOffset + fontSize * fontOffsetX, yOffset + fontSize * fontOffsetY, 0]
   const maxWidth = scale ? scale[0] : size.width
+  console.log(textColorRgb)
 
   return (
     <group position={[-size.width / 2, 0, 0]}>
@@ -209,7 +218,7 @@ export const WebGLText = ({
         {...props}
       >
         {/* @ts-ignore */}
-        <revealMaterial uniforms-u_height-value={size.height} />
+        <revealMaterial uniforms-u_height-value={size.height} uniforms-u_color-value={textColorRgb} />
         {children}
       </DreiText>
     </group>
@@ -222,6 +231,7 @@ const RevealMaterial = shaderMaterial(
   {
     u_height: 0,
     u_progress: 0,
+    u_color: [0, 0, 0],
     // u_dataTexture: { value: null },
   },
   `
@@ -246,8 +256,9 @@ const RevealMaterial = shaderMaterial(
     // uniform sampler2D u_dataTexture;
     varying vec2 v_uv;
     uniform vec3 color;
+    uniform vec3 u_color;
     void main() {
-      gl_FragColor = vec4(color, 1.0);
+      gl_FragColor = vec4(u_color, 1.0);
     }
   `,
 )
