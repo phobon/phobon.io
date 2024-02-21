@@ -19,10 +19,10 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: '45vh',
-            pt: '$12',
+            height: '25vh',
             gridTemplateRows: 'auto auto 1fr',
             gridRowGap: '$4',
+            pt: '$11',
             px: '$5',
           }),
         )}
@@ -30,32 +30,25 @@ export default function Page({ ...props }) {
         <h1
           className={css({
             display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'flex-start',
             lineHeight: '$none',
-            gridColumn: '1 / -1',
+            gridColumn: '1 / span 7',
             width: '100%',
-            fontSize: '$12',
+            fontSize: '$10',
           })}
         >
-          <Text>Ben McCormick</Text>
-          <Text>Creative Developer</Text>
+          <Text>Ben McCormick is a creative developer based in Perth, Western Australia</Text>
+          {/* <Text>Creative Developer</Text> */}
         </h1>
 
-        <div
+        {/* <div
           className={css({
-            gridColumn: '1 / -1',
+            gridColumn: '1 / span 8',
             height: 1,
             backgroundColor: '$slate4',
           })}
-        ></div>
-
-        <div
-          className={css({
-            gridColumn: '1 / span 2',
-          })}
-        >
-          <Text as='p'>Perth, Western Australia</Text>
-        </div>
+        ></div> */}
       </section>
 
       <section
@@ -73,7 +66,7 @@ export default function Page({ ...props }) {
             gridTemplateColumns: 'subgrid',
             placeItems: 'start',
             gridColumn: '1 / -1',
-            gridRowGap: '$8',
+            gridRowGap: '$5',
           })}
         >
           {demoData.map(({ id, image, heading, content }) => {
@@ -81,12 +74,9 @@ export default function Page({ ...props }) {
               <section
                 key={id}
                 className={css({
-                  gridColumn: 'span 3',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  justifyContent: 'flex-start',
-                  gap: '$3',
+                  gridColumn: '1 / -1',
+                  display: 'grid',
+                  gridTemplateColumns: 'subgrid',
                   width: '100%',
                 })}
               >
@@ -95,7 +85,8 @@ export default function Page({ ...props }) {
                   src={image}
                   className={css({
                     width: '100%',
-                    height: '45vh',
+                    height: '40vh',
+                    gridColumn: 'span 8',
                   })}
                 />
                 <div
@@ -104,9 +95,11 @@ export default function Page({ ...props }) {
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     justifyContent: 'flex-start',
+                    gridColumn: 'span 4',
+                    width: '100%',
                   })}
                 >
-                  <Text as='h3' className={css({})}>
+                  <Text as='h2' className={css({})}>
                     {heading}
                   </Text>
                   <Text
@@ -122,27 +115,6 @@ export default function Page({ ...props }) {
             )
           })}
         </div>
-      </section>
-      <section
-        className={cn(
-          sectionStyles,
-          css({
-            placeItems: 'start',
-            height: '100vh',
-          }),
-        )}
-      >
-        <h2
-          className={css({
-            display: 'flex',
-            lineHeight: '$none',
-            gridColumn: '2 / -2',
-            fontSize: '$5',
-            width: '100%',
-          })}
-        >
-          {/* <Text>Some other random bullshit.</Text> */}
-        </h2>
       </section>
     </>
   )
