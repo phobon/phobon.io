@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence } from 'framer-motion'
 import { GeistSans } from 'geist/font/sans'
@@ -20,11 +20,11 @@ const PhobonApp = ({ Component, pageProps, router }) => {
       <Header />
 
       <MainScene screenSizeCamera showLoader className={GeistSans.className}>
-        <MDXProvider components={markdown}>
-          <AnimatePresence>
+        <Suspense fallback={null}>
+          <MDXProvider components={markdown}>
             <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
-        </MDXProvider>
+          </MDXProvider>
+        </Suspense>
       </MainScene>
     </>
   )

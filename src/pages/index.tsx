@@ -109,7 +109,7 @@ export default function Page({ ...props }) {
               return (
                 <li key={key}>
                   <h3 className={css({})}>
-                    <Link href={href} target='_blank'>
+                    <Link href={href} target='_blank' title={title}>
                       <Text>{`↱  ${title}`}</Text>
                     </Link>
                   </h3>
@@ -140,7 +140,7 @@ export default function Page({ ...props }) {
 
               return (
                 <li key={key}>
-                  <Link href={href}>
+                  <Link href={href} title={title}>
                     <Text>{`↱  ${title}`}</Text>
                   </Link>
                 </li>
