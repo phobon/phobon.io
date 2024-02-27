@@ -102,7 +102,7 @@ export default function Page({ ...props }) {
                   className={css({
                     display: 'grid',
                     gridTemplateColumns: 'subgrid',
-                    gridTemplateRows: 'auto 1fr auto',
+                    gridTemplateRows: 'auto 1fr auto auto',
                     alignItems: 'start',
                     gridColumn: 'span 4',
                     width: '100%',
@@ -132,7 +132,6 @@ export default function Page({ ...props }) {
                   </div>
 
                   <Text
-                    as='div'
                     className={css({
                       gridArea: '3 / 1 / span 1 / span 1',
                       fontVariantNumeric: 'tabular-nums',
@@ -142,15 +141,23 @@ export default function Page({ ...props }) {
                     {i}
                   </Text>
 
-                  <Text
-                    as='div'
+                  <div
                     className={css({
                       gridArea: '3 / 4 / span 1 / span 1',
-                      alignSelf: 'end',
+                      justifySelf: 'end',
                     })}
                   >
-                    {status}
-                  </Text>
+                    <Text>{status}</Text>
+                  </div>
+
+                  <div
+                    className={css({
+                      gridArea: '4 / 1 / -1 / -1',
+                      height: '1px',
+                      backgroundColor: '$slate4',
+                      mt: '$2',
+                    })}
+                  />
                 </div>
               </section>
             )
