@@ -36,7 +36,6 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
           css({
             opacity: 0,
             display: 'block',
-            // backgroundColor: 'orange',
             visibility: 'hidden',
           }),
           className,

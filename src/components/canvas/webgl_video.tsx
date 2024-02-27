@@ -32,7 +32,7 @@ const Video = ({ className, fallback, src, alt, ...props }) => {
         className={cn(
           css({
             opacity: 0,
-            // visibility: 'hidden',
+            visibility: 'hidden',
           }),
           className,
         )}

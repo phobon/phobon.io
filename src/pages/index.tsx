@@ -11,8 +11,8 @@ import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
-const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
-const Video = dynamic(() => import('@/components/canvas/webgl_video').then((mod) => mod), { ssr: false })
+const CreativeProject = dynamic(() => import('@/components/creative_project').then((mod) => mod), { ssr: false })
+const SideStack = dynamic(() => import('@/components/side_stack').then((mod) => mod), { ssr: false })
 
 export default function Page({ ...props }) {
   return (
@@ -29,10 +29,9 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <h1
+        <Text
+          as='h1'
           className={css({
-            display: 'flex',
-            flexDirection: 'column',
             justifyContent: 'flex-start',
             lineHeight: '$none',
             gridColumn: '1 / span 7',
@@ -40,8 +39,8 @@ export default function Page({ ...props }) {
             fontSize: '$10',
           })}
         >
-          <Text>Ben McCormick is a creative developer based in Perth, Western Australia</Text>
-        </h1>
+          Ben McCormick is a creative developer based in Perth, Western Australia
+        </Text>
       </section>
 
       <section
@@ -53,7 +52,7 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <div
+        <ul
           className={css({
             display: 'grid',
             gridTemplateColumns: 'subgrid',
@@ -63,106 +62,24 @@ export default function Page({ ...props }) {
           })}
         >
           {creativeProjects.map(({ key, imageSrc, videoSrc, title, description, status }, index) => {
-            // Pad the index to 2 digits so the output is say '01' '02' '02' etc
-            const i = new String(index + 1).padStart(2, '0')
-
+            const projectIndex = new String(index + 1).padStart(2, '0')
             return (
-              <section
+              <CreativeProject
                 key={key}
                 className={css({
                   gridColumn: '1 / -1',
-                  display: 'grid',
-                  gridTemplateColumns: 'subgrid',
-                  width: '100%',
                 })}
+                index={projectIndex}
+                imageSrc={imageSrc}
+                videoSrc={videoSrc}
+                title={title}
+                status={status}
               >
-                {videoSrc ? (
-                  <Video
-                    alt={name}
-                    fallback={imageSrc}
-                    src={videoSrc}
-                    className={css({
-                      width: '100%',
-                      height: '40vh',
-                      gridColumn: 'span 8',
-                    })}
-                  />
-                ) : (
-                  <Image
-                    alt={name}
-                    src={imageSrc}
-                    className={css({
-                      width: '100%',
-                      height: '40vh',
-                      gridColumn: 'span 8',
-                    })}
-                  />
-                )}
-                <div
-                  className={css({
-                    display: 'grid',
-                    gridTemplateColumns: 'subgrid',
-                    gridTemplateRows: 'auto 1fr auto auto',
-                    alignItems: 'start',
-                    gridColumn: 'span 4',
-                    width: '100%',
-                    height: '100%',
-                  })}
-                >
-                  <div
-                    className={css({
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      justifyContent: 'flex-start',
-                      gridArea: '1 / 1 / span 1 / span 3',
-                    })}
-                  >
-                    <Text
-                      as='h2'
-                      className={css({
-                        color: '#000',
-                      })}
-                    >
-                      {title}
-                    </Text>
-                    <Text as='p' className={css({})}>
-                      {description}
-                    </Text>
-                  </div>
-
-                  <Text
-                    className={css({
-                      gridArea: '3 / 1 / span 1 / span 1',
-                      fontVariantNumeric: 'tabular-nums',
-                      color: '#000',
-                    })}
-                  >
-                    {i}
-                  </Text>
-
-                  <div
-                    className={css({
-                      gridArea: '3 / 4 / span 1 / span 1',
-                      justifySelf: 'end',
-                    })}
-                  >
-                    <Text>{status}</Text>
-                  </div>
-
-                  <div
-                    className={css({
-                      gridArea: '4 / 1 / -1 / -1',
-                      height: '1px',
-                      backgroundColor: '$slate4',
-                      mt: '$2',
-                    })}
-                  />
-                </div>
-              </section>
+                {description}
+              </CreativeProject>
             )
           })}
-        </div>
+        </ul>
       </section>
 
       <section
@@ -187,27 +104,7 @@ export default function Page({ ...props }) {
             gridRow: '1 / span 1',
           })}
         >
-          <ul
-            className={css({
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '$1',
-            })}
-          >
-            <li
-              className={css({
-                width: '100%',
-              })}
-            >
-              <h2
-                className={css({
-                  color: '#000',
-                })}
-              >
-                <Text>Projects</Text>
-              </h2>
-            </li>
-
+          <SideStack title='Projects'>
             {workProjects.map(({ key, href, title }) => {
               return (
                 <li key={key}>
@@ -219,29 +116,9 @@ export default function Page({ ...props }) {
                 </li>
               )
             })}
-          </ul>
+          </SideStack>
 
-          <ul
-            className={css({
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '$1',
-            })}
-          >
-            <li
-              className={css({
-                width: '100%',
-              })}
-            >
-              <h2
-                className={css({
-                  color: '#000',
-                })}
-              >
-                <Text>Experience</Text>
-              </h2>
-            </li>
-
+          <SideStack title='Experience'>
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
@@ -253,29 +130,9 @@ export default function Page({ ...props }) {
                 </li>
               )
             })}
-          </ul>
+          </SideStack>
 
-          <ul
-            className={css({
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '$1',
-            })}
-          >
-            <li
-              className={css({
-                width: '100%',
-              })}
-            >
-              <h2
-                className={css({
-                  color: '#000',
-                })}
-              >
-                <Text>Writing</Text>
-              </h2>
-            </li>
-
+          <SideStack title='Writing'>
             {allWriting.map(({ key, title, href, published }) => {
               if (!published) {
                 return null
@@ -289,7 +146,7 @@ export default function Page({ ...props }) {
                 </li>
               )
             })}
-          </ul>
+          </SideStack>
         </div>
 
         <div
