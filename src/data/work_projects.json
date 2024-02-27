@@ -1,0 +1,22 @@
+[
+  {
+    "key": "work_project--mds",
+    "title": "Moleskine Design Studio (MDS)",
+    "href": "https://moleskinestudio.com"
+  },
+  {
+    "key": "work_project--mds_actions",
+    "title": "Actions by MDS",
+    "href": "https://moleskinestudio.com/actions"
+  },
+  {
+    "key": "work_project--mds_timepage",
+    "title": "Timepage by MDS",
+    "href": "https://moleskinestudio.com/timepage"
+  },
+  {
+    "key": "work_project--mds_flowweb",
+    "title": "Flow Web",
+    "href": "https://flowapp.moleskinestudio.com/"
+  }
+]

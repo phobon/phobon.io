@@ -3,11 +3,12 @@
 import { css } from '@/design/css'
 import dynamic from 'next/dynamic'
 import { cn } from '@/helpers/cn'
-
-import projects from '@/data/projects.json'
-import experiences from '@/data/experiences.json'
-import writing from '@/data/all_writing.json'
 import { Link } from '@/helpers/navigation_helpers'
+
+import creativeProjects from '@/data/creative_projects.json'
+import experiences from '@/data/experiences.json'
+import allWriting from '@/data/all_writing.json'
+import workProjects from '@/data/work_projects.json'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 const Image = dynamic(() => import('@/components/canvas/webgl_image').then((mod) => mod), { ssr: false })
@@ -61,10 +62,13 @@ export default function Page({ ...props }) {
             gridRowGap: '$5',
           })}
         >
-          {projects.map(({ id, imageSrc, videoSrc, title, description }) => {
+          {creativeProjects.map(({ key, imageSrc, videoSrc, title, description, status }, index) => {
+            // Pad the index to 2 digits so the output is say '01' '02' '02' etc
+            const i = new String(index + 1).padStart(2, '0')
+
             return (
               <section
-                key={id}
+                key={key}
                 className={css({
                   gridColumn: '1 / -1',
                   display: 'grid',
@@ -96,24 +100,56 @@ export default function Page({ ...props }) {
                 )}
                 <div
                   className={css({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
-                    gridColumn: 'span 3',
+                    display: 'grid',
+                    gridTemplateColumns: 'subgrid',
+                    gridTemplateRows: 'auto 1fr auto',
+                    alignItems: 'start',
+                    gridColumn: 'span 4',
                     width: '100%',
+                    height: '100%',
                   })}
                 >
-                  <Text
-                    as='h2'
+                  <div
                     className={css({
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start',
+                      justifyContent: 'flex-start',
+                      gridArea: '1 / 1 / span 1 / span 3',
+                    })}
+                  >
+                    <Text
+                      as='h2'
+                      className={css({
+                        color: '#000',
+                      })}
+                    >
+                      {title}
+                    </Text>
+                    <Text as='p' className={css({})}>
+                      {description}
+                    </Text>
+                  </div>
+
+                  <Text
+                    as='div'
+                    className={css({
+                      gridArea: '3 / 1 / span 1 / span 1',
+                      fontVariantNumeric: 'tabular-nums',
                       color: '#000',
                     })}
                   >
-                    {title}
+                    {i}
                   </Text>
-                  <Text as='p' className={css({})}>
-                    {description}
+
+                  <Text
+                    as='div'
+                    className={css({
+                      gridArea: '3 / 4 / span 1 / span 1',
+                      alignSelf: 'end',
+                    })}
+                  >
+                    {status}
                   </Text>
                 </div>
               </section>
@@ -144,6 +180,40 @@ export default function Page({ ...props }) {
             gridRow: '1 / span 1',
           })}
         >
+          <ul
+            className={css({
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '$1',
+            })}
+          >
+            <li
+              className={css({
+                width: '100%',
+              })}
+            >
+              <h2
+                className={css({
+                  color: '#000',
+                })}
+              >
+                <Text>Projects</Text>
+              </h2>
+            </li>
+
+            {workProjects.map(({ key, href, title }) => {
+              return (
+                <li key={key}>
+                  <h3 className={css({})}>
+                    <Link href={href} target='_blank'>
+                      <Text>{`↱  ${title}`}</Text>
+                    </Link>
+                  </h3>
+                </li>
+              )
+            })}
+          </ul>
+
           <ul
             className={css({
               display: 'flex',
@@ -199,7 +269,7 @@ export default function Page({ ...props }) {
               </h2>
             </li>
 
-            {writing.map(({ key, title, href, published }) => {
+            {allWriting.map(({ key, title, href, published }) => {
               if (!published) {
                 return null
               }
