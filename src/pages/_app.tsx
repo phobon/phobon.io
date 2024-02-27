@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import { MDXProvider } from '@mdx-js/react'
-import { AnimatePresence } from 'framer-motion'
 import { GeistSans } from 'geist/font/sans'
 import dynamic from 'next/dynamic'
 import markdownComponents from '@/components/markdown'

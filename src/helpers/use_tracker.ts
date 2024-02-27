@@ -36,6 +36,10 @@ export const useTracker = <Type extends HTMLElement>() => {
 
     const trackRect = track.getBoundingClientRect()
     setRect(trackRect)
+
+    // Hide everything once it's loaded
+    track.style.opacity = '0'
+    track.style.visibility = 'hidden'
   }, [setRect])
 
   return {
@@ -49,7 +53,7 @@ export const useTracker = <Type extends HTMLElement>() => {
 export const useImgTracker = () => {
   const trackRef = useRef<HTMLImageElement>()
   const viewRef = useRef<any>()
-  const [rect, setRect] = useState<DOMRect>(null)
+  // const [rect, setRect] = useState<DOMRect>(null)
   const intersecting = useMotionValue(false)
 
   // Scroll and view-related
@@ -85,14 +89,18 @@ export const useImgTracker = () => {
       const { width, height } = trackRect
       viewRef.current.style.width = width
       viewRef.current.style.height = height
-      setRect(trackRect)
+      // setRect(trackRect)
+
+      // Hide everything once it's loaded
+      track.style.opacity = '0'
+      track.style.visibility = 'hidden'
     }
-  }, [setRect])
+  }, [])
 
   return {
     viewRef,
     trackRef,
-    rect,
+    // rect,
     scrollYProgress,
     intersecting,
   }

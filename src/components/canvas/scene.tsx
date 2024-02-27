@@ -10,6 +10,7 @@ import { useRef, useState } from 'react'
 import Pixellation from '../effects/pixellation/pixellation'
 import SceneFBORenderer from './scene_fbo_renderer'
 import DotMatrix from '../effects/dot_matrix'
+import Overlay from './overlay'
 // import ChromaticAbberationMaterial from '../effects/chromatic_abberation'
 
 export type SceneProps = {
@@ -38,6 +39,8 @@ const Scene = ({
         <FBOScene />
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
+
+        <Overlay />
 
         <PerspectiveCamera makeDefault />
       </Canvas>

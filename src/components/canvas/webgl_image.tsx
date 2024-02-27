@@ -1,5 +1,5 @@
 import { View } from '@react-three/drei'
-import React, { RefObject, useRef } from 'react'
+import React, { RefObject, Suspense, useRef } from 'react'
 import { Image as DreiImage } from '@react-three/drei'
 import { css } from '@/design/css'
 import { extend, useFrame } from '@react-three/fiber'
@@ -31,12 +31,13 @@ const Image = ({ className, src, alt, ...props }) => {
         src={src}
         className={cn(
           css({
-            opacity: 0,
-            visibility: 'hidden',
+            // opacity: 0,
+            // visibility: 'hidden',
           }),
           className,
         )}
         alt={alt}
+        crossOrigin='anonymous'
       />
       <View
         track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
@@ -47,7 +48,9 @@ const Image = ({ className, src, alt, ...props }) => {
         ref={viewRef}
       >
         <PerspectiveCamera makeDefault />
-        <WebGLImage imgRef={trackRef} scrollYProgress={scrollYProgress} {...props} />
+        <Suspense fallback={null}>
+          <WebGLImage imgRef={trackRef} scrollYProgress={scrollYProgress} {...props} />
+        </Suspense>
       </View>
     </span>
   )
@@ -61,11 +64,11 @@ type WebGLImageProps = {
 const WebGLImage = ({ imgRef, scrollYProgress, ...props }: WebGLImageProps) => {
   const ref = useRef<any>()
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // ref.current.material.grayscale = 1 - latest
-    // ref.current.material.zoom = 1 + latest * 0.1
-    // ref.current.material.opacity = clamp(latest * 3, 0, 1)
-  })
+  // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  // ref.current.material.grayscale = 1 - latest
+  // ref.current.material.zoom = 1 + latest * 0.1
+  // ref.current.material.opacity = clamp(latest * 3, 0, 1)
+  // })
 
   // Load texture from the <img/> and suspend until it's ready
   const texture = useImageAsTexture(imgRef)

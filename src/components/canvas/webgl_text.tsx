@@ -34,9 +34,9 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
         ref={trackRef}
         className={cn(
           css({
-            opacity: 0,
             display: 'block',
-            visibility: 'hidden',
+            // opacity: 0,
+            // visibility: 'hidden',
           }),
           className,
         )}
