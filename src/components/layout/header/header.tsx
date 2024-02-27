@@ -1,15 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { navigationLinks } from '@/data/links'
 
-import { NavigationLink } from '@/components/layout/navigation'
 import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
-import { Button } from '@/components/primitives/button'
-import { HamburgerGlyph } from '@/components/glyphs/hamburger_glyph'
 import Identity from '@/components/identity'
 import { gridStyles } from '../common'
+
+import { socialLinks } from '@/data/links'
 
 export const Header = ({ ...props }) => {
   return (
@@ -40,36 +38,40 @@ export const Header = ({ ...props }) => {
       </Link>
       <nav
         className={css({
-          gridColumn: '3 / -2',
+          gridColumn: '9 / span 1',
           display: {
             base: 'none',
             md: 'grid',
           },
-          gridTemplateColumns: 'subgrid',
-          gridTemplateRows: 'subgrid',
+          gridAutoRows: 'auto',
           alignItems: 'center',
           justifyContent: 'start',
+          pl: '$4',
         })}
       >
-        {/* {navigationLinks.slice(1).map(({ id, ...rest }) => (
-          <NavigationLink key={id} id={id} fontSize={5} {...rest} />
-        ))} */}
+        {socialLinks.map(({ id, label }) => (
+          <a key={id} id={id} target='_blank' className={anchorStyles}>
+            {label}
+          </a>
+        ))}
       </nav>
-      <Button
-        aria-label='Open menu'
-        variant='tertiary'
-        onClick={() => {
-          // TODO
-        }}
-        className={css({
-          display: {
-            base: 'flex',
-            md: 'none',
-          },
-        })}
+
+      <a
+        className={cn(
+          css({
+            gridColumn: '12 / -1',
+          }),
+          anchorStyles,
+        )}
+        href='mailto:hello@phobon.io'
       >
-        <HamburgerGlyph />
-      </Button>
+        hello@phobon.io
+      </a>
     </header>
   )
 }
+
+const anchorStyles = css({
+  color: '$slate10',
+  fontSize: '$3',
+})
