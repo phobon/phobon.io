@@ -2,12 +2,12 @@ import Head from 'next/head'
 
 const Meta = ({
   url = 'https://phobon.io',
-  description = 'Portfolio of Ben McCormick, a multidisciplinary developer based in Perth, Western Australia',
+  description = 'Ben McCormick — Creative developer',
   author = 'Ben McCormick',
   twitter = '@thenoumenon',
   image = 'https://phobon.io/phbn.webp',
 }) => {
-  const title = `phbn — ${description}`
+  const title = description
 
   return (
     <Head>

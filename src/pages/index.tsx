@@ -9,6 +9,7 @@ import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
 import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
+import Meta from '@/components/layout/meta'
 
 const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
 const CreativeProject = dynamic(() => import('@/components/creative_project').then((mod) => mod), { ssr: false })
@@ -17,6 +18,8 @@ const SideStack = dynamic(() => import('@/components/side_stack').then((mod) => 
 export default function Page({ ...props }) {
   return (
     <>
+      <Meta />
+
       <section
         className={cn(
           sectionStyles,
