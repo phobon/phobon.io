@@ -24,7 +24,6 @@
     "title": "Making Agworld Responsive",
     "href": "writing/making-agworld-responsive",
     "src": "/writing/making-agworld-responsive/index.webp",
-    "published": "30 November 2020",
     "category": "Agworld",
     "description": "Taking Agworld's web experience, and making it mobile",
     "tags": ["Design", "Research", "Front-end Development"]
@@ -34,7 +33,6 @@
     "title": "Modernising Agworld's Frontend Stack",
     "href": "writing/modernising-agworlds-frontend-stack",
     "src": "/writing/modernising-agworlds-frontend-stack/index.webp",
-    "published": "30 November 2020",
     "category": "Agworld",
     "description": "Bringing Agworld's frontend stack up to scratch",
     "tags": ["Design", "Research", "Front-end Development"]
@@ -54,7 +52,6 @@
     "title": "Signal - Agworld's Design System",
     "href": "writing/signal-design-system",
     "src": "/writing/signal-design-system/index.webp",
-    "published": "30 November 2020",
     "category": "Agworld",
     "description": "Connecting design and development",
     "tags": ["Design", "Research", "Front-end Development"]

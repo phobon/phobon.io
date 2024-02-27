@@ -4,10 +4,10 @@ import { cn } from '@/helpers/cn'
 export type HRProps = {} & React.HTMLAttributes<HTMLHRElement>
 
 export const hrStyles = css({
-  borderWidth: 2,
+  borderWidth: 1,
   borderStyle: 'solid',
   width: '5%',
-  borderColor: '$purple10',
+  borderColor: '$purple4',
   my: '$5',
   gridColumn: '1 / -1',
 })

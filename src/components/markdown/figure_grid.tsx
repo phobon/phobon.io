@@ -13,6 +13,7 @@ export const FigureGrid = ({ className, children, caption, ...props }: FigureGri
       className={cn(
         css({
           width: '100%',
+          display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gridGap: '$5',
           gridColumn: '1 / -1',

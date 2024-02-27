@@ -16,7 +16,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(({ cla
         lineHeight: 1.8,
         color: 'foreground',
         mt: 0,
-        mb: 5,
+        mb: '$5',
         maxWidth: '80ch',
         gridColumn: '1 / -1',
       }),

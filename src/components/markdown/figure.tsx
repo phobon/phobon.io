@@ -26,7 +26,7 @@ export const Figure = forwardRef<HTMLDivElement, FigureProps>(({ caption, classN
         mt: '$2',
         color: '$slate10',
         fontSize: '$2',
-        alignSelf: 'flex-start',
+        alignSelf: 'center',
       })}
     >
       {caption}

@@ -2,7 +2,7 @@ import { View, shaderMaterial } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
-import { Vector3, extend, useFrame, useThree } from '@react-three/fiber'
+import { Vector3, extend, useThree } from '@react-three/fiber'
 import { Material } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
@@ -100,41 +100,6 @@ export const WebGLText = ({
     meshRef.current.material.uniforms.u_progress.value = latest
   })
 
-  // console.log(size)
-
-  // const dimensions = (children as string)?.length
-  // useEffect(() => {
-  //   const regenerateDataTexture = () => {
-  //     // Populate data texture with initial values
-  //     const data = new Float32Array(4 * dimensions)
-  //     const step = 1 / dimensions
-  //     let value = 0
-  //     for (let stride = 0; stride < dimensions; stride++) {
-  //       const index = 4 * stride
-  //       console.log(value)
-  //       data[index] = value
-  //       data[index + 1] = value
-  //       data[index + 2] = value
-  //       data[index + 3] = value
-
-  //       value += step
-  //     }
-  //     const dataTexture = new THREE.DataTexture(data, dimensions, 1, THREE.RGBAFormat, THREE.FloatType)
-  //     dataTexture.minFilter = dataTexture.magFilter = THREE.NearestFilter
-  //     dataTexture.needsUpdate = true
-
-  //     meshRef.current.material.uniforms.u_dataTexture.value = dataTexture
-  //     meshRef.current.material.uniforms.u_dataTexture.value.needsUpdate = true
-  //   }
-
-  //   window.addEventListener('resize', regenerateDataTexture)
-  //   regenerateDataTexture()
-
-  //   return () => {
-  //     window.removeEventListener('resize', regenerateDataTexture)
-  //   }
-  // }, [dimensions])
-
   const { textColor, textColorRgb, fontSize, textAlign, lineHeight, letterSpacing } = useMemo(() => {
     if (!textRef.current) {
       return {}
@@ -196,7 +161,6 @@ export const WebGLText = ({
   // })
   const position: Vector3 = [xOffset + fontSize * fontOffsetX, yOffset + fontSize * fontOffsetY, 0]
   const maxWidth = scale ? scale[0] : size.width
-  console.log(textColorRgb)
 
   return (
     <group position={[-size.width / 2, 0, 0]}>

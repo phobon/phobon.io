@@ -6,6 +6,10 @@ export const Wrapper = ({ children, ...props }) => (
     className={css({
       gridColumn: '1 / -1',
       width: '100%',
+      px: '$5',
+      pt: '$11',
+      display: 'flex',
+      flexDirection: 'column',
     })}
     {...props}
   >

@@ -8,6 +8,7 @@ export type BlockquoteProps = {
 export const blockquoteStyles = css({
   position: 'relative',
   gridColumn: '1 / -1',
+  mb: '$5',
   _before: {
     position: 'absolute',
     left: '-3rem',
@@ -20,7 +21,7 @@ export const blockquoteStyles = css({
   '&> *': {
     marginBottom: 0,
     fontStyle: 'italic',
-    color: '$slate5',
+    color: '$slate9',
   },
 })
 

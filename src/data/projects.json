@@ -1,42 +1,21 @@
 [
   {
-    "name": "Timepage by Moleskine Studio",
+    "id": "project--formation",
     "status": "Live",
-    "description": "Landing page for Timepage by Moleskine Studio",
-    "image": "/projects/timepage_macos.webp",
-    "fallbackType": "png",
-    "fallbackExtension": "png",
-    "url": "https://moleskinestudio.com/timepage/",
-    "tags": ["Product Design", "Front-End Development", "WebGL", "GSAP"]
+    "title": "Formation °",
+    "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
+    "imageSrc": "/images/demo/circular.png",
+    "url": "https://formation.phobon.io",
+    "tags": []
   },
   {
-    "name": "Actions by Moleskine Studio",
+    "id": "project--mdslabs",
     "status": "Live",
-    "description": "Landing page for Actions by Moleskine Studio",
-    "image": "/projects/actions.webp",
-    "fallbackType": "png",
-    "fallbackExtension": "png",
-    "url": "https://moleskinestudio.com/actions/",
-    "tags": ["Product Design", "Front-End Development", "WebGL"]
-  },
-  {
-    "name": "Signal",
-    "status": "Live",
-    "description": "Agworld's design system built with React and CSS-in-JS",
-    "image": "/projects/signal.webp",
-    "fallbackType": "png",
-    "fallbackExtension": "png",
-    "url": "http://signal.agworld.com",
-    "tags": ["Product Design", "Front-End Development", "Accessibility", "Identity"]
-  },
-  {
-    "name": "The Studio",
-    "status": "Live",
-    "description": "A physiotherapy and clinical pilates studio based in Perth",
-    "image": "/projects/thestudio.webp",
-    "fallbackType": "png",
-    "fallbackExtension": "png",
-    "url": "https://thestudiophysio.com",
-    "tags": ["Founder", "Identity", "Photography"]
+    "title": "Moleskine Design Studio Labs",
+    "description": "Experimental technology and design for Moleskine Design Studio.",
+    "imageSrc": "/images/demo/mds_labs.png",
+    "videoSrc": "/images/demo/mds_labs.mp4",
+    "url": "https://moleskinestudio.com/lab/landing/",
+    "tags": []
   }
 ]

@@ -38,10 +38,10 @@ export const Li = ({ className, children, ...props }: LiProps) => (
         _before: {
           position: 'absolute',
           left: 0,
-          top: '2rem',
+          top: '$2',
           content: "''",
-          width: '1.5rem',
-          height: '1.5rem',
+          width: '1.2rem',
+          height: '1.2rem',
           backgroundColor: 'hsl(216, 10%, 90%)',
           borderRadius: 4,
         },
