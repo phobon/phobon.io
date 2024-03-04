@@ -1,9 +1,11 @@
 import { shaderMaterial, useProgress } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
-import { animate, useMotionValueEvent, useSpring } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { animate, progress, useMotionValueEvent, useSpring } from 'framer-motion'
+import { useCallback, useEffect, useRef } from 'react'
 import { DefaultLoadingManager } from 'three'
 import { useControls } from 'leva'
+import { useLoader } from '@/helpers/use_loader'
+import { useLayoutStore } from '@/stores/use_layout_store'
 
 const OverlayMaterial = shaderMaterial(
   {
@@ -30,6 +32,26 @@ extend({ OverlayMaterial })
 const Overlay = () => {
   const overlayRef = useRef<any>()
 
+  useEffect(() => {
+    const overlay = overlayRef.current
+    if (!overlay) {
+      return
+    }
+
+    const unsubscribe = useLayoutStore.subscribe(({ loaded }) => {
+      animate(overlay.material.uniforms.u_progress.value, loaded ? 0 : 1, {
+        duration: 3,
+        onUpdate: (latest) => {
+          overlay.material.uniforms.u_progress.value = latest
+        },
+      })
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+
   // useControls({
   //   progress: {
   //     value: 1,
@@ -43,31 +65,6 @@ const Overlay = () => {
   //     },
   //   },
   // })
-
-  useEffect(() => {
-    const overlay = overlayRef.current
-    if (!overlay) {
-      return
-    }
-
-    if (!DefaultLoadingManager) {
-      return
-    }
-
-    const onLoad = DefaultLoadingManager.onLoad
-
-    DefaultLoadingManager.onLoad = () => {
-      onLoad()
-
-      animate(1, 0, {
-        duration: 10,
-        onUpdate: (latest) => {
-          console.log(overlay.material.uniforms.u_progress.value)
-          overlay.material.uniforms.u_progress.value = latest
-        },
-      })
-    }
-  }, [])
 
   return (
     <mesh ref={overlayRef}>

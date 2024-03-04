@@ -2,14 +2,11 @@
   :root {
     --mainGridGutter: 0;
     --mainGridMargin: 16px;
+    --backgroundColor: #060708;
+
+    background-color: var(--backgroundColor);
 
     color: hsl(210, 12%, 12.5%);
-    background-color: hsl(240, 22%, 99%);
-
-    [data-color-mode='dark'] {
-      background-color: hsl(240, 5%, 9.8%);
-      color: hsl(220, 7%, 93.5%);
-    }
   }
 
   :root,

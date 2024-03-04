@@ -1,8 +1,9 @@
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
+import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { useProgress } from '@react-three/drei'
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type DataInterpolationFunction = (p: number) => [number, string]
 
@@ -18,66 +19,68 @@ const customDataInterpolation: DataInterpolationFunction = (p) => {
 
 export type LoaderProps = {
   dataInterpolation?: DataInterpolationFunction
-  onShownChanged?: (shown: boolean) => void
   className?: string
   defaultTimeout?: number
 }
 
+const setLoadedSelector = ({ setLoaded, loaded }): Pick<LayoutStore, 'setLoaded' | 'loaded'> => ({
+  setLoaded,
+  loaded,
+})
+
 export const Loader = ({
   dataInterpolation = customDataInterpolation,
-  onShownChanged,
   className,
-  defaultTimeout = 0,
+  defaultTimeout = 500,
 }: LoaderProps) => {
-  const { active, progress } = useProgress()
-  const progressRef = useRef(0)
-  const rafRef = useRef(0)
   const progressSpanRef = useRef(null)
-  const [shown, setShown] = useState(true)
+  const { setLoaded, loaded } = useLayoutStore(setLoadedSelector)
 
   useEffect(() => {
-    let t
-    if (active !== shown) {
-      t = setTimeout(() => {
-        setShown(active)
-        onShownChanged && onShownChanged(active)
-      }, defaultTimeout)
-      return () => clearTimeout(t)
-    }
-  }, [shown, active, onShownChanged, defaultTimeout])
-
-  const updateProgress = useCallback(() => {
-    if (!progressSpanRef.current) {
+    const progressSpan = progressSpanRef.current
+    if (!progressSpan) {
       return
     }
 
-    progressRef.current += (progress - progressRef.current) / 2
-    if (progressRef.current > 0.95 * progress || progress === 100) {
-      progressRef.current = progress
+    let t
+
+    const updateProgress = (progress: number) => {
+      const [p, s] = dataInterpolation(progress)
+      progressSpan.innerText = p
+
+      if (p >= 99) {
+        progressSpan.style.cssText = '--pretext: ""'
+      } else if (p > 9) {
+        progressSpan.style.cssText = '--pretext: "0"'
+      }
+
+      // Loading is now done
+      if (progress === 100) {
+        t = setTimeout(() => {
+          setLoaded(true)
+          document.documentElement.style.cssText = '--backgroundColor: hsl(240, 22%, 99%);'
+        }, defaultTimeout)
+      } else {
+        setLoaded(false)
+        document.documentElement.style.cssText = '--backgroundColor: #060708;'
+      }
     }
 
-    const [p, s] = dataInterpolation(progressRef.current)
-    progressSpanRef.current.innerText = p
+    const unsubscribe = useProgress.subscribe(({ active, progress }) => {
+      updateProgress(progress)
+    })
 
-    if (p >= 99) {
-      progressSpanRef.current.style.cssText = '--pretext: ""'
-    } else if (p > 9) {
-      progressSpanRef.current.style.cssText = '--pretext: "0"'
+    updateProgress(0)
+
+    return () => {
+      unsubscribe()
+      clearTimeout(t)
     }
-
-    if (progressRef.current < progress) {
-      rafRef.current = requestAnimationFrame(updateProgress)
-    }
-  }, [dataInterpolation, progress])
-
-  useEffect(() => {
-    updateProgress()
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [updateProgress])
+  }, [dataInterpolation, defaultTimeout, setLoaded])
 
   return (
     <AnimatePresence>
-      {shown ? (
+      {!loaded ? (
         <motion.div
           className={cn(containerStyles, className)}
           initial={{ opacity: 1 }}
@@ -93,7 +96,7 @@ export const Loader = ({
 const containerStyles = css({
   position: 'fixed',
   inset: 0,
-  transition: 'opacity 300ms ease',
+  // transition: 'opacity 300ms ease',
   zIndex: 9999,
   overflowX: 'hidden',
   overflowY: 'hidden',

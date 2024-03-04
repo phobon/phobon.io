@@ -8,8 +8,10 @@ import Identity from '@/components/identity'
 import { gridStyles } from '../common'
 
 import { socialLinks } from '@/data/links'
+import { useLayoutStore } from '@/stores/use_layout_store'
 
 export const Header = ({ ...props }) => {
+  const loaded = useLayoutStore((state) => state.loaded)
   return (
     <header
       className={cn(
@@ -26,6 +28,9 @@ export const Header = ({ ...props }) => {
         gridStyles,
         'phbn__header',
       )}
+      style={{
+        opacity: loaded ? 1 : 0,
+      }}
       {...props}
     >
       <Link
