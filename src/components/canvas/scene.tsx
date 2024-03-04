@@ -3,7 +3,6 @@
 import { Canvas } from '@react-three/fiber'
 
 import { AdaptiveDpr, Preload, StatsGl, View, useFBO, useGLTF } from '@react-three/drei'
-import { Loader } from './loader'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { useRef, useState } from 'react'
 // import * as THREE from 'three'
@@ -16,16 +15,9 @@ import Overlay from './overlay'
 export type SceneProps = {
   debug?: boolean
   frameloop?: 'always' | 'demand' | 'never'
-  showLoader?: boolean
 } & any
 
-const Scene = ({
-  debug = false,
-  frameloop = 'always',
-  showLoader = false,
-  screenSizeCamera = false,
-  ...props
-}: SceneProps) => {
+const Scene = ({ debug = false, frameloop = 'always', screenSizeCamera = false, ...props }: SceneProps) => {
   return (
     <>
       {/* @ts-ignore */}
@@ -44,8 +36,6 @@ const Scene = ({
 
         <PerspectiveCamera makeDefault />
       </Canvas>
-
-      {showLoader && <Loader className='phbn__loader' />}
     </>
   )
 }

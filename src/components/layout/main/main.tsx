@@ -12,10 +12,9 @@ import ReactLenis from '@studio-freight/react-lenis'
 
 export type MainProps = {
   debug?: boolean
-  showLoader?: boolean
 } & Partial<SceneProps>
 
-export const Main = ({ className, screenSizeCamera = false, showLoader = false, children }: MainProps) => {
+export const Main = ({ className, screenSizeCamera = false, children }: MainProps) => {
   const ref = useRef()
 
   const searchParams = useSearchParams()
@@ -55,7 +54,6 @@ export const Main = ({ className, screenSizeCamera = false, showLoader = false, 
           eventSource={ref}
           eventPrefix='client'
           debug={debug}
-          showLoader={showLoader}
           screenSizeCamera={screenSizeCamera}
         />
       </main>
