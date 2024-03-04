@@ -66,12 +66,6 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
             container.style.visibility = 'hidden'
           }, 300)
         }, defaultTimeout)
-      } else {
-        setLoaded(false)
-        document.documentElement.style.cssText = '--backgroundColor: #060708;'
-        container.style.opacity = 1
-        container.style.pointerEvents = 'all'
-        container.style.visibility = 'visible'
       }
     }
 
