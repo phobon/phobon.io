@@ -111,11 +111,7 @@ export default function Page({ ...props }) {
             {workProjects.map(({ key, href, title }) => {
               return (
                 <li key={key}>
-                  <h3 className={css({})}>
-                    <Link href={href} target='_blank' title={title}>
-                      <Text>{`↱  ${title}`}</Text>
-                    </Link>
-                  </h3>
+                  <Text as='a' href={href} target='_blank' title={title}>{`↱  ${title}`}</Text>
                 </li>
               )
             })}
@@ -125,11 +121,9 @@ export default function Page({ ...props }) {
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
-                  <h3 className={css({})}>
-                    <Text>
-                      {employ} - {title}
-                    </Text>
-                  </h3>
+                  <Text>
+                    {employ} - {title}
+                  </Text>
                 </li>
               )
             })}

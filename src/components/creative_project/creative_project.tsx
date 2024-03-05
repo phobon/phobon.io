@@ -76,9 +76,7 @@ export const CreativeProject = forwardRef<any, any>(
             >
               {title}
             </Text>
-            <Text as='p' className={css({})}>
-              {children}
-            </Text>
+            <Text as='p'>{children}</Text>
           </div>
 
           <Text
