@@ -1,7 +1,12 @@
 import { useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
 import { useLayoutEffect, useRef, useState } from 'react'
 
-export const useTracker = <Type extends HTMLElement>() => {
+export type UseTrackerOptions = {
+  hide?: boolean
+}
+
+export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions) => {
+  const { hide = false } = options || {}
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
   const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
@@ -39,8 +44,10 @@ export const useTracker = <Type extends HTMLElement>() => {
 
     // Hide everything once it's loaded
     track.style.opacity = '0'
-    track.style.visibility = 'hidden'
-  }, [setRect])
+    if (hide) {
+      track.style.visibility = 'hidden'
+    }
+  }, [setRect, hide])
 
   return {
     trackRef,

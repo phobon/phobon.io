@@ -6,7 +6,7 @@ import { Vector3, extend, useThree } from '@react-three/fiber'
 import { Material } from 'three'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import { cn } from '@/helpers/cn'
-import { useTracker } from '@/helpers/use_tracker'
+import { UseTrackerOptions, useTracker } from '@/helpers/use_tracker'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
 import { v4 as uuid } from 'uuid'
 
@@ -14,11 +14,12 @@ export type TextProps = {
   font?: string
   as?: any
   testIntersection?: boolean
+  trackerOptions?: UseTrackerOptions
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
-  React.HTMLAttributes<HTMLDivElement>
+  any
 
-const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextProps) => {
-  const { trackRef, intersecting } = useTracker()
+const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...props }: TextProps) => {
+  const { trackRef, intersecting } = useTracker(trackerOptions)
 
   return (
     <span
@@ -35,11 +36,10 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
         className={cn(
           css({
             display: 'block',
-            // opacity: 0,
-            // visibility: 'hidden',
           }),
           className,
         )}
+        {...props}
       >
         {children}
       </Tag>
@@ -49,10 +49,11 @@ const Text = ({ className, children, font, as: Tag = 'span', ...props }: TextPro
         className={css({
           position: 'absolute',
           inset: 0,
+          pointerEvents: 'none', // We use this so that the text can be selected
         })}
       >
         <PerspectiveCamera makeDefault />
-        <WebGLText textRef={trackRef} font={font} intersecting={intersecting} {...props}>
+        <WebGLText textRef={trackRef} font={font} intersecting={intersecting}>
           {children}
         </WebGLText>
       </View>

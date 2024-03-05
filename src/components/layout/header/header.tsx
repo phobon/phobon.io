@@ -9,6 +9,7 @@ import { gridStyles } from '../common'
 
 import { socialLinks } from '@/data/links'
 import { useLayoutStore } from '@/stores/use_layout_store'
+import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
   const loaded = useLayoutStore((state) => state.loaded)
@@ -23,7 +24,6 @@ export const Header = ({ ...props }) => {
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
-          px: '$5',
         }),
         gridStyles,
         'phbn__header',
@@ -37,6 +37,7 @@ export const Header = ({ ...props }) => {
         href='/'
         className={css({
           gridColumn: '1 / span 1',
+          pl: '$5',
         })}
       >
         <Identity aria-label='Go home' />
@@ -51,24 +52,24 @@ export const Header = ({ ...props }) => {
           gridAutoRows: 'auto',
           alignItems: 'center',
           justifyContent: 'start',
-          pl: '$4',
         })}
       >
-        {socialLinks.map(({ id, label }) => (
-          <a key={id} id={id} target='_blank' className={anchorStyles}>
+        {socialLinks.map(({ id, label, href }) => (
+          <a key={id} target='_blank' href={href} className={anchorStyles}>
             {label}
           </a>
         ))}
       </nav>
 
       <a
-        className={cn(
-          css({
-            gridColumn: '12 / -1',
-          }),
-          anchorStyles,
-        )}
         href='mailto:hello@phobon.io'
+        className={css({
+          gridColumn: '11 / span 2',
+          color: '#000',
+          fontSize: 16,
+          textAlign: 'right',
+          pr: '$5',
+        })}
       >
         hello@phobon.io
       </a>
@@ -77,6 +78,7 @@ export const Header = ({ ...props }) => {
 }
 
 const anchorStyles = css({
-  color: '$slate10',
-  fontSize: '$3',
+  color: '$slate12',
+  fontSize: 16,
+  display: 'flex',
 })
