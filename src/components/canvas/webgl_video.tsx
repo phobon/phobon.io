@@ -13,7 +13,7 @@ import * as geometry from 'maath/geometry'
 
 extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry })
 
-const Video = ({ className, fallback, src, alt, ...props }) => {
+const Video = ({ className, fallback, src, alt, children, ...props }) => {
   const { viewRef, trackRef, scrollYProgress } = useImgTracker()
 
   return (
@@ -47,6 +47,7 @@ const Video = ({ className, fallback, src, alt, ...props }) => {
         ref={viewRef}
       >
         <PerspectiveCamera makeDefault />
+        {children}
         <WebGLVideo imgRef={trackRef} src={src} scrollYProgress={scrollYProgress} {...props} />
       </View>
     </span>

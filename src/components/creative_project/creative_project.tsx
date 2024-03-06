@@ -8,14 +8,15 @@ import Text from '../canvas/webgl_text'
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { cn } from '@/helpers/cn'
 import { Stinger } from './stinger'
-import { useSpring } from 'framer-motion'
+import { animate, useMotionValue, useSpring } from 'framer-motion'
 
 export const CreativeProject = forwardRef<any, any>(
   ({ className, index, imageSrc, videoSrc, title, children, status }, ref) => {
     const containerRef = useRef<HTMLLIElement>()
     useImperativeHandle(ref, () => containerRef.current)
 
-    const progress = useSpring(0, { bounce: 0 })
+    // const progress = useSpring(0, { stiffness: 400, damping: 90 })
+    const progress = useMotionValue(0)
     const progress2 = useSpring(0, { stiffness: 800, damping: 75 })
 
     return (
@@ -29,18 +30,15 @@ export const CreativeProject = forwardRef<any, any>(
           }),
           className,
         )}
-        onPointerOver={() => {
-          progress.set(1)
-
-          setTimeout(() => {
-            progress2.set(1)
-          }, 200)
+        onPointerOver={(e) => {
+          animate(progress, 1, { ease: 'easeOut', duration: 2 })
+          // progress.set(1)
+          e.stopPropagation()
         }}
-        onPointerLeave={() => {
-          progress.set(0)
-          progress2.set(0)
-
-          setTimeout(() => {}, 200)
+        onPointerLeave={(e) => {
+          animate(progress, 0, { ease: 'easeOut', duration: 1 })
+          // progress.set(0)
+          e.stopPropagation()
         }}
         ref={containerRef}
       >
@@ -54,7 +52,9 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: 'span 8',
             })}
-          />
+          >
+            <Stinger progress={progress} progress2={progress2} />
+          </Video>
         ) : (
           <Image
             alt={name}
@@ -64,7 +64,9 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: 'span 8',
             })}
-          />
+          >
+            <Stinger progress={progress} progress2={progress2} />
+          </Image>
         )}
         <div
           className={css({
@@ -116,8 +118,6 @@ export const CreativeProject = forwardRef<any, any>(
             <Text>{status}</Text>
           </div>
         </div>
-
-        <Stinger progress={progress} progress2={progress2} />
       </li>
     )
   },

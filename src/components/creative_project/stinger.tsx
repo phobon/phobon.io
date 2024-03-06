@@ -47,25 +47,23 @@ export const Stinger = forwardRef<any, any>(({ progress, progress2, ...props }, 
   })
 
   return (
-    <View
-      track={undefined}
-      className={css({
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-      })}
-    >
-      <Suspense fallback={null}>
-        <StringerImpl ref={meshRef} />
-      </Suspense>
-    </View>
+    // <View
+    //   track={undefined}
+    //   className={css({
+    //     position: 'absolute',
+    //     inset: 0,
+    //     pointerEvents: 'none',
+    //   })}
+    // >
+    <StringerImpl ref={meshRef} />
+    // </View>
   )
 })
 
 const StringerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
   const meshRef = useRef<any>()
   useImperativeHandle(ref, () => meshRef.current)
-  const { width, height } = useThree((state) => state.viewport)
+  const { width, height } = useThree((state) => state.size)
 
   const texture = useTexture('/images/dots.png', (t) => {
     t.wrapS = t.wrapT = THREE.RepeatWrapping
@@ -75,9 +73,9 @@ const StringerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
   })
 
   return (
-    <mesh ref={meshRef} position={[-width / 4, 0, 0]}>
+    <mesh ref={meshRef} position={[0, 0, 1]}>
       {/* @ts-ignore */}
-      <roundedPlaneGeometry args={[width / 2, height, 0.08]} />
+      <roundedPlaneGeometry args={[width, height, 0.08]} />
       {/* @ts-ignore */}
       <stingerMaterial transparent uniforms-u_diffuse-value={texture} uniforms-u_noise-value={perlin} />
     </mesh>
@@ -104,10 +102,11 @@ const StingerMaterial = shaderMaterial(
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     
     v_uv = uv;
-    float progress = min(u_progress, 0.95);
-    float progress2 = min(u_progress2, 0.95);
-    v_progress = floor(progress * u_factor) / u_factor;
-    v_progress2 = floor(progress2 * u_factor) / u_factor;
+    v_progress = u_progress * 0.8;
+    // float progress = min(u_progress, 0.95);
+    // float progress2 = min(u_progress2, 0.95);
+    // v_progress = floor(progress * u_factor) / u_factor;
+    // v_progress2 = floor(progress2 * u_factor) / u_factor;
   }
 `,
   `
@@ -117,22 +116,28 @@ const StingerMaterial = shaderMaterial(
 
   varying vec2 v_uv;
   varying float v_progress;
-  varying float v_progress2;
+  // varying float v_progress2;
   
   void main() {
-    vec2 uv = v_uv * 16.0;
-
-    float t = texture(u_diffuse, uv).r;
-    vec3 texel = vec3(t) * vec3(1.0, 0.0, 1.0);
-
-    vec2 pixelUv = floor(v_uv * 16.0) / 16.0;
+    vec2 resolution = vec2(32.0, 18.0);
+    vec2 pixelUv = floor(v_uv * resolution) / resolution;
     float n = texture(u_noise, pixelUv).r;
-    n = pow(n, 2.0);
+    n = pow(n, 0.5);
 
-    float alpha = step(n, u_progress);
+    float alpha = step(n, u_progress * 1.5);
+    float caProgress = smoothstep(0.0, n, u_progress);
+    if (alpha == 0.0) discard;
 
-    // float p = step(v_uv.x, v_progress2);
-    // vec3 finalColor = mix(texel, vec3(0.0), p);
+    // vec2 uv = v_uv * 32.0;
+    // float t = texture(u_diffuse, uv).r;
+
+    // Do some chromatic aberration here with caProgress as the progress
+    float r = texture(u_noise, pixelUv - vec2(0.1, 0.1)).r;
+    float g = texture(u_noise, pixelUv).g;
+    float b = texture(u_noise, pixelUv + vec2(0.2, 0.2)).b;
+    vec3 finalColor = vec3(r, g, b);
+
+    vec3 texel = mix(finalColor, vec3(0.0), caProgress);
 
     gl_FragColor = vec4(texel, alpha);
 
