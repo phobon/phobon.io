@@ -117,12 +117,16 @@ const StingerMaterial = shaderMaterial(
   varying vec2 v_uv;
   varying float v_progress;
   // varying float v_progress2;
+
+  vec3 correctGamma(vec3 color) {
+    return pow(color, vec3(1.0 / 2.2));
+  }
   
   void main() {
     vec2 resolution = vec2(32.0, 18.0);
     vec2 pixelUv = floor(v_uv * resolution) / resolution;
     float n = texture(u_noise, pixelUv).r;
-    n = pow(n, 0.5);
+    n = pow(n, 0.75);
 
     float alpha = step(n, u_progress * 1.5);
     float caProgress = smoothstep(0.0, n, u_progress);
@@ -138,6 +142,7 @@ const StingerMaterial = shaderMaterial(
     vec3 finalColor = vec3(r, g, b);
 
     vec3 texel = mix(finalColor, vec3(0.0), caProgress);
+    texel = correctGamma(texel);
 
     gl_FragColor = vec4(texel, alpha);
 
