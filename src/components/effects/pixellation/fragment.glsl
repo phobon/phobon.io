@@ -18,6 +18,9 @@ void main(void) {
   vec4 finalColor = texture2D(u_diffuse, offsetUv);
   finalColor.rgb = correctGamma(finalColor.rgb);
 
+  // finalColor = offsetColor;
+  // finalColor.rgb = vec3(1.0, 0.0, 0.0);
+
   gl_FragColor = finalColor;
 }
 

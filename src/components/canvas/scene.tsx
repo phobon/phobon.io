@@ -2,15 +2,12 @@
 
 import { Canvas } from '@react-three/fiber'
 
-import { AdaptiveDpr, Preload, StatsGl, View, useFBO, useGLTF } from '@react-three/drei'
+import { AdaptiveDpr, Preload, StatsGl, View, useFBO } from '@react-three/drei'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
-import { useRef, useState } from 'react'
-// import * as THREE from 'three'
 import Pixellation from '../effects/pixellation/pixellation'
 import SceneFBORenderer from './scene_fbo_renderer'
 import DotMatrix from '../effects/dot_matrix'
 import Overlay from './overlay'
-// import ChromaticAbberationMaterial from '../effects/chromatic_abberation'
 
 export type SceneProps = {
   debug?: boolean
@@ -45,7 +42,6 @@ const FBOScene = ({ ...props }) => {
   return (
     <SceneFBORenderer renderTarget={renderTarget} {...props}>
       <Pixellation texture={renderTarget.texture} />
-      {/* <DotMatrix texture={renderTarget.texture} /> */}
     </SceneFBORenderer>
   )
 }

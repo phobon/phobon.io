@@ -2,40 +2,40 @@
   {
     "key": "aligning-agworlds-platform-experiences",
     "title": "Aligning Agworld's Platform Experiences",
-    "href": "writing/aligning-agworlds-platform-experiences",
+    "href": "https://v6.phobon.io/writing/aligning-agworlds-platform-experiences",
     "published": "17 August 2019",
-    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps"
+    "external": true
   },
   {
     "key": "building-a-better-buying-experience-at-agworld",
     "title": "Building a Better Buying Experience at Agworld",
-    "href": "writing/building-a-better-buying-experience-at-agworld",
+    "href": "https://v6.phobon.io/writing/building-a-better-buying-experience-at-agworld",
     "published": "23 December 2019",
-    "description": "Improving the experience of buying subscriptions for Agworld's customers"
+    "external": true
   },
   {
     "key": "making-agworld-responsive",
     "title": "Making Agworld Responsive",
-    "href": "writing/making-agworld-responsive",
-    "description": "Taking Agworld's web experience, and making it mobile"
+    "href": "https://v6.phobon.io/writing/making-agworld-responsive",
+    "external": true
   },
   {
     "key": "modernising-agworlds-frontend-stack",
     "title": "Modernising Agworld's Frontend Stack",
-    "href": "writing/modernising-agworlds-frontend-stack",
-    "description": "Bringing Agworld's frontend stack up to scratch"
+    "href": "https://v6.phobon.io/writing/modernising-agworlds-frontend-stack",
+    "external": true
   },
   {
     "key": "refactoring-10-years-of-legacy",
     "title": "Refactoring 10 Years of Legacy",
-    "href": "writing/refactoring-10-years-of-legacy",
+    "href": "https://v6.phobon.io/writing/refactoring-10-years-of-legacy",
     "published": "30 November 2020",
-    "description": "Working in a legacy codebase is a challenge"
+    "external": true
   },
   {
     "key": "signal-design-system",
     "title": "Signal - Agworld's Design System",
-    "href": "writing/signal-design-system",
-    "description": "Connecting design and development"
+    "href": "https://v6.phobon.io/writing/signal-design-system",
+    "external": true
   }
 ]

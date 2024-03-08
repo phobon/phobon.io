@@ -25,7 +25,7 @@ extend({ PixellationMaterial })
 
 const Pixellation = ({ texture }) => {
   const meshRef = useRef<any>()
-  const { width, height } = useThree((state) => state.viewport)
+  const { width, height } = useThree((state) => state.size)
 
   useFrame(({ clock }) => {
     const mesh = meshRef.current

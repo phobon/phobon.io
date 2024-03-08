@@ -18,5 +18,10 @@
     "key": "work_project--mds_flowweb",
     "title": "Flow Web",
     "href": "https://flowapp.moleskinestudio.com/"
+  },
+  {
+    "key": "personal_project--blog_v6",
+    "title": "phobon.io v6",
+    "href": "https://v6.phobon.io/"
   }
 ]

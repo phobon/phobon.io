@@ -11,7 +11,7 @@ export type UseGridTrailTextureProps = {
 }
 
 export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => {
-  const { grid = 50, radius = 0.05, strength = 0.02, decay = 0.9 } = options || {}
+  const { grid = 50, radius = 0.05, strength = 0.06, decay = 0.75 } = options || {}
   const [dataTexture, setDataTexture] = useState<THREE.DataTexture>()
 
   const previousPointerRef = useRef({ x: 0, y: 0 })
@@ -65,6 +65,8 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     // Cache previous pointer position
     previousPointerRef.current.x = pointerRef.current.x
     previousPointerRef.current.y = pointerRef.current.y
+
+    console.log(pointerRef.current)
   }, [])
 
   useFrame(({}) => {
@@ -96,8 +98,11 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
             let force = mouseRadius / Math.sqrt(dist)
             force = clamp(force, 0, 10)
 
-            data[dataIndex] += strength * pointerVelocityRef.current.x * force
-            data[dataIndex + 1] -= strength * pointerVelocityRef.current.y * force
+            data[dataIndex] += strength * Math.abs(pointerVelocityRef.current.x) * force
+            data[dataIndex + 1] += strength * Math.abs(pointerVelocityRef.current.y) * force
+
+            // data[dataIndex] += strength * pointerVelocityRef.current.x * force
+            // data[dataIndex + 1] -= strength * pointerVelocityRef.current.y * force
           }
         }
 

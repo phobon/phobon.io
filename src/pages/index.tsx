@@ -130,16 +130,20 @@ export default function Page({ ...props }) {
           </SideStack>
 
           <SideStack title='Writing'>
-            {allWriting.map(({ key, title, href, published }) => {
+            {allWriting.map(({ key, title, href, published, external }) => {
               if (!published) {
                 return null
               }
 
               return (
                 <li key={key}>
-                  <Link href={href} title={title}>
-                    <Text>{`↱  ${title}`}</Text>
-                  </Link>
+                  {external ? (
+                    <Text as='a' href={href} target='_blank' title={title}>{`↱  ${title}`}</Text>
+                  ) : (
+                    <Link href={href} title={title}>
+                      <Text>{`↱  ${title}`}</Text>
+                    </Link>
+                  )}
                 </li>
               )
             })}
