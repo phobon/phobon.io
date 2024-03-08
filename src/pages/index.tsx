@@ -24,11 +24,13 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: '25vh',
-            gridTemplateRows: 'auto auto 1fr',
+            height: '30vh',
+            gridTemplateRows: '1fr',
             gridRowGap: '$4',
-            pt: '$11',
             px: '$5',
+            pb: '$10',
+            alignItems: 'end',
+            justifyContent: 'end',
           }),
         )}
       >
@@ -165,8 +167,8 @@ export default function Page({ ...props }) {
           </Text>
 
           <Text as='p'>
-            With over 17 years of experience embedded across product teams, I thrive across disciplines - taking great
-            pride in my ability to adapt; connecting and elevating teams I work with.
+            With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
+            across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
           </Text>
 
           <Text as='p'>
