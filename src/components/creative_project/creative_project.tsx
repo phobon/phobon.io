@@ -52,9 +52,8 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: 'span 8',
             })}
-          >
-            <Stinger progress={progress} progress2={progress2} />
-          </Video>
+            progress={progress}
+          />
         ) : (
           <Image
             alt={name}
@@ -64,9 +63,8 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: 'span 8',
             })}
-          >
-            <Stinger progress={progress} progress2={progress2} />
-          </Image>
+            progress={progress}
+          />
         )}
         <div
           className={css({

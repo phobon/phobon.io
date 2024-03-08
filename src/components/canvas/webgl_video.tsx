@@ -1,6 +1,6 @@
 import { View, useVideoTexture } from '@react-three/drei'
 import React, { RefObject, useRef } from 'react'
-import { Image as DreiImage } from '@react-three/drei'
+import { Image as DreiImage } from './image'
 import { css } from '@/design/css'
 import { extend, useFrame } from '@react-three/fiber'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
@@ -8,12 +8,11 @@ import { cn } from '@/helpers/cn'
 import { useImgTracker } from '@/helpers/use_tracker'
 import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
-import { clamp } from '@/helpers/math'
-import * as geometry from 'maath/geometry'
+import * as THREE from 'three'
 
-extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry })
+export type ImageProps = any
 
-const Video = ({ className, fallback, src, alt, children, ...props }) => {
+const Video = ({ className, src, alt, fallback, children, progress, ...props }: any) => {
   const { viewRef, trackRef, scrollYProgress } = useImgTracker()
 
   return (
@@ -37,18 +36,20 @@ const Video = ({ className, fallback, src, alt, children, ...props }) => {
           className,
         )}
         alt={alt}
+        crossOrigin='anonymous'
       />
       <View
         track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({
           position: 'absolute',
           inset: 0,
+          pointerEvents: 'none',
         })}
         ref={viewRef}
       >
         <PerspectiveCamera makeDefault />
         {children}
-        <WebGLVideo imgRef={trackRef} src={src} scrollYProgress={scrollYProgress} {...props} />
+        <WebGLVideo imgRef={trackRef} src={src} scrollYProgress={scrollYProgress} progress={progress} {...props} />
       </View>
     </span>
   )
@@ -58,28 +59,35 @@ type WebGLVideoProps = {
   src: string
   imgRef: RefObject<HTMLImageElement>
   scrollYProgress: MotionValue<number>
+  progress: MotionValue<number>
 }
 
-const WebGLVideo = ({ imgRef, src, scrollYProgress, ...props }: WebGLVideoProps) => {
+const WebGLVideo = ({ src, imgRef, scrollYProgress, progress, ...props }: WebGLVideoProps) => {
   const ref = useRef<any>()
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // ref.current.material.grayscale = 1 - latest
-    // ref.current.material.zoom = 1 + latest * 0.1
-    // ref.current.material.opacity = clamp(latest * 3, 0, 1)
+  // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  // ref.current.material.grayscale = 1 - latest
+  // ref.current.material.zoom = 1 + latest * 0.1
+  // ref.current.material.opacity = clamp(latest * 3, 0, 1)
+  // })
+
+  useMotionValueEvent(progress, 'change', (latest) => {
+    ref.current.material.uniforms.u_progress.value = latest
   })
 
-  // Load texture from the <img/> and suspend until it's ready
   const texture = useVideoTexture(src)
   const width = imgRef?.current?.width || 0
   const height = imgRef?.current?.height || 0
 
   return (
-    <mesh ref={ref} {...props}>
-      {/* @ts-ignore */}
-      <roundedPlaneGeometry args={[width, height, 8]} />
-      <meshBasicMaterial map={texture} transparent />
-    </mesh>
+    <DreiImage
+      ref={ref}
+      texture={texture}
+      transparent
+      {...props}
+      scale={[width, height]}
+      imageBounds={[width, height]}
+    />
   )
 }
 

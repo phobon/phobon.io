@@ -1,6 +1,6 @@
 import { View } from '@react-three/drei'
-import React, { RefObject, Suspense, useRef } from 'react'
-import { Image as DreiImage } from '@react-three/drei'
+import React, { RefObject, useRef } from 'react'
+import { Image as DreiImage } from './image'
 import { css } from '@/design/css'
 import { extend, useFrame } from '@react-three/fiber'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
@@ -8,12 +8,11 @@ import { cn } from '@/helpers/cn'
 import { useImgTracker } from '@/helpers/use_tracker'
 import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
-import { clamp } from '@/helpers/math'
-import * as geometry from 'maath/geometry'
+import * as THREE from 'three'
 
-extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry })
+export type ImageProps = any
 
-const Image = ({ className, src, alt, children, ...props }) => {
+const Image = ({ className, src, alt, children, progress, ...props }: any) => {
   const { viewRef, trackRef, scrollYProgress } = useImgTracker()
 
   return (
@@ -44,12 +43,13 @@ const Image = ({ className, src, alt, children, ...props }) => {
         className={css({
           position: 'absolute',
           inset: 0,
+          pointerEvents: 'none',
         })}
         ref={viewRef}
       >
         <PerspectiveCamera makeDefault />
         {children}
-        <WebGLImage imgRef={trackRef} scrollYProgress={scrollYProgress} {...props} />
+        <WebGLImage imgRef={trackRef} scrollYProgress={scrollYProgress} progress={progress} {...props} />
       </View>
     </span>
   )
@@ -58,9 +58,10 @@ const Image = ({ className, src, alt, children, ...props }) => {
 type WebGLImageProps = {
   imgRef: RefObject<HTMLImageElement>
   scrollYProgress: MotionValue<number>
+  progress: MotionValue<number>
 }
 
-const WebGLImage = ({ imgRef, scrollYProgress, ...props }: WebGLImageProps) => {
+const WebGLImage = ({ imgRef, scrollYProgress, progress, ...props }: WebGLImageProps) => {
   const ref = useRef<any>()
 
   // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
@@ -69,16 +70,19 @@ const WebGLImage = ({ imgRef, scrollYProgress, ...props }: WebGLImageProps) => {
   // ref.current.material.opacity = clamp(latest * 3, 0, 1)
   // })
 
+  useMotionValueEvent(progress, 'change', (latest) => {
+    ref.current.material.uniforms.u_progress.value = latest
+  })
+
   // Load texture from the <img/> and suspend until it's ready
   const texture = useImageAsTexture(imgRef)
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping
   const width = imgRef?.current?.width || 0
   const height = imgRef?.current?.height || 0
+  const imageBounds: [number, number] = [texture!.image.width, texture!.image.height]
 
   return (
-    <DreiImage ref={ref} texture={texture} transparent {...props}>
-      {/* @ts-ignore */}
-      <roundedPlaneGeometry args={[width, height, 4]} />
-    </DreiImage>
+    <DreiImage ref={ref} texture={texture} transparent {...props} scale={[width, height]} imageBounds={imageBounds} />
   )
 }
 

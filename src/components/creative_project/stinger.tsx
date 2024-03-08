@@ -1,6 +1,6 @@
 import { css } from '@/design/css'
 import { PerspectiveCamera, View, shaderMaterial, useTexture } from '@react-three/drei'
-import { extend, useThree } from '@react-three/fiber'
+import { extend, useFrame, useThree } from '@react-three/fiber'
 import { useMotionValueEvent, useTransform } from 'framer-motion'
 import { Suspense, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
 import * as THREE from 'three'
@@ -72,6 +72,12 @@ const StringerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
     t.wrapS = t.wrapT = THREE.RepeatWrapping
   })
 
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.material.uniforms.u_time.value += 0.01
+    }
+  })
+
   return (
     <mesh ref={meshRef} position={[0, 0, 1]}>
       {/* @ts-ignore */}
@@ -86,6 +92,7 @@ const StingerMaterial = shaderMaterial(
   {
     u_progress: 0,
     u_progress2: 0,
+    u_time: 0,
     u_factor: 10,
     u_diffuse: null,
     u_noise: null,
@@ -113,6 +120,7 @@ const StingerMaterial = shaderMaterial(
   uniform sampler2D u_diffuse;
   uniform sampler2D u_noise;
   uniform float u_progress;
+  uniform float u_time;
 
   varying vec2 v_uv;
   varying float v_progress;
@@ -123,8 +131,9 @@ const StingerMaterial = shaderMaterial(
   }
   
   void main() {
-    vec2 resolution = vec2(32.0, 18.0);
-    vec2 pixelUv = floor(v_uv * resolution) / resolution;
+    vec2 resolution = vec2(48.0, 18.0);
+    vec2 uv = v_uv;
+    vec2 pixelUv = floor(uv * resolution) / resolution;
     float n = texture(u_noise, pixelUv).r;
     n = pow(n, 0.75);
 
@@ -135,13 +144,17 @@ const StingerMaterial = shaderMaterial(
     // vec2 uv = v_uv * 32.0;
     // float t = texture(u_diffuse, uv).r;
 
+    float p  = pow(caProgress, 0.5);
+
+
     // Do some chromatic aberration here with caProgress as the progress
-    float r = texture(u_noise, pixelUv - vec2(0.1, 0.1)).r;
-    float g = texture(u_noise, pixelUv).g;
-    float b = texture(u_noise, pixelUv + vec2(0.2, 0.2)).b;
+    float r = texture(u_noise, pixelUv - vec2(0.3, 0.1) * p).r;
+    float g = texture(u_noise, pixelUv - vec2(0.1, 0.1) * p).g;
+    float b = texture(u_noise, pixelUv + vec2(0.1, 0.3) * p).b;
     vec3 finalColor = vec3(r, g, b);
 
     vec3 texel = mix(finalColor, vec3(0.0), caProgress);
+    // texel = finalColor;
     texel = correctGamma(texel);
 
     gl_FragColor = vec4(texel, alpha);
