@@ -54,7 +54,6 @@ const Image = ({
       />
 
       <View
-        track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({
           position: 'absolute',
           inset: 0,
@@ -86,6 +85,9 @@ const WebGLImage = ({ imgRef, scrollYProgress, progress, ...props }: WebGLImageP
   // })
 
   useMotionValueEvent(progress, 'change', (latest) => {
+    if (!ref.current) {
+      return
+    }
     ref.current.material.uniforms.u_progress.value = latest
   })
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'

@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import Link from 'next/link'
 
@@ -12,7 +12,7 @@ import { useLayoutStore } from '@/stores/use_layout_store'
 // import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
-  const loaded = useLayoutStore((state) => state.loaded)
+  // const loaded = useLayoutStore((state) => state.loaded)
   return (
     <header
       className={cn(
@@ -28,9 +28,9 @@ export const Header = ({ ...props }) => {
         gridStyles,
         'phbn__header',
       )}
-      style={{
-        opacity: loaded ? 1 : 0,
-      }}
+      // style={{
+      //   opacity: loaded ? 1 : 0,
+      // }}
       {...props}
     >
       <Link

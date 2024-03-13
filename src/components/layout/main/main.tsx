@@ -1,30 +1,24 @@
 'use client'
 
-import { Suspense, useRef } from 'react'
+import { useRef } from 'react'
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
-import Scene, { SceneProps } from '@/components/canvas/scene'
-import { useSearchParams } from 'next/navigation'
-import DebugGrid from '../debug_grid'
 
 import { gridStyles } from '../common'
 import ReactLenis from '@studio-freight/react-lenis'
+import Scene from '@/components/canvas/scene'
 
 export type MainProps = {
   debug?: boolean
-} & Partial<SceneProps>
+} & any
 
 export const Main = ({ className, screenSizeCamera = false, children }: MainProps) => {
   const ref = useRef()
-
-  const searchParams = useSearchParams()
-  const debug = searchParams.get('debug')
 
   return (
     <ReactLenis
       root
       options={{
-        // infinite: true,
         syncTouch: true,
       }}
     >
@@ -42,7 +36,6 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
           'phbn__main',
         )}
       >
-        {/* <Suspense fallback={null}></Suspense> */}
         {children}
         <Scene
           style={{
@@ -54,12 +47,10 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
           }}
           eventSource={ref}
           eventPrefix='client'
-          debug={debug}
+          debug={false}
           screenSizeCamera={screenSizeCamera}
         />
       </main>
-
-      {debug ? <DebugGrid /> : null}
     </ReactLenis>
   )
 }

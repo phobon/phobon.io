@@ -6,7 +6,7 @@ import { AdaptiveDpr, Preload, StatsGl, View, useFBO } from '@react-three/drei'
 import { PerspectiveCamera } from '@/helpers/perspective_camera'
 import Pixellation from '../effects/pixellation/pixellation'
 import SceneFBORenderer from './scene_fbo_renderer'
-import DotMatrix from '../effects/dot_matrix'
+// import DotMatrix from '../effects/dot_matrix'
 import Overlay from './overlay'
 
 export type SceneProps = {

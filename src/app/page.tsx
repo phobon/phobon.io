@@ -1,7 +1,6 @@
-'use client'
+// 'use client'
 
 import { css } from '@/design/css'
-import dynamic from 'next/dynamic'
 import { cn } from '@/helpers/cn'
 import { Link } from '@/helpers/navigation_helpers'
 
@@ -9,7 +8,6 @@ import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
 import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
-import Meta from '@/components/layout/meta'
 
 import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
@@ -22,8 +20,6 @@ import SideStack from '@/components/side_stack'
 export default function Page({ ...props }) {
   return (
     <>
-      <Meta />
-
       <section
         className={cn(
           sectionStyles,

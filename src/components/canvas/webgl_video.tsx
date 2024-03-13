@@ -41,7 +41,6 @@ const Video = ({
         className,
       )}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <NextImage
         ref={trackRef}
         src={fallback}
@@ -55,7 +54,6 @@ const Video = ({
       />
 
       <View
-        track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({
           position: 'absolute',
           inset: 0,
@@ -63,7 +61,6 @@ const Video = ({
         })}
         ref={viewRef}
       >
-        <PerspectiveCamera makeDefault />
         {children}
         <WebGLVideo imgRef={trackRef} src={src} scrollYProgress={scrollYProgress} progress={progress} {...props} />
       </View>
@@ -88,7 +85,9 @@ const WebGLVideo = ({ src, imgRef, scrollYProgress, progress, ...props }: WebGLV
   // })
 
   useMotionValueEvent(progress, 'change', (latest) => {
-    ref.current.material.uniforms.u_progress.value = latest
+    if (!ref.current) {
+      ref.current.material.uniforms.u_progress.value = latest
+    }
   })
 
   const texture = useVideoTexture(src)

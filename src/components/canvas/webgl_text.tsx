@@ -47,11 +47,10 @@ const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...
       </Tag>
 
       <View
-        track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({
           position: 'absolute',
           inset: 0,
-          pointerEvents: 'none', // We use this so that the text can be selected
+          pointerEvents: 'none',
         })}
       >
         <PerspectiveCamera makeDefault />
