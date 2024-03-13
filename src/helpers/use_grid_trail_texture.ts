@@ -65,8 +65,6 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     // Cache previous pointer position
     previousPointerRef.current.x = pointerRef.current.x
     previousPointerRef.current.y = pointerRef.current.y
-
-    console.log(pointerRef.current)
   }, [])
 
   useFrame(({}) => {

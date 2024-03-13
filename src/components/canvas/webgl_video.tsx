@@ -1,3 +1,5 @@
+'use client'
+
 import { View, useVideoTexture } from '@react-three/drei'
 import React, { RefObject, useRef } from 'react'
 import { Image as DreiImage } from './image'
@@ -9,10 +11,24 @@ import { useImgTracker } from '@/helpers/use_tracker'
 import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
 import * as THREE from 'three'
+import NextImage from 'next/image'
 
 export type ImageProps = any
 
-const Video = ({ className, src, alt, fallback, children, progress, ...props }: any) => {
+const Video = ({
+  className,
+  src,
+  fallback,
+  alt,
+  children,
+  progress,
+  width,
+  height,
+  priority,
+  loading = 'lazy',
+  crossOrigin = 'anonymous',
+  ...props
+}: any) => {
   const { viewRef, trackRef, scrollYProgress } = useImgTracker()
 
   return (
@@ -20,24 +36,24 @@ const Video = ({ className, src, alt, fallback, children, progress, ...props }: 
       className={cn(
         css({
           position: 'relative',
+          backgroundColor: '#000',
         }),
         className,
       )}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <NextImage
         ref={trackRef}
         src={fallback}
-        className={cn(
-          css({
-            // opacity: 0,
-            // visibility: 'hidden',
-          }),
-          className,
-        )}
+        className={className}
         alt={alt}
-        crossOrigin='anonymous'
+        crossOrigin={crossOrigin}
+        width={width}
+        height={height}
+        loading={priority === true ? 'eager' : loading}
+        priority={priority}
       />
+
       <View
         track={undefined} // This is deprecated in drei, so setting to undefined here just to satisfy ts
         className={css({

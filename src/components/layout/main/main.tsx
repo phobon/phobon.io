@@ -42,7 +42,8 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
           'phbn__main',
         )}
       >
-        <Suspense fallback={null}>{children}</Suspense>
+        {/* <Suspense fallback={null}></Suspense> */}
+        {children}
         <Scene
           style={{
             position: 'fixed',

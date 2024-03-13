@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import * as THREE from 'three'
 import { Color, extend, useFrame, useThree } from '@react-three/fiber'

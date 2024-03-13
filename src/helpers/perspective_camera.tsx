@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useRef, forwardRef, useMemo, useImperativeHandle, useLayoutEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import { PerspectiveCamera as PerspectiveCameraImpl } from 'three'

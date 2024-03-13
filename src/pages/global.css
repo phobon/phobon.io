@@ -2,7 +2,8 @@
   :root {
     --mainGridGutter: 0;
     --mainGridMargin: 16px;
-    --backgroundColor: #060708;
+    /* --backgroundColor: #060708; */
+    --backgroundColor: #fff;
 
     background-color: var(--backgroundColor);
 

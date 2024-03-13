@@ -36,7 +36,7 @@ export const useLayoutStore = createWithEqualityFn<LayoutStore>(
       stagger: 0.1,
     },
 
-    loaded: false,
+    loaded: true,
     progress: 0,
     setLoaded: (newLoaded: boolean) => set({ loaded: newLoaded }),
     setProgress: (newProgress: number) => set({ progress: newProgress }),

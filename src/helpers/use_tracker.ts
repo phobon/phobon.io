@@ -1,5 +1,5 @@
-import { useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { animate, useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 export type UseTrackerOptions = {
   hide?: boolean
@@ -9,7 +9,8 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
   const { hide = false } = options || {}
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
-  const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
+  // const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
+  const intersecting = useMotionValue(0)
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -17,14 +18,15 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     offset: ['start end', 'end end'],
   })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const track = trackRef.current
     if (!track) {
       return
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      intersecting.set(entry.isIntersecting ? 0 : 1)
+      animate(intersecting, entry.isIntersecting ? 0 : 1, { ease: 'easeOut', duration: 0.75 })
+      // intersecting.set(entry.isIntersecting ? 0 : 1)
     })
     observer.observe(track)
 
@@ -33,7 +35,7 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     }
   }, [intersecting])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const track = trackRef.current
     if (!track) {
       return
@@ -69,7 +71,7 @@ export const useImgTracker = () => {
     offset: ['start end', 'end end'],
   })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const track = trackRef.current
     if (!track) {
       return
@@ -85,13 +87,17 @@ export const useImgTracker = () => {
     }
   }, [intersecting])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const track = trackRef.current
     if (!track) {
       return
     }
 
     track.onload = () => {
+      if (!viewRef.current) {
+        return
+      }
+
       const trackRect = track.getBoundingClientRect()
       const { width, height } = trackRect
       viewRef.current.style.width = width

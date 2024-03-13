@@ -11,9 +11,13 @@ import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 import Meta from '@/components/layout/meta'
 
-const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
-const CreativeProject = dynamic(() => import('@/components/creative_project').then((mod) => mod), { ssr: false })
-const SideStack = dynamic(() => import('@/components/side_stack').then((mod) => mod), { ssr: false })
+import Text from '@/components/canvas/webgl_text'
+import CreativeProject from '@/components/creative_project'
+import SideStack from '@/components/side_stack'
+
+// const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
+// const CreativeProject = dynamic(() => import('@/components/creative_project').then((mod) => mod), { ssr: false })
+// const SideStack = dynamic(() => import('@/components/side_stack').then((mod) => mod), { ssr: false })
 
 export default function Page({ ...props }) {
   return (
@@ -66,24 +70,29 @@ export default function Page({ ...props }) {
             gridRowGap: '$5',
           })}
         >
-          {creativeProjects.map(({ key, imageSrc, videoSrc, title, description, status }, index) => {
-            const projectIndex = new String(index + 1).padStart(2, '0')
-            return (
-              <CreativeProject
-                key={key}
-                className={css({
-                  gridColumn: '1 / -1',
-                })}
-                index={projectIndex}
-                imageSrc={imageSrc}
-                videoSrc={videoSrc}
-                title={title}
-                status={status}
-              >
-                {description}
-              </CreativeProject>
-            )
-          })}
+          {creativeProjects.map(
+            ({ key, imageSrc, videoSrc, title, description, status, width, height, priority }, index) => {
+              const projectIndex = new String(index + 1).padStart(2, '0')
+              return (
+                <CreativeProject
+                  key={key}
+                  className={css({
+                    gridColumn: '1 / -1',
+                  })}
+                  index={projectIndex}
+                  imageSrc={imageSrc}
+                  videoSrc={videoSrc}
+                  title={title}
+                  status={status}
+                  width={width}
+                  height={height}
+                  priority={priority}
+                >
+                  {description}
+                </CreativeProject>
+              )
+            },
+          )}
         </ul>
       </section>
 

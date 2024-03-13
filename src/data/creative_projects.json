@@ -4,7 +4,10 @@
     "status": "Live",
     "title": "Formation °",
     "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
-    "imageSrc": "/images/projects/circular.png",
+    "imageSrc": "/images/projects/circular.webp",
+    "width": 1200,
+    "height": 630,
+    "priority": true,
     "url": "https://formation.phobon.io"
   },
   {
@@ -12,7 +15,10 @@
     "status": "Dev",
     "title": "GIGAS",
     "description": "Audio stimulation given visual form.",
-    "imageSrc": "/images/projects/spiral.png",
+    "imageSrc": "/images/projects/spiral.webp",
+    "width": 1200,
+    "height": 630,
+    "priority": false,
     "url": "https://formation.phobon.io"
   },
   {
@@ -20,8 +26,11 @@
     "status": "Live",
     "title": "Moleskine Design Studio Labs",
     "description": "Experimental technology and design for Moleskine Design Studio.",
-    "imageSrc": "/images/projects/mds_labs.png",
+    "imageSrc": "/images/projects/mds_labs.webp",
     "videoSrc": "/images/projects/mds_labs.mp4",
+    "width": 1839,
+    "height": 959,
+    "priority": false,
     "url": "https://moleskinestudio.com/lab/landing/"
   }
 ]

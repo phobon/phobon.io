@@ -1,3 +1,5 @@
+'use client'
+
 import { View, shaderMaterial } from '@react-three/drei'
 import React, { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
 import { Text as DreiText } from '@react-three/drei'

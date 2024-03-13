@@ -102,7 +102,7 @@ const containerStyles = css({
 })
 
 const textStyles = css({
-  fontSize: '$10',
+  fontSize: '$13',
   position: 'relative',
   fontVariantNumeric: 'tabular-nums',
 

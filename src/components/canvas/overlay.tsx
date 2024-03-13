@@ -40,7 +40,7 @@ const Overlay = () => {
 
     const unsubscribe = useLayoutStore.subscribe(({ loaded }) => {
       animate(overlay.material.uniforms.u_progress.value, loaded ? 0 : 1, {
-        duration: 3,
+        // duration: 3,
         onUpdate: (latest) => {
           overlay.material.uniforms.u_progress.value = latest
         },

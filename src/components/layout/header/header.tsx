@@ -9,7 +9,7 @@ import { gridStyles } from '../common'
 
 import { socialLinks } from '@/data/links'
 import { useLayoutStore } from '@/stores/use_layout_store'
-import Text from '@/components/canvas/webgl_text'
+// import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
   const loaded = useLayoutStore((state) => state.loaded)

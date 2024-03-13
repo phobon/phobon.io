@@ -11,7 +11,7 @@ import { Stinger } from './stinger'
 import { animate, useMotionValue, useSpring } from 'framer-motion'
 
 export const CreativeProject = forwardRef<any, any>(
-  ({ className, index, imageSrc, videoSrc, title, children, status }, ref) => {
+  ({ className, index, imageSrc, videoSrc, title, children, status, width, height, priority }, ref) => {
     const containerRef = useRef<HTMLLIElement>()
     useImperativeHandle(ref, () => containerRef.current)
 
@@ -44,7 +44,7 @@ export const CreativeProject = forwardRef<any, any>(
       >
         {videoSrc ? (
           <Video
-            alt={name}
+            alt={title}
             fallback={imageSrc}
             src={videoSrc}
             className={css({
@@ -53,10 +53,13 @@ export const CreativeProject = forwardRef<any, any>(
               gridColumn: 'span 8',
             })}
             progress={progress}
+            width={width}
+            height={height}
+            priority={priority}
           />
         ) : (
           <Image
-            alt={name}
+            alt={title}
             src={imageSrc}
             className={css({
               width: '100%',
@@ -64,6 +67,9 @@ export const CreativeProject = forwardRef<any, any>(
               gridColumn: 'span 8',
             })}
             progress={progress}
+            width={width}
+            height={height}
+            priority={priority}
           />
         )}
         <div
