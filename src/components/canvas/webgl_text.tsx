@@ -18,7 +18,7 @@ export type TextProps = {
   testIntersection?: boolean
   trackerOptions?: UseTrackerOptions
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
-  any
+  React.HTMLAttributes<HTMLDivElement>
 
 const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...props }: TextProps) => {
   const { trackRef, intersecting } = useTracker(trackerOptions)
@@ -54,9 +54,9 @@ const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...
         })}
       >
         <PerspectiveCamera makeDefault />
-        <WebGLText textRef={trackRef} font={font} intersecting={intersecting}>
+        <TextImpl textRef={trackRef} font={font} intersecting={intersecting}>
           {children}
-        </WebGLText>
+        </TextImpl>
       </View>
     </span>
   )
@@ -76,7 +76,7 @@ type WebGLTextProps = {
   intersecting?: MotionValue<number>
 }
 
-export const WebGLText = ({
+const TextImpl = ({
   textRef,
   children,
   material,

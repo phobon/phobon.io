@@ -1,10 +1,7 @@
-import { shaderMaterial, useProgress } from '@react-three/drei'
+import { shaderMaterial } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
-import { animate, progress, useMotionValueEvent, useSpring } from 'framer-motion'
-import { useCallback, useEffect, useRef } from 'react'
-import { DefaultLoadingManager } from 'three'
-import { useControls } from 'leva'
-import { useLoader } from '@/helpers/use_loader'
+import { animate } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import { useLayoutStore } from '@/stores/use_layout_store'
 
 const OverlayMaterial = shaderMaterial(
