@@ -18,7 +18,7 @@ export type TextProps = {
   testIntersection?: boolean
   trackerOptions?: UseTrackerOptions
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
-  React.HTMLAttributes<HTMLDivElement>
+  any
 
 const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...props }: TextProps) => {
   const { trackRef, intersecting } = useTracker(trackerOptions)

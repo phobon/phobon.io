@@ -9,9 +9,8 @@
       "@/design/*": ["./src/design/*"],
       "@/data/*": ["./src/data/*"],
       "@/helpers/*": ["./src/helpers/*"],
-      "@/api/*": ["./src/pages/api/*"],
       // https://stackoverflow.com/questions/73019348/component-cannot-be-used-as-a-jsx-component-its-element-type-reactelementan
-      "react": ["./node_modules/@types/react"],
+      "react": ["./node_modules/@types/react"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -29,10 +28,10 @@
     "resolveJsonModule": true,
     "plugins": [
       {
-        "name": "next",
-      },
-    ],
+        "name": "next"
+      }
+    ]
   },
   "include": ["src/index.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
