@@ -7,7 +7,7 @@ import { shaderMaterial, useTexture } from '@react-three/drei'
 import { ForwardRefComponent } from '@react-three/drei/helpers/ts-utils'
 import { useImperativeHandle, useLayoutEffect, useRef } from 'react'
 
-export type ImageProps = Omit<JSX.IntrinsicElements['mesh'], 'scale'> & {
+export type CellularImageProps = Omit<JSX.IntrinsicElements['mesh'], 'scale'> & {
   segments?: number
   scale?: number | [number, number]
   color?: Color
@@ -21,7 +21,7 @@ export type ImageProps = Omit<JSX.IntrinsicElements['mesh'], 'scale'> & {
   imageBounds?: [number, number]
 } & ({ texture: THREE.Texture; url?: never } | { texture?: never; url: string }) // {texture: THREE.Texture} XOR {url: string}
 
-type ImageMaterialType = JSX.IntrinsicElements['shaderMaterial'] & {
+type CellularImageMaterialType = JSX.IntrinsicElements['shaderMaterial'] & {
   scale?: number[]
   imageBounds?: number[]
   radius?: number
@@ -37,7 +37,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       // @ts-ignore
-      imageMaterial: ImageMaterialType
+      cellularImageMaterial: CellularImageMaterialType
     }
   }
 }
@@ -159,9 +159,9 @@ const ImageMaterial = shaderMaterial(
   }
 `,
 )
-extend({ ImageMaterial })
+extend({ CellularImageMaterial: ImageMaterial })
 
-export const Image: ForwardRefComponent<Omit<ImageProps, 'url'>, THREE.Mesh> = React.forwardRef(
+export const CellularImage: ForwardRefComponent<Omit<CellularImageProps, 'url'>, THREE.Mesh> = React.forwardRef(
   (
     {
       children,
@@ -178,7 +178,7 @@ export const Image: ForwardRefComponent<Omit<ImageProps, 'url'>, THREE.Mesh> = R
       side,
       imageBounds,
       ...props
-    }: Omit<ImageProps, 'url'>,
+    }: Omit<CellularImageProps, 'url'>,
     ref: React.ForwardedRef<THREE.Mesh>,
   ) => {
     const meshRef = useRef<THREE.Mesh>(null!)
@@ -215,7 +215,7 @@ export const Image: ForwardRefComponent<Omit<ImageProps, 'url'>, THREE.Mesh> = R
     return (
       <mesh ref={meshRef} scale={Array.isArray(scale) ? [...scale, 1] : scale} {...props}>
         <planeGeometry args={[1, 1, segments, segments]} />
-        <imageMaterial
+        <cellularImageMaterial
           color={color}
           map={texture!}
           zoom={zoom}

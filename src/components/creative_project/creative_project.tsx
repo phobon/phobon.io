@@ -2,8 +2,7 @@
 
 import { css } from '@/design/css'
 
-import Video from '../canvas/webgl_video'
-import Image from '../canvas/webgl_image'
+import { Video, Image } from '../canvas/webgl_images'
 import Text from '../canvas/webgl_text'
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { cn } from '@/helpers/cn'
