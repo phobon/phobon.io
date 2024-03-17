@@ -13,13 +13,24 @@
   {
     "key": "project--gigas",
     "status": "Dev",
-    "title": "GIGAS",
+    "title": "Codename: GIGAS",
     "description": "Audio stimulation given visual form.",
     "imageSrc": "/images/projects/spiral.webp",
     "width": 1200,
     "height": 630,
     "priority": false,
     "url": "https://formation.phobon.io"
+  },
+  {
+    "key": "project--luvial",
+    "status": "Dev",
+    "title": "Codename: Luvial",
+    "description": "Ethereal pomodoro timer.",
+    "imageSrc": "/images/projects/gradient.webp",
+    "width": 1200,
+    "height": 630,
+    "priority": false,
+    "url": "https://luvial.phobon.io"
   },
   {
     "key": "project--mdslabs",
