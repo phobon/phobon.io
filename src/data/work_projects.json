@@ -26,7 +26,12 @@
   },
   {
     "key": "personal_project--luvial",
-    "title": "Luvial",
+    "title": "Luvial - Ethereal Pomodoro Timer",
     "href": "https://luvial.phobon.io/"
+  },
+  {
+    "key": "personal_project--keylight",
+    "title": "Keylight",
+    "href": "https://keylight.phobon.io/"
   }
 ]

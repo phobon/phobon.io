@@ -121,7 +121,13 @@ export default function Page({ ...props }) {
             {workProjects.map(({ key, href, title }) => {
               return (
                 <li key={key}>
-                  <Text as='a' href={href} target='_blank' title={title}>{`↱  ${title}`}</Text>
+                  <Text
+                    as='a'
+                    href={href}
+                    target='_blank'
+                    title={title}
+                    trackerOptions={{ hide: false }}
+                  >{`↱  ${title}`}</Text>
                 </li>
               )
             })}
