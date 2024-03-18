@@ -5,8 +5,7 @@
     "title": "Formation °",
     "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
     "imageSrc": "/images/projects/circular.webp",
-    "width": 1200,
-    "height": 630,
+    "imageDimensions": [1200, 630],
     "priority": true,
     "url": "https://formation.phobon.io"
   },
@@ -15,22 +14,13 @@
     "status": "Dev",
     "title": "Codename: GIGAS",
     "description": "Audio stimulation given visual form.",
-    "imageSrc": "/images/projects/spiral.webp",
-    "width": 1200,
-    "height": 630,
+    "imageSrc": "/images/projects/gigas.webp",
+    "videoSrc": "/images/projects/gigas.mp4",
+
+    "imageDimensions": [1200, 630],
+    "videoDimensions": [2036, 584],
     "priority": false,
     "url": "https://formation.phobon.io"
-  },
-  {
-    "key": "project--luvial",
-    "status": "Dev",
-    "title": "Codename: Luvial",
-    "description": "Ethereal pomodoro timer.",
-    "imageSrc": "/images/projects/gradient.webp",
-    "width": 1200,
-    "height": 630,
-    "priority": false,
-    "url": "https://luvial.phobon.io"
   },
   {
     "key": "project--mdslabs",
@@ -39,8 +29,8 @@
     "description": "Experimental technology and design for Moleskine Design Studio.",
     "imageSrc": "/images/projects/mds_labs.webp",
     "videoSrc": "/images/projects/mds_labs.mp4",
-    "width": 1839,
-    "height": 959,
+    "imageDimensions": [1839, 959],
+    "videoDimensions": [1792, 938],
     "priority": false,
     "url": "https://moleskinestudio.com/lab/landing/"
   }

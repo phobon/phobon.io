@@ -116,17 +116,17 @@ const ImageImpl = ({ trackRef, progress, scrollYProgress }) => {
   return <CellularImage ref={ref} texture={texture} transparent scale={[width, height]} imageBounds={imageBounds} />
 }
 
-export const Video = ({ progress, src, fallback, ...props }: any) => {
+export const Video = ({ progress, src, fallback, videoDimensions, ...props }: any) => {
   const { viewRef, trackRef, scrollYProgress } = useImgTracker()
 
   return (
     <ImageBase {...props} src={fallback} ref={trackRef} viewRef={viewRef}>
-      <VideoImpl src={src} trackRef={trackRef} progress={progress} scrollYProgress={scrollYProgress} />
+      <VideoImpl src={src} trackRef={trackRef} progress={progress} videoDimensions={videoDimensions} />
     </ImageBase>
   )
 }
 
-const VideoImpl = ({ src, trackRef, progress, scrollYProgress }) => {
+const VideoImpl = ({ src, trackRef, progress, videoDimensions }) => {
   const ref = useRef<any>()
   // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
   // ref.current.material.grayscale = 1 - latest
@@ -143,8 +143,16 @@ const VideoImpl = ({ src, trackRef, progress, scrollYProgress }) => {
   })
 
   const texture = useVideoTexture(src)
-  const width = trackRef?.current?.width || 0
-  const height = trackRef?.current?.height || 0
+  const containerWidth = trackRef?.current?.width || 0
+  const containerHeight = trackRef?.current?.height || 0
 
-  return <CellularImage ref={ref} texture={texture} transparent scale={[width, height]} imageBounds={[width, height]} />
+  return (
+    <CellularImage
+      ref={ref}
+      texture={texture}
+      transparent
+      scale={[containerWidth, containerHeight]}
+      imageBounds={[videoDimensions[0], videoDimensions[1]]}
+    />
+  )
 }

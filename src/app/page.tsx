@@ -67,7 +67,10 @@ export default function Page({ ...props }) {
           })}
         >
           {creativeProjects.map(
-            ({ key, imageSrc, videoSrc, title, description, status, width, height, priority }, index) => {
+            (
+              { key, imageSrc, videoSrc, title, description, status, imageDimensions, videoDimensions, priority },
+              index,
+            ) => {
               const projectIndex = new String(index + 1).padStart(2, '0')
               return (
                 <CreativeProject
@@ -80,8 +83,8 @@ export default function Page({ ...props }) {
                   videoSrc={videoSrc}
                   title={title}
                   status={status}
-                  width={width}
-                  height={height}
+                  imageDimensions={imageDimensions}
+                  videoDimensions={videoDimensions}
                   priority={priority}
                 >
                   {description}

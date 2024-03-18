@@ -10,7 +10,10 @@ import { Stinger } from './stinger'
 import { animate, useMotionValue, useSpring } from 'framer-motion'
 
 export const CreativeProject = forwardRef<any, any>(
-  ({ className, index, imageSrc, videoSrc, title, children, status, width, height, priority }, ref) => {
+  (
+    { className, index, imageSrc, videoSrc, title, children, status, imageDimensions, videoDimensions, priority },
+    ref,
+  ) => {
     const containerRef = useRef<HTMLLIElement>()
     useImperativeHandle(ref, () => containerRef.current)
 
@@ -52,8 +55,9 @@ export const CreativeProject = forwardRef<any, any>(
               gridColumn: 'span 8',
             })}
             progress={progress}
-            width={width}
-            height={height}
+            width={imageDimensions[0]}
+            height={imageDimensions[1]}
+            videoDimensions={videoDimensions}
             priority={priority}
           />
         ) : (
@@ -66,8 +70,8 @@ export const CreativeProject = forwardRef<any, any>(
               gridColumn: 'span 8',
             })}
             progress={progress}
-            width={width}
-            height={height}
+            width={imageDimensions[0]}
+            height={imageDimensions[1]}
             priority={priority}
           />
         )}
