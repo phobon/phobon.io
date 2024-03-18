@@ -9,7 +9,7 @@ export const alt = 'Ben McCormick - Creative Developer'
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://phobon.io'
+  const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://phobon.io'
   const src = `${host}/images/projects/spiral.png`
   const geist = fetch(new URL('../../public/fonts/Geist-Regular.otf', import.meta.url)).then((res) => res.arrayBuffer())
 
@@ -29,7 +29,7 @@ export default async function Image() {
         <div
           style={{
             position: 'absolute',
-            fontSize: 96,
+            fontSize: 48,
             width: '100%',
             height: '100%',
             display: 'flex',

@@ -10,10 +10,11 @@ import { gridStyles } from '../common'
 import { socialLinks } from '@/data/links'
 import { useLayoutStore } from '@/stores/use_layout_store'
 import { anchorStyles } from '@/components/primitives/anchor'
+import { useEffect, useRef } from 'react'
+import { animate } from 'framer-motion'
 // import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
-  // const loaded = useLayoutStore((state) => state.loaded)
   return (
     <header
       className={cn(
@@ -21,7 +22,6 @@ export const Header = ({ ...props }) => {
           width: '100%',
           top: 0,
           position: 'sticky',
-          zIndex: 2,
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
@@ -29,9 +29,6 @@ export const Header = ({ ...props }) => {
         gridStyles,
         'phbn__header',
       )}
-      // style={{
-      //   opacity: loaded ? 1 : 0,
-      // }}
       {...props}
     >
       <Link

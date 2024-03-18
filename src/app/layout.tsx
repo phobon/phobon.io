@@ -10,6 +10,7 @@ import Loader from '@/components/canvas/loader'
 export const metadata: Metadata = {
   title: 'Ben McCormick — Creative developer',
   description: 'Ben McCormick — Creative developer',
+  metadataBase: new URL('https://phobon.io'),
 }
 
 const RootLayout = ({ children }) => {

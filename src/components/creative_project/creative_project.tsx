@@ -19,7 +19,7 @@ export const CreativeProject = forwardRef<any, any>(
 
     // const progress = useSpring(0, { stiffness: 400, damping: 90 })
     const progress = useMotionValue(0)
-    const progress2 = useSpring(0, { stiffness: 800, damping: 75 })
+    // const progress2 = useSpring(0, { stiffness: 800, damping: 75 })
 
     return (
       <li
