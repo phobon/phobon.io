@@ -9,8 +9,8 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
   const { hide = false } = options || {}
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
-  // const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
-  const intersecting = useMotionValue(0)
+  const intersectingValue = useMotionValue(0)
+  const intersecting = useSpring(intersectingValue, { stiffness: 500, damping: 150 })
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -25,15 +25,15 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      animate(intersecting, entry.isIntersecting ? 0 : 1, { ease: 'easeOut', duration: 0.75 })
-      // intersecting.set(entry.isIntersecting ? 0 : 1)
+      // animate(intersectingValue, entry.isIntersecting ? 0 : 1, { ease: 'easeOut', duration: 0.75 })
+      intersectingValue.set(entry.isIntersecting ? 0 : 1)
     })
     observer.observe(track)
 
     return () => {
       observer.disconnect()
     }
-  }, [intersecting])
+  }, [intersectingValue])
 
   useEffect(() => {
     const track = trackRef.current
