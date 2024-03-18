@@ -9,6 +9,7 @@ import { gridStyles } from '../common'
 
 import { socialLinks } from '@/data/links'
 import { useLayoutStore } from '@/stores/use_layout_store'
+import { anchorStyles } from '@/components/primitives/anchor'
 // import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
@@ -79,33 +80,3 @@ export const Header = ({ ...props }) => {
     </header>
   )
 }
-
-const anchorStyles = css({
-  color: '$slate11',
-  fontSize: 16,
-  display: 'flex',
-
-  border: 0,
-  position: 'relative',
-  background: '#fff',
-  cursor: 'pointer',
-  padding: 0,
-
-  '&::after': {
-    content: '""',
-    background: 'white',
-    position: 'absolute',
-    inset: 0,
-    mixBlendMode: 'difference',
-    scale: '0 1',
-    transformOrigin: '100% 50%',
-    transition: 'scale 0.1s ease-in-out',
-    pointerEvents: 'none',
-  },
-
-  '&:is(:hover, :focus-visible)::after': {
-    scale: '1 1',
-    transformOrigin: '0 50%',
-    transition: 'scale 0.1s 0.07s ease-in-out',
-  },
-})

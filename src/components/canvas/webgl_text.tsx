@@ -17,10 +17,14 @@ export type TextProps = {
   as?: any
   testIntersection?: boolean
   trackerOptions?: UseTrackerOptions
+  enhance?: boolean
 } & Partial<Omit<WebGLTextProps, 'textRef' | 'children' | 'font' | 'scaleMultiplier'>> &
   any
 
-const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...props }: TextProps) => {
+const Text = ({ className, children, font, as: Tag = 'span', textStyles, enhance, ...props }: TextProps) => {
+  const trackerOptions = {
+    hide: enhance,
+  }
   const { trackRef, intersecting } = useTracker(trackerOptions)
 
   return (
@@ -39,25 +43,27 @@ const Text = ({ className, children, font, trackerOptions, as: Tag = 'span', ...
           css({
             display: 'block',
           }),
-          className,
+          textStyles,
         )}
         {...props}
       >
         {children}
       </Tag>
 
-      <View
-        className={css({
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-        })}
-      >
-        <PerspectiveCamera makeDefault />
-        <TextImpl textRef={trackRef} font={font} intersecting={intersecting}>
-          {children}
-        </TextImpl>
-      </View>
+      {enhance ? (
+        <View
+          className={css({
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+          })}
+        >
+          <PerspectiveCamera makeDefault />
+          <TextImpl textRef={trackRef} font={font} intersecting={intersecting}>
+            {children}
+          </TextImpl>
+        </View>
+      ) : null}
     </span>
   )
 }

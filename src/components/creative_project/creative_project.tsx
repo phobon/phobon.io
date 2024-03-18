@@ -98,19 +98,26 @@ export const CreativeProject = forwardRef<any, any>(
             <Text
               as='h2'
               className={css({
-                color: '#000',
+                color: '$slate12',
               })}
             >
               {title}
             </Text>
-            <Text as='p'>{children}</Text>
+            <Text
+              as='p'
+              className={css({
+                color: '$slate10',
+              })}
+            >
+              {children}
+            </Text>
           </div>
 
           <Text
             className={css({
               gridArea: '3 / 1 / span 1 / span 1',
               fontVariantNumeric: 'tabular-nums',
-              color: '#000',
+              color: '$slate12',
             })}
           >
             {index}

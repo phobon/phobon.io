@@ -12,10 +12,7 @@ import workProjects from '@/data/work_projects.json'
 import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
-
-// const Text = dynamic(() => import('@/components/canvas/webgl_text').then((mod) => mod), { ssr: false })
-// const CreativeProject = dynamic(() => import('@/components/creative_project').then((mod) => mod), { ssr: false })
-// const SideStack = dynamic(() => import('@/components/side_stack').then((mod) => mod), { ssr: false })
+import { anchorStyles } from '@/components/primitives/anchor'
 
 export default function Page({ ...props }) {
   return (
@@ -43,6 +40,7 @@ export default function Page({ ...props }) {
             width: '100%',
             fontSize: '$10',
           })}
+          enhance
         >
           Ben McCormick is a creative developer based in Perth, Western Australia
         </Text>
@@ -113,7 +111,7 @@ export default function Page({ ...props }) {
             display: 'flex',
             flexDirection: 'column',
             gap: '$8',
-            gridColumn: '9 / span 3',
+            gridColumn: '9 / -1',
             gridRow: '1 / span 1',
           })}
         >
@@ -126,7 +124,7 @@ export default function Page({ ...props }) {
                     href={href}
                     target='_blank'
                     title={title}
-                    trackerOptions={{ hide: false }}
+                    textStyles={anchorStyles}
                   >{`↱  ${title}`}</Text>
                 </li>
               )
@@ -137,7 +135,11 @@ export default function Page({ ...props }) {
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
-                  <Text>
+                  <Text
+                    className={css({
+                      color: '$slate10',
+                    })}
+                  >
                     {employ} - {title}
                   </Text>
                 </li>
@@ -154,10 +156,20 @@ export default function Page({ ...props }) {
               return (
                 <li key={key}>
                   {external ? (
-                    <Text as='a' href={href} target='_blank' title={title}>{`↱  ${title}`}</Text>
+                    <Text
+                      as='a'
+                      href={href}
+                      target='_blank'
+                      title={title}
+                      textStyles={anchorStyles}
+                    >{`↱  ${title}`}</Text>
                   ) : (
                     <Link href={href} title={title}>
-                      <Text>{`↱  ${title}`}</Text>
+                      <Text
+                        className={css({
+                          color: '$slate10',
+                        })}
+                      >{`↱  ${title}`}</Text>
                     </Link>
                   )}
                 </li>
@@ -175,17 +187,17 @@ export default function Page({ ...props }) {
             gap: '$8',
           })}
         >
-          <Text as='p'>
+          <Text as='p' enhance>
             I am a creative developer focused on the entire frontend stack including React, WebGL development, interface
             and interaction design; as well as creative direction and animation.
           </Text>
 
-          <Text as='p'>
+          <Text as='p' enhance>
             With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
             across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
           </Text>
 
-          <Text as='p'>
+          <Text as='p' enhance>
             I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
             passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
             the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.

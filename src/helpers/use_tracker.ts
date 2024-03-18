@@ -6,7 +6,7 @@ export type UseTrackerOptions = {
 }
 
 export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions) => {
-  const { hide = true } = options || {}
+  const { hide = false } = options || {}
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
   // const intersecting = useSpring(1, { stiffness: 500, damping: 150 })
@@ -45,8 +45,8 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     setRect(trackRect)
 
     // Hide everything once it's loaded
-    track.style.opacity = '0'
     if (hide) {
+      track.style.opacity = '0'
       track.style.visibility = 'hidden'
     }
   }, [setRect, hide])
