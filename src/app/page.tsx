@@ -115,11 +115,6 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: {
-              base: 'initial',
-              md: '125dvh',
-              lg: '125dvh',
-            },
             pt: {
               base: '$6',
               md: '$12',
@@ -127,8 +122,8 @@ export default function Page({ ...props }) {
             },
             pb: {
               base: '$6',
-              md: '0',
-              lg: '0',
+              md: '$12',
+              lg: '$12',
             },
             gridTemplateColumns: 'subgrid',
             gridTemplateRows: '1fr',
@@ -265,4 +260,5 @@ const sectionStyles = css({
   display: 'grid',
   gridColumn: '1 / -1',
   gridTemplateColumns: 'subgrid',
+  position: 'relative',
 })

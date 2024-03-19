@@ -1,5 +1,3 @@
-// 'use client'
-
 import Link from 'next/link'
 
 import { cn } from '@/helpers/cn'
@@ -8,11 +6,7 @@ import Identity from '@/components/identity'
 import { gridStyles } from '../common'
 
 import { socialLinks } from '@/data/links'
-import { useLayoutStore } from '@/stores/use_layout_store'
 import { anchorStyles } from '@/components/primitives/anchor'
-import { useEffect, useRef } from 'react'
-import { animate } from 'framer-motion'
-// import Text from '@/components/canvas/webgl_text'
 
 export const Header = ({ ...props }) => {
   return (
