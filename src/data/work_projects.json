@@ -2,36 +2,50 @@
   {
     "key": "work_project--mds",
     "title": "Moleskine Design Studio (MDS)",
-    "href": "https://moleskinestudio.com"
+    "href": "https://moleskinestudio.com",
+    "year": "2023",
+    "description": "Landing page for Moleskine Design Studio"
   },
   {
     "key": "work_project--mds_actions",
     "title": "Actions by MDS",
-    "href": "https://moleskinestudio.com/actions"
+    "href": "https://moleskinestudio.com/actions",
+    "year": 2023,
+    "description": "Product page for Actions by Moleskine Design Studio"
   },
   {
     "key": "work_project--mds_timepage",
     "title": "Timepage by MDS",
-    "href": "https://moleskinestudio.com/timepage"
+    "href": "https://moleskinestudio.com/timepage",
+    "year": 2023,
+    "description": "Product page for Timepage by Moleskine Design Studio"
   },
   {
     "key": "work_project--mds_flowweb",
     "title": "Flow Web",
-    "href": "https://flowapp.moleskinestudio.com/"
+    "href": "https://flowapp.moleskinestudio.com/",
+    "year": 2024,
+    "description": "Canvas views for Flow by Moleskine Design Studio"
   },
   {
     "key": "personal_project--blog_v6",
     "title": "phobon.io v6",
-    "href": "https://v6.phobon.io/"
+    "href": "https://v6.phobon.io/",
+    "year": 2019,
+    "description": "Version 6 of my personal portfolio and blog"
   },
   {
     "key": "personal_project--luvial",
-    "title": "Luvial - Ethereal Pomodoro Timer",
-    "href": "https://luvial.phobon.io/"
+    "title": "Luvial",
+    "href": "https://luvial.phobon.io/",
+    "year": 2023,
+    "description": "Ethereal pomodoro timer"
   },
   {
     "key": "personal_project--keylight",
     "title": "Keylight",
-    "href": "https://keylight.phobon.io/"
+    "href": "https://keylight.phobon.io/",
+    "year": 2024,
+    "description": "Simple keylighting on a budget"
   }
 ]

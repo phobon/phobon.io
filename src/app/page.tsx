@@ -6,6 +6,7 @@ import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
 import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
+import now from '@/data/now.json'
 
 import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
@@ -186,23 +187,19 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          <SideStack title='Projects'>
-            {workProjects.map(({ key, href, title }) => {
-              return (
-                <li key={key}>
-                  <Text
-                    as='a'
-                    href={href}
-                    target='_blank'
-                    title={title}
-                    textStyles={anchorStyles}
-                  >{`↱  ${title}`}</Text>
-                </li>
-              )
-            })}
+          <SideStack title='Now'>
+            <li>
+              <Text
+                className={css({
+                  color: '$slate10',
+                })}
+              >
+                {now.employ} - {now.title}
+              </Text>
+            </li>
           </SideStack>
 
-          <SideStack title='Experience'>
+          <SideStack title='Previous Experience'>
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
@@ -248,6 +245,70 @@ export default function Page({ ...props }) {
             })}
           </SideStack>
         </div>
+      </section>
+
+      <section
+        className={cn(
+          css({
+            pb: '$12',
+          }),
+          sectionStyles,
+        )}
+      >
+        <ul
+          className={css({
+            display: 'grid',
+            gridTemplateColumns: 'subgrid',
+            gridColumn: '1 / -1',
+            borderTop: '1px solid',
+            borderBottom: '1px solid',
+            borderColor: '$slate3',
+
+            '&> * + *': {
+              borderTop: '1px solid',
+              borderColor: '$slate3',
+            },
+          })}
+        >
+          {workProjects.map(({ key, href, title, description, year }) => {
+            return (
+              <li
+                key={key}
+                className={css({
+                  display: 'grid',
+                  gridTemplateColumns: 'subgrid',
+                  gridColumn: '1 / -1',
+                })}
+              >
+                <Text
+                  as='a'
+                  href={href}
+                  target='_blank'
+                  title={title}
+                  className={css({
+                    gridColumn: '1 / -1',
+                    display: 'grid',
+                    gridTemplateColumns: 'subgrid',
+                  })}
+                  textStyles={cn(
+                    anchorStyles,
+                    css({
+                      gridColumn: '1 / -1',
+                      display: 'grid !important',
+                      gridTemplateColumns: 'subgrid',
+                      px: '$5',
+                      py: '$5',
+                    }),
+                  )}
+                >
+                  <span className={css({ gridColumn: 'span 3', color: '$slate12' })}>{title}</span>
+                  <span className={css({ gridColumn: 'span 8', color: '$slate10' })}>{description}</span>
+                  <span className={css({ gridColumn: 'span 1', color: '$slate10' })}>{year}</span>
+                </Text>
+              </li>
+            )
+          })}
+        </ul>
       </section>
     </>
   )
