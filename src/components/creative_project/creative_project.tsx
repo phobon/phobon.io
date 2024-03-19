@@ -49,10 +49,14 @@ export const CreativeProject = forwardRef<any, any>(
       >
         <a
           className={css({
+            '--hovered': 0,
             display: 'grid',
             gridTemplateColumns: 'subgrid',
             width: '100%',
             gridColumn: '1 / -1',
+            _hover: {
+              '--hovered': 1,
+            },
           })}
           href={href}
           target='_blank'
@@ -200,6 +204,7 @@ export const CreativeProject = forwardRef<any, any>(
             </View>
             <div
               className={css({
+                opacity: 'var(--hovered)',
                 position: 'absolute',
                 right: 0,
                 bottom: 0,
@@ -207,6 +212,7 @@ export const CreativeProject = forwardRef<any, any>(
                 py: '$3',
                 zIndex: 1,
                 pointerEvents: 'none',
+                transition: 'opacity 0.5s linear',
               })}
             >
               <ArrowRightIcon color='#fff' width={32} height={32} />
