@@ -11,8 +11,6 @@ export const Footer = ({ ...props }) => {
           top: 0,
           overflow: 'hidden',
           flexDirection: 'column',
-          py: '$4',
-          height: '30vh',
           backgroundColor: '$slate12',
         }),
         gridStyles,

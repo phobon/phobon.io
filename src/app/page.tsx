@@ -84,7 +84,7 @@ export default function Page({ ...props }) {
         >
           {creativeProjects.map(
             (
-              { key, imageSrc, videoSrc, title, description, status, imageDimensions, videoDimensions, priority },
+              { key, imageSrc, videoSrc, title, description, status, imageDimensions, videoDimensions, priority, href },
               index,
             ) => {
               const projectIndex = new String(index + 1).padStart(2, '0')
@@ -102,6 +102,7 @@ export default function Page({ ...props }) {
                   imageDimensions={imageDimensions}
                   videoDimensions={videoDimensions}
                   priority={priority}
+                  href={href}
                 >
                   {description}
                 </CreativeProject>
