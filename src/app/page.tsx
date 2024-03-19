@@ -1,5 +1,3 @@
-// 'use client'
-
 import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 import { Link } from '@/helpers/navigation_helpers'
@@ -21,11 +19,19 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: '30vh',
+            height: {
+              base: '35vh',
+              md: '30vh',
+              lg: '30vh',
+            },
             gridTemplateRows: '1fr',
             gridRowGap: '$4',
             px: '$5',
-            pb: '$10',
+            pb: {
+              base: '$7',
+              md: '$10',
+              lg: '$10',
+            },
             alignItems: 'end',
             justifyContent: 'end',
           }),
@@ -36,9 +42,17 @@ export default function Page({ ...props }) {
           className={css({
             justifyContent: 'flex-start',
             lineHeight: '$none',
-            gridColumn: '1 / span 7',
+            gridColumn: {
+              base: '1 / -1',
+              md: '1 / span 7',
+              lg: '1 / span 7',
+            },
             width: '100%',
-            fontSize: '$10',
+            fontSize: {
+              base: '$8',
+              md: '$10',
+              lg: '$10',
+            },
           })}
           enhance
         >
@@ -97,10 +111,28 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: '100dvh',
-            pt: '$12',
+            height: {
+              base: 'initial',
+              md: '125dvh',
+              lg: '125dvh',
+            },
+            pt: {
+              base: '$6',
+              md: '$12',
+              lg: '$12',
+            },
+            pb: {
+              base: '$6',
+              md: '0',
+              lg: '0',
+            },
+            gridTemplateColumns: 'subgrid',
             gridTemplateRows: '1fr',
-            gridRowGap: '$4',
+            gridRowGap: {
+              base: '$6',
+              md: '$4',
+              lg: '$4',
+            },
             px: '$5',
             placeItems: 'start',
           }),
@@ -108,11 +140,53 @@ export default function Page({ ...props }) {
       >
         <div
           className={css({
+            gridColumn: {
+              base: '1 / -1',
+              md: 'span 7',
+              lg: 'span 7',
+            },
+            display: 'flex',
+            flexDirection: 'column',
+            fontSize: {
+              base: '$6',
+              md: '$8',
+              lg: '$8',
+            },
+            gap: '$8',
+          })}
+        >
+          <Text as='p' enhance>
+            I am a creative developer focused on the entire frontend stack including React, WebGL development, interface
+            and interaction design; as well as creative direction and animation.
+          </Text>
+
+          <Text as='p' enhance>
+            With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
+            across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
+          </Text>
+
+          <Text as='p' enhance>
+            I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
+            passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
+            the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
+          </Text>
+        </div>
+
+        <div
+          className={css({
             display: 'flex',
             flexDirection: 'column',
             gap: '$8',
-            gridColumn: '9 / -1',
-            gridRow: '1 / span 1',
+            gridColumn: {
+              base: '1 / -1',
+              md: '9 / -1',
+              lg: '9 / -1',
+            },
+            gridRow: {
+              base: 'initial',
+              md: '1 / span 1',
+              lg: '1 / span 1',
+            },
           })}
         >
           <SideStack title='Projects'>
@@ -176,32 +250,6 @@ export default function Page({ ...props }) {
               )
             })}
           </SideStack>
-        </div>
-
-        <div
-          className={css({
-            gridColumn: 'span 7',
-            display: 'flex',
-            flexDirection: 'column',
-            fontSize: '$8',
-            gap: '$8',
-          })}
-        >
-          <Text as='p' enhance>
-            I am a creative developer focused on the entire frontend stack including React, WebGL development, interface
-            and interaction design; as well as creative direction and animation.
-          </Text>
-
-          <Text as='p' enhance>
-            With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
-            across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
-          </Text>
-
-          <Text as='p' enhance>
-            I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
-            passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
-            the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
-          </Text>
         </div>
       </section>
     </>

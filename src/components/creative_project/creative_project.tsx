@@ -17,9 +17,7 @@ export const CreativeProject = forwardRef<any, any>(
     const containerRef = useRef<HTMLLIElement>()
     useImperativeHandle(ref, () => containerRef.current)
 
-    // const progress = useSpring(0, { stiffness: 400, damping: 90 })
     const progress = useMotionValue(0)
-    // const progress2 = useSpring(0, { stiffness: 800, damping: 75 })
 
     return (
       <li
@@ -29,17 +27,20 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             width: '100%',
             position: 'relative',
+            gridRowGap: {
+              base: '$3',
+              md: '0',
+              lg: '0',
+            },
           }),
           className,
         )}
         onPointerOver={(e) => {
           animate(progress, 1, { ease: 'easeOut', duration: 2 })
-          // progress.set(1)
           e.stopPropagation()
         }}
         onPointerLeave={(e) => {
           animate(progress, 0, { ease: 'easeOut', duration: 1 })
-          // progress.set(0)
           e.stopPropagation()
         }}
         ref={containerRef}
@@ -52,7 +53,11 @@ export const CreativeProject = forwardRef<any, any>(
             className={css({
               width: '100%',
               height: '40vh',
-              gridColumn: 'span 8',
+              gridColumn: {
+                base: '1 / -1',
+                md: 'span 8',
+                lg: 'span 8',
+              },
             })}
             progress={progress}
             width={imageDimensions[0]}
@@ -67,7 +72,11 @@ export const CreativeProject = forwardRef<any, any>(
             className={css({
               width: '100%',
               height: '40vh',
-              gridColumn: 'span 8',
+              gridColumn: {
+                base: '1 / -1',
+                md: 'span 8',
+                lg: 'span 8',
+              },
             })}
             progress={progress}
             width={imageDimensions[0]}
@@ -81,7 +90,16 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             gridTemplateRows: 'auto 1fr auto auto',
             alignItems: 'start',
-            gridColumn: 'span 4',
+            gridColumn: {
+              base: '1 / -1',
+              md: 'span 4',
+              lg: 'span 4',
+            },
+            gridRowGap: {
+              base: '$3',
+              md: '$3',
+              lg: '$3',
+            },
             width: '100%',
             height: '100%',
           })}
@@ -92,7 +110,12 @@ export const CreativeProject = forwardRef<any, any>(
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'flex-start',
-              gridArea: '1 / 1 / span 1 / span 3',
+              gridArea: {
+                base: '1 / 1 / span 1 / -1',
+                md: '1 / 1 / span 1 / span 3',
+                lg: '1 / 1 / span 1 / span 3',
+              },
+              gap: '$1',
             })}
           >
             <Text
@@ -115,7 +138,11 @@ export const CreativeProject = forwardRef<any, any>(
 
           <Text
             className={css({
-              gridArea: '3 / 1 / span 1 / span 1',
+              gridArea: {
+                base: '3 / 1 / span 1 / -1',
+                md: '3 / 1 / span 1 / span 1',
+                lg: '3 / 1 / span 1 / span 1',
+              },
               fontVariantNumeric: 'tabular-nums',
               color: '$slate12',
             })}
@@ -125,7 +152,11 @@ export const CreativeProject = forwardRef<any, any>(
 
           <div
             className={css({
-              gridArea: '3 / 4 / span 1 / span 1',
+              gridArea: {
+                base: '3 / -2 / span 1 / -1',
+                md: '3 / 4 / span 1 / span 1',
+                lg: '3 / 4 / span 1 / span 1',
+              },
               justifySelf: 'end',
             })}
           >

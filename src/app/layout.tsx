@@ -6,6 +6,7 @@ import { Metadata } from 'next'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
 import Loader from '@/components/canvas/loader'
+import Footer from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Ben McCormick — Creative developer',
@@ -23,6 +24,8 @@ const RootLayout = ({ children }) => {
         <Main debug showLoader>
           {children}
         </Main>
+
+        <Footer />
 
         <Loader className='phbn__loader' />
       </body>
