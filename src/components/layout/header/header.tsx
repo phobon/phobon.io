@@ -42,7 +42,11 @@ export const Header = ({ ...props }) => {
       </Link>
       <nav
         className={css({
-          gridColumn: '9 / span 1',
+          gridColumn: {
+            base: 'initial',
+            md: '7 / span 1',
+            lg: '9 / span 1',
+          },
           display: {
             base: 'none',
             md: 'grid',
@@ -61,7 +65,11 @@ export const Header = ({ ...props }) => {
 
       <div
         className={css({
-          gridColumn: '11 / span 2',
+          gridColumn: {
+            base: 'initial',
+            md: '9 / span 1',
+            lg: '11 / span 2',
+          },
           color: '#000',
           textAlign: 'right',
           display: 'flex',

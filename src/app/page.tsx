@@ -29,7 +29,7 @@ export default function Page({ ...props }) {
             px: '$5',
             pb: {
               base: '$7',
-              md: '$10',
+              md: '$8',
               lg: '$10',
             },
             alignItems: 'end',
@@ -44,7 +44,7 @@ export default function Page({ ...props }) {
             lineHeight: '$none',
             gridColumn: {
               base: '1 / -1',
-              md: '1 / span 7',
+              md: '1 / -1',
               lg: '1 / span 7',
             },
             width: '100%',
@@ -75,7 +75,11 @@ export default function Page({ ...props }) {
             gridTemplateColumns: 'subgrid',
             placeItems: 'start',
             gridColumn: '1 / -1',
-            gridRowGap: '$5',
+            gridRowGap: {
+              base: '$6',
+              md: '$6',
+              lg: '$5',
+            },
           })}
         >
           {creativeProjects.map(
@@ -142,7 +146,7 @@ export default function Page({ ...props }) {
           className={css({
             gridColumn: {
               base: '1 / -1',
-              md: 'span 7',
+              md: 'span 5',
               lg: 'span 7',
             },
             display: 'flex',
@@ -179,7 +183,7 @@ export default function Page({ ...props }) {
             gap: '$8',
             gridColumn: {
               base: '1 / -1',
-              md: '9 / -1',
+              md: '6 / -1',
               lg: '9 / -1',
             },
             gridRow: {

@@ -29,7 +29,7 @@ export const CreativeProject = forwardRef<any, any>(
             position: 'relative',
             gridRowGap: {
               base: '$3',
-              md: '0',
+              md: '$3',
               lg: '0',
             },
           }),
@@ -55,7 +55,7 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: {
                 base: '1 / -1',
-                md: 'span 8',
+                md: '1 / -1',
                 lg: 'span 8',
               },
             })}
@@ -74,7 +74,7 @@ export const CreativeProject = forwardRef<any, any>(
               height: '40vh',
               gridColumn: {
                 base: '1 / -1',
-                md: 'span 8',
+                md: '1 / -1',
                 lg: 'span 8',
               },
             })}
@@ -92,7 +92,7 @@ export const CreativeProject = forwardRef<any, any>(
             alignItems: 'start',
             gridColumn: {
               base: '1 / -1',
-              md: 'span 4',
+              md: '1 / -1',
               lg: 'span 4',
             },
             gridRowGap: {
@@ -112,7 +112,7 @@ export const CreativeProject = forwardRef<any, any>(
               justifyContent: 'flex-start',
               gridArea: {
                 base: '1 / 1 / span 1 / -1',
-                md: '1 / 1 / span 1 / span 3',
+                md: '1 / 1 / span 1 / -1',
                 lg: '1 / 1 / span 1 / span 3',
               },
               gap: '$1',
@@ -140,7 +140,7 @@ export const CreativeProject = forwardRef<any, any>(
             className={css({
               gridArea: {
                 base: '3 / 1 / span 1 / -1',
-                md: '3 / 1 / span 1 / span 1',
+                md: '3 / 1 / span 1 / -1',
                 lg: '3 / 1 / span 1 / span 1',
               },
               fontVariantNumeric: 'tabular-nums',
@@ -154,7 +154,7 @@ export const CreativeProject = forwardRef<any, any>(
             className={css({
               gridArea: {
                 base: '3 / -2 / span 1 / -1',
-                md: '3 / 4 / span 1 / span 1',
+                md: '3 / -2 / span 1 / -1',
                 lg: '3 / 4 / span 1 / span 1',
               },
               justifySelf: 'end',
