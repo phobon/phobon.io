@@ -29,7 +29,10 @@ export const Header = ({ ...props }) => {
         href='/'
         className={css({
           gridColumn: '1 / span 1',
-          pl: '$5',
+          pl: {
+            base: '$4',
+            md: '$5',
+          },
         })}
       >
         <Identity aria-label='Go home' />
@@ -60,7 +63,7 @@ export const Header = ({ ...props }) => {
       <div
         className={css({
           gridColumn: {
-            base: 'initial',
+            base: '-2 / -1',
             md: '9 / span 1',
             lg: '11 / span 2',
           },
@@ -69,7 +72,10 @@ export const Header = ({ ...props }) => {
           display: 'flex',
           justifyContent: 'flex-end',
           alignItems: 'flex-start',
-          pr: '$5',
+          pr: {
+            base: '$4',
+            md: '$5',
+          },
         })}
       >
         <a href='mailto:hello@phobon.io' className={anchorStyles}>

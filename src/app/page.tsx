@@ -26,7 +26,6 @@ export default function Page({ ...props }) {
             },
             gridTemplateRows: '1fr',
             gridRowGap: '$4',
-            px: '$5',
             pb: {
               base: '$7',
               md: '$8',
@@ -65,7 +64,6 @@ export default function Page({ ...props }) {
           sectionStyles,
           css({
             placeItems: 'start',
-            px: '$5',
           }),
         )}
       >
@@ -133,7 +131,6 @@ export default function Page({ ...props }) {
               md: '$4',
               lg: '$4',
             },
-            px: '$5',
             placeItems: 'start',
           }),
         )}
@@ -262,4 +259,9 @@ const sectionStyles = css({
   gridColumn: '1 / -1',
   gridTemplateColumns: 'subgrid',
   position: 'relative',
+  px: {
+    base: '$4',
+    md: '$5',
+    lg: '$5',
+  },
 })
