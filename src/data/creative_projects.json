@@ -11,7 +11,7 @@
   },
   {
     "key": "project--gigas",
-    "status": "In Development",
+    "status": "Dev",
     "title": "Codename: GIGAS",
     "description": "Audio stimulation given visual form.",
     "imageSrc": "/images/projects/gigas.webp",

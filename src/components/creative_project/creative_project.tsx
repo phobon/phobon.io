@@ -29,11 +29,6 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             width: '100%',
             position: 'relative',
-            gridRowGap: {
-              base: '$3',
-              md: '$3',
-              lg: '0',
-            },
           }),
           className,
         )}
@@ -54,6 +49,11 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             width: '100%',
             gridColumn: '1 / -1',
+            gridRowGap: {
+              base: '$3',
+              md: '$3',
+              lg: '0',
+            },
             _hover: {
               '--hovered': 1,
             },
