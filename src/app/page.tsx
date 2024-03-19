@@ -270,44 +270,45 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          {workProjects.map(({ key, href, title, description, year }) => {
-            return (
-              <li
-                key={key}
-                className={css({
-                  display: 'grid',
-                  gridTemplateColumns: 'subgrid',
-                  gridColumn: '1 / -1',
-                })}
-              >
-                <Text
-                  as='a'
-                  href={href}
-                  target='_blank'
-                  title={title}
+          {workProjects
+            .sort((a, b) => (a.year > b.year ? -1 : 1))
+            .map(({ key, href, title, description, year }) => {
+              return (
+                <li
+                  key={key}
                   className={css({
-                    gridColumn: '1 / -1',
                     display: 'grid',
                     gridTemplateColumns: 'subgrid',
+                    gridColumn: '1 / -1',
                   })}
-                  textStyles={cn(
-                    anchorStyles,
-                    css({
-                      gridColumn: '1 / -1',
-                      display: 'grid !important',
-                      gridTemplateColumns: 'subgrid',
-                      px: '$5',
-                      py: '$5',
-                    }),
-                  )}
                 >
-                  <span className={css({ gridColumn: 'span 3', color: '$slate12' })}>{title}</span>
-                  <span className={css({ gridColumn: 'span 8', color: '$slate10' })}>{description}</span>
-                  <span className={css({ gridColumn: 'span 1', color: '$slate10' })}>{year}</span>
-                </Text>
-              </li>
-            )
-          })}
+                  <Text
+                    as='a'
+                    href={href}
+                    target='_blank'
+                    title={title}
+                    className={css({
+                      gridColumn: '1 / -1',
+                      display: 'grid',
+                      gridTemplateColumns: 'subgrid',
+                    })}
+                    textStyles={cn(
+                      anchorStyles,
+                      css({
+                        gridColumn: '1 / -1',
+                        display: 'grid !important',
+                        gridTemplateColumns: 'subgrid',
+                        py: '$5 !important',
+                      }),
+                    )}
+                  >
+                    <span className={css({ gridColumn: 'span 4', color: '$slate12' })}>{title}</span>
+                    <span className={css({ gridColumn: 'span 7', color: '$slate10' })}>{description}</span>
+                    <span className={css({ gridColumn: 'span 1', color: '$slate10', textAlign: 'right' })}>{year}</span>
+                  </Text>
+                </li>
+              )
+            })}
         </ul>
       </section>
     </>
