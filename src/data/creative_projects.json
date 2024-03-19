@@ -1,0 +1,37 @@
+[
+  {
+    "key": "project--formation",
+    "status": "Live",
+    "title": "Formation °",
+    "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
+    "imageSrc": "/images/projects/circular.webp",
+    "imageDimensions": [1200, 630],
+    "priority": true,
+    "href": "https://formation.phobon.io"
+  },
+  {
+    "key": "project--gigas",
+    "status": "In Development",
+    "title": "Codename: GIGAS",
+    "description": "Audio stimulation given visual form.",
+    "imageSrc": "/images/projects/gigas.webp",
+    "videoSrc": "/images/projects/gigas.mp4",
+
+    "imageDimensions": [1200, 630],
+    "videoDimensions": [2036, 584],
+    "priority": false,
+    "href": "https://gigas.phobon.io/"
+  },
+  {
+    "key": "project--mdslabs",
+    "status": "Live",
+    "title": "Moleskine Design Studio Labs",
+    "description": "Experimental technology and design for Moleskine Design Studio.",
+    "imageSrc": "/images/projects/mds_labs.webp",
+    "videoSrc": "/images/projects/mds_labs.mp4",
+    "imageDimensions": [1839, 959],
+    "videoDimensions": [1792, 938],
+    "priority": false,
+    "href": "https://moleskinestudio.com/lab/landing/"
+  }
+]

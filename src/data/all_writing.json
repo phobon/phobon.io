@@ -2,61 +2,40 @@
   {
     "key": "aligning-agworlds-platform-experiences",
     "title": "Aligning Agworld's Platform Experiences",
-    "href": "writing/aligning-agworlds-platform-experiences",
-    "src": "/writing/aligning-agworlds-platform-experiences/index.webp",
+    "href": "https://v6.phobon.io/writing/aligning-agworlds-platform-experiences",
     "published": "17 August 2019",
-    "category": "Agworld",
-    "description": "Helping to align Agworld's web product and its highly rated and widely adopted mobile apps",
-    "tags": ["Design", "Front-end Development"]
+    "external": true
   },
   {
     "key": "building-a-better-buying-experience-at-agworld",
     "title": "Building a Better Buying Experience at Agworld",
-    "href": "writing/building-a-better-buying-experience-at-agworld",
-    "src": "/writing/building-a-better-buying-experience-at-agworld/index.webp",
+    "href": "https://v6.phobon.io/writing/building-a-better-buying-experience-at-agworld",
     "published": "23 December 2019",
-    "category": "Agworld",
-    "description": "Improving the experience of buying subscriptions for Agworld's customers",
-    "tags": ["Design", "Research", "Front-end Development"]
+    "external": true
   },
   {
     "key": "making-agworld-responsive",
     "title": "Making Agworld Responsive",
-    "href": "writing/making-agworld-responsive",
-    "src": "/writing/making-agworld-responsive/index.webp",
-    "published": "30 November 2020",
-    "category": "Agworld",
-    "description": "Taking Agworld's web experience, and making it mobile",
-    "tags": ["Design", "Research", "Front-end Development"]
+    "href": "https://v6.phobon.io/writing/making-agworld-responsive",
+    "external": true
   },
   {
     "key": "modernising-agworlds-frontend-stack",
     "title": "Modernising Agworld's Frontend Stack",
-    "href": "writing/modernising-agworlds-frontend-stack",
-    "src": "/writing/modernising-agworlds-frontend-stack/index.webp",
-    "published": "30 November 2020",
-    "category": "Agworld",
-    "description": "Bringing Agworld's frontend stack up to scratch",
-    "tags": ["Design", "Research", "Front-end Development"]
+    "href": "https://v6.phobon.io/writing/modernising-agworlds-frontend-stack",
+    "external": true
   },
   {
     "key": "refactoring-10-years-of-legacy",
     "title": "Refactoring 10 Years of Legacy",
-    "href": "writing/refactoring-10-years-of-legacy",
-    "src": "/writing/refactoring-10-years-of-legacy/index.webp",
+    "href": "https://v6.phobon.io/writing/refactoring-10-years-of-legacy",
     "published": "30 November 2020",
-    "category": "Agworld",
-    "description": "Working in a legacy codebase is a challenge",
-    "tags": ["Design", "Research", "Front-end Development"]
+    "external": true
   },
   {
     "key": "signal-design-system",
     "title": "Signal - Agworld's Design System",
-    "href": "writing/signal-design-system",
-    "src": "/writing/signal-design-system/index.webp",
-    "published": "30 November 2020",
-    "category": "Agworld",
-    "description": "Connecting design and development",
-    "tags": ["Design", "Research", "Front-end Development"]
+    "href": "https://v6.phobon.io/writing/signal-design-system",
+    "external": true
   }
 ]

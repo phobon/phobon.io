@@ -11,16 +11,6 @@ export const navigationLinks: INavigationLink[] = [
 ]
 
 export const socialLinks: INavigationLink[] = [
-  {
-    id: 'social__polywork',
-    label: 'Polywork',
-    href: 'https://www.polywork.com/phobon',
-  },
-  {
-    id: 'social__dribbble',
-    label: 'Dribbble',
-    href: 'https://dribbble.com/phobon',
-  },
   { id: 'social__github', label: 'Github', href: 'https://github.com/phobon' },
   {
     id: 'social__linkedin',

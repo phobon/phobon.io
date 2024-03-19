@@ -1,0 +1,37 @@
+[
+  {
+    "key": "work_project--mds",
+    "title": "Moleskine Design Studio (MDS)",
+    "href": "https://moleskinestudio.com"
+  },
+  {
+    "key": "work_project--mds_actions",
+    "title": "Actions by MDS",
+    "href": "https://moleskinestudio.com/actions"
+  },
+  {
+    "key": "work_project--mds_timepage",
+    "title": "Timepage by MDS",
+    "href": "https://moleskinestudio.com/timepage"
+  },
+  {
+    "key": "work_project--mds_flowweb",
+    "title": "Flow Web",
+    "href": "https://flowapp.moleskinestudio.com/"
+  },
+  {
+    "key": "personal_project--blog_v6",
+    "title": "phobon.io v6",
+    "href": "https://v6.phobon.io/"
+  },
+  {
+    "key": "personal_project--luvial",
+    "title": "Luvial - Ethereal Pomodoro Timer",
+    "href": "https://luvial.phobon.io/"
+  },
+  {
+    "key": "personal_project--keylight",
+    "title": "Keylight",
+    "href": "https://keylight.phobon.io/"
+  }
+]

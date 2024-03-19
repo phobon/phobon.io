@@ -1,0 +1,17 @@
+{
+  "name": "phbn - Portfolio for creative developer Ben McCormick",
+  "short_name": "phbn - Portfolio for creative developer Ben McCormick",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
