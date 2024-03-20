@@ -251,10 +251,12 @@ export default function Page({ ...props }) {
         className={cn(
           css({
             pb: '$12',
+            gridRowGap: '$5',
           }),
           sectionStyles,
         )}
       >
+        <h2>Projects</h2>
         <ul
           className={css({
             display: 'grid',
@@ -299,12 +301,43 @@ export default function Page({ ...props }) {
                         display: 'grid !important',
                         gridTemplateColumns: 'subgrid',
                         py: '$5 !important',
+                        color: '$slate10',
                       }),
                     )}
                   >
-                    <span className={css({ gridColumn: 'span 4', color: '$slate12' })}>{title}</span>
-                    <span className={css({ gridColumn: 'span 7', color: '$slate10' })}>{description}</span>
-                    <span className={css({ gridColumn: 'span 1', color: '$slate10', textAlign: 'right' })}>{year}</span>
+                    <span
+                      className={css({
+                        gridColumn: {
+                          base: 'span 2',
+                          md: 'span 2',
+                          lg: 'span 4',
+                        },
+                      })}
+                    >
+                      {title}
+                    </span>
+                    <span
+                      className={css({
+                        gridColumn: {
+                          base: 'span 3',
+                          md: 'span 5',
+                          lg: 'span 7',
+                        },
+                        color: '$slate9',
+                      })}
+                    >
+                      {description}
+                    </span>
+                    <span
+                      className={css({
+                        gridColumn: {
+                          base: 'span 1',
+                        },
+                        textAlign: 'right',
+                      })}
+                    >
+                      {year}
+                    </span>
                   </Text>
                 </li>
               )
