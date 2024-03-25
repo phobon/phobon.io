@@ -36,7 +36,7 @@ const Overlay = () => {
     return () => {
       unsubscribe()
     }
-  }, [progressValue])
+  }, [headerValue, progressValue])
 
   // useControls({
   //   progress: {
