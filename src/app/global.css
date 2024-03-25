@@ -53,6 +53,8 @@
 
   .phbn__header {
     grid-area: header;
+    --progress: 0;
+    opacity: var(--progress);
   }
 
   .phbn__main {
