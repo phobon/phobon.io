@@ -20,8 +20,8 @@ const PixellationNoiseMaterialImpl = shaderMaterial(
   }
 `,
   `
-  uniform vec3 u_color;
   uniform float u_progress;
+  uniform vec3 u_color;
 
   uniform sampler2D u_noise;
 
@@ -31,12 +31,14 @@ const PixellationNoiseMaterialImpl = shaderMaterial(
   
   void main() {
     vec2 uv = v_uv;
+    float progress = clamp(u_progress, 0.0, 1.0);
+
     // vec2 resolution = vec2(48.0, 18.0);
     vec2 resolution = u_resolution;
     vec2 pixelUv = floor(uv * resolution) / resolution;
     float n = texture(u_noise, pixelUv).r;
     n = pow(n, 0.5);
-    float alpha = step(n, u_progress * 1.5);
+    float alpha = step(n, progress * 1.5);
 
     vec4 finalColor = vec4(u_color, alpha);
 

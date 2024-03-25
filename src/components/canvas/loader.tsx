@@ -37,10 +37,12 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
   useEffect(() => {
     const progressSpan = progressSpanRef.current
     if (!progressSpan) {
+      // console.log('1')
       return
     }
     const container = containerRef.current
     if (!progressSpan) {
+      // console.log('2')
       return
     }
 
@@ -59,6 +61,8 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
       // Loading is now done
       if (progress === 100) {
         t = setTimeout(() => {
+          // console.log('loaded')
+
           setLoaded(true)
           document.documentElement.style.cssText = '--backgroundColor: hsl(240, 22%, 99%);'
           container.style.opacity = 0
@@ -68,6 +72,8 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
             container.style.visibility = 'hidden'
           }, 300)
         }, defaultTimeout)
+      } else {
+        // console.log('not loaded', progress)
       }
     }
 

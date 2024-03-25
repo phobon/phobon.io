@@ -6,7 +6,7 @@ import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 
 const Overlay = () => {
   const overlayRef = useRef<any>()
-  const progressValue = useMotionValue(1)
+  const progressValue = useMotionValue(1.1)
   const progressSpring = useSpring(progressValue, { damping: 300, stiffness: 800 })
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Overlay = () => {
     }
 
     const unsubscribe = useLayoutStore.subscribe(({ loaded }) => {
+      // console.log({ loaded })
       progressValue.set(loaded ? 0 : 1)
       // animate(overlay.material.uniforms.u_progress.value, loaded ? 0 : 1, {
       //   // duration: 3,
