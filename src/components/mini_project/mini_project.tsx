@@ -38,6 +38,10 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
             gridColumn: '1 / -1',
             display: 'grid !important',
             gridTemplateColumns: 'subgrid',
+            gridTemplateRows: {
+              base: 'auto auto',
+              md: 'auto',
+            },
             py: '$5 !important',
             color: '$slate10',
           }),
@@ -46,7 +50,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         <span
           className={css({
             gridColumn: {
-              base: 'span 1',
+              base: '1 / span 1',
             },
             display: {
               base: 'none',
@@ -61,9 +65,12 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         <span
           className={css({
             gridColumn: {
-              base: 'span 2',
-              md: 'span 2',
-              lg: 'span 2',
+              base: '1 / -2',
+              md: '2 / span 2',
+              lg: '2 / span 2',
+            },
+            gridRow: {
+              base: '1 / span 1',
             },
           })}
         >
@@ -72,11 +79,14 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         <span
           className={css({
             gridColumn: {
-              base: 'span 3',
+              base: '1 / -2',
               md: 'span 5',
               lg: 'span 7',
             },
-
+            gridRow: {
+              base: '2 / span 1',
+              md: '1 / span 1',
+            },
             color: '$slate9',
           })}
         >
@@ -99,7 +109,17 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         </span>
         <span
           className={css({
-            alignSelf: 'start',
+            gridColumn: {
+              base: '-2 / -1',
+            },
+            alignSelf: {
+              base: 'center',
+              md: 'start',
+            },
+            gridRow: {
+              base: '1 / span 2',
+              md: '1 / span 1',
+            },
             justifySelf: 'end',
           })}
         >
