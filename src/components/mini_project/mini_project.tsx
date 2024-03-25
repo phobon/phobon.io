@@ -48,6 +48,10 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
             gridColumn: {
               base: 'span 1',
             },
+            display: {
+              base: 'none',
+              md: 'block',
+            },
             color: '$slate8',
           })}
         >
@@ -72,6 +76,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
               md: 'span 5',
               lg: 'span 7',
             },
+
             color: '$slate9',
           })}
         >
@@ -82,6 +87,10 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
             gridColumn: {
               base: 'span 1',
             },
+            display: {
+              base: 'none',
+              md: 'block',
+            },
             textAlign: 'right',
             color: '$slate9',
           })}
@@ -90,7 +99,6 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         </span>
         <span
           className={css({
-            gridColumn: {},
             alignSelf: 'start',
             justifySelf: 'end',
           })}
