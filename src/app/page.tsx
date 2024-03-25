@@ -12,6 +12,7 @@ import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
+import MiniProject from '@/components/mini_project'
 
 export default function Page({ ...props }) {
   return (
@@ -272,76 +273,13 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          {workProjects
-            .sort((a, b) => (a.year > b.year ? -1 : 1))
-            .map(({ key, href, title, description, year }) => {
-              return (
-                <li
-                  key={key}
-                  className={css({
-                    display: 'grid',
-                    gridTemplateColumns: 'subgrid',
-                    gridColumn: '1 / -1',
-                  })}
-                >
-                  <Text
-                    as='a'
-                    href={href}
-                    target='_blank'
-                    title={title}
-                    className={css({
-                      gridColumn: '1 / -1',
-                      display: 'grid',
-                      gridTemplateColumns: 'subgrid',
-                    })}
-                    textStyles={cn(
-                      anchorStyles,
-                      css({
-                        gridColumn: '1 / -1',
-                        display: 'grid !important',
-                        gridTemplateColumns: 'subgrid',
-                        py: '$5 !important',
-                        color: '$slate10',
-                      }),
-                    )}
-                  >
-                    <span
-                      className={css({
-                        gridColumn: {
-                          base: 'span 2',
-                          md: 'span 2',
-                          lg: 'span 4',
-                        },
-                      })}
-                    >
-                      {title}
-                    </span>
-                    <span
-                      className={css({
-                        gridColumn: {
-                          base: 'span 3',
-                          md: 'span 5',
-                          lg: 'span 7',
-                        },
-                        color: '$slate9',
-                      })}
-                    >
-                      {description}
-                    </span>
-                    <span
-                      className={css({
-                        gridColumn: {
-                          base: 'span 1',
-                        },
-                        textAlign: 'right',
-                      })}
-                    >
-                      {year}
-                    </span>
-                  </Text>
-                </li>
-              )
-            })}
+          {workProjects.map(({ key, href, title, description, index, client }) => {
+            return (
+              <MiniProject as='li' key={key} href={href} title={title} index={index} client={client}>
+                {description}
+              </MiniProject>
+            )
+          })}
         </ul>
       </section>
     </>

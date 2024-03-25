@@ -19,6 +19,7 @@ export const Header = ({ ...props }) => {
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
+          zIndex: 1,
         }),
         gridStyles,
         'phbn__header',

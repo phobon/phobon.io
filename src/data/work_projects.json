@@ -3,49 +3,56 @@
     "key": "work_project--mds",
     "title": "Moleskine Design Studio (MDS)",
     "href": "https://moleskinestudio.com",
-    "year": "2023",
-    "description": "Landing page for Moleskine Design Studio"
-  },
-  {
-    "key": "work_project--mds_actions",
-    "title": "Actions by MDS",
-    "href": "https://moleskinestudio.com/actions",
-    "year": 2023,
-    "description": "Product page for Actions by Moleskine Design Studio"
+    "description": "Landing page for Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "01"
   },
   {
     "key": "work_project--mds_timepage",
     "title": "Timepage by MDS",
     "href": "https://moleskinestudio.com/timepage",
-    "year": 2023,
-    "description": "Product page for Timepage by Moleskine Design Studio"
+    "description": "Product page for Timepage by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "02"
+  },
+  {
+    "key": "work_project--mds_actions",
+    "title": "Actions by MDS",
+    "href": "https://moleskinestudio.com/actions",
+    "description": "Product page for Actions by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "03"
   },
   {
     "key": "work_project--mds_flowweb",
     "title": "Flow Web",
     "href": "https://flowapp.moleskinestudio.com/",
-    "year": 2024,
-    "description": "Canvas views for Flow by Moleskine Design Studio"
-  },
-  {
-    "key": "personal_project--blog_v6",
-    "title": "phobon.io v6",
-    "href": "https://v6.phobon.io/",
-    "year": 2019,
-    "description": "Version 6 of my personal portfolio and blog"
+    "description": "Canvas views for Flow by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "04"
   },
   {
     "key": "personal_project--luvial",
     "title": "Luvial",
     "href": "https://luvial.phobon.io/",
-    "year": 2023,
-    "description": "Ethereal pomodoro timer"
+    "description": "Ethereal pomodoro timer",
+    "client": "Personal",
+    "index": "05"
   },
   {
     "key": "personal_project--keylight",
     "title": "Keylight",
     "href": "https://keylight.phobon.io/",
-    "year": 2024,
-    "description": "Simple keylighting on a budget"
+    "description": "Simple keylighting on a budget",
+    "client": "Personal",
+    "index": "06"
+  },
+  {
+    "key": "personal_project--blog_v6",
+    "title": "phobon.io v6",
+    "href": "https://v6.phobon.io/",
+    "description": "Version 6 of my personal portfolio and blog",
+    "client": "Personal",
+    "index": "07"
   }
 ]
