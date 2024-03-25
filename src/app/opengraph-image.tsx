@@ -46,7 +46,7 @@ export default async function Image() {
     {
       fonts: [
         {
-          name: 'bebasNeue',
+          name: 'geist',
           data: await geist,
           style: 'normal',
           weight: 400,

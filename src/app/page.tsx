@@ -6,11 +6,13 @@ import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
 import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
+import now from '@/data/now.json'
 
 import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
+import MiniProject from '@/components/mini_project'
 
 export default function Page({ ...props }) {
   return (
@@ -186,23 +188,19 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          <SideStack title='Projects'>
-            {workProjects.map(({ key, href, title }) => {
-              return (
-                <li key={key}>
-                  <Text
-                    as='a'
-                    href={href}
-                    target='_blank'
-                    title={title}
-                    textStyles={anchorStyles}
-                  >{`↱  ${title}`}</Text>
-                </li>
-              )
-            })}
+          <SideStack title='Now'>
+            <li>
+              <Text
+                className={css({
+                  color: '$slate10',
+                })}
+              >
+                {now.employ} - {now.title}
+              </Text>
+            </li>
           </SideStack>
 
-          <SideStack title='Experience'>
+          <SideStack title='Previous Experience'>
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
@@ -248,6 +246,41 @@ export default function Page({ ...props }) {
             })}
           </SideStack>
         </div>
+      </section>
+
+      <section
+        className={cn(
+          css({
+            pb: '$12',
+            gridRowGap: '$5',
+          }),
+          sectionStyles,
+        )}
+      >
+        <h2>Projects</h2>
+        <ul
+          className={css({
+            display: 'grid',
+            gridTemplateColumns: 'subgrid',
+            gridColumn: '1 / -1',
+            borderTop: '1px solid',
+            borderBottom: '1px solid',
+            borderColor: '$slate3',
+
+            '&> * + *': {
+              borderTop: '1px solid',
+              borderColor: '$slate3',
+            },
+          })}
+        >
+          {workProjects.map(({ key, href, title, description, index, client }) => {
+            return (
+              <MiniProject as='li' key={key} href={href} title={title} index={index} client={client}>
+                {description}
+              </MiniProject>
+            )
+          })}
+        </ul>
       </section>
     </>
   )

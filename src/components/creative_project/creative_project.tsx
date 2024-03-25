@@ -190,11 +190,15 @@ export const CreativeProject = forwardRef<any, any>(
             <View
               className={css({
                 gridArea: {
-                  base: '3 / -2 / span 1 / -1',
-                  md: '1 / -2 / -1 / -1',
+                  base: '1 / 1 / -1 / -1',
+                  md: '1 / 1 / -1 / -1',
                   lg: '1 / 1 / -1 / -1',
                 },
-                width: '20%',
+                width: {
+                  base: '50%',
+                  md: '50%',
+                  lg: '20%',
+                },
                 height: '100%',
                 justifySelf: 'end',
                 placeSelf: 'end',

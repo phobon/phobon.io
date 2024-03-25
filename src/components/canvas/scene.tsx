@@ -18,7 +18,7 @@ const Scene = ({ debug = false, frameloop = 'always', screenSizeCamera = false, 
   return (
     <>
       {/* @ts-ignore */}
-      <Canvas id='__canvas' {...props}>
+      <Canvas id='__canvas' frameloop={frameloop} {...props}>
         <Preload all />
 
         <AdaptiveDpr />

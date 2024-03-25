@@ -2,36 +2,57 @@
   {
     "key": "work_project--mds",
     "title": "Moleskine Design Studio (MDS)",
-    "href": "https://moleskinestudio.com"
-  },
-  {
-    "key": "work_project--mds_actions",
-    "title": "Actions by MDS",
-    "href": "https://moleskinestudio.com/actions"
+    "href": "https://moleskinestudio.com",
+    "description": "Landing page for Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "01"
   },
   {
     "key": "work_project--mds_timepage",
     "title": "Timepage by MDS",
-    "href": "https://moleskinestudio.com/timepage"
+    "href": "https://moleskinestudio.com/timepage",
+    "description": "Product page for Timepage by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "02"
+  },
+  {
+    "key": "work_project--mds_actions",
+    "title": "Actions by MDS",
+    "href": "https://moleskinestudio.com/actions",
+    "description": "Product page for Actions by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "03"
   },
   {
     "key": "work_project--mds_flowweb",
     "title": "Flow Web",
-    "href": "https://flowapp.moleskinestudio.com/"
-  },
-  {
-    "key": "personal_project--blog_v6",
-    "title": "phobon.io v6",
-    "href": "https://v6.phobon.io/"
+    "href": "https://flowapp.moleskinestudio.com/",
+    "description": "Canvas views for Flow by Moleskine Design Studio",
+    "client": "Bonobo",
+    "index": "04"
   },
   {
     "key": "personal_project--luvial",
-    "title": "Luvial - Ethereal Pomodoro Timer",
-    "href": "https://luvial.phobon.io/"
+    "title": "Luvial",
+    "href": "https://luvial.phobon.io/",
+    "description": "Ethereal pomodoro timer",
+    "client": "Personal",
+    "index": "05"
   },
   {
     "key": "personal_project--keylight",
     "title": "Keylight",
-    "href": "https://keylight.phobon.io/"
+    "href": "https://keylight.phobon.io/",
+    "description": "Simple keylighting on a budget",
+    "client": "Personal",
+    "index": "06"
+  },
+  {
+    "key": "personal_project--blog_v6",
+    "title": "phobon.io v6",
+    "href": "https://v6.phobon.io/",
+    "description": "Version 6 of my personal portfolio and blog",
+    "client": "Personal",
+    "index": "07"
   }
 ]
