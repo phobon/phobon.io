@@ -19,6 +19,7 @@ export type ImageProps = {
   progress?: MotionValue<number>
   scrollYProgress?: MotionValue<number>
   viewRef?: React.MutableRefObject<any>
+  hidden?: boolean
 } & React.ImgHTMLAttributes<HTMLImageElement>
 
 const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
@@ -34,6 +35,7 @@ const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
       loading = 'lazy',
       crossOrigin = 'anonymous',
       viewRef,
+      hidden,
       scrollYProgress,
     },
     ref,
@@ -65,27 +67,29 @@ const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
           priority={priority}
         />
 
-        <View
-          className={css({
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-          })}
-          ref={viewRef}
-        >
-          <PerspectiveCamera makeDefault />
-          {children}
-        </View>
+        {hidden ? (
+          <View
+            className={css({
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+            })}
+            ref={viewRef}
+          >
+            <PerspectiveCamera makeDefault />
+            {children}
+          </View>
+        ) : null}
       </span>
     )
   },
 )
 
 export const Image = ({ progress, ...props }: ImageProps) => {
-  const { viewRef, trackRef, scrollYProgress } = useImgTracker()
+  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker()
 
   return (
-    <ImageBase {...props} ref={trackRef} viewRef={viewRef}>
+    <ImageBase {...props} ref={trackRef} viewRef={viewRef} hidden={hidden}>
       <ImageImpl trackRef={trackRef} progress={progress} scrollYProgress={scrollYProgress} />
     </ImageBase>
   )
@@ -117,10 +121,10 @@ const ImageImpl = ({ trackRef, progress, scrollYProgress }) => {
 }
 
 export const Video = ({ progress, src, fallback, videoDimensions, ...props }: any) => {
-  const { viewRef, trackRef, scrollYProgress } = useImgTracker()
+  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker()
 
   return (
-    <ImageBase {...props} src={fallback} ref={trackRef} viewRef={viewRef}>
+    <ImageBase {...props} src={fallback} ref={trackRef} viewRef={viewRef} hidden={hidden}>
       <VideoImpl src={src} trackRef={trackRef} progress={progress} videoDimensions={videoDimensions} />
     </ImageBase>
   )

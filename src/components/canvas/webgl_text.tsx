@@ -25,7 +25,7 @@ const Text = ({ className, children, font, as: Tag = 'span', textStyles, enhance
   const trackerOptions = {
     hide: enhance,
   }
-  const { trackRef, intersecting } = useTracker(trackerOptions)
+  const { trackRef, intersecting, hidden } = useTracker(trackerOptions)
 
   return (
     <span
@@ -50,7 +50,7 @@ const Text = ({ className, children, font, as: Tag = 'span', textStyles, enhance
         {children}
       </Tag>
 
-      {enhance ? (
+      {hidden ? (
         <View
           className={css({
             position: 'absolute',

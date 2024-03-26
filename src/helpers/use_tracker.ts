@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@uidotdev/usehooks'
 import { animate, useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
@@ -6,11 +7,17 @@ export type UseTrackerOptions = {
 }
 
 export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions) => {
-  const { hide = false } = options || {}
   const trackRef = useRef<Type>()
   const [rect, setRect] = useState<DOMRect>(null)
   const intersectingValue = useMotionValue(0)
   const intersecting = useSpring(intersectingValue, { stiffness: 500, damping: 150 })
+
+  const { hide = false } = options || {}
+  const desktop = useMediaQuery('only screen and (min-width: 768px)')
+  let trulyHide = hide
+  if (!desktop) {
+    trulyHide = false
+  }
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -45,13 +52,14 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     setRect(trackRect)
 
     // Hide everything once it's loaded
-    if (hide) {
+    if (trulyHide) {
       track.style.opacity = '0'
       track.style.visibility = 'hidden'
     }
-  }, [setRect, hide])
+  }, [setRect, trulyHide])
 
   return {
+    hidden: trulyHide,
     trackRef,
     rect,
     scrollYProgress,
@@ -60,11 +68,14 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
 }
 
 export const useImgTracker = (options?: UseTrackerOptions) => {
-  const { hide = true } = options || {}
   const trackRef = useRef<HTMLImageElement>()
   const viewRef = useRef<any>()
   // const [rect, setRect] = useState<DOMRect>(null)
   const intersecting = useMotionValue(false)
+
+  const { hide = false } = options || {}
+  const mobile = useMediaQuery('only screen and (max-width: 768px)')
+  const trulyHide = hide || !mobile
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -105,14 +116,15 @@ export const useImgTracker = (options?: UseTrackerOptions) => {
       viewRef.current.style.height = height
 
       // Hide everything once it's loaded
-      track.style.opacity = '0'
-      if (hide) {
+      if (trulyHide) {
+        track.style.opacity = '0'
         track.style.visibility = 'hidden'
       }
     }
-  }, [hide])
+  }, [trulyHide])
 
   return {
+    hidden: trulyHide,
     viewRef,
     trackRef,
     // rect,

@@ -25,7 +25,7 @@ export const Footer = ({ ...props }) => {
     >
       <Text
         className={css({
-          gridColumn: '1 / span 1',
+          gridColumn: '1 / span 2',
           fontSize: '$3',
           color: '$slate1',
           lineHeight: '$none',
