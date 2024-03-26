@@ -2,14 +2,19 @@
 
 import { css } from '@/design/css'
 
-import { Video, Image } from '@/components/canvas/webgl_images'
-import Text from '@/components/canvas/webgl_text'
+// import { Video, Image } from '@/components/canvas/webgl_image_base'
+// import Text from '@/components/canvas/webgl_text'
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { cn } from '@/helpers/cn'
 import { animate, useMotionValue, useTransform } from 'framer-motion'
 import { View } from '@react-three/drei'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
+import dynamic from 'next/dynamic'
+
+const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
+const Video = dynamic(() => import('@/components/canvas/enhancements/webgl_video'), { ssr: false })
+const Image = dynamic(() => import('@/components/canvas/enhancements/webgl_image'), { ssr: false })
 
 export const CreativeProject = forwardRef<any, any>(
   (

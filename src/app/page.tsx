@@ -8,11 +8,14 @@ import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 import now from '@/data/now.json'
 
-import Text from '@/components/canvas/webgl_text'
+// import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
+import dynamic from 'next/dynamic'
+
+const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export default function Page({ ...props }) {
   return (

@@ -1,7 +1,10 @@
 import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
 import { gridStyles } from '../common'
-import Text from '@/components/canvas/webgl_text'
+import dynamic from 'next/dynamic'
+// import Text from '@/components/canvas/webgl_text'
+
+const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export const Footer = ({ ...props }) => {
   return (
