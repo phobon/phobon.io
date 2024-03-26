@@ -11,6 +11,7 @@ import { useImageAsTexture } from '@/helpers/use_image_as_texture'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
 import * as THREE from 'three'
 import NextImage from 'next/image'
+import { useMediaQuery } from '@uidotdev/usehooks'
 
 export type ImageProps = {
   width: number
@@ -86,7 +87,10 @@ const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
 )
 
 export const Image = ({ progress, ...props }: ImageProps) => {
-  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker()
+  const desktop = useMediaQuery('only screen and (min-width: 768px)')
+  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker({
+    hide: desktop,
+  })
 
   return (
     <ImageBase {...props} ref={trackRef} viewRef={viewRef} hidden={hidden}>
@@ -121,7 +125,10 @@ const ImageImpl = ({ trackRef, progress, scrollYProgress }) => {
 }
 
 export const Video = ({ progress, src, fallback, videoDimensions, ...props }: any) => {
-  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker()
+  const desktop = useMediaQuery('only screen and (min-width: 768px)')
+  const { viewRef, trackRef, scrollYProgress, hidden } = useImgTracker({
+    hide: desktop,
+  })
 
   return (
     <ImageBase {...props} src={fallback} ref={trackRef} viewRef={viewRef} hidden={hidden}>

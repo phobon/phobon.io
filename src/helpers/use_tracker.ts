@@ -13,11 +13,6 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
   const intersecting = useSpring(intersectingValue, { stiffness: 500, damping: 150 })
 
   const { hide = false } = options || {}
-  const desktop = useMediaQuery('only screen and (min-width: 768px)')
-  let trulyHide = hide
-  if (!desktop) {
-    trulyHide = false
-  }
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -52,14 +47,14 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
     setRect(trackRect)
 
     // Hide everything once it's loaded
-    if (trulyHide) {
+    if (hide) {
       track.style.opacity = '0'
       track.style.visibility = 'hidden'
     }
-  }, [setRect, trulyHide])
+  }, [setRect, hide])
 
   return {
-    hidden: trulyHide,
+    hidden: hide,
     trackRef,
     rect,
     scrollYProgress,
@@ -74,8 +69,6 @@ export const useImgTracker = (options?: UseTrackerOptions) => {
   const intersecting = useMotionValue(false)
 
   const { hide = false } = options || {}
-  const mobile = useMediaQuery('only screen and (max-width: 768px)')
-  const trulyHide = hide || !mobile
 
   // Scroll and view-related
   const { scrollYProgress } = useScroll({
@@ -116,15 +109,15 @@ export const useImgTracker = (options?: UseTrackerOptions) => {
       viewRef.current.style.height = height
 
       // Hide everything once it's loaded
-      if (trulyHide) {
+      if (hide) {
         track.style.opacity = '0'
         track.style.visibility = 'hidden'
       }
     }
-  }, [trulyHide])
+  }, [hide])
 
   return {
-    hidden: trulyHide,
+    hidden: hide,
     viewRef,
     trackRef,
     // rect,

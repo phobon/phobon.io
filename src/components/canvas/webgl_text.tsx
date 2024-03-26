@@ -11,6 +11,7 @@ import { cn } from '@/helpers/cn'
 import { UseTrackerOptions, useTracker } from '@/helpers/use_tracker'
 import { MotionValue, useMotionValueEvent } from 'framer-motion'
 import { v4 as uuid } from 'uuid'
+import { useMediaQuery } from '@uidotdev/usehooks'
 
 export type TextProps = {
   font?: string
@@ -22,10 +23,10 @@ export type TextProps = {
   any
 
 const Text = ({ className, children, font, as: Tag = 'span', textStyles, enhance, ...props }: TextProps) => {
-  const trackerOptions = {
-    hide: enhance,
-  }
-  const { trackRef, intersecting, hidden } = useTracker(trackerOptions)
+  const desktop = useMediaQuery('only screen and (min-width: 768px)')
+  const { trackRef, intersecting, hidden } = useTracker({
+    hide: enhance && desktop,
+  })
 
   return (
     <span
