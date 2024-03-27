@@ -4,6 +4,7 @@ import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { useProgress } from '@react-three/drei'
+import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
 type DataInterpolationFunction = (p: number) => [number, string]
@@ -29,10 +30,13 @@ const setLoadedSelector = ({ setLoaded, loaded }): Pick<LayoutStore, 'setLoaded'
   loaded,
 })
 
-const Loader = ({ dataInterpolation = customDataInterpolation, className, defaultTimeout = 500 }: LoaderProps) => {
+const Loader = ({ dataInterpolation = customDataInterpolation, className, defaultTimeout = 2000 }: LoaderProps) => {
   const containerRef = useRef(null)
   const progressSpanRef = useRef(null)
+  const progressBarRef = useRef(null)
   const { setLoaded, loaded } = useLayoutStore(setLoadedSelector)
+  const progressValue = useMotionValue(0)
+  const progressSpring = useSpring(progressValue, { stiffness: 500, damping: 150 })
 
   useEffect(() => {
     const progressSpan = progressSpanRef.current
@@ -41,22 +45,19 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
       return
     }
     const container = containerRef.current
-    if (!progressSpan) {
-      // console.log('2')
-      return
-    }
 
     let t
 
     const updateProgress = (progress: number) => {
       const [p, s] = dataInterpolation(progress)
-      progressSpan.innerText = p
+      progressValue.set(progress)
+      // progressSpan.innerText = p
 
-      if (p >= 99) {
-        progressSpan.style.cssText = '--pretext: ""'
-      } else if (p > 9) {
-        progressSpan.style.cssText = '--pretext: "0"'
-      }
+      // if (p >= 99) {
+      //   progressSpan.style.setProperty('--pretext', '""')
+      // } else if (p > 9) {
+      //   progressSpan.style.setProperty('--pretext', '0')
+      // }
 
       // Loading is now done
       if (progress === 100) {
@@ -70,7 +71,7 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
           setTimeout(() => {
             container.style.pointerEvents = 'none'
             container.style.visibility = 'hidden'
-          }, 300)
+          }, defaultTimeout)
         }, defaultTimeout)
       } else {
         // console.log('not loaded', progress)
@@ -87,35 +88,74 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
       unsubscribe()
       clearTimeout(t)
     }
-  }, [dataInterpolation, defaultTimeout, setLoaded])
+  }, [dataInterpolation, defaultTimeout, progressValue, setLoaded])
+
+  useMotionValueEvent(progressSpring, 'change', (value) => {
+    const v = 100 - value
+    const p = value.toFixed(0)
+    progressSpanRef.current.innerText = value.toFixed(0)
+    if (p > 99) {
+      progressSpanRef.current.style.setProperty('--pretext', '""')
+    } else if (p > 9) {
+      progressSpanRef.current.style.setProperty('--pretext', '"0"')
+    }
+    progressBarRef.current.style.setProperty('--progress', `-${v}%`)
+  })
 
   return (
     <div className={cn(containerStyles, className)} ref={containerRef}>
-      <span ref={progressSpanRef} className={textStyles} />
+      <div ref={progressSpanRef} className={textStyles}>
+        0
+      </div>
+      <div ref={progressBarRef} className={progressBarStyles}></div>
     </div>
   )
 }
 const containerStyles = css({
   position: 'fixed',
-  inset: 0,
-  transition: 'opacity 300ms ease',
+  left: 0,
+  top: 0,
+  width: '100dvw',
+  height: '100dvh',
+  transition: 'opacity 500ms ease',
   zIndex: 9999,
   overflowX: 'hidden',
   overflowY: 'hidden',
-  display: 'flex',
-  alignItems: 'flex-end',
-  justifyContent: 'flex-end',
-  padding: 48,
   opacity: 1,
 })
 
+const progressBarStyles = css({
+  '--progress': '-100%',
+  position: 'absolute',
+  height: 2,
+  backgroundColor: '$slate12',
+  overflow: 'hidden',
+  bottom: '$8',
+  left: '$8',
+  right: '$8',
+
+  _after: {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '$slate11',
+    zIndex: 1,
+    transform: 'translate(var(--progress), 0)',
+  },
+})
+
 const textStyles = css({
+  position: 'absolute',
+  right: '$8',
+  bottom: '$9',
   lineHeight: '$none',
   fontSize: {
     base: '$8',
-    md: '$13',
+    md: '$10',
   },
-  position: 'relative',
   fontVariantNumeric: 'tabular-nums',
 
   '--pretext': '"00"',
