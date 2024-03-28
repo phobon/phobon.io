@@ -54,7 +54,20 @@ export const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
         <NextImage
           ref={imgRef}
           src={src}
-          className={className}
+          className={css({
+            width: {
+              base: 'initial',
+              md: '100%',
+            },
+            height: {
+              base: '100%',
+              md: '40vh',
+            },
+            objectFit: {
+              base: 'cover',
+              md: 'initial',
+            },
+          })}
           alt={alt}
           crossOrigin={crossOrigin}
           width={width}

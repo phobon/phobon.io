@@ -91,8 +91,13 @@ export const CreativeProject = forwardRef<any, any>(
               alt={title}
               src={imageSrc}
               className={css({
-                width: '100%',
-                height: '40vh',
+                width: {
+                  base: '100%',
+                },
+                height: {
+                  base: '40vh',
+                },
+
                 gridColumn: {
                   base: '1 / -1',
                   md: '1 / -1',
