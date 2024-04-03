@@ -189,6 +189,7 @@ export default function Page({ ...props }) {
               md: '1 / span 1',
               lg: '1 / span 1',
             },
+            fontSize: '$3',
           })}
         >
           <SideStack title='Now'>

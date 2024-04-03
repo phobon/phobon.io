@@ -142,6 +142,7 @@ export const CreativeProject = forwardRef<any, any>(
                   lg: '1 / 1 / span 1 / span 3',
                 },
                 gap: '$1',
+                fontSize: '$3',
               })}
             >
               <Text
@@ -172,6 +173,7 @@ export const CreativeProject = forwardRef<any, any>(
                 fontVariantNumeric: 'tabular-nums',
                 color: '$slate12',
                 alignSelf: 'end',
+                fontSize: '$3',
               })}
             >
               {index}
@@ -186,6 +188,7 @@ export const CreativeProject = forwardRef<any, any>(
                 },
                 justifySelf: 'end',
                 alignSelf: 'end',
+                fontSize: '$3',
               })}
             >
               <Text
