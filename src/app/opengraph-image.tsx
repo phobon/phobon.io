@@ -10,7 +10,7 @@ export const contentType = 'image/png'
 
 export default async function Image() {
   const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://phobon.io'
-  const src = `${host}/images/projects/spiral.png`
+  const src = `${host}/images/og.png`
   const geist = fetch(new URL('../../public/fonts/Geist-Regular.otf', import.meta.url)).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
@@ -29,17 +29,19 @@ export default async function Image() {
         <div
           style={{
             position: 'absolute',
-            fontSize: 48,
+            fontSize: 72,
             width: '100%',
             height: '100%',
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'flex-end',
+            flexDirection: 'column',
             padding: '24px 48px',
             color: 'white',
           }}
         >
-          {alt}
+          <span style={{ fontWeight: 'bold' }}>Ben McCormick</span>
+          <span>Creative Developer</span>
         </div>
       </div>
     ),
