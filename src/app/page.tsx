@@ -257,6 +257,7 @@ export default function Page({ ...props }) {
           css({
             pb: '$12',
             gridRowGap: '$5',
+            fontSize: '$3',
           }),
           sectionStyles,
         )}
