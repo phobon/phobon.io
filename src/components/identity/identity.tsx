@@ -35,7 +35,7 @@ export const Identity = forwardRef<HTMLDivElement, IdentityProps>(({ className, 
           transform: 'scale(1.1)',
         },
         '&> .a': {
-          fill: '$purple8',
+          // fill: '$purple8',
         },
       })}
     >
