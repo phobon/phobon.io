@@ -87,10 +87,27 @@ export default function Page({ ...props }) {
         >
           {creativeProjects.map(
             (
-              { key, imageSrc, videoSrc, title, description, status, imageDimensions, videoDimensions, priority, href },
+              {
+                key,
+                imageSrc,
+                videoSrc,
+                title,
+                description,
+                status,
+                imageDimensions,
+                videoDimensions,
+                priority,
+                href,
+                hidden,
+              },
               index,
             ) => {
               const projectIndex = new String(index + 1).padStart(2, '0')
+
+              if (hidden) {
+                return null
+              }
+
               return (
                 <CreativeProject
                   key={key}

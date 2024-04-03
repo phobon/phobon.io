@@ -7,7 +7,8 @@
     "imageSrc": "/images/projects/circular.webp",
     "imageDimensions": [1200, 630],
     "priority": true,
-    "href": "https://formation.phobon.io"
+    "href": "https://formation.phobon.io",
+    "hidden": false
   },
   {
     "key": "project--gigas",
@@ -16,11 +17,11 @@
     "description": "Audio stimulation given visual form.",
     "imageSrc": "/images/projects/gigas.webp",
     "videoSrc": "/images/projects/gigas.mp4",
-
     "imageDimensions": [1200, 630],
     "videoDimensions": [2036, 584],
     "priority": false,
-    "href": "https://gigas.phobon.io/"
+    "href": "https://gigas.phobon.io/",
+    "hidden": false
   },
   {
     "key": "project--mdslabs",
@@ -32,6 +33,7 @@
     "imageDimensions": [1839, 959],
     "videoDimensions": [1792, 938],
     "priority": false,
-    "href": "https://moleskinestudio.com/lab/landing/"
+    "href": "https://moleskinestudio.com/lab/landing/",
+    "hidden": true
   }
 ]
