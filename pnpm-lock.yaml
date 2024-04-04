@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@gsap/react':
-    specifier: ^2.1.0
-    version: 2.1.0
   '@mdx-js/loader':
     specifier: ^3.0.1
     version: 3.0.1(webpack@5.91.0)
@@ -86,6 +83,9 @@ dependencies:
   swr:
     specifier: ^2.2.5
     version: 2.2.5(react@18.2.0)
+  three:
+    specifier: ^0.163.0
+    version: 0.163.0
   uuid:
     specifier: ^9.0.1
     version: 9.0.1
@@ -671,13 +671,6 @@ packages:
 
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
-    dev: false
-
-  /@gsap/react@2.1.0:
-    resolution: {integrity: sha512-pwdFXvOM5IsRZXpWTKkQoEjb3/iUjDCU1BCJDlE6pHgVjG+7Ep/7+sszUgqVZ2Jc0mR8gnhtDWyx5cQAT4kwQw==}
-    dependencies:
-      gsap: 3.12.5
-      react: 18.2.0
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
