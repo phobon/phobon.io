@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 
 import { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
@@ -31,6 +32,7 @@ const RootLayout = ({ children }) => {
         <Loader className='phbn__loader' />
 
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
