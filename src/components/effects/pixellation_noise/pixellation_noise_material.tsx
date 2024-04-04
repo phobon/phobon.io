@@ -72,7 +72,7 @@ export const PixellationNoiseMaterial = ({
     t.wrapS = t.wrapT = THREE.RepeatWrapping
   })
 
-  useMotionValueEvent(progress, 'change', (latest) => {
+  useMotionValueEvent(progress, 'change', (latest: number) => {
     const material = materialRef.current
     if (!material) {
       return

@@ -1,14 +1,7 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    providerImportSource: '@mdx-js/react',
-  },
-})
+const withMDX = require('@next/mdx')()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -16,6 +9,7 @@ const nextConfig = {
   experimental: {},
   images: {},
   transpilePackages: ['geist'],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({
@@ -50,15 +44,7 @@ const nextConfig = {
 const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
 
 module.exports = (_phase, { defaultConfig }) => {
-  const plugins = [
-    [withBundleAnalyzer, {}],
-    [
-      withMDX,
-      {
-        pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-      },
-    ],
-  ]
+  const plugins = [[withBundleAnalyzer, {}], [withMDX]]
 
   const wConfig = plugins.reduce((acc, [plugin, config]) => plugin({ ...acc, ...config }), {
     ...defaultConfig,
