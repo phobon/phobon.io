@@ -2,6 +2,7 @@ import './global.css'
 import { GeistSans } from 'geist/font/sans'
 
 import { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
@@ -28,6 +29,8 @@ const RootLayout = ({ children }) => {
         <Footer />
 
         <Loader className='phbn__loader' />
+
+        <Analytics />
       </body>
     </html>
   )
