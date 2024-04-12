@@ -1,0 +1,99 @@
+# How this site works
+
+- Introduction
+
+- Mouse Effect
+
+I've been working with threejs for a while now, and I've always been interested in shaders and post processing, but I never really knew how to get started. These sorts of rad effects always felt like magic to me and I never really understood how they worked. I've learned a lot about how to create them, so I wanted to share some of those things and how I've implemented them
+
+---
+
+This effect is heavily inspired by the :goat: @aristidebenoist from his tweet: https://twitter.com/AristideBenoist/status/1653049331371393024 - I've always tended more towards minimal, or subtle effects to enhance the underlying content. To add texture, dynamism and a playful sense to things, so this effect really spoke to me. I've done my best to create something like it in threejs and r3f!
+
+I've broken this down into a few different parts:
+
+- The grid trail
+- The pixellation effect (uv remapping, really)
+- Postprocessing (this bit is optional, but thought it was cool to apply to the entire scene)
+
+---
+
+The grid trail is created using a DataTexture with some arbitrary number of rows and columns (I used 50 here). It's set up to regenerate whenever the window is resized just so things like aspect ratio are ok.
+
+The way it works is that whenever the mouse moveSyntheticComments, we figure out a basic pointer delta and aspect ratio, then every frame we loop over the rows and columns, and calculate the force of the effect at a particular grid position. The force is calculated on the x and y axis to give that 2d effect, this is then stored in what become the r and g channels of the data texture.
+
+---
+
+The pixellation effect is actually extremely simple compared to the rest of it.
+
+We sample the grid trail texture at the uv coordinates for the mesh. We then offset the uvs by multiplying some scalar (amplitude) by the rg channels in that trail sample. Then we sample the final texture at these offset uvs. This creates a really cool effect where the texture is "pushed" around by the grid trail.
+
+---
+
+For some added fun, I've applied this effect as a kind of pseudo-post-processing effect. Basically, the site is built using drei's `View` component, which makes it really easy to combine webGL and DOM elements.
+
+I have a main scene which is a canvas with all of the webgl stuff ported in via `View.Port`. From here I have an `FBOScene` which will render all of that content to an FBO, and then applies a full screen shader effect (basically post processing).
+
+I use two `useFrame` hooks with different priorities to handle rendering everything from the `View` component to an FBO, then rendering the main scene to the screen with the postprocessing effect.
+
+---
+
+I hope you enjoyed reading this all the way to the end, here's a link to my soundclo... I mean, here's a link to my site with all these effects in it. Shoutout to @aristidebenoist for the inspiration, #drei, #threejs and #r3f for making this stuff really fun to work with, and for the many many awesome #webgl courses, tutorials and other resources for actually helping me learn this stuff
+
+
+
+
+
+
+- Inspired heavily by Aristide Benoist concept things from the Opal website
+- useGridTrailTexture
+  - Uses a DataTexture where the values are updated when the mouse position textChangeRangeNewSpan
+  - Includes mouse velocity as well, so the trail is more dynamic
+  - Abstracted into its own hook
+  - Decays over time to create a trail effect
+  - Pushes values into the red and green channels of the data texture to create a "strength"
+  - The closer the value is to red, the stronger the effect
+- Pixellation (uv remapping) effect
+  - Really simple uv remapping effect
+  - Sample the grid trail texture at the uv coordinates
+  - Offset the uvs by amplitude and the rg value of the grid trail
+  - Sample the final texture at these offset uvs
+- Handling post processing
+
+  - The site is built with next.js and three's `View` component
+  - I have a main `Scene` which is a canvas with all of the webgl stuff ported in via `View.Port`
+  - From here I have an `FBOScene` which will render all of that content to to an useFBO, and then applies a full screen shader effect (basically post processing)
+  - Uses two `useFrame` hooks at different priorities - the first will set the renderTarget to our FBO
+  - The scene then is just rendered (ie: to this render target)
+  - The second `useFrame` then renders our main scene to the screen
+
+- Noise image
+  - Based off of drei's Image component
+  - Uses a custom shader with a noise texture to create a cool noise effect
+  - Blends some interesting chromatic aberration as well with a bit of uv remapping
+
+```
+  vec2 resolution = vec2(48.0, 18.0);
+  vec2 pixelUv = floor(uv * resolution) / resolution;
+  float n = texture(u_noise, pixelUv).r;
+  n = pow(n, 0.5);
+  float caProgress = smoothstep(n, 0.0, u_progress);
+  vec2 finalUv = mix(uv, pixelUv, u_progress);
+  float alpha1 = smoothstep(0.0, n, u_progress * 0.75);
+  float alpha2 = smoothstep(0.0, n, u_progress * 1.5);
+  float alpha = step(n, u_progress * 1.5);
+```
+
+```
+  vec3 chromaticAbberation(sampler2D tex, vec2 uv, float progress) {
+  float factor = 0.075;
+  float r = texture(tex, uv - vec2(factor, factor) * progress).r;
+  float g = texture(tex, uv - vec2(factor, factor) * progress).g;
+  float b = texture(tex, uv + vec2(factor, 0.0) * progress).b;
+  vec3 caColor = vec3(r, g, b);
+  return caColor;
+}
+```
+
+- Loader - Very simple loader that uses drei's `useProgress` hook and a simple overlay - Piggybacks on the noise image effect from before to try and tie in all of the different effects
+  import { moveSyntheticComments } from "typescript"

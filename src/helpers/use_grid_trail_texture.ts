@@ -15,7 +15,7 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
   const [dataTexture, setDataTexture] = useState<THREE.DataTexture>()
 
   const previousPointerRef = useRef({ x: 0, y: 0 })
-  const pointerVelocityRef = useRef({ x: 0, y: 0 })
+  const pointerDeltaRef = useRef({ x: 0, y: 0 })
   const pointerRef = useRef({ x: 0, y: 0 })
   const viewportRef = useRef({ width: 0, height: 0 })
 
@@ -59,8 +59,8 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     pointerRef.current.y = y
 
     // Pointer velocity
-    pointerVelocityRef.current.x = pointerRef.current.x - previousPointerRef.current.x
-    pointerVelocityRef.current.y = pointerRef.current.y - previousPointerRef.current.y
+    pointerDeltaRef.current.x = pointerRef.current.x - previousPointerRef.current.x
+    pointerDeltaRef.current.y = pointerRef.current.y - previousPointerRef.current.y
 
     // Cache previous pointer position
     previousPointerRef.current.x = pointerRef.current.x
@@ -96,11 +96,8 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
             let force = mouseRadius / Math.sqrt(dist)
             force = clamp(force, 0, 10)
 
-            data[dataIndex] += strength * Math.abs(pointerVelocityRef.current.x) * force
-            data[dataIndex + 1] += strength * Math.abs(pointerVelocityRef.current.y) * force
-
-            // data[dataIndex] += strength * pointerVelocityRef.current.x * force
-            // data[dataIndex + 1] -= strength * pointerVelocityRef.current.y * force
+            data[dataIndex] += strength * Math.abs(pointerDeltaRef.current.x) * force
+            data[dataIndex + 1] += strength * Math.abs(pointerDeltaRef.current.y) * force
           }
         }
 
@@ -108,11 +105,11 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     }
 
     // Decay pointer velocity
-    if (pointerVelocityRef.current.x > 0) {
-      pointerVelocityRef.current.x *= decay
+    if (pointerDeltaRef.current.x > 0) {
+      pointerDeltaRef.current.x *= decay
     }
-    if (pointerVelocityRef.current.y > 0) {
-      pointerVelocityRef.current.y *= decay
+    if (pointerDeltaRef.current.y > 0) {
+      pointerDeltaRef.current.y *= decay
     }
   })
 
