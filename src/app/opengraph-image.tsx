@@ -5,7 +5,7 @@ export const runtime = 'edge'
 
 export const id = 'opengraph-image'
 export const size = { width: 1200, height: 630 }
-export const alt = 'Ben McCormick - Creative Developer'
+export const alt = 'Ben McCormick - Design engineer'
 export const contentType = 'image/png'
 
 export default async function Image() {
@@ -41,7 +41,7 @@ export default async function Image() {
           }}
         >
           <span style={{ fontWeight: 'bold' }}>Ben McCormick</span>
-          <span>Creative Developer</span>
+          <span>Design engineer</span>
         </div>
       </div>
     ),

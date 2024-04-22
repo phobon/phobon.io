@@ -60,7 +60,7 @@ export default function Page({ ...props }) {
           })}
           enhance
         >
-          Ben McCormick is a creative developer based in Perth, Western Australia
+          Ben McCormick is a design engineer based in Perth, Western Australia
         </Text>
       </section>
 
@@ -175,7 +175,7 @@ export default function Page({ ...props }) {
           })}
         >
           <Text as='p' enhance>
-            I am a creative developer focused on the entire frontend stack including React, WebGL development, interface
+            I am a design engineer focused on the entire frontend stack including React, WebGL development, interface
             and interaction design; as well as creative direction and animation.
           </Text>
 

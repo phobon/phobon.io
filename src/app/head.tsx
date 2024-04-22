@@ -1,6 +1,6 @@
-const DEFAULT_TITLE = 'Ben McCormick — Creative developer'
+const DEFAULT_TITLE = 'Ben McCormick — Design engineer'
 const DEFAULT_URL = 'https://phobon.io'
-const DEFAULT_DESCRIPTION = 'Ben McCormick — Creative developer'
+const DEFAULT_DESCRIPTION = 'Ben McCormick — Design engineer'
 const DEFAULT_AUTHOR = 'Ben McCormick https://phobon.io'
 const DEFAULT_IMAGE = 'https://phobon.io/phbn.webp'
 

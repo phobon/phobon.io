@@ -11,8 +11,8 @@ import Loader from '@/components/canvas/loader'
 import Footer from '@/components/layout/footer'
 
 export const metadata: Metadata = {
-  title: 'Ben McCormick — Creative developer',
-  description: 'Ben McCormick — Creative developer',
+  title: 'Ben McCormick — Design engineer',
+  description: 'Ben McCormick — Design engineer',
   metadataBase: new URL('https://phobon.io'),
 }
 
