@@ -5,7 +5,7 @@ import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 
 import { gridStyles } from '../common'
-import ReactLenis from '@studio-freight/react-lenis'
+import { ReactLenis } from 'lenis/react'
 import Scene from '@/components/canvas/scene'
 
 export type MainProps = {
