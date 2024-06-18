@@ -4,20 +4,18 @@ import {
   purple,
   purpleDark,
   // green,
-  // orange,
-  // teal,
-  // cyan,
+  // greenDark,
   // blue,
-  // violet,
+  // blueDark,
   // red,
-  // yellow,
+  // redDark
 } from '@radix-ui/colors'
 
-const transformColorPrimitive = (primitive: { [index: string]: string }, transformKey: string = null) => {
-  const transformed = {}
+const transformColorPrimitive = (primitive: { [index: string]: string }, transformKey: string) => {
+  const transformed: { [index: string]: any } = {}
   let index = 1
   for (const key in primitive) {
-    const transformedKey = transformKey ? `$${transformKey}${index}` : `$${key}`
+    const transformedKey = `${transformKey}${index}`
     transformed[transformedKey] = { value: primitive[key] }
     index += 1
   }
@@ -31,16 +29,17 @@ const transformThemedColorPrimitive = (
   darkKey: string,
   count: number,
 ) => {
-  const transformed = {}
+  const transformed: { [index: string]: any } = {}
   for (let i = 1; i < count + 1; i++) {
+    // console.log(primitive)
     transformed[`${baseKey}${i}`] = {
       value: {
         // TODO: The docs here say that we can just use the colors collection key, but looking at the generated css
         // it seems as though this key turns into a css custom property, so effectively it creates an infinite loop
         // ie: `colors-slate1: var(--colors-slate1);`
-        base: primitive[`$${baseKey}${i}`].value,
+        base: primitive[`${baseKey}${i}`].value,
         // base: `{colors.${baseKey}${i}}`,
-        _dark: `{colors.$${darkKey}${i}}`,
+        _dark: `{colors.${darkKey}${i}}`,
       },
     }
   }
@@ -52,32 +51,30 @@ const _slate = transformColorPrimitive(slate, '$slate')
 const _slateDark = transformColorPrimitive(slateDark, '$slateDark')
 const _purple = transformColorPrimitive(purple, '$purple')
 const _purpleDark = transformColorPrimitive(purpleDark, '$purpleDark')
-
-// const _green = transformColorPrimitive(green)
-// const _orange = transformColorPrimitive(orange)
-// const _teal = transformColorPrimitive(teal)
-// const _cyan = transformColorPrimitive(cyan)
-// const _blue = transformColorPrimitive(blue)
-// const _violet = transformColorPrimitive(violet)
-// const _red = transformColorPrimitive(red)
-// const _yellow = transformColorPrimitive(yellow)
+// const _blue = transformColorPrimitive(blue, '$blue')
+// const _blueDark = transformColorPrimitive(blueDark, '$blueDark')
+// const _green = transformColorPrimitive(green, '$green')
+// const _greenDark = transformColorPrimitive(greenDark, '$greenDark')
+// const _red = transformColorPrimitive(red, '$red')
+// const _redDark = transformColorPrimitive(redDark, '$redDark')
 
 const slateLightDark = transformThemedColorPrimitive(_slate, '$slate', '$slateDark', Object.keys(slate).length)
 const purpleLightDark = transformThemedColorPrimitive(_purple, '$purple', '$purpleDark', Object.keys(purple).length)
+// const blueLightDark = transformThemedColorPrimitive(_blue, '$blue', '$blueDark', Object.keys(blue).length)
+// const greenLightDark = transformThemedColorPrimitive(_green, '$green', '$greenDark', Object.keys(green).length)
+// const redLightDark = transformThemedColorPrimitive(_red, '$red', '$redDark', Object.keys(red).length)
 
 const colors = {
   ..._slate,
   ..._slateDark,
   ..._purple,
   ..._purpleDark,
-  // ..._green,
-  // ..._orange,
-  // ..._teal,
-  // ..._cyan,
   // ..._blue,
-  // ..._violet,
+  // ..._blueDark,
+  // ..._green,
+  // ..._greenDark,
   // ..._red,
-  // ..._yellow,
+  // ..._redDark,
 }
 
 export const theme = {
@@ -188,6 +185,9 @@ export const theme = {
     colors: {
       ...slateLightDark,
       ...purpleLightDark,
+      // ...blueLightDark,
+      // ...greenLightDark,
+      // ...redLightDark,
     },
   },
 }
