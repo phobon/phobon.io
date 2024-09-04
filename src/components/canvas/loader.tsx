@@ -92,7 +92,7 @@ const Loader = ({ dataInterpolation = customDataInterpolation, className, defaul
 
   useMotionValueEvent(progressSpring, 'change', (value) => {
     const v = 100 - value
-    const p = value.toFixed(0)
+    const p = parseInt(value.toFixed(0))
     progressSpanRef.current.innerText = value.toFixed(0)
     if (p > 99) {
       progressSpanRef.current.style.setProperty('--pretext', '""')
