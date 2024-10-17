@@ -1,8 +1,19 @@
 [
   {
+    "key": "project--shadercraft",
+    "status": "Live",
+    "title": "Shadercraft°",
+    "description": "Curated shader art, learning, inspiration and the people that make it happen.",
+    "imageSrc": "/images/projects/shadercraft.webp",
+    "imageDimensions": [1200, 630],
+    "priority": true,
+    "href": "https://shadercraft.phobon.io/",
+    "hidden": false
+  },
+  {
     "key": "project--formation",
     "status": "Live",
-    "title": "Formation °",
+    "title": "Formation°",
     "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
     "imageSrc": "/images/projects/circular.webp",
     "imageDimensions": [1200, 630],
