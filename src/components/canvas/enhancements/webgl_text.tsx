@@ -139,13 +139,12 @@ const TextImpl = ({
       fontSize: parseFloat(cs.fontSize) * scaleMultiplier,
       textAlign: cs.textAlign,
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textRef, size, scale, color, scaleMultiplier]) // recalc on resize
 
   useEffect(() => {
     if (material && overrideEmissive) {
       // @ts-ignore
-      material.emissive = color
+      material.emissive.set(color)
     }
   }, [material, color, overrideEmissive])
 

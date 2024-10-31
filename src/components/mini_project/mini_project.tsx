@@ -4,6 +4,7 @@ import { cn } from '@/helpers/cn'
 import { anchorStyles } from '../primitives/anchor'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import dynamic from 'next/dynamic'
+import TextReveal from '../text_reveal'
 
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
@@ -25,17 +26,11 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
       })}
       {...props}
     >
-      <Text
-        as='a'
+      <a
         href={href}
         target='_blank'
         title={title}
-        className={css({
-          gridColumn: '1 / -1',
-          display: 'grid',
-          gridTemplateColumns: 'subgrid',
-        })}
-        textStyles={cn(
+        className={cn(
           anchorStyles,
           css({
             gridColumn: '1 / -1',
@@ -128,7 +123,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         >
           <ArrowRightIcon width={20} height={20} />
         </span>
-      </Text>
+      </a>
     </Tag>
   )
 }

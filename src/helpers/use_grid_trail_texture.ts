@@ -12,10 +12,10 @@ export type UseGridTrailTextureProps = {
 
 export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => {
   const { grid = 50, radius = 0.05, strength = 0.06, decay = 0.75 } = options || {}
-  const [dataTexture, setDataTexture] = useState<THREE.DataTexture>()
+  const dataTextureRef = useRef<THREE.DataTexture>(undefined)
 
   const previousPointerRef = useRef({ x: 0, y: 0 })
-  const pointerDeltaRef = useRef({ x: 0, y: 0 })
+  const pointerVelocityRef = useRef({ x: 0, y: 0 })
   const pointerRef = useRef({ x: 0, y: 0 })
   const viewportRef = useRef({ width: 0, height: 0 })
 
@@ -42,7 +42,7 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
       const dataTexture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat, THREE.FloatType)
       dataTexture.minFilter = dataTexture.magFilter = THREE.NearestFilter
       dataTexture.needsUpdate = true
-      setDataTexture(dataTexture)
+      dataTextureRef.current = dataTexture
     }
 
     window.addEventListener('resize', regenerateGrid)
@@ -59,8 +59,8 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     pointerRef.current.y = y
 
     // Pointer velocity
-    pointerDeltaRef.current.x = pointerRef.current.x - previousPointerRef.current.x
-    pointerDeltaRef.current.y = pointerRef.current.y - previousPointerRef.current.y
+    pointerVelocityRef.current.x = pointerRef.current.x - previousPointerRef.current.x
+    pointerVelocityRef.current.y = pointerRef.current.y - previousPointerRef.current.y
 
     // Cache previous pointer position
     previousPointerRef.current.x = pointerRef.current.x
@@ -68,11 +68,12 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
   }, [])
 
   useFrame(({}) => {
-    if (!dataTexture) {
+    const dt = dataTextureRef.current
+    if (!dt) {
       return
     }
 
-    const data = dataTexture.image.data
+    const data = dt.image.data
 
     const cellX = (size * pointerRef.current.x) / viewportRef.current.width
     const cellY = size * (1 - pointerRef.current.y / viewportRef.current.height)
@@ -96,22 +97,25 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
             let force = mouseRadius / Math.sqrt(dist)
             force = clamp(force, 0, 10)
 
-            data[dataIndex] += strength * Math.abs(pointerDeltaRef.current.x) * force
-            data[dataIndex + 1] += strength * Math.abs(pointerDeltaRef.current.y) * force
+            data[dataIndex] += strength * Math.abs(pointerVelocityRef.current.x) * force
+            data[dataIndex + 1] += strength * Math.abs(pointerVelocityRef.current.y) * force
+
+            // data[dataIndex] += strength * pointerVelocityRef.current.x * force
+            // data[dataIndex + 1] -= strength * pointerVelocityRef.current.y * force
           }
         }
 
-      dataTexture.needsUpdate = true
+      dt.needsUpdate = true
     }
 
     // Decay pointer velocity
-    if (pointerDeltaRef.current.x > 0) {
-      pointerDeltaRef.current.x *= decay
+    if (pointerVelocityRef.current.x > 0) {
+      pointerVelocityRef.current.x *= decay
     }
-    if (pointerDeltaRef.current.y > 0) {
-      pointerDeltaRef.current.y *= decay
+    if (pointerVelocityRef.current.y > 0) {
+      pointerVelocityRef.current.y *= decay
     }
   })
 
-  return [dataTexture, onMove]
+  return [dataTextureRef, onMove]
 }

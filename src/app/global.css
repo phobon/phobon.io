@@ -118,6 +118,10 @@
       }
     }
   }
+
+  .textreveal__segment__parent {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
 }
 
 @layer reset, base, tokens, recipes, utilities;

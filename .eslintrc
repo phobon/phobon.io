@@ -1,4 +1,5 @@
 {
+  "plugins": ["react-compiler"],
   "extends": ["next", "prettier"],
   "rules": {
     "import/prefer-default-export": "off",
@@ -6,5 +7,6 @@
     "no-var": "error",
     "no-html-link-for-pages": "off",
     "react/display-name": "off",
+    "react-compiler/react-compiler": "error",
   },
 }

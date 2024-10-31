@@ -2,7 +2,7 @@ import { css } from '@/design/css'
 
 export const anchorStyles = css({
   color: '$slate11',
-  fontSize: '$3',
+  fontSize: '$2',
   display: 'inline-flex',
 
   border: 0,

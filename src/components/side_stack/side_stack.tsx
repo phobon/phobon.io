@@ -6,6 +6,7 @@ import { forwardRef, useRef } from 'react'
 // import Text from '../canvas/webgl_text'
 import { cn } from '@/helpers/cn'
 import dynamic from 'next/dynamic'
+import TextReveal from '../text_reveal'
 
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
@@ -28,14 +29,14 @@ export const SideStack = forwardRef<any, any>(({ title, children, className }, r
           width: '100%',
         })}
       >
-        <Text
+        <TextReveal
           as='h2'
           className={css({
             color: '#000',
           })}
         >
           {title}
-        </Text>
+        </TextReveal>
       </li>
 
       {children}

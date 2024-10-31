@@ -1,6 +1,6 @@
 import { useEffect, RefObject, useMemo, useState } from 'react'
 import { useThree, useLoader } from '@react-three/fiber'
-import { Texture, CanvasTexture, ImageBitmapLoader, TextureLoader, DefaultLoadingManager } from 'three'
+import { Texture, CanvasTexture, ImageBitmapLoader, TextureLoader, DefaultLoadingManager, RepeatWrapping } from 'three'
 import { suspend } from 'suspend-react'
 import supportsWebP from 'supports-webp'
 import equal from 'fast-deep-equal'
@@ -39,7 +39,7 @@ function useTextureLoader() {
 
 function useImageAsTexture(
   imgRef: RefObject<HTMLImageElement>,
-  { initTexture = true, premultiplyAlpha = 'default' } = {},
+  { initTexture = true, premultiplyAlpha = 'default', wrap = false } = {},
 ) {
   const gl = useThree((s) => s.gl)
   const size = useWindowSize()
@@ -86,27 +86,41 @@ function useImageAsTexture(
   const LoaderProto = useTextureLoader() ? TextureLoader : ImageBitmapLoader
 
   // @ts-ignore
-  const result: any = useLoader(LoaderProto, currentSrc, (loader) => {
-    if (loader instanceof ImageBitmapLoader) {
-      loader.setOptions({
-        colorSpaceConversion: 'none',
-        premultiplyAlpha, // "none" increases blocking time in lighthouse
-        imageOrientation: 'flipY',
-      })
-      // Add webp to Accept header if supported
-      // TODO: add check for AVIF
-      loader.setRequestHeader({
-        Accept: `${hasWebpSupport ? 'image/webp,' : ''}*/*`,
-      })
-    }
-  })
+  const result: any = useLoader(
+    LoaderProto,
+    currentSrc,
+    (loader) => {
+      if (loader instanceof ImageBitmapLoader) {
+        loader.setOptions({
+          colorSpaceConversion: 'none',
+          premultiplyAlpha, // "none" increases blocking time in lighthouse
+          imageOrientation: 'flipY',
+        })
+        // Add webp to Accept header if supported
+        // TODO: add check for AVIF
+        loader.setRequestHeader({
+          Accept: `${hasWebpSupport ? 'image/webp,' : ''}*/*`,
+        })
+      }
+    },
+    (event: ProgressEvent<EventTarget>) => {
+      const texture = (event.target as any).texture as Texture
+      if (texture) {
+        // Set the wrapping mode on the texture
+        texture.wrapS = RepeatWrapping
+        texture.wrapT = RepeatWrapping
+        texture.needsUpdate = true
+      }
+    },
+  )
 
   const texture = useMemo(() => {
     if (result instanceof Texture) {
       return result
     }
     if (result instanceof ImageBitmap) {
-      return new CanvasTexture(result)
+      const t = new CanvasTexture(result)
+      return t
     }
   }, [result]) as Texture
 

@@ -11,6 +11,7 @@ import { View } from '@react-three/drei'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import dynamic from 'next/dynamic'
+import TextReveal from '../text_reveal'
 
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 const Video = dynamic(() => import('@/components/canvas/enhancements/webgl_video'), { ssr: false })
@@ -54,6 +55,7 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             width: '100%',
             gridColumn: '1 / -1',
+            height: '40vh',
             gridRowGap: {
               base: '$3',
               md: '$3',
@@ -142,28 +144,28 @@ export const CreativeProject = forwardRef<any, any>(
                   lg: '1 / 1 / span 1 / span 3',
                 },
                 gap: '$1',
-                fontSize: '$3',
+                fontSize: '$2',
               })}
             >
-              <Text
+              <TextReveal
                 as='h2'
                 className={css({
                   color: '$slate12',
                 })}
               >
                 {title}
-              </Text>
-              <Text
+              </TextReveal>
+              <TextReveal
                 as='p'
                 className={css({
                   color: '$slate10',
                 })}
               >
                 {children}
-              </Text>
+              </TextReveal>
             </div>
 
-            <Text
+            <TextReveal
               className={css({
                 gridArea: {
                   base: '3 / 1 / span 1 / -1',
@@ -173,11 +175,11 @@ export const CreativeProject = forwardRef<any, any>(
                 fontVariantNumeric: 'tabular-nums',
                 color: '$slate12',
                 alignSelf: 'end',
-                fontSize: '$3',
+                fontSize: '$2',
               })}
             >
               {index}
-            </Text>
+            </TextReveal>
 
             <div
               className={css({
@@ -188,16 +190,16 @@ export const CreativeProject = forwardRef<any, any>(
                 },
                 justifySelf: 'end',
                 alignSelf: 'end',
-                fontSize: '$3',
+                fontSize: '$2',
               })}
             >
-              <Text
+              <TextReveal
                 className={css({
                   zIndex: 1,
                 })}
               >
                 {status}
-              </Text>
+              </TextReveal>
             </div>
 
             <View

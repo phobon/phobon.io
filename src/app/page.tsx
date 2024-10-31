@@ -14,6 +14,7 @@ import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 import dynamic from 'next/dynamic'
+import TextReveal from '@/components/text_reveal'
 
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
@@ -41,7 +42,7 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <Text
+        <TextReveal
           as='h1'
           className={css({
             justifyContent: 'flex-start',
@@ -49,7 +50,7 @@ export default function Page({ ...props }) {
             gridColumn: {
               base: '1 / -1',
               md: '1 / -1',
-              lg: '1 / span 7',
+              lg: '1 / span 8',
             },
             width: '100%',
             fontSize: {
@@ -57,11 +58,11 @@ export default function Page({ ...props }) {
               md: '$10',
               lg: '$10',
             },
+            color: '$slate10',
           })}
-          enhance
         >
           Ben McCormick is a design engineer based in Perth, Western Australia
-        </Text>
+        </TextReveal>
       </section>
 
       <section
@@ -159,6 +160,7 @@ export default function Page({ ...props }) {
       >
         <div
           className={css({
+            position: 'relative',
             gridColumn: {
               base: '1 / -1',
               md: 'span 5',
@@ -167,28 +169,29 @@ export default function Page({ ...props }) {
             display: 'flex',
             flexDirection: 'column',
             fontSize: {
-              base: '$6',
-              md: '$8',
-              lg: '$8',
+              base: '$5',
+              md: '$7',
+              lg: '$7',
             },
-            gap: '$8',
+            gap: '$7',
+            color: '$slate11',
           })}
         >
-          <Text as='p' enhance>
+          <TextReveal as='p'>
             I am a design engineer focused on the entire frontend stack including React, WebGL development, interface
             and interaction design; as well as creative direction and animation.
-          </Text>
+          </TextReveal>
 
-          <Text as='p' enhance>
+          <TextReveal as='p'>
             With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
             across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
-          </Text>
+          </TextReveal>
 
-          <Text as='p' enhance>
+          <TextReveal as='p'>
             I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
             passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
             the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
-          </Text>
+          </TextReveal>
         </div>
 
         <div
@@ -206,18 +209,18 @@ export default function Page({ ...props }) {
               md: '1 / span 1',
               lg: '1 / span 1',
             },
-            fontSize: '$3',
+            fontSize: '$2',
           })}
         >
           <SideStack title='Now'>
             <li>
-              <Text
+              <TextReveal
                 className={css({
                   color: '$slate10',
                 })}
               >
                 {now.employ} - {now.title}
-              </Text>
+              </TextReveal>
             </li>
           </SideStack>
 
@@ -225,13 +228,13 @@ export default function Page({ ...props }) {
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
-                  <Text
+                  <TextReveal
                     className={css({
                       color: '$slate10',
                     })}
                   >
                     {employ} - {title}
-                  </Text>
+                  </TextReveal>
                 </li>
               )
             })}
@@ -246,20 +249,20 @@ export default function Page({ ...props }) {
               return (
                 <li key={key}>
                   {external ? (
-                    <Text
+                    <TextReveal
                       as='a'
                       href={href}
                       target='_blank'
                       title={title}
-                      textStyles={anchorStyles}
-                    >{`↱  ${title}`}</Text>
+                      className={anchorStyles}
+                    >{`↱  ${title}`}</TextReveal>
                   ) : (
                     <Link href={href} title={title}>
-                      <Text
+                      <TextReveal
                         className={css({
                           color: '$slate10',
                         })}
-                      >{`↱  ${title}`}</Text>
+                      >{`↱  ${title}`}</TextReveal>
                     </Link>
                   )}
                 </li>
@@ -274,12 +277,12 @@ export default function Page({ ...props }) {
           css({
             pb: '$12',
             gridRowGap: '$5',
-            fontSize: '$3',
+            fontSize: '$2',
           }),
           sectionStyles,
         )}
       >
-        <h2>Projects</h2>
+        <TextReveal as='h2'>Projects</TextReveal>
         <ul
           className={css({
             display: 'grid',

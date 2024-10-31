@@ -2,6 +2,7 @@ import { cn } from '@/helpers/cn'
 import { css } from '@/design/css'
 import { gridStyles } from '../common'
 import dynamic from 'next/dynamic'
+import TextReveal from '@/components/text_reveal'
 // import Text from '@/components/canvas/webgl_text'
 
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
@@ -14,10 +15,9 @@ export const Footer = ({ ...props }) => {
           width: '100%',
           top: 0,
           overflow: 'hidden',
-          backgroundColor: '$slate12',
           alignItems: 'end',
           justifyContent: 'start',
-          height: '15dvh',
+          height: '10dvh',
           px: '$5',
           pb: '$4',
         }),
@@ -26,49 +26,49 @@ export const Footer = ({ ...props }) => {
       )}
       {...props}
     >
-      <Text
+      <div
         className={css({
           gridColumn: '1 / span 2',
-          fontSize: '$3',
-          color: '$slate1',
+          fontSize: '$2',
           lineHeight: '$none',
+          color: '$slate11',
         })}
       >
         © {new Date().getFullYear()}
-      </Text>
+      </div>
 
-      <Text
+      <div
         className={css({
           gridColumn: {
             base: 'initial',
-            md: '7 / span 2',
-            lg: '9 / span 2',
+            md: '7 / span 3',
+            lg: '9 / span 3',
           },
           display: {
             base: 'none',
             md: 'grid',
           },
-          fontSize: '$3',
-          color: '$slate1',
+          fontSize: '$2',
           lineHeight: '$none',
+          color: '$slate11',
         })}
       >
         All rights reserved
-      </Text>
+      </div>
 
-      <Text
+      <div
         className={css({
           gridColumn: {
             base: '-2 / -1',
           },
           textAlign: 'right',
-          fontSize: '$3',
-          color: '$slate1',
+          fontSize: '$2',
           lineHeight: '$none',
+          color: '$slate11',
         })}
       >
         phobon
-      </Text>
+      </div>
     </footer>
   )
 }
