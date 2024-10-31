@@ -55,7 +55,6 @@ export const CreativeProject = forwardRef<any, any>(
             gridTemplateColumns: 'subgrid',
             width: '100%',
             gridColumn: '1 / -1',
-            height: '40vh',
             gridRowGap: {
               base: '$3',
               md: '$3',
@@ -75,7 +74,7 @@ export const CreativeProject = forwardRef<any, any>(
               src={videoSrc}
               className={css({
                 width: '100%',
-                height: '40vh',
+                height: '40dvh',
                 gridColumn: {
                   base: '1 / -1',
                   md: '1 / -1',
@@ -97,7 +96,7 @@ export const CreativeProject = forwardRef<any, any>(
                   base: '100%',
                 },
                 height: {
-                  base: '40vh',
+                  base: '40dvh',
                 },
 
                 gridColumn: {
@@ -147,25 +146,23 @@ export const CreativeProject = forwardRef<any, any>(
                 fontSize: '$2',
               })}
             >
-              <TextReveal
-                as='h2'
+              <h2
                 className={css({
                   color: '$slate12',
                 })}
               >
                 {title}
-              </TextReveal>
-              <TextReveal
-                as='p'
+              </h2>
+              <p
                 className={css({
                   color: '$slate10',
                 })}
               >
                 {children}
-              </TextReveal>
+              </p>
             </div>
 
-            <TextReveal
+            <span
               className={css({
                 gridArea: {
                   base: '3 / 1 / span 1 / -1',
@@ -179,7 +176,7 @@ export const CreativeProject = forwardRef<any, any>(
               })}
             >
               {index}
-            </TextReveal>
+            </span>
 
             <div
               className={css({
@@ -193,13 +190,13 @@ export const CreativeProject = forwardRef<any, any>(
                 fontSize: '$2',
               })}
             >
-              <TextReveal
+              <span
                 className={css({
                   zIndex: 1,
                 })}
               >
                 {status}
-              </TextReveal>
+              </span>
             </div>
 
             <View

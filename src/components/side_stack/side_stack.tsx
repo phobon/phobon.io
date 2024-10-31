@@ -29,14 +29,13 @@ export const SideStack = forwardRef<any, any>(({ title, children, className }, r
           width: '100%',
         })}
       >
-        <TextReveal
-          as='h2'
+        <h2
           className={css({
             color: '#000',
           })}
         >
           {title}
-        </TextReveal>
+        </h2>
       </li>
 
       {children}

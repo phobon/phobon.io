@@ -61,7 +61,7 @@ export const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
             },
             height: {
               base: '100%',
-              md: '40vh',
+              md: '40dvh',
             },
             objectFit: {
               base: 'cover',

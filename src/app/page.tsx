@@ -42,8 +42,7 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <TextReveal
-          as='h1'
+        <h1
           className={css({
             justifyContent: 'flex-start',
             lineHeight: '$none',
@@ -62,7 +61,7 @@ export default function Page({ ...props }) {
           })}
         >
           Ben McCormick is a design engineer based in Perth, Western Australia
-        </TextReveal>
+        </h1>
       </section>
 
       <section
@@ -177,21 +176,21 @@ export default function Page({ ...props }) {
             color: '$slate11',
           })}
         >
-          <TextReveal as='p'>
+          <p>
             I am a design engineer focused on the entire frontend stack including React, WebGL development, interface
             and interaction design; as well as creative direction and animation.
-          </TextReveal>
+          </p>
 
-          <TextReveal as='p'>
+          <p>
             With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
             across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
-          </TextReveal>
+          </p>
 
-          <TextReveal as='p'>
+          <p>
             I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
             passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
             the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
-          </TextReveal>
+          </p>
         </div>
 
         <div
@@ -214,13 +213,13 @@ export default function Page({ ...props }) {
         >
           <SideStack title='Now'>
             <li>
-              <TextReveal
+              <span
                 className={css({
                   color: '$slate10',
                 })}
               >
                 {now.employ} - {now.title}
-              </TextReveal>
+              </span>
             </li>
           </SideStack>
 
@@ -228,13 +227,13 @@ export default function Page({ ...props }) {
             {experiences.map(({ key, employ, href, title }) => {
               return (
                 <li key={key}>
-                  <TextReveal
+                  <span
                     className={css({
                       color: '$slate10',
                     })}
                   >
                     {employ} - {title}
-                  </TextReveal>
+                  </span>
                 </li>
               )
             })}
@@ -249,20 +248,14 @@ export default function Page({ ...props }) {
               return (
                 <li key={key}>
                   {external ? (
-                    <TextReveal
-                      as='a'
-                      href={href}
-                      target='_blank'
-                      title={title}
-                      className={anchorStyles}
-                    >{`↱  ${title}`}</TextReveal>
+                    <a href={href} target='_blank' title={title} className={anchorStyles}>{`↱  ${title}`}</a>
                   ) : (
                     <Link href={href} title={title}>
-                      <TextReveal
+                      <span
                         className={css({
                           color: '$slate10',
                         })}
-                      >{`↱  ${title}`}</TextReveal>
+                      >{`↱  ${title}`}</span>
                     </Link>
                   )}
                 </li>
@@ -282,7 +275,7 @@ export default function Page({ ...props }) {
           sectionStyles,
         )}
       >
-        <TextReveal as='h2'>Projects</TextReveal>
+        <h2>Projects</h2>
         <ul
           className={css({
             display: 'grid',
