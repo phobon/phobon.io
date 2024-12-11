@@ -1,7 +1,7 @@
 'use client'
 
 import { View, shaderMaterial } from '@react-three/drei'
-import React, { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
+import React, { MutableRefObject, ReactNode, useEffect, useRef } from 'react'
 import { Text as DreiText } from '@react-three/drei'
 import { css } from '@/design/css'
 import { Vector3, extend, useThree } from '@react-three/fiber'
@@ -108,38 +108,27 @@ const TextImpl = ({
     meshRef.current.material.uniforms.u_progress.value = latest
   })
 
-  const { textColor, textColorRgb, fontSize, textAlign, lineHeight, letterSpacing } = useMemo(() => {
-    if (!textRef.current) {
-      return {}
-    }
-    const cs = window.getComputedStyle(textRef.current)
+  const cs = window.getComputedStyle(textRef.current)
 
-    // get color from parent if set to transparent
-    let textColor = color || cs.color
-    if (!color && cs.color === 'rgba(0, 0, 0, 0)' && textRef.current.parentElement) {
-      textColor = window.getComputedStyle(textRef.current.parentElement).color
-    }
+  // get color from parent if set to transparent
+  let textColor = color || cs.color
+  if (!color && cs.color === 'rgba(0, 0, 0, 0)' && textRef.current.parentElement) {
+    textColor = window.getComputedStyle(textRef.current.parentElement).color
+  }
 
-    // convert color from an rgb string to an array of rgb values
-    const textColorRgb = textColor
-      .replace('rgb(', '')
-      .replace(')', '')
-      .split(',')
-      .map((c) => parseFloat(c) / 255)
+  // convert color from an rgb string to an array of rgb values
+  const textColorRgb = textColor
+    .replace('rgb(', '')
+    .replace(')', '')
+    .split(',')
+    .map((c) => parseFloat(c) / 255)
 
-    // font size relative letter spacing
-    const letterSpacing = (parseFloat(cs.letterSpacing) || 0) / parseFloat(cs.fontSize)
-    const lineHeight = (parseFloat(cs.lineHeight) || 0) / parseFloat(cs.fontSize)
+  // font size relative letter spacing
+  const letterSpacing = (parseFloat(cs.letterSpacing) || 0) / parseFloat(cs.fontSize)
+  const lineHeight = (parseFloat(cs.lineHeight) || 0) / parseFloat(cs.fontSize)
 
-    return {
-      letterSpacing,
-      lineHeight,
-      textColor,
-      textColorRgb,
-      fontSize: parseFloat(cs.fontSize) * scaleMultiplier,
-      textAlign: cs.textAlign,
-    }
-  }, [textRef, size, scale, color, scaleMultiplier]) // recalc on resize
+  const fontSize = parseFloat(cs.fontSize) * scaleMultiplier
+  const textAlign = cs.textAlign
 
   useEffect(() => {
     if (material && overrideEmissive) {

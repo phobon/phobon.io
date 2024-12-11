@@ -3,8 +3,7 @@ import { useRef } from 'react'
 import { shaderMaterial } from '@react-three/drei'
 import { v4 as uuid } from 'uuid'
 
-import vertexShader from './vertex.glsl'
-import fragmentShader from './fragment.glsl'
+import { vertex, fragment } from './shaders'
 import { useGridTrailTexture } from '@/helpers/use_grid_trail_texture'
 
 const PixellationMaterial = shaderMaterial(
@@ -16,8 +15,8 @@ const PixellationMaterial = shaderMaterial(
     u_pageRatio: 0,
     u_amplitude: 0.00001,
   },
-  vertexShader,
-  fragmentShader,
+  vertex,
+  fragment,
 )
 PixellationMaterial.key = uuid()
 

@@ -1,4 +1,4 @@
-uniform vec2 u_resolution;
+export const fragment = `uniform vec2 u_resolution;
 uniform float u_time;
 
 uniform sampler2D u_diffuse;
@@ -19,5 +19,13 @@ void main(void) {
   finalColor.rgb = correctGamma(finalColor.rgb);
 
   gl_FragColor = finalColor;
-}
+}`
 
+export const vertex = `varying vec2 v_uv;
+
+void main() {
+  // gl_Position = vec4(position, 1.0);
+  vec3 localSpacePosition = position;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(localSpacePosition, 1.0);
+  v_uv = uv;
+}`

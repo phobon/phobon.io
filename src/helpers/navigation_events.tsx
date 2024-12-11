@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { wait } from './wait'
@@ -16,10 +16,10 @@ const NavigationEvents = () => {
   const { urlState, setUrlState } = useLayoutStore(urlStateSelector)
   const previousUrl = useRef<string>(null)
 
-  const transition = useCallback(async () => {
+  const transition = async () => {
     await wait(500)
     setUrlState('transitionIn')
-  }, [setUrlState])
+  }
 
   useEffect(() => {
     const url = `${pathname}?${searchParams}`

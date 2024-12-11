@@ -2,7 +2,7 @@ import { css } from '@/design/css'
 import { PerspectiveCamera, View, shaderMaterial, useTexture } from '@react-three/drei'
 import { extend, useFrame, useThree } from '@react-three/fiber'
 import { useMotionValueEvent, useTransform } from 'framer-motion'
-import { Suspense, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
+import { Suspense, forwardRef, useImperativeHandle, useRef } from 'react'
 import * as THREE from 'three'
 
 import * as geometry from 'maath/geometry'
@@ -55,12 +55,12 @@ export const Stinger = forwardRef<any, any>(({ progress, progress2, ...props }, 
     //     pointerEvents: 'none',
     //   })}
     // >
-    <StringerImpl ref={meshRef} />
+    <StingerImpl ref={meshRef} />
     // </View>
   )
 })
 
-const StringerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
+const StingerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
   const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
   const { width, height } = useThree((state) => state.size)

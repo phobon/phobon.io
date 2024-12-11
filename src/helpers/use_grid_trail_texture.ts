@@ -1,5 +1,5 @@
 import { ThreeEvent, useFrame } from '@react-three/fiber'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { clamp } from './math'
 import * as THREE from 'three'
 
@@ -53,7 +53,7 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     }
   }, [dimensions, height, width])
 
-  const onMove = useCallback((e: ThreeEvent<PointerEvent>) => {
+  const onMove = (e: ThreeEvent<PointerEvent>) => {
     const { x, y } = e
     pointerRef.current.x = x
     pointerRef.current.y = y
@@ -65,7 +65,7 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
     // Cache previous pointer position
     previousPointerRef.current.x = pointerRef.current.x
     previousPointerRef.current.y = pointerRef.current.y
-  }, [])
+  }
 
   useFrame(({}) => {
     const dt = dataTextureRef.current

@@ -3,10 +3,7 @@ import { css } from '@/design/css'
 import { cn } from '@/helpers/cn'
 import { anchorStyles } from '../primitives/anchor'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
-import dynamic from 'next/dynamic'
 import TextReveal from '../text_reveal'
-
-const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export type MiniProjectProps = {
   index: string

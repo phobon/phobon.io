@@ -14,9 +14,6 @@ import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 import dynamic from 'next/dynamic'
-import TextReveal from '@/components/text_reveal'
-
-const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export default function Page({ ...props }) {
   return (

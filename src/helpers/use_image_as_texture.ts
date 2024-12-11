@@ -1,4 +1,4 @@
-import { useEffect, RefObject, useMemo, useState } from 'react'
+import { useEffect, RefObject, useState, useMemo } from 'react'
 import { useThree, useLoader } from '@react-three/fiber'
 import { Texture, CanvasTexture, ImageBitmapLoader, TextureLoader, DefaultLoadingManager, RepeatWrapping } from 'three'
 import { suspend } from 'suspend-react'
@@ -38,7 +38,7 @@ function useTextureLoader() {
 }
 
 function useImageAsTexture(
-  imgRef: RefObject<HTMLImageElement>,
+  imgRef: RefObject<HTMLImageElement | null>,
   { initTexture = true, premultiplyAlpha = 'default', wrap = false } = {},
 ) {
   const gl = useThree((s) => s.gl)
@@ -83,7 +83,7 @@ function useImageAsTexture(
     { equal }, // use deep-equal since size ref seems to update on route change
   ) as string
 
-  const LoaderProto = useTextureLoader() ? TextureLoader : ImageBitmapLoader
+  const LoaderProto: any = useTextureLoader() ? TextureLoader : ImageBitmapLoader
 
   // @ts-ignore
   const result: any = useLoader(

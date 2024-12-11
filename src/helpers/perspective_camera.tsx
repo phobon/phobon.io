@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, forwardRef, useMemo, useImperativeHandle, useLayoutEffect } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle, useLayoutEffect, type JSX } from 'react'
 import { useThree } from '@react-three/fiber'
 import { PerspectiveCamera as PerspectiveCameraImpl } from 'three'
 
@@ -20,27 +20,23 @@ export const PerspectiveCamera = forwardRef(({ makeDefault = false, margin = 0, 
   useImperativeHandle(ref, () => cameraRef.current)
 
   // Calculate FoV or distance to match DOM size
-  const { fov, distance, aspect } = useMemo(() => {
-    const width = size.width + margin * 2
-    const height = size.height + margin * 2
-    const aspect = width / height
+  const width = size.width + margin * 2
+  const height = size.height + margin * 2
+  const aspect = width / height
 
-    // check props vs defaults
-    let fov = props.fov || DEFAULT_FOV
-    let distance = (props?.position as number[])?.[2]
+  // check props vs defaults
+  let fov = props.fov || DEFAULT_FOV
+  let distance = (props?.position as number[])?.[2]
 
-    // calculate either FoV or distance to match scale
-    if (distance) {
-      // calculate FoV based on distance
-      fov = 2 * (180 / Math.PI) * Math.atan(height / (2 * distance))
-    } else {
-      // calculate distance for specified FoV
-      const ratio = Math.tan(((fov / 2.0) * Math.PI) / 180.0) * 2.0
-      distance = height / ratio
-    }
-
-    return { fov, distance, aspect }
-  }, [size])
+  // calculate either FoV or distance to match scale
+  if (distance) {
+    // calculate FoV based on distance
+    fov = 2 * (180 / Math.PI) * Math.atan(height / (2 * distance))
+  } else {
+    // calculate distance for specified FoV
+    const ratio = Math.tan(((fov / 2.0) * Math.PI) / 180.0) * 2.0
+    distance = height / ratio
+  }
 
   // Update camera projection and R3F viewport
   useLayoutEffect(() => {

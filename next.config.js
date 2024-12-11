@@ -6,7 +6,9 @@ const withMDX = require('@next/mdx')()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {},
+  experimental: {
+    reactCompiler: true,
+  },
   images: {},
   transpilePackages: ['geist'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],

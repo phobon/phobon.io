@@ -1,4 +1,4 @@
-import { useFrame, extend, useThree, ShaderMaterialProps } from '@react-three/fiber'
+import { useFrame, extend, useThree } from '@react-three/fiber'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 
@@ -23,14 +23,6 @@ ChromaticAbberationMaterial.key = uuid()
 
 extend({ ChromaticAbberationMaterial })
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      chromaticAbberationMaterial: ShaderMaterialProps
-    }
-  }
-}
-
 const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
   const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
@@ -49,6 +41,7 @@ const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
   return (
     <mesh ref={meshRef} scale={[width, height, 1]}>
       <planeGeometry args={[1, 1]} />
+      {/* @ts-ignore */}
       <chromaticAbberationMaterial uniforms-u_diffuse-value={texture} uniforms-u_factor-value={factor} transparent />
     </mesh>
   )
@@ -69,6 +62,7 @@ const ChromaticAbberationMaterialImpl = forwardRef<any, any>(({ texture, factor 
   })
 
   return (
+    // @ts-ignore
     <chromaticAbberationMaterial
       ref={materialRef}
       uniforms-u_diffuse-value={texture}

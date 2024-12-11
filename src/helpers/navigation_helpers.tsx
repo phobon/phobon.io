@@ -1,6 +1,5 @@
 'use client'
 
-import { useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { wait } from './wait'
@@ -16,27 +15,24 @@ export const Link = ({ href, children, ...props }) => {
   const pathname = usePathname()
 
   // Trigger a transition
-  const onClick = useCallback(
-    async (e) => {
-      e.preventDefault()
-      e.stopPropagation()
+  const onClick = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
 
-      // Prevent a click on the current page from triggering a transition
-      if (pathname === href) {
-        return
-      }
+    // Prevent a click on the current page from triggering a transition
+    if (pathname === href) {
+      return
+    }
 
-      const { duration, stagger } = transitionOptions
-      const totalDuration = (duration + stagger * 4) * 1000
+    const { duration, stagger } = transitionOptions
+    const totalDuration = (duration + stagger * 4) * 1000
 
-      setUrlState('transitionOut')
-      await wait(totalDuration)
-      router.push(href)
+    setUrlState('transitionOut')
+    await wait(totalDuration)
+    router.push(href)
 
-      setUrlState('transitionInReady')
-    },
-    [pathname, href, transitionOptions, setUrlState, router],
-  )
+    setUrlState('transitionInReady')
+  }
 
   return (
     <a href={href} onClick={onClick} {...props}>

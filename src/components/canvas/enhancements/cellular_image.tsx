@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { Color, extend, useFrame, useThree } from '@react-three/fiber'
 import { shaderMaterial, useTexture } from '@react-three/drei'
 import { ForwardRefComponent } from '@react-three/drei/helpers/ts-utils'
-import { forwardRef, useImperativeHandle, useLayoutEffect, useRef } from 'react'
+import { forwardRef, useImperativeHandle, useLayoutEffect, useRef, type JSX } from 'react'
 
 export type CellularImageProps = Omit<JSX.IntrinsicElements['mesh'], 'scale'> & {
   segments?: number
@@ -214,6 +214,7 @@ export const CellularImage: ForwardRefComponent<Omit<CellularImageProps, 'url'>,
     return (
       <mesh ref={meshRef} scale={Array.isArray(scale) ? [...scale, 1] : scale} {...props}>
         <planeGeometry args={[1, 1, segments, segments]} />
+        {/* @ts-ignore */}
         <cellularImageMaterial
           color={color}
           map={texture!}
