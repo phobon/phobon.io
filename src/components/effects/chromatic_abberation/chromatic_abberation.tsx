@@ -32,7 +32,7 @@ declare global {
 }
 
 const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
   const { width, height } = useThree((state) => state.viewport)
 
@@ -55,7 +55,7 @@ const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
 })
 
 const ChromaticAbberationMaterialImpl = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
-  const materialRef = useRef<any>()
+  const materialRef = useRef<any>(null)
   useImperativeHandle(ref, () => materialRef.current)
 
   useFrame(({ clock, pointer, camera }) => {

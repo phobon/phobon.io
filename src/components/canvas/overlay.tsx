@@ -7,7 +7,7 @@ import { useLayoutStore } from '@/stores/use_layout_store'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 
 const Overlay = () => {
-  const overlayRef = useRef<any>()
+  const overlayRef = useRef<any>(null)
   const progressValue = useMotionValue(1.1)
   const headerValue = useTransform(progressValue, [0.3, 0], [0, 1])
   // const progressSpring = useSpring(progressValue, { damping: 300, stiffness: 800 })

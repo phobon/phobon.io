@@ -19,8 +19,8 @@ export type MouseMaskProps = {
 }
 
 export const MouseMask = ({ renderTarget, index = 0, radius = 0.1 }: MouseMaskProps) => {
-  const cameraRef = useRef<any>()
-  const mouseMaskRef = useRef<any>()
+  const cameraRef = useRef<any>(null)
+  const mouseMaskRef = useRef<any>(null)
   const prevPointerRef = useRef<any>({ x: 0, y: 0 })
   const factorRef = useRef<any>({ d: 0, target: 0 })
 
@@ -71,7 +71,7 @@ export const MouseMask = ({ renderTarget, index = 0, radius = 0.1 }: MouseMaskPr
 
 const MouseMaskImpl = forwardRef<any, any>(({ index }, ref) => {
   const { width, height } = useThree((state) => state.size)
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
 
   useEffect(() => {

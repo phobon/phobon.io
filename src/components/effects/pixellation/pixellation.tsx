@@ -24,7 +24,7 @@ PixellationMaterial.key = uuid()
 extend({ PixellationMaterial })
 
 const Pixellation = ({ texture }) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   const { width, height } = useThree((state) => state.size)
 
   useFrame(({ clock }) => {

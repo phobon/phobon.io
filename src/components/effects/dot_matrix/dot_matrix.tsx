@@ -24,7 +24,7 @@ DotMatrixMaterial.key = uuid()
 extend({ DotMatrixMaterial })
 
 const DotMatrix = ({ texture }) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   const { width, height } = useThree((state) => state.viewport)
 
   useFrame(({ clock }) => {

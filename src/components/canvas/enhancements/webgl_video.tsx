@@ -22,7 +22,7 @@ const Video = ({ progress, src, fallback, videoDimensions, ...props }: any) => {
 }
 
 const VideoImpl = ({ src, trackRef, progress, videoDimensions }) => {
-  const ref = useRef<any>()
+  const ref = useRef<any>(null)
   // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
   // ref.current.material.grayscale = 1 - latest
   // ref.current.material.zoom = 1 + latest * 0.1

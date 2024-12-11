@@ -1,11 +1,10 @@
 'use client'
 
-import * as React from 'react'
 import * as THREE from 'three'
 import { Color, extend, useFrame, useThree } from '@react-three/fiber'
 import { shaderMaterial, useTexture } from '@react-three/drei'
 import { ForwardRefComponent } from '@react-three/drei/helpers/ts-utils'
-import { useImperativeHandle, useLayoutEffect, useRef } from 'react'
+import { forwardRef, useImperativeHandle, useLayoutEffect, useRef } from 'react'
 
 export type CellularImageProps = Omit<JSX.IntrinsicElements['mesh'], 'scale'> & {
   segments?: number
@@ -161,7 +160,7 @@ const ImageMaterial = shaderMaterial(
 )
 extend({ CellularImageMaterial: ImageMaterial })
 
-export const CellularImage: ForwardRefComponent<Omit<CellularImageProps, 'url'>, THREE.Mesh> = React.forwardRef(
+export const CellularImage: ForwardRefComponent<Omit<CellularImageProps, 'url'>, THREE.Mesh> = forwardRef(
   (
     {
       children,

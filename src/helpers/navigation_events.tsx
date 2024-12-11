@@ -14,7 +14,7 @@ const NavigationEvents = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { urlState, setUrlState } = useLayoutStore(urlStateSelector)
-  const previousUrl = useRef<string>()
+  const previousUrl = useRef<string>(null)
 
   const transition = useCallback(async () => {
     await wait(500)

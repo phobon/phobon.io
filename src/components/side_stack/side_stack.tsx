@@ -11,7 +11,7 @@ import TextReveal from '../text_reveal'
 const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export const SideStack = forwardRef<any, any>(({ title, children, className }, ref) => {
-  const containerRef = useRef<HTMLUListElement>()
+  const containerRef = useRef<HTMLUListElement>(null)
   return (
     <ul
       className={cn(

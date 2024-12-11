@@ -11,7 +11,7 @@ export type SceneFBORendererProps = {
 
 const SceneFBORenderer = ({ renderTarget, children }: SceneFBORendererProps) => {
   const { width, height } = useThree((state) => state.size)
-  const cameraRef = useRef<any>()
+  const cameraRef = useRef<any>(null)
 
   useFrame(({ gl }) => {
     gl.setRenderTarget(renderTarget)

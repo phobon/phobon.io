@@ -10,7 +10,7 @@ import * as geometry from 'maath/geometry'
 extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry })
 
 export const Stinger = forwardRef<any, any>(({ progress, progress2, ...props }, ref) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
   // const progress2 = useTransform(progress, [0.5, 1], [0, 1])
 
@@ -61,7 +61,7 @@ export const Stinger = forwardRef<any, any>(({ progress, progress2, ...props }, 
 })
 
 const StringerImpl = forwardRef<any, any>(({ dataTexture, ...props }, ref) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
   useImperativeHandle(ref, () => meshRef.current)
   const { width, height } = useThree((state) => state.size)
 

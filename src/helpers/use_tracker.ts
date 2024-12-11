@@ -7,7 +7,7 @@ export type UseTrackerOptions = {
 }
 
 export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions) => {
-  const trackRef = useRef<Type>()
+  const trackRef = useRef<Type>(null)
   const [rect, setRect] = useState<DOMRect>(null)
   const intersectingValue = useMotionValue(0)
   const intersecting = useSpring(intersectingValue, { stiffness: 500, damping: 150 })
@@ -63,8 +63,8 @@ export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions
 }
 
 export const useImgTracker = (options?: UseTrackerOptions) => {
-  const trackRef = useRef<HTMLImageElement>()
-  const viewRef = useRef<any>()
+  const trackRef = useRef<HTMLImageElement>(null)
+  const viewRef = useRef<any>(null)
   // const [rect, setRect] = useState<DOMRect>(null)
   const intersecting = useMotionValue(false)
 

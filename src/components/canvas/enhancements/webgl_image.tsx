@@ -9,8 +9,8 @@ import { Image as DreiImage } from '@react-three/drei'
 
 const Image = ({ width, height, ...props }: ImageProps) => {
   const desktop = useMediaQuery('only screen and (min-width: 768px)')
-  const viewRef = useRef<any>()
-  const trackRef = useRef<any>()
+  const viewRef = useRef<any>(null)
+  const trackRef = useRef<any>(null)
   const hidden = desktop
 
   return (
@@ -21,7 +21,7 @@ const Image = ({ width, height, ...props }: ImageProps) => {
 }
 
 const ImageImpl = ({ trackRef }) => {
-  const ref = useRef<any>()
+  const ref = useRef<any>(null)
 
   // Load texture from the <img/> and suspend until it's ready
   const texture = useImageAsTexture(trackRef, { wrap: true })

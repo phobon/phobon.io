@@ -241,7 +241,7 @@ export const CreativeProject = forwardRef<any, any>(
 )
 
 const HoverMask = ({ progress }) => {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
 
   const hover = useTransform(progress, [0, 0.75], [0, 1])
 

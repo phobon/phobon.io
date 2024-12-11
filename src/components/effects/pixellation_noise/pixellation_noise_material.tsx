@@ -66,7 +66,7 @@ export const PixellationNoiseMaterial = ({
   color = '#000',
   ...props
 }: PixellationNoiseMaterialProps) => {
-  const materialRef = useRef<any>()
+  const materialRef = useRef<any>(null)
 
   const perlin = useTexture('/images/perlin.png', (t) => {
     t.wrapS = t.wrapT = THREE.RepeatWrapping

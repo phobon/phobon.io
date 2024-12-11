@@ -36,7 +36,7 @@ export const ImageBase = forwardRef<HTMLImageElement, ImageProps>(
     },
     ref,
   ) => {
-    const imgRef = useRef<HTMLImageElement>()
+    const imgRef = useRef<HTMLImageElement>(null)
     useImperativeHandle(ref, () => imgRef.current)
     // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     // })

@@ -98,7 +98,7 @@ const TextImpl = ({
   ...props
 }: WebGLTextProps) => {
   const { size } = useThree()
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
 
   useMotionValueEvent(intersecting, 'change', (latest) => {
     if (!meshRef.current) {
