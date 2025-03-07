@@ -1,0 +1,873 @@
+## TSL Specification
+
+- [Introduction](#introduction)
+  - [Why TSL?](#why-tsl)
+  - [Example](#example)
+  - [Architecture](#architecture)
+- [Constants and explicit conversions](#constants-and-explicit-conversions)
+- [Conversions](#conversions)
+- [Uniform](#uniform)
+  - [onUpdate](#uniformonupdate)
+- [Swizzle](#swizzle)
+- [Operators](#operators)
+- [Function](#function)
+- [Conditional](#conditional)
+  - [If-else](#if-else)
+  - [Ternary](#ternary)
+- [Loop](#loop)
+- [Math](#math)
+- [Method chaining](#method-chaining)
+- [Texture](#texture)
+- [Attributes](#attributes)
+- [Position](#position)
+- [Normal](#normal)
+- [Tangent](#tangent)
+- [Bitangent](#bitangent)
+- [Camera](#bitangent)
+- [Model](#bitangent)
+- [Screen](#screen)
+- [Viewport](#viewport)
+- [Blend Modes](#blend-modes)
+- [Reflect](#reflect)
+- [UV Utils](#uv-utils)
+- [Interpolation](#interpolation)
+- [Random](#random)
+- [Oscillator](#oscillator)
+- [Packing](#packing)
+- [Functions](#functions)
+- [NodeMaterial](#nodematerial)
+  - [LineDashedNodeMaterial](#linedashednodematerial)
+  - [MeshPhongNodeMaterial](#meshphongnodematerial)
+  - [MeshStandardNodeMaterial](#meshstandardnodematerial)
+    - [MeshPhysicalNodeMaterial](#meshphysicalnodematerial)
+  - [SpriteNodeMaterial](#spritenodematerial)
+- [Transitioning common GLSL properties to TSL](#transitioning-common-glsl-properties-to-tsl)
+
+## Introduction
+
+### Why TSL?
+
+Creating shaders has always been an advanced step for most developers, many game developers have never created GLSL code from scratch. The shader graph solution adopted today by the industry has allowed developers more focused on dynamics to create the necessary graphic effects to meet the demands of their projects.
+
+The aim of the project is to create an easy-to-use, environment for shader creation. Even if for this we need to create complexity behind, this happened initially with `Renderer` and now with the `TSL`.
+
+Other benefits that TSL brings besides simplifying shading creation is keeping the `renderer agnostic`, while all the complexity of a material can be imported into different modules and use `tree shaking` without breaking during the process.
+
+### Example
+
+A `detail map` makes things look more real in games. It adds tiny details like cracks or bumps to surfaces. In this example we will scale uv to improve details when seen up close and multiply with a base texture.
+
+#### Old
+
+This is how we would achieve that using `.onBeforeCompile()`:
+
+```js
+const material = new THREE.MeshStandardMaterial()
+material.map = colorMap
+material.onBeforeCompile = (shader) => {
+  shader.uniforms.detailMap = { value: detailMap }
+
+  let token = '#define STANDARD'
+
+  let insert = /* glsl */ `
+		uniform sampler2D detailMap;
+	`
+
+  shader.fragmentShader = shader.fragmentShader.replace(token, token + insert)
+
+  token = '#include <map_fragment>'
+
+  insert = /* glsl */ `
+		diffuseColor *= texture2D( detailMap, vMapUv * 10.0 );
+	`
+
+  shader.fragmentShader = shader.fragmentShader.replace(token, token + insert)
+}
+```
+
+Any simple change from this makes the code increasingly complicated using `.onBeforeCompile`, the result we have today in the community are countless types of parametric materials that do not communicate with each other, and that need to be updated periodically to be operating, limiting the creativity to create unique materials reusing modules in a simple way.
+
+#### New
+
+With `TSL` the code would look like this:
+
+```js
+import { texture, uv } from 'three/tsl'
+
+const detail = texture(detailMap, uv().mul(10))
+
+const material = new THREE.MeshStandardNodeMaterial()
+material.colorNode = texture(colorMap).mul(detail)
+```
+
+`TSL` is also capable of encoding code into different outputs such as `WGSL`/`GLSL` - `WebGPU`/`WebGL`, in addition to optimizing the shader graph automatically and through codes that can be inserted within each `Node`. This allows the developer to focus on productivity and leave the graphical management part to the `Node System`.
+
+Another important feature of a graph shader is that we will no longer need to care about the sequence in which components are created, because the `Node System` will only declare and include it once.
+
+Let's say that you import `positionWorld` into your code, even if another component uses it, the calculations performed to obtain `position world` will only be performed once, as is the case with any other node such as: `normalWorld`, `modelPosition`, etc.
+
+### Architecture
+
+All `TSL` components are extended from `Node` class. The `Node` allows it to communicate with any other, value conversions can be automatic or manual, a `Node` can receive the output value expected by the parent `Node` and modify its own output snippet. It's possible to modulate them using `tree shaking` in the shader construction process, the `Node` will have important information such as `geometry`, `material`, `renderer` as well as the `backend`, which can influence the type and value of output.
+
+The main class responsible for creating the code is `NodeBuilder`. This class can be extended to any output programming language, so you can use TSL for a third language if you wish. Currently `NodeBuilder` has two extended classes, the `WGSLNodeBuilder` aimed at WebGPU and `GLSLNodeBuilder` aimed at WebGL2.
+
+The build process is based on three pillars: `setup`, `analyze` and `generate`.
+
+|            |                                                                                                                                                                                                    |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `setup`    | Use `TSL` to create a completely customized code for the `Node` output. The `Node` can use many others within itself, have countless inputs, but there will always be a single output.             |
+| `analyze`  | This proccess will check the `nodes` that were created in order to create useful information for `generate` the snippet, such as the need to create or not a cache/variable for optimizing a node. |
+| `generate` | An output of `string` will be returned from each `node`. Any node will also be able to create code in the flow of shader, supporting multiple lines.                                               |
+
+`Node` also have a native update process invoked by the `update()` function, these events be called by `frame`, `render call` and `object draw`.
+
+It is also possible to serialize or deserialize a `Node` using `serialize()` and `deserialize()` functions.
+
+## Constants and explicit conversions
+
+Input functions can be used to create contants and do explicit conversions.
+
+> Conversions are also performed automatically if the output and input are of different types.
+
+| Name                                                     | Returns a constant or convertion of type: |
+| -------------------------------------------------------- | ----------------------------------------- |
+| `float( node\|number )`                                  | `float`                                   |
+| `int( node\|number )`                                    | `int`                                     |
+| `uint( node\|number )`                                   | `uint`                                    |
+| `bool( node\|value )`                                    | `boolean`                                 |
+| `color( node\|hex\|r,g,b )`                              | `color`                                   |
+| `vec2( node\|Vector2\|x,y )`                             | `vec2`                                    |
+| `vec3( node\|Vector3\|x,y,z )`                           | `vec3`                                    |
+| `vec4( node\|Vector4\|x,y,z,w )`                         | `vec4`                                    |
+| `mat2( node\|Matrix2\|a,b,c,d )`                         | `mat2`                                    |
+| `mat3( node\|Matrix3\|a,b,c,d,e,f,g,h,i )`               | `mat3`                                    |
+| `mat4( node\|Matrix4\|a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p )` | `mat4`                                    |
+| `ivec2( node\|x,y )`                                     | `ivec2`                                   |
+| `ivec3( node\|x,y,z )`                                   | `ivec3`                                   |
+| `ivec4( node\|x,y,z,w )`                                 | `ivec4`                                   |
+| `uvec2( node\|x,y )`                                     | `uvec2`                                   |
+| `uvec3( node\|x,y,z )`                                   | `uvec3`                                   |
+| `uvec4( node\|x,y,z,w )`                                 | `uvec4`                                   |
+| `bvec2( node\|x,y )`                                     | `bvec2`                                   |
+| `bvec3( node\|x,y,z )`                                   | `bvec3`                                   |
+| `bvec4( node\|x,y,z,w )`                                 | `bvec4`                                   |
+
+Example:
+
+```js
+import { color, vec2, positionWorld } from 'three/tsl'
+
+// constant
+material.colorNode = color(0x0066ff)
+
+// conversion
+material.colorNode = vec2(positionWorld) // result positionWorld.xy
+```
+
+## Conversions
+
+It is also possible to perform conversions using the `method chaining`:
+
+| Name         | Returns a constant or conversion of type: |
+| ------------ | ----------------------------------------- |
+| `.toFloat()` | `float`                                   |
+| `.toInt()`   | `int`                                     |
+| `.toUint()`  | `uint`                                    |
+| `.toBool()`  | `boolean`                                 |
+| `.toColor()` | `color`                                   |
+| `.toVec2()`  | `vec2`                                    |
+| `.toVec3()`  | `vec3`                                    |
+| `.toVec4()`  | `vec4`                                    |
+| `.toMat2()`  | `mat2`                                    |
+| `.toMat3()`  | `mat3`                                    |
+| `.toMat4()`  | `mat4`                                    |
+|              |                                           |
+| `.toIVec2()` | `ivec2`                                   |
+| `.toIVec3()` | `ivec3`                                   |
+| `.toIVec4()` | `ivec4`                                   |
+| `.toUVec2()` | `uvec2`                                   |
+| `.toUVec3()` | `uvec3`                                   |
+| `.toUVec4()` | `uvec4`                                   |
+| `.toBVec2()` | `bvec2`                                   |
+| `.toBVec3()` | `bvec3`                                   |
+| `.toBVec4()` | `bvec4`                                   |
+
+Example:
+
+```js
+import { positionWorld } from 'three/tsl'
+
+// conversion
+material.colorNode = positionWorld.toVec2() // result positionWorld.xy
+```
+
+## Uniform
+
+Uniforms are useful to update values of variables like colors, lighting, or transformations without having to recreate the shader program. They are the true variables from a GPU's point of view.
+
+| Name                                                                                                        | Description     |
+| ----------------------------------------------------------------------------------------------------------- | --------------- |
+| `uniform( boolean \| number \| Color \| Vector2 \| Vector3 \| Vector4 \| Matrix3 \| Matrix4, type = null )` | Dynamic values. |
+
+Example:
+
+```js
+const posY = uniform(mesh.position.y)
+
+// it's possible use posY.value to update manualy the value
+posY.value = mesh.position.y
+
+material.colorNode = posY
+```
+
+### `uniform.on*Update()`
+
+It is also possible to create update events on `uniforms`, which can be defined by the user:
+
+| Name                          | Description                                                                                                                                                                                |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.onObjectUpdate( function )` | It will be updated every time an object like `Mesh` is rendered with this `node` in `Material`.                                                                                            |
+| `.onRenderUpdate( function )` | It will be updated once per render, common and shared materials, fog, tone mapping, etc.                                                                                                   |
+| `.onFrameUpdate( function )`  | It will be updated only once per frame, recommended for values ​​that will be updated only once per frame, regardless of when `render pass` the frame has, cases like `timer` for example. |
+
+Example:
+
+```js
+const posY = uniform(0) // it's possible use uniform( 'number' )
+
+// or using event to be done automatically
+// { object } will be the current rendering object
+posY.onObjectUpdate(({ object }) => object.position.y)
+
+material.colorNode = posY
+```
+
+## Swizzle
+
+Swizzling is the technique that allows you to access, reorder, or duplicate the components of a vector using a specific notation within TSL. This is done by combining the identifiers:
+
+```js
+const original = vec3(1.0, 2.0, 3.0) // (x, y, z)
+const swizzled = original.zyx // swizzled = (3.0, 2.0, 1.0)
+```
+
+It's possible use `xyzw`, `rgba` or `stpq`.
+
+## Operators
+
+| Name                                 | Description                                                                          |
+| ------------------------------------ | ------------------------------------------------------------------------------------ |
+| `.add( node \| value, ... )`         | Return the addition of two or more value.                                            |
+| `.sub( node \| value )`              | Return the subraction of two or more value.                                          |
+| `.mul( node \| value )`              | Return the multiplication of two or more value.                                      |
+| `.div( node \| value )`              | Return the division of two or more value.                                            |
+| `.assign( node \| value )`           | Assign one or more value to a and return the same.                                   |
+| `.mod( node \| value )`              | Computes the remainder of dividing the first node by the second.                     |
+| `.modInt( node \| value )`           | Computes the remainder of dividing the first node by the second, for integer values. |
+| `.equal( node \| value )`            | Checks if two nodes are equal.                                                       |
+| `.notEqual( node \| value )`         | Checks if two nodes are not equal.                                                   |
+| `.lessThan( node \| value )`         | Checks if the first node is less than the second.                                    |
+| `.greaterThan( node \| value )`      | Checks if the first node is greater than the second.                                 |
+| `.lessThanEqual( node \| value )`    | Checks if the first node is less than or equal to the second.                        |
+| `.greaterThanEqual( node \| value )` | Checks if the first node is greater than or equal to the second.                     |
+| `.and( node \| value )`              | Performs logical AND on two nodes.                                                   |
+| `.or( node \| value )`               | Performs logical OR on two nodes.                                                    |
+| `.not( node \| value )`              | Performs logical NOT on a node.                                                      |
+| `.xor( node \| value )`              | Performs logical XOR on two nodes.                                                   |
+| `.bitAnd( node \| value )`           | Performs bitwise AND on two nodes.                                                   |
+| `.bitNot( node \| value )`           | Performs bitwise NOT on a node.                                                      |
+| `.bitOr( node \| value )`            | Performs bitwise OR on two nodes.                                                    |
+| `.bitXor( node \| value )`           | Performs bitwise XOR on two nodes.                                                   |
+| `.shiftLeft( node \| value )`        | Shifts a node to the left.                                                           |
+| `.shiftRight( node \| value )`       | Shifts a node to the right.                                                          |
+
+```js
+const a = float(1)
+const b = float(2)
+
+const result = a.add(b) // output: 3
+```
+
+## Function
+
+### `Fn( function )`
+
+It is possible to use classic JS functions or a `Fn()` interface. The main difference is that `Fn()` creates a controllable environment, allowing the use of `stack` where you can use `assign` and `conditional`, while the classic function only allows inline approaches.
+
+Example:
+
+```js
+// tsl function
+const oscSine = Fn(([t = timer]) => {
+  return t
+    .add(0.75)
+    .mul(Math.PI * 2)
+    .sin()
+    .mul(0.5)
+    .add(0.5)
+})
+
+// inline function
+export const oscSine = (t = timer) =>
+  t
+    .add(0.75)
+    .mul(Math.PI * 2)
+    .sin()
+    .mul(0.5)
+    .add(0.5)
+```
+
+> Both above can be called with `oscSin( value )`.
+
+TSL allows the entry of parameters as objects, this is useful in functions that have many optional arguments.
+
+Example:
+
+```js
+const oscSine = Fn(({ timer = timerGlobal }) => {
+  return timer
+    .add(0.75)
+    .mul(Math.PI * 2)
+    .sin()
+    .mul(0.5)
+    .add(0.5)
+})
+
+const value = oscSine({ timer: value })
+```
+
+If you want to use an export function compatible with `tree shaking`, remember to use `/*@__PURE__*/`
+
+```js
+export const oscSawtooth = /*@__PURE__*/ Fn(([timer = timerGlobal]) => timer.fract())
+```
+
+## Conditional
+
+### If-else
+
+`If-else` conditionals can be used within `tsnFn()`. Conditionals in `TSL` are built using the `If` function:
+
+```js
+If( conditional, function )
+.ElseIf( conditional, function )
+.Else( function )
+```
+
+> Notice here the `i` in `If` is capitalized.
+
+Example:
+
+In this example below, we will limit the y position of the geometry to 10.
+
+```js
+const limitPosition = Fn(({ position }) => {
+  const limit = 10
+
+  // Convert to variable using `.toVar()` to be able to use assignments.
+  const result = position.toVec3().toVar()
+
+  If(result.y.greaterThan(limit), () => {
+    result.y = limit
+  })
+
+  return result
+})
+
+material.positionNode = limitPosition({ position: positionLocal })
+```
+
+Example using `elseif`:
+
+```js
+const limitPosition = Fn(({ position }) => {
+  const limit = 10
+
+  // Convert to variable using `.toVar()` to be able to use assignments.
+  const result = position.toVec3().toVar()
+
+  If(result.y.greaterThan(limit), () => {
+    result.y = limit
+  }).ElseIf(result.y.lessThan(limit), () => {
+    result.y = limit
+  })
+
+  return result
+})
+
+material.positionNode = limitPosition({ position: positionLocal })
+```
+
+### Ternary
+
+Different from `if-else`, a ternary conditional will return a value and can be used outside of `Fn()`.
+
+```js
+const result = select(value.greaterThan(1), 1.0, value)
+```
+
+> Equivalent in JavaScript should be: `value > 1 ? 1.0 : value`
+
+## Loop
+
+This module offers a variety of ways to implement loops in TSL. In it's basic form it's:
+
+```js
+Loop(count, ({ i }) => {})
+```
+
+However, it is also possible to define a start and end ranges, data types and loop conditions:
+
+```js
+Loop({ start: int(0), end: int(10), type: 'int', condition: '<' }, ({ i }) => {})
+```
+
+Nested loops can be defined in a compacted form:
+
+```js
+Loop(10, 5, ({ i, j }) => {})
+```
+
+Loops that should run backwards can be defined like so:
+
+```js
+Loop({ start: 10 }, () => {})
+```
+
+The module also provides `Break()` and `Continue()` TSL expression for loop control.
+
+## Math
+
+| Name                                | Description                                                                    |
+| ----------------------------------- | ------------------------------------------------------------------------------ |
+| `EPSION`                            | A small value used to handle floating-point precision errors.                  |
+| `INFINITY`                          | Represent infinity.                                                            |
+|                                     |                                                                                |
+| `abs( x )`                          | Return the absolute value of the parameter.                                    |
+| `acos( x )`                         | Return the arccosine of the parameter.                                         |
+| `all( x )`                          | Return true if all components of x are true.                                   |
+| `any( x )`                          | Return true if any component of x is true.                                     |
+| `asin( x )`                         | Return the arcsine of the parameter.                                           |
+| `atan( y, x )`                      | Return the arc-tangent of the parameters.                                      |
+| `bitcast( x, y )`                   | Reinterpret the bits of a value as a different type.                           |
+| `cbrt( x )`                         | Return the cube root of the parameter.                                         |
+| `ceil( x )`                         | Find the nearest integer that is greater than or equal to the parameter.       |
+| `clamp( x, min, max )`              | Constrain a value to lie between two further values.                           |
+| `cos( x )`                          | Return the cosine of the parameter.                                            |
+| `cross( x, y )`                     | Calculate the cross product of two vectors.                                    |
+| `dFdx( p )`                         | Return the partial derivative of an argument with respect to x.                |
+| `dFdy( p )`                         | Return the partial derivative of an argument with respect to y.                |
+| `degrees( radians )`                | Convert a quantity in radians to degrees.                                      |
+| `difference( x, y )`                | Calculate the absolute difference between two values.                          |
+| `distance( x, y )`                  | Calculate the distance between two points.                                     |
+| `dot( x, y )`                       | Calculate the dot product of two vectors.                                      |
+| `equals( x, y )`                    | Return true if x equals y.                                                     |
+| `exp( x )`                          | Return the natural exponentiation of the parameter.                            |
+| `exp2( x )`                         | Return 2 raised to the power of the parameter.                                 |
+| `faceforward( N, I, Nref )`         | Return a vector pointing in the same direction as another.                     |
+| `floor( x )`                        | Find the nearest integer less than or equal to the parameter.                  |
+| `fract( x )`                        | Compute the fractional part of the argument.                                   |
+| `fwidth( x )`                       | Return the sum of the absolute derivatives in x and y.                         |
+| `inverseSqrt( x )`                  | Return the inverse of the square root of the parameter.                        |
+| `invert( x )`                       | Invert an alpha parameter ( 1. - x ).                                          |
+| `length( x )`                       | Calculate the length of a vector.                                              |
+| `lengthSq( x )`                     | Calculate the squared length of a vector.                                      |
+| `log( x )`                          | Return the natural logarithm of the parameter.                                 |
+| `log2( x )`                         | Return the base 2 logarithm of the parameter.                                  |
+| `max( x, y )`                       | Return the greater of two values.                                              |
+| `min( x, y )`                       | Return the lesser of two values.                                               |
+| `mix( x, y, a )`                    | Linearly interpolate between two values.                                       |
+| `negate( x )`                       | Negate the value of the parameter ( -x ).                                      |
+| `normalize( x )`                    | Calculate the unit vector in the same direction as the original vector.        |
+| `oneMinus( x )`                     | Return 1 minus the parameter.                                                  |
+| `pow( x, y )`                       | Return the value of the first parameter raised to the power of the second.     |
+| `pow2( x )`                         | Return the square of the parameter.                                            |
+| `pow3( x )`                         | Return the cube of the parameter.                                              |
+| `pow4( x )`                         | Return the fourth power of the parameter.                                      |
+| `radians( degrees )`                | Convert a quantity in degrees to radians.                                      |
+| `reciprocal( x )`                   | Return the reciprocal of the parameter (1/x).                                  |
+| `reflect( I, N )`                   | Calculate the reflection direction for an incident vector.                     |
+| `refract( I, N, eta )`              | Calculate the refraction direction for an incident vector.                     |
+| `round( x )`                        | Round the parameter to the nearest integer.                                    |
+| `saturate( x )`                     | Constrain a value between 0 and 1.                                             |
+| `sign( x )`                         | Extract the sign of the parameter.                                             |
+| `sin( x )`                          | Return the sine of the parameter.                                              |
+| `smoothstep( e0, e1, x )`           | Perform Hermite interpolation between two values.                              |
+| `sqrt( x )`                         | Return the square root of the parameter.                                       |
+| `step( edge, x )`                   | Generate a step function by comparing two values.                              |
+| `tan( x )`                          | Return the tangent of the parameter.                                           |
+| `transformDirection( dir, matrix )` | Transform the direction of a vector by a matrix and then normalize the result. |
+| `trunc( x )`                        | Truncate the parameter, removing the fractional part.                          |
+
+```js
+const value = float(-1)
+
+// It's possible use `value.abs()` too.
+const positiveValue = abs(value) // output: 1
+```
+
+## Method chaining
+
+`Method chaining` will only be including operators, converters, math and some core functions. These functions, however, can be used on any `node`.
+
+Example:
+
+`oneMinus()` is a mathematical function like `abs()`, `sin()`. This example uses `.oneMinus()` as a built-in function in the class that returns a new node instead of classic C function like `oneMinus( texture( map ).rgb )`.
+
+```js
+// it will invert the texture color
+material.colorNode = texture(map).rgb.oneMinus()
+```
+
+You can use mathematical operators on any node, e.g:
+
+```js
+const contrast = 0.5
+const brightness = 0.5
+
+material.colorNode = texture(map).mul(contrast).add(brightness)
+```
+
+## Texture
+
+| Name                                                                                                                                 | Description                                                            | Type   |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- | ------ |
+| `texture( texture, uv = uv(), level = null )`                                                                                        | Retrieves texels from a texture.                                       | `vec4` |
+| `cubeTexture( texture, uvw = reflectVector, level = null )`                                                                          | Retrieves texels from a cube texture.                                  | `vec4` |
+| `triplanarTexture( textureX, textureY = null, textureZ = null, scale = float( 1 ), position = positionLocal, normal = normalLocal )` | Computes texture using triplanar mapping based on provided parameters. | `vec4` |
+
+## Attributes
+
+| Name                                             | Description                                     | Type    |
+| ------------------------------------------------ | ----------------------------------------------- | ------- |
+| `attribute( name, type = null, default = null )` | Getting geometry attribute using name and type. | `any`   |
+| `uv( index = 0 )`                                | UV attribute named `uv + index`.                | `vec2`  |
+| `vertexColor( index = 0 )`                       | Vertex color node for the specified index.      | `color` |
+
+## Position
+
+| Name                     | Description                     | Type   |
+| ------------------------ | ------------------------------- | ------ |
+| `positionGeometry`       | Position attribute of geometry. | `vec3` |
+| `positionLocal`          | Local variable for position.    | `vec3` |
+| `positionWorld`          | World position.                 | `vec3` |
+| `positionWorldDirection` | Normalized world direction.     | `vec3` |
+| `positionView`           | View position.                  | `vec3` |
+| `positionViewDirection`  | Normalized view direction.      | `vec3` |
+
+> `positionLocal` represents the position after modifications made by `skinning`, `morpher`, etc.
+
+## Normal
+
+| Name                             | Description                                   | Type   |
+| -------------------------------- | --------------------------------------------- | ------ |
+| `normalGeometry`                 | Normal attribute of geometry.                 | `vec3` |
+| `normalLocal`                    | Local variable for normal.                    | `vec3` |
+| `normalView`                     | Normalized view normal.                       | `vec3` |
+| `normalWorld`                    | Normalized world normal.                      | `vec3` |
+| `transformedNormalView`          | Transformed normal in view space.             | `vec3` |
+| `transformedNormalWorld`         | Normalized transformed normal in world space. | `vec3` |
+| `transformedClearcoatNormalView` | Transformed clearcoat normal in view space.   | `vec3` |
+
+> `transformed*` represents the normal after modifications made by `skinning`, `morpher`, etc.
+
+## Tangent
+
+| Name                      | Description                                    | Type   |
+| ------------------------- | ---------------------------------------------- | ------ |
+| `tangentGeometry`         | Tangent attribute of geometry.                 | `vec4` |
+| `tangentLocal`            | Local variable for tangent.                    | `vec3` |
+| `tangentView`             | Normalized view tangent.                       | `vec3` |
+| `tangentWorld`            | Normalized world tangent.                      | `vec3` |
+| `transformedTangentView`  | Transformed tangent in view space.             | `vec3` |
+| `transformedTangentWorld` | Normalized transformed tangent in world space. | `vec3` |
+
+### Bitangent
+
+| Name                        | Description                                      | Type   |
+| --------------------------- | ------------------------------------------------ | ------ |
+| `bitangentGeometry`         | Normalized bitangent in geometry space.          | `vec3` |
+| `bitangentLocal`            | Normalized bitangent in local space.             | `vec3` |
+| `bitangentView`             | Normalized bitangent in view space.              | `vec3` |
+| `bitangentWorld`            | Normalized bitangent in world space.             | `vec3` |
+| `transformedBitangentView`  | Normalized transformed bitangent in view space.  | `vec3` |
+| `transformedBitangentWorld` | Normalized transformed bitangent in world space. | `vec3` |
+
+## Camera
+
+| Name                            | Description                              | Type    |
+| ------------------------------- | ---------------------------------------- | ------- |
+| `cameraNear`                    | Near plane distance of the camera.       | `float` |
+| `cameraFar`                     | Far plane distance of the camera.        | `float` |
+| `cameraLogDepth`                | Logarithmic depth value for the camera.  | `float` |
+| `cameraProjectionMatrix`        | Projection matrix of the camera.         | `mat4`  |
+| `cameraProjectionMatrixInverse` | Inverse projection matrix of the camera. | `mat4`  |
+| `cameraViewMatrix`              | View matrix of the camera.               | `mat4`  |
+| `cameraWorldMatrix`             | World matrix of the camera.              | `mat4`  |
+| `cameraNormalMatrix`            | Normal matrix of the camera.             | `mat3`  |
+| `cameraPosition`                | World position of the camera.            | `vec3`  |
+
+## Model
+
+| Name                         | Description                                                         | Type   |
+| ---------------------------- | ------------------------------------------------------------------- | ------ |
+| `modelDirection`             | Direction of the model.                                             | `vec3` |
+| `modelViewMatrix`            | View-space matrix of the model.                                     | `mat4` |
+| `modelNormalMatrix`          | View-space matrix of the model.                                     | `mat3` |
+| `modelWorldMatrix`           | World-space matrix of the model.                                    | `mat4` |
+| `modelPosition`              | Position of the model.                                              | `vec3` |
+| `modelScale`                 | Scale of the model.                                                 | `vec3` |
+| `modelViewPosition`          | View-space position of the model.                                   | `vec3` |
+| `modelWorldMatrixInverse`    | Inverse world matrix of the model.                                  | `mat4` |
+|                              |                                                                     |
+| `highpModelViewMatrix`       | View-space matrix of the model computed on CPU using 64-bit.        | `mat4` |
+| `highpModelNormalViewMatrix` | View-space normal matrix of the model computed on CPU using 64-bit. | `mat3` |
+
+## Screen
+
+Screen nodes will return the values related to the current `frame buffer`, either normalized or in `physical pixel units` considering the current `Pixel Ratio`.
+
+| Variable           | Description                                                  | Type   |
+| ------------------ | ------------------------------------------------------------ | ------ |
+| `screenUV`         | Returns the normalized frame buffer coordinate.              | `vec2` |
+| `screenCoordinate` | Returns the frame buffer coordinate in physical pixel units. | `vec2` |
+| `screentSize`      | Returns the frame buffer size in physical pixel units.       | `vec2` |
+
+## Viewport
+
+`viewport` is influenced by the area defined in `renderer.setViewport()`, different of the values ​​defined in the renderer that are `logical pixel units`, it use `physical pixel units` considering the current `Pixel Ratio`.
+
+| Variable             | Description                                              | Type   |
+| -------------------- | -------------------------------------------------------- | ------ |
+| `viewportUV`         | Returns the normalized viewport coordinate.              | `vec2` |
+| `viewport`           | Returns the viewport dimension in physical pixel units.  | `vec4` |
+| `viewportCoordinate` | Returns the viewport coordinate in physical pixel units. | `vec2` |
+| `viewportSize`       | Returns the viewport size in physical pixel units.       | `vec2` |
+
+## Blend Modes
+
+| Variable               | Description                            | Type    |
+| ---------------------- | -------------------------------------- | ------- |
+| `blendBurn( a, b )`    | Returns the burn blend mode.           | `color` |
+| `blendDodge( a, b )`   | Returns the dodge blend mode.          | `color` |
+| `blendOverlay( a, b )` | Returns the overlay blend mode.        | `color` |
+| `blendScreen( a, b )`  | Returns the screen blend mode.         | `color` |
+| `blendColor( a, b )`   | Returns the (normal) color blend mode. | `color` |
+
+## Reflect
+
+| Name            | Description                                         | Type   |
+| --------------- | --------------------------------------------------- | ------ |
+| `reflectView`   | Computes reflection direction in view space.        | `vec3` |
+| `reflectVector` | Transforms the reflection direction to world space. | `vec3` |
+
+## UV Utils
+
+| Name                                                    | Description                                                                                                | Type   |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
+| `matcapUV`                                              | UV coordinates for matcap texture.                                                                         | `vec2` |
+| `rotateUV( uv, rotation, centerNode = vec2( 0.5 ) )`    | Rotates UV coordinates around a center point.                                                              | `vec2` |
+| `spherizeUV( uv, strength, centerNode = vec2( 0.5 ) )`  | Distorts UV coordinates with a spherical effect around a center point.                                     | `vec2` |
+| `spritesheetUV( count, uv = uv(), frame = float( 0 ) )` | Computes UV coordinates for a sprite sheet based on the number of frames, UV coordinates, and frame index. | `vec2` |
+| `equirectUV( direction = positionWorldDirection )`      | Computes UV coordinates for equirectangular mapping based on the direction vector.                         | `vec2` |
+
+```js
+import { texture, matcapUV } from 'three/tsl'
+
+const matcap = texture(matcapMap, matcapUV)
+```
+
+## Interpolation
+
+| Variable                                                                       | Description                                              | Type  |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------- | ----- |
+| `remap( node, inLow, inHigh, outLow = float( 0 ), outHigh = float( 1 ) )`      | Remaps a value from one range to another.                | `any` |
+| `remapClamp( node, inLow, inHigh, outLow = float( 0 ), outHigh = float( 1 ) )` | Remaps a value from one range to another, with clamping. | `any` |
+
+## Random
+
+| Variable            | Description                                                                                                                                                                  | Type    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `hash( seed )`      | Generates a hash value in the range [ 0, 1 ] from the given seed.                                                                                                            | `float` |
+| `range( min, max )` | Generates a range `attribute` of values between min and max. Attribute randomization is useful when you want to randomize values ​​between instances and not between pixels. | `any`   |
+
+## Oscillator
+
+| Variable                             | Description                                             | Type    |
+| ------------------------------------ | ------------------------------------------------------- | ------- |
+| `oscSine( timer = timerGlobal )`     | Generates a sine wave oscillation based on a timer.     | `float` |
+| `oscSquare( timer = timerGlobal )`   | Generates a square wave oscillation based on a timer.   | `float` |
+| `oscTriangle( timer = timerGlobal )` | Generates a triangle wave oscillation based on a timer. | `float` |
+| `oscSawtooth( timer = timerGlobal )` | Generates a sawtooth wave oscillation based on a timer. | `float` |
+
+## Packing
+
+| Variable                    | Description                         | Type    |
+| --------------------------- | ----------------------------------- | ------- |
+| `directionToColor( value )` | Converts direction vector to color. | `color` |
+| `colorToDirection( value )` | Converts color to direction vector. | `vec3`  |
+
+## Functions
+
+### `.toVar( name = null )`
+
+To create a variable from a node use `.toVar()`.
+
+The first parameter is used to add a name to it, otherwise the node system will name it automatically, it can be useful in debugging or access using `wgslFn`.
+
+```js
+const uvScaled = uv().mul(10).toVar()
+
+material.colorNode = texture(map, uvScaled)
+```
+
+---
+
+### `varying( node, name = null )`
+
+Let's suppose you want to optimize some calculation in the `vertex stage` but are using it in a slot like `material.colorNode`.
+
+For example:
+
+```js
+// multiplication will be executed in vertex stage
+const normalView = varying(modelNormalMatrix.mul(normalLocal))
+
+// normalize will be executed in fragment stage
+// because .colorNode is fragment stage slot as default
+material.colorNode = normalView.normalize()
+```
+
+The first parameter of `varying` `modelNormalMatrix.mul( normalLocal )` will be executed in `vertex stage`, and the return from `varying()` will be a `varying` as we are used in WGSL/GLSL, this can optimize extra calculations in the `fragment stage`. The second parameter allows you to add a custom name to `varying`.
+
+If `varying()` is added only to `.positionNode`, it will only return a simple variable and varying will not be created.
+
+## NodeMaterial
+
+Check below for more details about `NodeMaterial` inputs.
+
+#### Core
+
+| Name            | Description                                                      | Type   |
+| --------------- | ---------------------------------------------------------------- | ------ |
+| `.fragmentNode` | Replaces the built-in material logic used in the fragment stage. | `vec4` |
+| `.vertexNode`   | Replaces the built-in material logic used in the vertex stage.   | `vec4` |
+| `.geometryNode` | Allows you to execute a TSL function to deal with Geometry.      | `Fn()` |
+
+#### Basic
+
+| Name             | Description                                                  | Reference           | Type    |
+| ---------------- | ------------------------------------------------------------ | ------------------- | ------- |
+| `.colorNode`     | Replace the logic of `material.color * material.map`.        | `materialColor`     | `vec4`  |
+| `.depthNode`     | Customize the `depth` output.                                | `depth`             | `float` |
+| `.opacityNode`   | Replace the logic of `material.opacity * material.alphaMap`. | `materialOpacity`   | `float` |
+| `.alphaTestNode` | Sets a threshold to discard pixels with low opacity.         | `materialAlphaTest` | `float` |
+
+#### Lighting
+
+| Name            | Description                                                                                                                                                   | Reference          | Type       |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ---------- |
+| `.emissiveNode` | Replace the logic of `material.emissive * material.emissiveIntensity * material.emissiveMap`.                                                                 | `materialEmissive` | `color`    |
+| `.normalNode`   | Represents the normals direction in view-space. Replace the logic of `material.normalMap * material.normalScale` and `material.bumpMap * material.bumpScale`. | `materialNormal`   | `vec3`     |
+| `.lightsNode`   | Defines the lights and lighting model that will be used by the material.                                                                                      |                    | `lights()` |
+| `.envNode`      | Replace the logic of `material.envMap * material.envMapRotation * material.envMapIntensity`.                                                                  |                    | `color`    |
+
+#### Backdrop
+
+| Name                 | Description                                                                                               | Type    |
+| -------------------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| `.backdropNode`      | Render the `Node` input before applying `Specular`, useful for `transmission` and `refraction` materials. | `vec3`  |
+| `.backdropAlphaNode` | Define the alpha of `backdropNode`.                                                                       | `float` |
+
+#### Position
+
+| Name            | Description                                                                                                                                               | Reference       | Type   |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------ |
+| `.positionNode` | Represents the vertex positions in local-space. Replace the logic of `material.displacementMap * material.displacementScale + material.displacementBias`. | `positionLocal` | `vec3` |
+
+#### Shadows
+
+| Name                  | Description                                                                             | Reference             | Type    |
+| --------------------- | --------------------------------------------------------------------------------------- | --------------------- | ------- |
+| `.castShadowNode`     | Control the `color` and `opacity` of the shadow that will be projected by the material. |                       | `vec4`  |
+| `.receivedShadowNode` | Handle the shadow cast on the material.                                                 |                       | `Fn()`  |
+| `.shadowPositionNode` | Define the shadow projection position in world-space.                                   | `shadowPositionWorld` | `vec3`  |
+| `.aoNode`             | Replace the logic of `material.aoMap * aoMapIntensity`.                                 | `materialAO`          | `float` |
+
+#### Output
+
+| Name          | Description                                              | Reference | Type    |
+| ------------- | -------------------------------------------------------- | --------- | ------- |
+| `.mrtNode`    | Define a different MRT than the one defined in `pass()`. |           | `mrt()` |
+| `.outputNode` | Defines the material's final output.                     | `output`  | `vec4`  |
+
+## LineDashedNodeMaterial
+
+| Name             | Description                                 | Reference                | Type    |
+| ---------------- | ------------------------------------------- | ------------------------ | ------- |
+| `.dashScaleNode` | Replace the logic of `material.scale`.      | `materialLineScale`      | `float` |
+| `.dashSizeNode`  | Replace the logic of `material.dashSize`.   | `materialLineDashSize`   | `float` |
+| `.gapSizeNode`   | Replace the logic of `material.gapSize`.    | `materialLineGapSize`    | `float` |
+| `.offsetNode`    | Replace the logic of `material.dashOffset`. | `materialLineDashOffset` | `float` |
+
+## MeshPhongNodeMaterial
+
+| Name             | Description                                | Reference           | Type    |
+| ---------------- | ------------------------------------------ | ------------------- | ------- |
+| `.shininessNode` | Replace the logic of `material.shininess`. | `materialShininess` | `float` |
+| `.specularNode`  | Replace the logic of `material.specular`.  | `materialSpecular`  | `color` |
+
+## MeshStandardNodeMaterial
+
+| Name             | Description                                                        | Reference       | Type    |
+| ---------------- | ------------------------------------------------------------------ | --------------- | ------- |
+| `.metalnessNode` | Replace the logic of `material.metalness * material.metalnessMap`. | `metalnessNode` | `float` |
+| `.roughnessNode` | Replace the logic of `material.roughness * material.roughnessMap`. | `roughnessNode` | `float` |
+
+## MeshPhysicalNodeMaterial
+
+| Name                        | Description                                                                                   | Reference                      | Type    |
+| --------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------ | ------- |
+| `.clearcoatNode`            | Replace the logic of `material.clearcoat * material.clearcoatMap`.                            | `materialClearcoat`            | `float` |
+| `.clearcoatRoughnessNode`   | Replace the logic of `material.clearcoatRoughness * material.clearcoatRoughnessMap`.          | `materialClearcoatRoughness`   | `float` |
+| `.clearcoatNormalNode`      | Replace the logic of `material.clearcoatNormalMap * material.clearcoatNormalMapScale`.        | `materialClearcoatNormal`      | `vec3`  |
+| `.sheenNode`                | Replace the logic of `material.sheenColor * material.sheenColorMap`.                          | `materialSheen`                | `color` |
+| `.iridescenceNode`          | Replace the logic of `material.iridescence`.                                                  | `materialIridescence`          | `float` |
+| `.iridescenceIORNode`       | Replace the logic of `material.iridescenceIOR`.                                               | `materialIridescenceIOR`       | `float` |
+| `.iridescenceThicknessNode` | Replace the logic of `material.iridescenceThicknessRange * material.iridescenceThicknessMap`. | `materialIridescenceThickness` | `float` |
+| `.specularIntensityNode`    | Replace the logic of `material.specularIntensity * material.specularIntensityMap`.            | `materialSpecularIntensity`    | `float` |
+| `.specularColorNode`        | Replace the logic of `material.specularColor * material.specularColorMap`.                    | `materialSpecularColor`        | `color` |
+| `.iorNode`                  | Replace the logic of `material.ior`.                                                          | `materialIOR`                  | `float` |
+| `.transmissionNode`         | Replace the logic of `material.transmission * material.transmissionMap`.                      | `materialTransmission`         | `color` |
+| `.thicknessNode`            | Replace the logic of `material.thickness * material.thicknessMap`.                            | `materialTransmission`         | `float` |
+| `.attenuationDistanceNode`  | Replace the logic of `material.attenuationDistance`.                                          | `materialAttenuationDistance`  | `float` |
+| `.attenuationColorNode`     | Replace the logic of `material.attenuationColor`.                                             | `materialAttenuationColor`     | `color` |
+| `.dispersionNode`           | Replace the logic of `material.dispersion`.                                                   | `materialDispersion`           | `float` |
+| `.anisotropyNode`           | Replace the logic of `material.anisotropy * material.anisotropyMap`.                          | `materialAnisotropy`           | `vec2`  |
+
+## SpriteNodeMaterial
+
+| Name            | Description           | Type   |
+| --------------- | --------------------- | ------ |
+| `.positionNode` | Defines the position. | `vec3` |
+| `.rotationNode` | Defines the rotation. | `vec3` |
+| `.scaleNode`    | Defines the scale.    | `vec3` |
+
+## Transitioning common GLSL properties to TSL
+
+| GLSL                | TSL                      | Type   |
+| ------------------- | ------------------------ | ------ |
+| `position`          | `positionGeometry`       | `vec3` |
+| `transformed`       | `positionLocal`          | `vec3` |
+| `transformedNormal` | `normalLocal`            | `vec3` |
+| `vWorldPosition`    | `positionWorld`          | `vec3` |
+| `vColor`            | `vertexColor()`          | `vec3` |
+| `vUv` \| `uv`       | `uv()`                   | `vec2` |
+| `vNormal`           | `normalView`             | `vec3` |
+| `viewMatrix`        | `cameraViewMatrix`       | `mat4` |
+| `modelMatrix`       | `modelWorldMatrix`       | `mat4` |
+| `modelViewMatrix`   | `modelViewMatrix`        | `mat4` |
+| `projectionMatrix`  | `cameraProjectionMatrix` | `mat4` |
+| `diffuseColor`      | `material.colorNode`     | `vec4` |
+| `gl_FragColor`      | `material.fragmentNode`  | `vec4` |
