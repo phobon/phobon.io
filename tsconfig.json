@@ -8,7 +8,9 @@
       "@/hooks/*": ["./src/hooks/*"],
       "@/design/*": ["./src/design/*"],
       "@/data/*": ["./src/data/*"],
-      "@/helpers/*": ["./src/helpers/*"],
+      "@/content/*": ["./src/content/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/actions/*": ["./src/app/actions/*"],
       // https://stackoverflow.com/questions/73019348/component-cannot-be-used-as-a-jsx-component-its-element-type-reactelementan
       "react": ["./node_modules/@types/react"]
     },

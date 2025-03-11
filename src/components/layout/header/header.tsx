@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 import { css } from '@/design/css'
 import Identity from '@/components/identity'
 import { gridStyles } from '../common'

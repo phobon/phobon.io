@@ -1,5 +1,5 @@
 import { css } from '@/design/css'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 
 export type HRProps = {} & React.HTMLAttributes<HTMLHRElement>
 

@@ -1,7 +1,7 @@
 import { shaderMaterial, useTexture } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
 import { useMotionValueEvent } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, type JSX } from 'react'
 import * as THREE from 'three'
 
 const PixellationNoiseMaterialImpl = shaderMaterial(

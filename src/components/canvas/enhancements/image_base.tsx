@@ -3,8 +3,8 @@
 import { View } from '@react-three/drei'
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import { css } from '@/design/css'
-import { PerspectiveCamera } from '@/helpers/perspective_camera'
-import { cn } from '@/helpers/cn'
+import { PerspectiveCamera } from '@/utils/perspective_camera'
+import { cn } from '@/utils/cn'
 import { MotionValue } from 'framer-motion'
 import NextImage from 'next/image'
 

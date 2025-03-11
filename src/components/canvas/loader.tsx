@@ -1,7 +1,7 @@
 'use client'
 
 import { css } from '@/design/css'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { useProgress } from '@react-three/drei'
 import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'

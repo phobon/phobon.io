@@ -3,7 +3,7 @@
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { ImageBase, ImageProps } from './image_base'
 import { useRef } from 'react'
-import { useImageAsTexture } from '@/helpers/use_image_as_texture'
+import { useImageAsTexture } from '@/utils/use_image_as_texture'
 import * as THREE from 'three'
 import { Image as DreiImage } from '@react-three/drei'
 

@@ -1,6 +1,6 @@
 import { css } from '@/design/css'
 import { Figure } from './figure'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 
 export type FigureGridProps = {
   caption?: string

@@ -38,7 +38,7 @@ function useTextureLoader() {
 }
 
 function useImageAsTexture(
-  imgRef: RefObject<HTMLImageElement>,
+  imgRef: RefObject<HTMLImageElement | null>,
   { initTexture = true, premultiplyAlpha = 'default', wrap = false } = {},
 ) {
   const gl = useThree((s) => s.gl)

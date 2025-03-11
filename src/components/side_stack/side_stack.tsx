@@ -4,7 +4,7 @@ import { css } from '@/design/css'
 import { forwardRef, useRef } from 'react'
 
 // import Text from '../canvas/webgl_text'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 import dynamic from 'next/dynamic'
 import TextReveal from '../text_reveal'
 

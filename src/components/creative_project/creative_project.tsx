@@ -5,7 +5,7 @@ import { css } from '@/design/css'
 // import { Video, Image } from '@/components/canvas/webgl_image_base'
 // import Text from '@/components/canvas/webgl_text'
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 import { animate, useMotionValue, useTransform } from 'framer-motion'
 import { View } from '@react-three/drei'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
@@ -22,7 +22,7 @@ export const CreativeProject = forwardRef<any, any>(
     { className, index, imageSrc, videoSrc, title, children, status, imageDimensions, videoDimensions, priority, href },
     ref,
   ) => {
-    const containerRef = useRef<HTMLLIElement>()
+    const containerRef = useRef<HTMLLIElement>(undefined)
     useImperativeHandle(ref, () => containerRef.current)
 
     const progress = useMotionValue(0)

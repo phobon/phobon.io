@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
-import { useGridTrailTexture } from '@/helpers/use_grid_trail_texture'
+import { useGridTrailTexture } from '@/utils/use_grid_trail_texture'
 
 const PixellationMaterial = shaderMaterial(
   {
