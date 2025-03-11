@@ -22,7 +22,7 @@ export const CreativeProject = forwardRef<any, any>(
     { className, index, imageSrc, videoSrc, title, children, status, imageDimensions, videoDimensions, priority, href },
     ref,
   ) => {
-    const containerRef = useRef<HTMLLIElement>()
+    const containerRef = useRef<HTMLLIElement>(undefined)
     useImperativeHandle(ref, () => containerRef.current)
 
     const progress = useMotionValue(0)
