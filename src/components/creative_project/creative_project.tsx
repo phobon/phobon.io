@@ -11,18 +11,15 @@ import { View } from '@react-three/drei'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import dynamic from 'next/dynamic'
-import TextReveal from '../text_reveal'
-
-const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
-const Video = dynamic(() => import('@/components/canvas/enhancements/webgl_video'), { ssr: false })
-const Image = dynamic(() => import('@/components/canvas/enhancements/webgl_image'), { ssr: false })
+import Video from '@/components/canvas/enhancements/webgl_video'
+import Image from '@/components/canvas/enhancements/webgl_image'
 
 export const CreativeProject = forwardRef<any, any>(
   (
     { className, index, imageSrc, videoSrc, title, children, status, imageDimensions, videoDimensions, priority, href },
     ref,
   ) => {
-    const containerRef = useRef<HTMLLIElement>()
+    const containerRef = useRef<HTMLLIElement>(null)
     useImperativeHandle(ref, () => containerRef.current)
 
     const progress = useMotionValue(0)

@@ -7,7 +7,7 @@ import { useMediaQuery } from '@uidotdev/usehooks'
 import { css, cva } from '@/design/css'
 import { ColumnsIcon } from '@radix-ui/react-icons'
 
-const DebugGrid = ({ show: initialShow = false}) => {
+const DebugGrid = ({ show: initialShow = false }) => {
   const smallDevice = useMediaQuery('only screen and (max-width: 768px)')
   const columns = useMemo(() => {
     return new Array(smallDevice ? 6 : 12).fill(0)
