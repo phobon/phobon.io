@@ -1,5 +1,5 @@
 import { css } from '@/design/css'
-import { cn } from '@/helpers/cn'
+import { cn } from '@/utils/cn'
 import { forwardRef } from 'react'
 
 export type ParagraphProps = {} & React.HTMLAttributes<HTMLParagraphElement>

@@ -3,7 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 
 import { AdaptiveDpr, Preload, StatsGl, View, useFBO } from '@react-three/drei'
-import { PerspectiveCamera } from '@/helpers/perspective_camera'
+import { PerspectiveCamera } from '@/utils/perspective_camera'
 import Pixellation from '../effects/pixellation/pixellation'
 import SceneFBORenderer from './scene_fbo_renderer'
 // import DotMatrix from '../effects/dot_matrix'

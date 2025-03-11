@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from '@/helpers/perspective_camera'
+import { PerspectiveCamera } from '@/utils/perspective_camera'
 import { shaderMaterial } from '@react-three/drei'
 import { createPortal, extend, useFrame, useThree } from '@react-three/fiber'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'

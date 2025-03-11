@@ -1,6 +1,6 @@
 'use client'
 
-import { useImgTracker } from '@/helpers/use_tracker'
+import { useImgTracker } from '@/utils/use_tracker'
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { ImageBase } from './image_base'
 import { useRef } from 'react'

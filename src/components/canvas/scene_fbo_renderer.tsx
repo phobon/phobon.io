@@ -1,8 +1,8 @@
-import { PerspectiveCamera } from '@/helpers/perspective_camera'
+import { PerspectiveCamera } from '@/utils/perspective_camera'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
-import { useDebug } from '@/helpers/use_debug'
+import { useDebug } from '@/utils/use_debug'
 
 export type SceneFBORendererProps = {
   renderTarget: THREE.WebGLRenderTarget<THREE.Texture>

@@ -1,4 +1,4 @@
-import { useFrame, extend, useThree, ShaderMaterialProps } from '@react-three/fiber'
+import { useFrame, extend, useThree } from '@react-three/fiber'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { v4 as uuid } from 'uuid'
 
@@ -21,14 +21,6 @@ const RepeaterMaterial = shaderMaterial(
 RepeaterMaterial.key = uuid()
 
 extend({ RepeaterMaterial })
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      repeaterMaterial: ShaderMaterialProps
-    }
-  }
-}
 
 const Repeater = forwardRef<any, any>(({ texture, factor = 0.5 }, ref) => {
   const meshRef = useRef<any>(null)
@@ -69,6 +61,7 @@ const RepeaterMaterialImpl = forwardRef<any, any>(({ texture, factor = 0.5 }, re
   })
 
   return (
+    // @ts-ignore
     <repeaterMaterial
       ref={materialRef}
       uniforms-u_diffuse-value={texture}

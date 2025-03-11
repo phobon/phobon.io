@@ -1,6 +1,6 @@
 import { css } from '@/design/css'
-import { cn } from '@/helpers/cn'
-import { Link } from '@/helpers/navigation_helpers'
+import { cn } from '@/utils/cn'
+import { Link } from '@/utils/navigation_helpers'
 
 import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
@@ -8,15 +8,10 @@ import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 import now from '@/data/now.json'
 
-// import Text from '@/components/canvas/webgl_text'
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
-import dynamic from 'next/dynamic'
-import TextReveal from '@/components/text_reveal'
-
-const Text = dynamic(() => import('@/components/canvas/enhancements/webgl_text'), { ssr: false })
 
 export default function Page({ ...props }) {
   return (

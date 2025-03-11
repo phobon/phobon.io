@@ -73,7 +73,7 @@ export const useGridTrailTexture = (options?: UseGridTrailTextureProps): any => 
       return
     }
 
-    const data = dt.image.data
+    const data: any = dt.image.data
 
     const cellX = (size * pointerRef.current.x) / viewportRef.current.width
     const cellY = size * (1 - pointerRef.current.y / viewportRef.current.height)
