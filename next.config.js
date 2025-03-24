@@ -7,13 +7,20 @@ const withMDX = require('@next/mdx')()
 const nextConfig = {
   reactStrictMode: true,
   experimental: {},
-  images: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
+      },
+    ],
+  },
   transpilePackages: ['geist'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   webpack(config, { isServer }) {
     // audio support
     config.module.rules.push({
-      test: /\.(ogg|mp3|wav|mpe?g)$/i,
+      test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
       exclude: config.exclude,
       use: [
         {
@@ -21,8 +28,8 @@ const nextConfig = {
           options: {
             limit: config.inlineImageLimit,
             fallback: require.resolve('file-loader'),
-            publicPath: `${config.assetPrefix}/_next/static/images/`,
-            outputPath: `${isServer ? '../' : ''}static/images/`,
+            publicPath: `${config.assetPrefix}/_next/static/media/`,
+            outputPath: `${isServer ? '../' : ''}static/media/`,
             name: '[name]-[hash].[ext]',
             esModule: config.esModule || false,
           },
