@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@uidotdev/usehooks'
-import { animate, useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
+import { animate, useMotionValue, useMotionValueEvent, useScroll, useSpring } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
 export type UseTrackerOptions = {

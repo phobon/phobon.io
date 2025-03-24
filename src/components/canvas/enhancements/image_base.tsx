@@ -5,7 +5,7 @@ import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import { css } from '@/design/css'
 import { PerspectiveCamera } from '@/utils/perspective_camera'
 import { cn } from '@/utils/cn'
-import { MotionValue } from 'framer-motion'
+import { MotionValue } from 'motion/react'
 import NextImage from 'next/image'
 
 export type ImageProps = {

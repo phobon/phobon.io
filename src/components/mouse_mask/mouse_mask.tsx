@@ -8,7 +8,7 @@ import { damp } from 'maath/easing'
 
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
-import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
+import { useMotionValue, useMotionValueEvent, useSpring } from 'motion/react'
 
 const virtualScene = new THREE.Scene()
 

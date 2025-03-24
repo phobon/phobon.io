@@ -1,6 +1,6 @@
 import { shaderMaterial, useTexture } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
-import { useMotionValueEvent } from 'framer-motion'
+import { useMotionValueEvent } from 'motion/react'
 import { useRef, type JSX } from 'react'
 import * as THREE from 'three'
 

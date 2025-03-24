@@ -1,9 +1,8 @@
 'use client'
 
-import { animate, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { animate, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { useLayoutStore } from '@/stores/use_layout_store'
-// import { useControls } from 'leva'
 import PixellationNoiseMaterial from '@/components/effects/pixellation_noise'
 
 const Overlay = () => {
@@ -37,20 +36,6 @@ const Overlay = () => {
       unsubscribe()
     }
   }, [headerValue, progressValue])
-
-  // useControls({
-  //   progress: {
-  //     value: 1,
-  //     min: 0,
-  //     max: 1,
-  //     onChange: (value) => {
-  //       if (!overlayRef.current) {
-  //         return
-  //       }
-  //       overlayRef.current.material.uniforms.u_progress.value = value
-  //     },
-  //   },
-  // })
 
   return (
     <mesh ref={overlayRef}>

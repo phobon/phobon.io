@@ -8,10 +8,10 @@ import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 import now from '@/data/now.json'
 
-import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
+import { CreativeProjectList } from '@/components/creative_project/creative_project_list'
 
 export default function Page({ ...props }) {
   return (
@@ -20,17 +20,9 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            height: {
-              base: '35vh',
-              md: '30vh',
-              lg: '30vh',
-            },
             gridTemplateRows: '1fr',
-            gridRowGap: '$4',
             pb: {
-              base: '$7',
-              md: '$8',
-              lg: '$10',
+              base: '$6',
             },
             alignItems: 'end',
             justifyContent: 'end',
@@ -52,10 +44,10 @@ export default function Page({ ...props }) {
               md: '$10',
               lg: '$10',
             },
-            color: '$slate10',
+            color: '$slate11',
           })}
         >
-          Ben McCormick is a design engineer based in Perth, Western Australia
+          Design engineer making rad stuff for the web
         </h1>
       </section>
 
@@ -67,64 +59,7 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <ul
-          className={css({
-            display: 'grid',
-            gridTemplateColumns: 'subgrid',
-            placeItems: 'start',
-            gridColumn: '1 / -1',
-            gridRowGap: {
-              base: '$6',
-              md: '$6',
-              lg: '$5',
-            },
-          })}
-        >
-          {creativeProjects.map(
-            (
-              {
-                key,
-                imageSrc,
-                videoSrc,
-                title,
-                description,
-                status,
-                imageDimensions,
-                videoDimensions,
-                priority,
-                href,
-                hidden,
-              },
-              index,
-            ) => {
-              const projectIndex = new String(index + 1).padStart(2, '0')
-
-              if (hidden) {
-                return null
-              }
-
-              return (
-                <CreativeProject
-                  key={key}
-                  className={css({
-                    gridColumn: '1 / -1',
-                  })}
-                  index={projectIndex}
-                  imageSrc={imageSrc}
-                  videoSrc={videoSrc}
-                  title={title}
-                  status={status}
-                  imageDimensions={imageDimensions}
-                  videoDimensions={videoDimensions}
-                  priority={priority}
-                  href={href}
-                >
-                  {description}
-                </CreativeProject>
-              )
-            },
-          )}
-        </ul>
+        <CreativeProjectList creativeProjects={creativeProjects} />
       </section>
 
       <section

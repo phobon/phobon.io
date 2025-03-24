@@ -1,7 +1,7 @@
 import { css } from '@/design/css'
 import { PerspectiveCamera, View, shaderMaterial, useTexture } from '@react-three/drei'
 import { extend, useFrame, useThree } from '@react-three/fiber'
-import { useMotionValueEvent, useTransform } from 'framer-motion'
+import { useMotionValueEvent, useTransform } from 'motion/react'
 import { Suspense, forwardRef, useImperativeHandle, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 

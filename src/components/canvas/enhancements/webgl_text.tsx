@@ -9,7 +9,7 @@ import { Material } from 'three'
 import { PerspectiveCamera } from '@/utils/perspective_camera'
 import { cn } from '@/utils/cn'
 import { UseTrackerOptions, useTracker } from '@/utils/use_tracker'
-import { MotionValue, useMotionValueEvent } from 'framer-motion'
+import { MotionValue, useMotionValueEvent } from 'motion/react'
 import { v4 as uuid } from 'uuid'
 import { useMediaQuery } from '@uidotdev/usehooks'
 

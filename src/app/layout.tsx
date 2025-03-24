@@ -29,7 +29,7 @@ const RootLayout = ({ children }) => {
 
         <Footer />
 
-        <Loader className='phbn__loader' />
+        {/* <Loader className='phbn__loader' /> */}
 
         <Analytics />
         <SpeedInsights />

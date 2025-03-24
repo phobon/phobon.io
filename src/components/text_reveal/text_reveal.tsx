@@ -3,7 +3,7 @@
 import { cn } from '@/utils/cn'
 import React, { PropsWithChildren, forwardRef, useImperativeHandle, useRef } from 'react'
 import { css } from '@/design/css'
-import { animate, cubicBezier, stagger } from 'framer-motion'
+import { animate, cubicBezier, stagger } from 'motion/react'
 import { useIsomorphicLayoutEffect } from '@/utils/use_isomorphic_layout_effect'
 import SplitType from 'split-type'
 
