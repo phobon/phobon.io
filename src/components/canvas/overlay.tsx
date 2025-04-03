@@ -1,6 +1,6 @@
 'use client'
 
-import { animate, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { animate, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { useLayoutStore } from '@/stores/use_layout_store'
 // import { useControls } from 'leva'

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const headingStyles = css({
   color: '$slate12',

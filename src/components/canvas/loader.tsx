@@ -4,7 +4,7 @@ import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { useProgress } from '@react-three/drei'
-import { useMotionValue, useMotionValueEvent, useSpring } from 'framer-motion'
+import { useMotionValue, useMotionValueEvent, useSpring } from 'motion/react'
 import { useEffect, useRef } from 'react'
 
 type DataInterpolationFunction = (p: number) => [number, string]

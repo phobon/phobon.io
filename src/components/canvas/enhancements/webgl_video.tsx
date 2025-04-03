@@ -4,7 +4,7 @@ import { useImgTracker } from '@/utils/use_tracker'
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { ImageBase } from './image_base'
 import { useRef } from 'react'
-import { useMotionValueEvent } from 'framer-motion'
+import { useMotionValueEvent } from 'motion/react'
 import { useVideoTexture } from '@react-three/drei'
 import { CellularImage } from './cellular_image'
 
