@@ -11,6 +11,16 @@ export const navigationLinks: INavigationLink[] = [
 ]
 
 export const socialLinks: INavigationLink[] = [
+  {
+    id: 'social__x',
+    label: 'X',
+    href: 'https://www.x.com/thenoumenon',
+  },
+  {
+    id: 'social__bsky',
+    label: 'Bluesky',
+    href: 'https://bsky.app/profile/phobon.io',
+  },
   { id: 'social__github', label: 'Github', href: 'https://github.com/phobon' },
   {
     id: 'social__linkedin',
