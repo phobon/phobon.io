@@ -38,7 +38,7 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
         )}
       >
         {children}
-        <Scene
+        {/* <Scene
           style={{
             position: 'fixed',
             inset: 0,
@@ -50,7 +50,7 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
           eventPrefix='client'
           debug={false}
           screenSizeCamera={screenSizeCamera}
-        />
+        /> */}
       </main>
     </ReactLenis>
   )

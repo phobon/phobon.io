@@ -14,30 +14,46 @@ export const Header = ({ ...props }) => {
       className={cn(
         css({
           width: '100%',
-          top: 0,
-          position: 'sticky',
+          // top: 0,
+          // position: 'sticky',
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
           zIndex: 1,
+          fontSize: '$2',
         }),
         gridStyles,
         'phbn__header',
       )}
       {...props}
     >
-      <Link
-        href='/'
+      <div
         className={css({
-          gridColumn: '1 / span 1',
+          gridColumn: '1 / 6',
           pl: {
             base: '$4',
             md: '$5',
           },
+          color: '$slate12',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '$5',
         })}
       >
-        <Identity aria-label='Go home' />
-      </Link>
+        <Link href='/'>
+          <Identity aria-label='Go home' />
+        </Link>
+        <div className={css({ display: 'flex', gap: '$2' })}>
+          <span>Ben McCormick</span>
+          <span
+            className={css({
+              color: '$slate11',
+            })}
+          >
+            Design Engineer
+          </span>
+        </div>
+      </div>
 
       <div
         className={css({
@@ -50,7 +66,7 @@ export const Header = ({ ...props }) => {
           textAlign: 'right',
           display: 'flex',
           justifyContent: 'flex-end',
-          alignItems: 'flex-start',
+          alignItems: 'center',
           pr: {
             base: '$4',
             md: '$5',

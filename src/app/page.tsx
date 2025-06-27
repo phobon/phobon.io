@@ -31,7 +31,15 @@ export default function Page({ ...props }) {
   }
 
   return (
-    <>
+    <section
+      className={css({
+        display: 'grid',
+        gridTemplateColumns: 'subgrid',
+        gridColumn: '1 / -1',
+        gridRowGap: '$10',
+        pt: '$5',
+      })}
+    >
       <section
         className={cn(
           sectionStyles,
@@ -82,16 +90,16 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            pt: {
-              base: '$6',
-              md: '$12',
-              lg: '$12',
-            },
-            pb: {
-              base: '$6',
-              md: '$12',
-              lg: '$12',
-            },
+            // pt: {
+            //   base: '$6',
+            //   md: '$12',
+            //   lg: '$12',
+            // },
+            // pb: {
+            //   base: '$6',
+            //   md: '$12',
+            //   lg: '$12',
+            // },
             gridTemplateColumns: 'subgrid',
             gridTemplateRows: '1fr',
             gridRowGap: {
@@ -103,43 +111,31 @@ export default function Page({ ...props }) {
           }),
         )}
       >
-        <div
+        <p
           className={css({
             position: 'relative',
             gridColumn: {
               base: '1 / -1',
               md: 'span 5',
-              lg: 'span 7',
+              lg: 'span 6',
             },
-            display: 'flex',
-            flexDirection: 'column',
             fontSize: {
               base: '$5',
               md: '$7',
               lg: '$7',
             },
-            gap: '$7',
             color: '$slate11',
+            lineHeight: '$tight',
+            textIndent: 'calc((100% / 12) * 1)',
+            textWrap: 'pretty',
           })}
         >
-          <p>
-            I am a design engineer focused on the entire frontend stack including React, WebGL development, interface
-            and interaction design; as well as creative direction and animation.
-          </p>
+          I am a design engineer with over {`${new Date().getFullYear() - 2005}`} years of experience, focused on the
+          entire frontend stack including React, WebGL development, interface and interaction design; as well as
+          creative direction and animation.
+        </p>
 
-          <p>
-            With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
-            across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
-          </p>
-
-          <p>
-            I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
-            passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
-            the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
-          </p>
-        </div>
-
-        <div
+        <aside
           className={css({
             display: 'flex',
             flexDirection: 'column',
@@ -147,7 +143,7 @@ export default function Page({ ...props }) {
             gridColumn: {
               base: '1 / -1',
               md: '6 / -1',
-              lg: '9 / -1',
+              lg: 'span 3',
             },
             gridRow: {
               base: 'initial',
@@ -184,7 +180,26 @@ export default function Page({ ...props }) {
               )
             })}
           </SideStack>
+        </aside>
 
+        <aside
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '$8',
+            gridColumn: {
+              base: '1 / -1',
+              md: '6 / -1',
+              lg: 'span 3',
+            },
+            gridRow: {
+              base: 'initial',
+              md: '1 / span 1',
+              lg: '1 / span 1',
+            },
+            fontSize: '$2',
+          })}
+        >
           <SideStack title='Writing'>
             {allWriting.map(({ key, title, href, published, external }) => {
               if (!published) {
@@ -208,7 +223,7 @@ export default function Page({ ...props }) {
               )
             })}
           </SideStack>
-        </div>
+        </aside>
       </section>
 
       <section
@@ -237,16 +252,17 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          {workProjects.map(({ key, href, title, description, index, client }) => {
+          {workProjects.map((p) => {
+            const { key, description, ...rest } = p
             return (
-              <MiniProject as='li' key={key} href={href} title={title} index={index} client={client}>
+              <MiniProject as='li' key={key} {...rest}>
                 {description}
               </MiniProject>
             )
           })}
         </ul>
       </section>
-    </>
+    </section>
   )
 }
 

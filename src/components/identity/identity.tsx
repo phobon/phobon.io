@@ -12,12 +12,8 @@ export const Identity = forwardRef<HTMLDivElement, IdentityProps>(({ className, 
       css({
         width: {
           base: 28,
-          md: 32,
         },
-        height: {
-          base: 28,
-          md: 32,
-        },
+        aspectRatio: '1 / 1',
         cursor: 'pointer',
       }),
       className,

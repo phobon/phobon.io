@@ -12,7 +12,6 @@ export const Footer = ({ ...props }) => {
           overflow: 'hidden',
           alignItems: 'end',
           justifyContent: 'start',
-          height: '10dvh',
           px: '$5',
           pb: '$4',
         }),
