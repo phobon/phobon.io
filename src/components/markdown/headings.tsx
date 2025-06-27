@@ -49,7 +49,6 @@ export const H1 = forwardRef<HTMLHeadingElement, any>(({ className, children, ..
           transition: {
             duration: 0.5,
             delay: 0,
-            ease,
           },
         },
         initial: {

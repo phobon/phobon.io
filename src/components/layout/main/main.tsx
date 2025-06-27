@@ -5,14 +5,13 @@ import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 
 import { ReactLenis } from 'lenis/react'
-import Scene from '@/components/canvas/scene'
 import { gridStyles } from '../common'
 
 export type MainProps = {
   debug?: boolean
 } & any
 
-export const Main = ({ className, screenSizeCamera = false, children }: MainProps) => {
+export const Main = ({ className, children }: MainProps) => {
   const ref = useRef(null)
   const lenisRef = useRef<any>(null)
 
@@ -38,19 +37,6 @@ export const Main = ({ className, screenSizeCamera = false, children }: MainProp
         )}
       >
         {children}
-        <Scene
-          style={{
-            position: 'fixed',
-            inset: 0,
-            width: '100dvw',
-            height: '100dvh',
-            pointerEvents: 'none',
-          }}
-          eventSource={ref}
-          eventPrefix='client'
-          debug={false}
-          screenSizeCamera={screenSizeCamera}
-        />
       </main>
     </ReactLenis>
   )

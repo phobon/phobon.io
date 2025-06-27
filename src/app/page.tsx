@@ -14,51 +14,32 @@ import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 
 export default function Page({ ...props }) {
-  return (
-    <>
-      <section
-        className={cn(
-          sectionStyles,
-          css({
-            height: {
-              base: '35vh',
-              md: '30vh',
-              lg: '30vh',
-            },
-            gridTemplateRows: '1fr',
-            gridRowGap: '$4',
-            pb: {
-              base: '$7',
-              md: '$8',
-              lg: '$10',
-            },
-            alignItems: 'end',
-            justifyContent: 'end',
-          }),
-        )}
-      >
-        <h1
-          className={css({
-            justifyContent: 'flex-start',
-            lineHeight: '$none',
-            gridColumn: {
-              base: '1 / -1',
-              md: '1 / -1',
-              lg: '1 / span 8',
-            },
-            width: '100%',
-            fontSize: {
-              base: '$8',
-              md: '$10',
-              lg: '$10',
-            },
-            color: '$slate10',
-          })}
-        >
-          Ben McCormick is a design engineer based in Perth, Western Australia
-        </h1>
-      </section>
+  const filteredProjects = []
 
+  let i = 0
+  for (const project of creativeProjects) {
+    const { active, ...rest } = project
+    if (!active) {
+      continue
+    }
+
+    i += 1
+    filteredProjects.push({
+      ...rest,
+      index: new String(i).padStart(2, '0'),
+    })
+  }
+
+  return (
+    <section
+      className={css({
+        display: 'grid',
+        gridTemplateColumns: 'subgrid',
+        gridColumn: '1 / -1',
+        gridRowGap: '$10',
+        pt: '$5',
+      })}
+    >
       <section
         className={cn(
           sectionStyles,
@@ -74,56 +55,33 @@ export default function Page({ ...props }) {
             placeItems: 'start',
             gridColumn: '1 / -1',
             gridRowGap: {
-              base: '$6',
-              md: '$6',
+              base: '$8',
               lg: '$5',
             },
           })}
         >
-          {creativeProjects.map(
-            (
-              {
-                key,
-                imageSrc,
-                videoSrc,
-                title,
-                description,
-                status,
-                imageDimensions,
-                videoDimensions,
-                priority,
-                href,
-                hidden,
-              },
-              index,
-            ) => {
-              const projectIndex = new String(index + 1).padStart(2, '0')
+          {filteredProjects.map((project) => {
+            const { key, index, description, ...rest } = project
 
-              if (hidden) {
-                return null
-              }
-
-              return (
-                <CreativeProject
-                  key={key}
-                  className={css({
-                    gridColumn: '1 / -1',
-                  })}
-                  index={projectIndex}
-                  imageSrc={imageSrc}
-                  videoSrc={videoSrc}
-                  title={title}
-                  status={status}
-                  imageDimensions={imageDimensions}
-                  videoDimensions={videoDimensions}
-                  priority={priority}
-                  href={href}
-                >
+            return (
+              <li
+                key={key}
+                className={cn(
+                  css({
+                    display: 'grid',
+                    gridTemplateColumns: 'subgrid',
+                    width: '100%',
+                    position: 'relative',
+                    gridColumn: { base: '1 / -1', lg: 'span 6' },
+                  }),
+                )}
+              >
+                <CreativeProject className={css({})} index={index} {...rest}>
                   {description}
                 </CreativeProject>
-              )
-            },
-          )}
+              </li>
+            )
+          })}
         </ul>
       </section>
 
@@ -131,72 +89,50 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            pt: {
-              base: '$6',
-              md: '$12',
-              lg: '$12',
-            },
-            pb: {
-              base: '$6',
-              md: '$12',
-              lg: '$12',
-            },
             gridTemplateColumns: 'subgrid',
-            gridTemplateRows: '1fr',
+            gridTemplateRows: { base: '1fr auto', lg: '1fr' },
             gridRowGap: {
               base: '$6',
-              md: '$4',
               lg: '$4',
             },
             placeItems: 'start',
           }),
         )}
       >
-        <div
+        <p
           className={css({
             position: 'relative',
             gridColumn: {
               base: '1 / -1',
-              md: 'span 5',
-              lg: 'span 7',
+              md: '1 / 5',
+              lg: 'span 6',
             },
-            display: 'flex',
-            flexDirection: 'column',
+            gridRow: '1 / -1',
             fontSize: {
               base: '$5',
               md: '$7',
               lg: '$7',
             },
-            gap: '$7',
             color: '$slate11',
+            lineHeight: '$tight',
+            textIndent: { base: 'calc((100% / 6) * 1)', md: 'calc((100% / 8) * 1)', lg: 'calc((100% / 12) * 1)' },
+            textWrap: 'pretty',
           })}
         >
-          <p>
-            I am a design engineer focused on the entire frontend stack including React, WebGL development, interface
-            and interaction design; as well as creative direction and animation.
-          </p>
+          I am a design engineer with over {`${new Date().getFullYear() - 2005}`} years of experience, focused on the
+          entire frontend stack including React, WebGL development, interface and interaction design; as well as
+          creative direction and animation.
+        </p>
 
-          <p>
-            With over {`${new Date().getFullYear() - 2005}`} years of experience embedded across product teams, I thrive
-            across disciplines - taking great pride in my ability to adapt; connecting and elevating teams I work with.
-          </p>
-
-          <p>
-            I am adept working in startup, scaleup, traditional and remote environments. I approach my work with
-            passion, enthusiasm, and a desire to bring every experience to the highest levels of quality. I try to be
-            the best possible teammate, and love seeing and celebrating my colleagues&apos; successes.
-          </p>
-        </div>
-
-        <div
+        <aside
           className={css({
             display: 'flex',
             flexDirection: 'column',
-            gap: '$8',
+            gap: { base: '$6', lg: '$8' },
             gridColumn: {
               base: '1 / -1',
-              md: '6 / -1',
-              lg: '9 / -1',
+              md: '5 / -1',
+              lg: 'span 3',
             },
             gridRow: {
               base: 'initial',
@@ -233,7 +169,26 @@ export default function Page({ ...props }) {
               )
             })}
           </SideStack>
+        </aside>
 
+        <aside
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '$8',
+            gridColumn: {
+              base: '1 / -1',
+              md: '5 / -1',
+              lg: 'span 3',
+            },
+            gridRow: {
+              base: 'initial',
+              md: '2 / span 1',
+              lg: '1 / span 1',
+            },
+            fontSize: '$2',
+          })}
+        >
           <SideStack title='Writing'>
             {allWriting.map(({ key, title, href, published, external }) => {
               if (!published) {
@@ -257,7 +212,7 @@ export default function Page({ ...props }) {
               )
             })}
           </SideStack>
-        </div>
+        </aside>
       </section>
 
       <section
@@ -286,16 +241,17 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          {workProjects.map(({ key, href, title, description, index, client }) => {
+          {workProjects.map((p) => {
+            const { key, description, ...rest } = p
             return (
-              <MiniProject as='li' key={key} href={href} title={title} index={index} client={client}>
+              <MiniProject as='li' key={key} {...rest}>
                 {description}
               </MiniProject>
             )
           })}
         </ul>
       </section>
-    </>
+    </section>
   )
 }
 

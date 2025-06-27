@@ -53,16 +53,10 @@
 
   .phbn__header {
     grid-area: header;
-    --progress: 0;
-    opacity: var(--progress);
   }
 
   .phbn__main {
     grid-area: 1 / 1 / -1 / -1;
-  }
-
-  .phbn__header {
-    grid-area: footer;
   }
 
   .phbn__header,
@@ -77,46 +71,6 @@
     right: 0;
     bottom: 0;
     transform: translate(-270px, -48px);
-  }
-
-  .phbn__loader {
-    background-color: #060708;
-    color: #fff;
-  }
-
-  .phbn__grid {
-    position: fixed;
-    inset: 0;
-    width: 100dvw;
-    height: 100dvh;
-    display: grid;
-    place-items: end;
-    pointer-events: none;
-    padding: 0 var(--mainGridMargin) !important;
-
-    .phbn__grid__column {
-      width: 1px;
-      height: 100%;
-      grid-row: 1 / span 1;
-
-      &:nth-child(n) {
-        grid-column: span 3;
-      }
-      &:nth-child(2) {
-        grid-column: 1 / span 3;
-      }
-
-      &:first-child {
-        grid-column: 1 / span 1;
-        /* margin-left: 16px !important; */
-        place-self: start;
-      }
-
-      &:last-child {
-        grid-column: 12 / span 1;
-        /* margin-right: 16px !important; */
-      }
-    }
   }
 
   .textreveal__segment__parent {

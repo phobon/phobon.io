@@ -41,7 +41,7 @@ export const layoutContainerStyles = cva({
 
 export const gridStyles = css({
   display: 'grid',
-  gridColumnGap: '$4',
+  gridColumnGap: '$5',
   gridTemplateColumns: {
     base: 'repeat(6, 1fr)',
     md: 'repeat(8, 1fr)',

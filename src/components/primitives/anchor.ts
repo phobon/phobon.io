@@ -7,7 +7,7 @@ export const anchorStyles = css({
 
   border: 0,
   position: 'relative',
-  background: 'hsl(240, 22%, 99%)',
+  background: '#fff',
   cursor: 'pointer',
   padding: 0,
   transition: 'color 0.25s ease-in-out',

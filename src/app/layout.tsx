@@ -7,7 +7,6 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
-import Loader from '@/components/canvas/loader'
 import Footer from '@/components/layout/footer'
 
 export const metadata: Metadata = {
@@ -23,13 +22,9 @@ const RootLayout = ({ children }) => {
       <body className='phbn__body'>
         <Header />
 
-        <Main debug showLoader>
-          {children}
-        </Main>
+        <Main debug>{children}</Main>
 
         <Footer />
-
-        <Loader className='phbn__loader' />
 
         <Analytics />
         <SpeedInsights />

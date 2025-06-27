@@ -1,6 +1,8 @@
 import { cn } from '@/utils/cn'
 import { css } from '@/design/css'
 import { gridStyles } from '../common'
+import { anchorStyles } from '@/components/primitives/anchor'
+import { socialLinks } from '@/data/links'
 
 export const Footer = ({ ...props }) => {
   return (
@@ -10,11 +12,13 @@ export const Footer = ({ ...props }) => {
           width: '100%',
           top: 0,
           overflow: 'hidden',
-          alignItems: 'end',
+          alignItems: 'start',
           justifyContent: 'start',
-          height: '10dvh',
-          px: '$5',
-          pb: '$4',
+          pb: '$5',
+          gridRowGap: {
+            base: '$5',
+            md: 0,
+          },
         }),
         gridStyles,
         'phbn__footer',
@@ -27,22 +31,46 @@ export const Footer = ({ ...props }) => {
           fontSize: '$2',
           lineHeight: '$none',
           color: '$slate11',
+          pl: '$5',
         })}
       >
         © {new Date().getFullYear()}
       </div>
 
+      <nav
+        className={css({
+          gridColumn: {
+            base: '1 / -1',
+            md: '3 / span 1',
+            lg: '4 / span 1',
+          },
+          display: {
+            base: 'grid',
+          },
+          px: { base: '$5', md: 0 },
+          gridAutoRows: 'auto',
+          alignItems: 'center',
+          justifyContent: 'start',
+        })}
+      >
+        {socialLinks.map(({ id, label, href }) => (
+          <a key={id} target='_blank' href={href} className={anchorStyles}>
+            {label}
+          </a>
+        ))}
+      </nav>
+
       <div
         className={css({
           gridColumn: {
-            base: 'initial',
-            md: '7 / span 3',
+            base: '1 / -1',
+            md: '5 / span 3',
             lg: '9 / span 3',
           },
           display: {
-            base: 'none',
-            md: 'grid',
+            base: 'grid',
           },
+          px: { base: '$5', md: 0 },
           fontSize: '$2',
           lineHeight: '$none',
           color: '$slate11',
@@ -54,15 +82,18 @@ export const Footer = ({ ...props }) => {
       <div
         className={css({
           gridColumn: {
-            base: '-2 / -1',
+            base: '1 / -1',
+            md: '-2 / -1',
           },
-          textAlign: 'right',
+          textAlign: { base: 'left', md: 'right' },
           fontSize: '$2',
           lineHeight: '$none',
           color: '$slate11',
+          pr: { base: 'initial', md: '$5' },
+          px: { base: '$5', md: 0 },
         })}
       >
-        phobon
+        phobon.io
       </div>
     </footer>
   )

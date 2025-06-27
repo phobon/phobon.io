@@ -1,33 +1,33 @@
 [
   {
     "key": "work_project--mds",
-    "title": "Moleskine Design Studio (MDS)",
-    "href": "https://moleskinestudio.com",
-    "description": "Landing page for Moleskine Design Studio",
+    "title": "Bonobo",
+    "href": "https://bonobolabs.com",
+    "description": "Landing page for Bonobo",
     "client": "Bonobo",
     "index": "01"
   },
   {
     "key": "work_project--mds_timepage",
-    "title": "Timepage by MDS",
-    "href": "https://moleskinestudio.com/timepage",
-    "description": "Product page for Timepage by Moleskine Design Studio",
+    "title": "Timepage by Bonobo",
+    "href": "https://bonobolabs.com/timepage",
+    "description": "Product page for Timepage by Bonobo",
     "client": "Bonobo",
     "index": "02"
   },
   {
     "key": "work_project--mds_actions",
     "title": "Actions by MDS",
-    "href": "https://moleskinestudio.com/actions",
-    "description": "Product page for Actions by Moleskine Design Studio",
+    "href": "https://bonobolabs.com/actions",
+    "description": "Product page for Actions by Bonobo",
     "client": "Bonobo",
     "index": "03"
   },
   {
     "key": "work_project--mds_flowweb",
     "title": "Flow Web",
-    "href": "https://flowapp.moleskinestudio.com/",
-    "description": "Canvas views for Flow by Moleskine Design Studio",
+    "href": "https://flowapp.bonobolabs.com/",
+    "description": "Canvas views for Flow by Bonobo",
     "client": "Bonobo",
     "index": "04"
   },

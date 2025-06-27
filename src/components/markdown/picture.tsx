@@ -5,7 +5,7 @@ export type PictureProps = {
   loading?: 'lazy' | 'eager'
   width: any
   height: any
-} & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+} & any
 
 export const Picture = ({ src, alt, loading = 'lazy', width, height, ...props }: PictureProps) => (
   <div

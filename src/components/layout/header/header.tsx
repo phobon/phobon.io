@@ -14,52 +14,56 @@ export const Header = ({ ...props }) => {
       className={cn(
         css({
           width: '100%',
-          top: 0,
-          position: 'sticky',
+          // top: 0,
+          // position: 'sticky',
           overflow: 'hidden',
           flexDirection: 'column',
           py: '$4',
           zIndex: 1,
+          fontSize: '$2',
         }),
         gridStyles,
         'phbn__header',
       )}
       {...props}
     >
-      <Link
-        href='/'
+      <div
         className={css({
-          gridColumn: '1 / span 1',
+          gridColumn: '1 / 6',
           pl: {
             base: '$4',
             md: '$5',
           },
-        })}
-      >
-        <Identity aria-label='Go home' />
-      </Link>
-      <nav
-        className={css({
-          gridColumn: {
-            base: 'initial',
-            md: '7 / span 1',
-            lg: '9 / span 1',
-          },
-          display: {
-            base: 'none',
-            md: 'grid',
-          },
-          gridAutoRows: 'auto',
+          color: '$slate12',
+          display: 'flex',
           alignItems: 'center',
-          justifyContent: 'start',
+          gap: '$5',
         })}
       >
-        {socialLinks.map(({ id, label, href }) => (
-          <a key={id} target='_blank' href={href} className={anchorStyles}>
-            {label}
-          </a>
-        ))}
-      </nav>
+        <Link href='/'>
+          <Identity aria-label='Go home' />
+        </Link>
+        <div
+          className={css({
+            display: 'flex',
+            lineHeight: '$tight',
+            flexDirection: {
+              base: 'column',
+              lg: 'row',
+            },
+            gap: { base: 0, lg: '$2' },
+          })}
+        >
+          <span>Ben McCormick</span>
+          <span
+            className={css({
+              color: '$slate11',
+            })}
+          >
+            Design Engineer
+          </span>
+        </div>
+      </div>
 
       <div
         className={css({
@@ -68,11 +72,12 @@ export const Header = ({ ...props }) => {
             md: '9 / span 1',
             lg: '11 / span 2',
           },
-          color: '#000',
+          color: '$slate12',
           textAlign: 'right',
           display: 'flex',
           justifyContent: 'flex-end',
-          alignItems: 'flex-start',
+          alignItems: { base: 'flex-start', lg: 'center' },
+          lineHeight: '$tight',
           pr: {
             base: '$4',
             md: '$5',
