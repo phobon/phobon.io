@@ -35,7 +35,7 @@ export const CreativeProject = ({ ref, ...props }) => {
           <video
             className={css({
               position: 'absolute',
-              objectFit: objectFit || 'cover',
+              objectFit: { base: 'cover', md: 'contain', lg: objectFit || 'cover' },
             })}
             src={videoSrc}
           />
@@ -45,7 +45,7 @@ export const CreativeProject = ({ ref, ...props }) => {
             src={imageSrc}
             className={css({
               position: 'absolute',
-              objectFit: objectFit || 'cover',
+              objectFit: { base: 'cover', md: 'contain', lg: objectFit || 'cover' },
             })}
             fill
             priority={priority}

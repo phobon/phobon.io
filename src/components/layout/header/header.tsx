@@ -43,7 +43,17 @@ export const Header = ({ ...props }) => {
         <Link href='/'>
           <Identity aria-label='Go home' />
         </Link>
-        <div className={css({ display: 'flex', gap: '$2' })}>
+        <div
+          className={css({
+            display: 'flex',
+            lineHeight: '$tight',
+            flexDirection: {
+              base: 'column',
+              lg: 'row',
+            },
+            gap: { base: 0, lg: '$2' },
+          })}
+        >
           <span>Ben McCormick</span>
           <span
             className={css({
@@ -62,11 +72,12 @@ export const Header = ({ ...props }) => {
             md: '9 / span 1',
             lg: '11 / span 2',
           },
-          color: '#000',
+          color: '$slate12',
           textAlign: 'right',
           display: 'flex',
           justifyContent: 'flex-end',
-          alignItems: 'center',
+          alignItems: { base: 'flex-start', lg: 'center' },
+          lineHeight: '$tight',
           pr: {
             base: '$4',
             md: '$5',

@@ -43,7 +43,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         <span
           className={css({
             gridColumn: {
-              base: '1 / span 1',
+              base: '1 / span 2',
             },
             display: {
               base: 'none',
@@ -67,7 +67,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
           className={css({
             gridColumn: {
               base: '1 / -2',
-              md: '2 / span 2',
+              md: '3 / span 2',
               lg: '4 / 6',
             },
             gridRow: {
@@ -81,7 +81,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
           className={css({
             gridColumn: {
               base: '1 / -2',
-              md: 'span 5',
+              md: '5 / -2',
               lg: '7 / -2',
             },
             gridRow: {
@@ -93,21 +93,6 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         >
           {children}
         </span>
-        {/* <span
-          className={css({
-            gridColumn: {
-              base: 'span 1',
-            },
-            display: {
-              base: 'none',
-              md: 'block',
-            },
-            textAlign: 'right',
-            color: '$slate9',
-          })}
-        >
-          {client}
-        </span> */}
         <span
           className={css({
             gridColumn: {

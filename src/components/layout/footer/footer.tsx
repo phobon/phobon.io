@@ -14,7 +14,11 @@ export const Footer = ({ ...props }) => {
           overflow: 'hidden',
           alignItems: 'start',
           justifyContent: 'start',
-          pb: '$4',
+          pb: '$5',
+          gridRowGap: {
+            base: '$5',
+            md: 0,
+          },
         }),
         gridStyles,
         'phbn__footer',
@@ -36,14 +40,14 @@ export const Footer = ({ ...props }) => {
       <nav
         className={css({
           gridColumn: {
-            base: 'initial',
-            md: '7 / span 1',
+            base: '1 / -1',
+            md: '3 / span 1',
             lg: '4 / span 1',
           },
           display: {
-            base: 'none',
-            md: 'grid',
+            base: 'grid',
           },
+          px: { base: '$5', md: 0 },
           gridAutoRows: 'auto',
           alignItems: 'center',
           justifyContent: 'start',
@@ -59,14 +63,14 @@ export const Footer = ({ ...props }) => {
       <div
         className={css({
           gridColumn: {
-            base: 'initial',
-            md: '7 / span 3',
+            base: '1 / -1',
+            md: '5 / span 3',
             lg: '9 / span 3',
           },
           display: {
-            base: 'none',
-            md: 'grid',
+            base: 'grid',
           },
+          px: { base: '$5', md: 0 },
           fontSize: '$2',
           lineHeight: '$none',
           color: '$slate11',
@@ -78,16 +82,18 @@ export const Footer = ({ ...props }) => {
       <div
         className={css({
           gridColumn: {
-            base: '-2 / -1',
+            base: '1 / -1',
+            md: '-2 / -1',
           },
-          textAlign: 'right',
+          textAlign: { base: 'left', md: 'right' },
           fontSize: '$2',
           lineHeight: '$none',
           color: '$slate11',
-          pr: '$5',
+          pr: { base: 'initial', md: '$5' },
+          px: { base: '$5', md: 0 },
         })}
       >
-        phobon
+        phobon.io
       </div>
     </footer>
   )

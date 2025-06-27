@@ -55,8 +55,7 @@ export default function Page({ ...props }) {
             placeItems: 'start',
             gridColumn: '1 / -1',
             gridRowGap: {
-              base: '$6',
-              md: '$6',
+              base: '$8',
               lg: '$5',
             },
           })}
@@ -73,7 +72,7 @@ export default function Page({ ...props }) {
                     gridTemplateColumns: 'subgrid',
                     width: '100%',
                     position: 'relative',
-                    gridColumn: 'span 6',
+                    gridColumn: { base: '1 / -1', lg: 'span 6' },
                   }),
                 )}
               >
@@ -90,21 +89,10 @@ export default function Page({ ...props }) {
         className={cn(
           sectionStyles,
           css({
-            // pt: {
-            //   base: '$6',
-            //   md: '$12',
-            //   lg: '$12',
-            // },
-            // pb: {
-            //   base: '$6',
-            //   md: '$12',
-            //   lg: '$12',
-            // },
             gridTemplateColumns: 'subgrid',
-            gridTemplateRows: '1fr',
+            gridTemplateRows: { base: '1fr auto', lg: '1fr' },
             gridRowGap: {
               base: '$6',
-              md: '$4',
               lg: '$4',
             },
             placeItems: 'start',
@@ -116,9 +104,10 @@ export default function Page({ ...props }) {
             position: 'relative',
             gridColumn: {
               base: '1 / -1',
-              md: 'span 5',
+              md: '1 / 5',
               lg: 'span 6',
             },
+            gridRow: '1 / -1',
             fontSize: {
               base: '$5',
               md: '$7',
@@ -126,7 +115,7 @@ export default function Page({ ...props }) {
             },
             color: '$slate11',
             lineHeight: '$tight',
-            textIndent: 'calc((100% / 12) * 1)',
+            textIndent: { base: 'calc((100% / 6) * 1)', md: 'calc((100% / 8) * 1)', lg: 'calc((100% / 12) * 1)' },
             textWrap: 'pretty',
           })}
         >
@@ -139,10 +128,10 @@ export default function Page({ ...props }) {
           className={css({
             display: 'flex',
             flexDirection: 'column',
-            gap: '$8',
+            gap: { base: '$6', lg: '$8' },
             gridColumn: {
               base: '1 / -1',
-              md: '6 / -1',
+              md: '5 / -1',
               lg: 'span 3',
             },
             gridRow: {
@@ -189,12 +178,12 @@ export default function Page({ ...props }) {
             gap: '$8',
             gridColumn: {
               base: '1 / -1',
-              md: '6 / -1',
+              md: '5 / -1',
               lg: 'span 3',
             },
             gridRow: {
               base: 'initial',
-              md: '1 / span 1',
+              md: '2 / span 1',
               lg: '1 / span 1',
             },
             fontSize: '$2',
