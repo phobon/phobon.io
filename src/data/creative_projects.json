@@ -1,36 +1,43 @@
 [
   {
+    "key": "project--fragmentssupply",
+    "status": "Live",
+    "title": "Fragments",
+    "description": "Learn creative coding with shaders.",
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/fragments.webp",
+    "priority": true,
+    "href": "https://fragments.supply/",
+    "active": true
+  },
+  {
     "key": "project--thestudio",
     "status": "Live",
     "title": "The Studio",
     "description": "Website for a boutique physiotherapy and pilates studio.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/thestudio_frame.webp",
-    "imageDimensions": [1200, 630],
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/thestudio.webp",
     "priority": true,
     "href": "https://thestudiophysio.com/",
-    "hidden": false
+    "active": true
   },
   {
     "key": "project--shadercraft",
     "status": "Live",
     "title": "Shadercraft°",
     "description": "Curated shader art, learning, inspiration and the people that make it happen.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/shadercraft.webp",
-    "imageDimensions": [1200, 630],
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/shadercraft-e.webp",
     "priority": true,
     "href": "https://shadercraft.phobon.io/",
-    "hidden": false
+    "active": true
   },
   {
     "key": "project--formation",
     "status": "Live",
     "title": "Formation°",
     "description": "A collection of generative, algorithmic shader experiences coalesed from the void.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/circular.webp",
-    "imageDimensions": [1200, 630],
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/formation.webp",
     "priority": true,
     "href": "https://formation.phobon.io",
-    "hidden": false
+    "active": true
   },
   {
     "key": "project--gigas",
@@ -39,11 +46,9 @@
     "description": "Audio stimulation given visual form.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/gigas.webp",
     "videoSrc": "https://d1zi50u3vxu38i.cloudfront.net/gigas.mp4",
-    "imageDimensions": [1200, 630],
-    "videoDimensions": [2036, 584],
     "priority": false,
     "href": "https://gigas.phobon.io/",
-    "hidden": true
+    "active": false
   },
   {
     "key": "project--mdslabs",
@@ -51,10 +56,8 @@
     "title": "Moleskine Design Studio Labs",
     "description": "Experimental technology and design for Moleskine Design Studio.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/mds_labs.webp",
-    "imageDimensions": [1839, 959],
-    "videoDimensions": [1792, 938],
     "priority": false,
     "href": "https://moleskinestudio.com/lab/landing/",
-    "hidden": false
+    "active": false
   }
 ]

@@ -14,51 +14,24 @@ import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 
 export default function Page({ ...props }) {
+  const filteredProjects = []
+
+  let i = 0
+  for (const project of creativeProjects) {
+    const { active, ...rest } = project
+    if (!active) {
+      continue
+    }
+
+    i += 1
+    filteredProjects.push({
+      ...rest,
+      index: new String(i).padStart(2, '0'),
+    })
+  }
+
   return (
     <>
-      <section
-        className={cn(
-          sectionStyles,
-          css({
-            height: {
-              base: '35vh',
-              md: '30vh',
-              lg: '30vh',
-            },
-            gridTemplateRows: '1fr',
-            gridRowGap: '$4',
-            pb: {
-              base: '$7',
-              md: '$8',
-              lg: '$10',
-            },
-            alignItems: 'end',
-            justifyContent: 'end',
-          }),
-        )}
-      >
-        <h1
-          className={css({
-            justifyContent: 'flex-start',
-            lineHeight: '$none',
-            gridColumn: {
-              base: '1 / -1',
-              md: '1 / -1',
-              lg: '1 / span 8',
-            },
-            width: '100%',
-            fontSize: {
-              base: '$8',
-              md: '$10',
-              lg: '$10',
-            },
-            color: '$slate10',
-          })}
-        >
-          Ben McCormick is a design engineer based in Perth, Western Australia
-        </h1>
-      </section>
-
       <section
         className={cn(
           sectionStyles,
@@ -80,50 +53,28 @@ export default function Page({ ...props }) {
             },
           })}
         >
-          {creativeProjects.map(
-            (
-              {
-                key,
-                imageSrc,
-                videoSrc,
-                title,
-                description,
-                status,
-                imageDimensions,
-                videoDimensions,
-                priority,
-                href,
-                hidden,
-              },
-              index,
-            ) => {
-              const projectIndex = new String(index + 1).padStart(2, '0')
+          {filteredProjects.map((project) => {
+            const { key, index, description, ...rest } = project
 
-              if (hidden) {
-                return null
-              }
-
-              return (
-                <CreativeProject
-                  key={key}
-                  className={css({
-                    gridColumn: '1 / -1',
-                  })}
-                  index={projectIndex}
-                  imageSrc={imageSrc}
-                  videoSrc={videoSrc}
-                  title={title}
-                  status={status}
-                  imageDimensions={imageDimensions}
-                  videoDimensions={videoDimensions}
-                  priority={priority}
-                  href={href}
-                >
+            return (
+              <li
+                key={key}
+                className={cn(
+                  css({
+                    display: 'grid',
+                    gridTemplateColumns: 'subgrid',
+                    width: '100%',
+                    position: 'relative',
+                    gridColumn: 'span 6',
+                  }),
+                )}
+              >
+                <CreativeProject className={css({})} index={index} {...rest}>
                   {description}
                 </CreativeProject>
-              )
-            },
-          )}
+              </li>
+            )
+          })}
         </ul>
       </section>
 

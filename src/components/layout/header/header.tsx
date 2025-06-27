@@ -38,28 +38,6 @@ export const Header = ({ ...props }) => {
       >
         <Identity aria-label='Go home' />
       </Link>
-      <nav
-        className={css({
-          gridColumn: {
-            base: 'initial',
-            md: '7 / span 1',
-            lg: '9 / span 1',
-          },
-          display: {
-            base: 'none',
-            md: 'grid',
-          },
-          gridAutoRows: 'auto',
-          alignItems: 'center',
-          justifyContent: 'start',
-        })}
-      >
-        {socialLinks.map(({ id, label, href }) => (
-          <a key={id} target='_blank' href={href} className={anchorStyles}>
-            {label}
-          </a>
-        ))}
-      </nav>
 
       <div
         className={css({

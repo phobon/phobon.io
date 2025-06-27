@@ -29,8 +29,6 @@ const Scene = ({ debug = false, frameloop = 'always', screenSizeCamera = false, 
 
         {debug ? <StatsGl className='phbn__statsgl' /> : null}
 
-        <Overlay />
-
         <PerspectiveCamera makeDefault />
       </Canvas>
     </>

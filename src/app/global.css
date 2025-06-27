@@ -53,16 +53,10 @@
 
   .phbn__header {
     grid-area: header;
-    --progress: 0;
-    opacity: var(--progress);
   }
 
   .phbn__main {
     grid-area: 1 / 1 / -1 / -1;
-  }
-
-  .phbn__header {
-    grid-area: footer;
   }
 
   .phbn__header,
@@ -77,11 +71,6 @@
     right: 0;
     bottom: 0;
     transform: translate(-270px, -48px);
-  }
-
-  .phbn__loader {
-    background-color: #060708;
-    color: #fff;
   }
 
   .phbn__grid {
