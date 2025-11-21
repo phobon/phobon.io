@@ -21,6 +21,11 @@ export const socialLinks: INavigationLink[] = [
     label: 'Bluesky',
     href: 'https://bsky.app/profile/phobon.io',
   },
+  {
+    id: 'social__okaydev',
+    label: 'OKAYDEV',
+    href: 'https://okaydev.co/u/phobon/social?#profile-bottom',
+  },
   { id: 'social__github', label: 'Github', href: 'https://github.com/phobon' },
   {
     id: 'social__linkedin',

@@ -1,36 +1,40 @@
+'use client'
+
 import { css } from '@/design/css'
-import { forwardRef, useRef } from 'react'
+import { forwardRef } from 'react'
 
 import { cn } from '@/utils/cn'
 
-export const SideStack = ({ title, children, className, ref }: any) => {
-  return (
-    <ul
-      className={cn(
-        css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '$1',
-        }),
-        className,
-      )}
-      ref={ref}
-    >
-      <li
-        className={css({
-          width: '100%',
-        })}
+export const SideStack = forwardRef<HTMLUListElement, { title: string; children: React.ReactNode; className?: string }>(
+  ({ title, children, className }, ref) => {
+    return (
+      <ul
+        className={cn(
+          css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '$1',
+          }),
+          className,
+        )}
+        ref={ref}
       >
-        <h2
+        <li
           className={css({
-            color: '#000',
+            width: '100%',
           })}
         >
-          {title}
-        </h2>
-      </li>
+          <h2
+            className={css({
+              color: '#000',
+            })}
+          >
+            {title}
+          </h2>
+        </li>
 
-      {children}
-    </ul>
-  )
-}
+        {children}
+      </ul>
+    )
+  },
+)
