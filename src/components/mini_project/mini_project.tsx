@@ -1,7 +1,6 @@
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 import { anchorStyles } from '../primitives/anchor'
-import { ArrowRightIcon } from '@radix-ui/react-icons'
 
 export type MiniProjectProps = {
   index: string
@@ -109,7 +108,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
             justifySelf: 'end',
           })}
         >
-          <ArrowRightIcon width={20} height={20} />
+          →
         </span>
       </a>
     </Tag>

@@ -39,7 +39,15 @@ function useTextureLoader() {
 
 function useImageAsTexture(
   imgRef: RefObject<HTMLImageElement | null>,
-  { initTexture = true, premultiplyAlpha = 'default', wrap = false } = {},
+  {
+    initTexture = true,
+    premultiplyAlpha = 'default',
+    wrap = false,
+  }: {
+    initTexture?: boolean
+    premultiplyAlpha?: ImageBitmapOptions['premultiplyAlpha']
+    wrap?: boolean
+  } = {},
 ) {
   const gl = useThree((s) => s.gl)
   const size = useWindowSize()
