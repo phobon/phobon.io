@@ -4,10 +4,6 @@
 # testing
 /coverage
 
-# next.js (legacy — kept if present)
-/.next/
-/out/
-
 # TanStack Start / Nitro / Vite
 /output
 /.output/
