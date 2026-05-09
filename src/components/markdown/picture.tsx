@@ -1,5 +1,4 @@
 import { css } from '@/design/css'
-import Image from 'next/image'
 
 export type PictureProps = {
   loading?: 'lazy' | 'eager'
@@ -17,6 +16,6 @@ export const Picture = ({ src, alt, loading = 'lazy', width, height, ...props }:
     })}
     {...props}
   >
-    <Image src={src} alt={alt} loading={loading} width={width} height={height} />
+    <img src={src} alt={alt} loading={loading} width={width} height={height} />
   </div>
 )

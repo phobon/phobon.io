@@ -1,7 +1,5 @@
-'use client'
-
 import { useCallback } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useNavigate, useRouterState } from '@tanstack/react-router'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { wait } from './wait'
 
@@ -12,8 +10,8 @@ const urlStateSelector = ({
 
 export const Link = ({ href, children, ...props }) => {
   const { setUrlState, transitionOptions } = useLayoutStore(urlStateSelector)
-  const router = useRouter()
-  const pathname = usePathname()
+  const navigate = useNavigate()
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
 
   // Trigger a transition
   const onClick = useCallback(
@@ -31,11 +29,11 @@ export const Link = ({ href, children, ...props }) => {
 
       setUrlState('transitionOut')
       await wait(totalDuration)
-      router.push(href)
+      navigate({ to: href })
 
       setUrlState('transitionInReady')
     },
-    [pathname, href, transitionOptions, setUrlState, router],
+    [pathname, href, transitionOptions, setUrlState, navigate],
   )
 
   return (

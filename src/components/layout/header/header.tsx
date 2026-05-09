@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@tanstack/react-router'
 
 import { cn } from '@/utils/cn'
 import { css } from '@/design/css'
@@ -40,7 +40,7 @@ export const Header = ({ ...props }) => {
           gap: '$5',
         })}
       >
-        <Link href='/'>
+        <Link to='/'>
           <Identity aria-label='Go home' />
         </Link>
         <div

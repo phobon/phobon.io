@@ -1,7 +1,6 @@
 import { css } from '@/design/css'
-import Image from 'next/image'
 
-export const CreativeProject = ({ ref, ...props }) => {
+export const CreativeProject = ({ ref, ...props }: any) => {
   const { index, imageSrc, videoSrc, title, children, status, priority, href, objectFit } = props
 
   return (
@@ -40,15 +39,18 @@ export const CreativeProject = ({ ref, ...props }) => {
             src={videoSrc}
           />
         ) : (
-          <Image
+          <img
             alt={title}
             src={imageSrc}
             className={css({
+              inset: '0',
+              width: '100%',
+              height: '100%',
               position: 'absolute',
               objectFit: { base: 'cover', md: 'contain', lg: objectFit || 'cover' },
             })}
-            fill
-            priority={priority}
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : undefined}
           />
         )}
       </section>

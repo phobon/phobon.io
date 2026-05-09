@@ -1,7 +1,5 @@
-'use client'
-
 import { useCallback, useEffect, useRef } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { useRouterState } from '@tanstack/react-router'
 import { LayoutStore, useLayoutStore } from '@/stores/use_layout_store'
 import { wait } from './wait'
 
@@ -11,8 +9,9 @@ const urlStateSelector = ({ urlState, setUrlState }): Pick<LayoutStore, 'urlStat
 })
 
 const NavigationEvents = () => {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const urlKey = useRouterState({
+    select: (s) => s.location.pathname + (s.location.searchStr ?? ''),
+  })
   const { urlState, setUrlState } = useLayoutStore(urlStateSelector)
   const previousUrl = useRef<string>(null)
 
@@ -22,16 +21,15 @@ const NavigationEvents = () => {
   }, [setUrlState])
 
   useEffect(() => {
-    const url = `${pathname}?${searchParams}`
-    if (url === previousUrl.current) {
+    if (urlKey === previousUrl.current) {
       return
     }
 
-    previousUrl.current = url
+    previousUrl.current = urlKey
     if (urlState === 'transitionInReady') {
       transition()
     }
-  }, [pathname, searchParams, setUrlState, transition, urlState])
+  }, [urlKey, setUrlState, transition, urlState])
 
   return null
 }

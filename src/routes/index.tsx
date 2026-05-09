@@ -1,3 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router'
+
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 import { Link } from '@/utils/navigation_helpers'
@@ -13,8 +15,13 @@ import SideStack from '@/components/side_stack'
 import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 
-export default function Page({ ...props }) {
-  const filteredProjects = []
+export const Route = createFileRoute('/')({
+  component: HomePage,
+})
+
+function HomePage() {
+  type Creative = (typeof creativeProjects)[number]
+  const filteredProjects: Array<Omit<Creative, 'active'> & { index: string }> = []
 
   let i = 0
   for (const project of creativeProjects) {
@@ -100,6 +107,7 @@ export default function Page({ ...props }) {
         )}
       >
         <p
+          suppressHydrationWarning
           className={css({
             position: 'relative',
             gridColumn: {

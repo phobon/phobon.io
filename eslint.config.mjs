@@ -1,35 +1,50 @@
-import { defineConfig, globalIgnores } from 'eslint/config'
-import next from 'eslint-config-next'
-import reactCompiler from 'eslint-plugin-react-compiler'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
+import prettier from 'eslint-config-prettier/flat'
+import globals from 'globals'
+import react from 'eslint-plugin-react'
+import reactCompiler from 'eslint-plugin-react-compiler'
+import reactHooks from 'eslint-plugin-react-hooks'
+import tseslint from 'typescript-eslint'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-})
-
-export default defineConfig([
-  globalIgnores(['**/.next', '**/dist', '**/node_modules/', 'src/design/']),
+export default tseslint.config(
   {
-    extends: [...next, ...compat.extends('prettier')],
-
+    ignores: [
+      'node_modules',
+      '.output',
+      'dist',
+      'src/design',
+      'src/routeTree.gen.ts',
+      'pnpm-lock.yaml',
+    ],
+  },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  react.configs.flat['jsx-runtime'],
+  reactHooks.configs.flat.recommended,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     plugins: {
       'react-compiler': reactCompiler,
     },
-
     rules: {
+      'no-unused-vars': 'off',
       'import/prefer-default-export': 'off',
       'no-console': 'warn',
       'no-var': 'error',
-      'no-html-link-for-pages': 'off',
       'react/display-name': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       'react-compiler/react-compiler': 'error',
     },
   },
-])
+  prettier,
+)

@@ -4,9 +4,17 @@
 # testing
 /coverage
 
-# next.js
+# next.js (legacy — kept if present)
 /.next/
 /out/
+
+# TanStack Start / Nitro / Vite
+/output
+/.output/
+/.nitro
+/dist/
+.tanstack/
+.vercel/output
 
 # production
 /build

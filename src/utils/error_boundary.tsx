@@ -1,3 +1,4 @@
+/* eslint-disable no-console -- error reporting */
 import React from 'react'
 
 export class ErrorBoundary extends React.Component<any, any> {

@@ -1,5 +1,5 @@
 export const cn = (...args: Array<string | false | undefined>) => {
-  const cns = []
+  const cns: string[] = []
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i]
@@ -7,7 +7,9 @@ export const cn = (...args: Array<string | false | undefined>) => {
       continue
     }
 
-    a !== false && cns.push(a)
+    if (a !== false) {
+      cns.push(a)
+    }
   }
 
   return cns.join(' ')

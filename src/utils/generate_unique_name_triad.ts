@@ -82,7 +82,7 @@ const WORD_LIST_3 = [
   'Janus',
 ]
 
-const getRandomElementFromArray = <T extends any>(arr: T[]): T => {
+const getRandomElementFromArray = <T>(arr: T[]): T => {
   const index = Math.floor(Math.random() * arr.length)
   const v = arr[index]
   return v

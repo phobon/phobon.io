@@ -1,6 +1,4 @@
-'use client'
-
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 
@@ -13,7 +11,6 @@ export type MainProps = {
 
 export const Main = ({ className, children }: MainProps) => {
   const ref = useRef(null)
-  const lenisRef = useRef<any>(null)
 
   return (
     <ReactLenis

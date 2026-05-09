@@ -1,5 +1,3 @@
-'use client'
-
 import { css } from '@/design/css'
 import { forwardRef } from 'react'
 

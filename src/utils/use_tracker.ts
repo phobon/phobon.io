@@ -8,7 +8,7 @@ export type UseTrackerOptions = {
 
 export const useTracker = <Type extends HTMLElement>(options?: UseTrackerOptions) => {
   const trackRef = useRef<Type>(null)
-  const [rect, setRect] = useState<DOMRect>(null)
+  const [rect, setRect] = useState<DOMRect | null>(null)
   const intersectingValue = useMotionValue(0)
   const intersecting = useSpring(intersectingValue, { stiffness: 500, damping: 150 })
 

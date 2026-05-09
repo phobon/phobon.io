@@ -1,8 +1,7 @@
-import { useSearchParams } from 'next/navigation'
+import { useRouterState } from '@tanstack/react-router'
 
 export const useDebug = () => {
-  const searchParams = useSearchParams()
-  const debug = searchParams.get('debug')
-
-  return debug
+  const searchStr = useRouterState({ select: (s) => s.location.searchStr })
+  const searchParams = new URLSearchParams(searchStr ?? '')
+  return searchParams.get('debug')
 }

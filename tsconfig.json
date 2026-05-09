@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
@@ -10,14 +11,13 @@
       "@/data/*": ["./src/data/*"],
       "@/content/*": ["./src/content/*"],
       "@/utils/*": ["./src/utils/*"],
-      "@/actions/*": ["./src/app/actions/*"],
-      // https://stackoverflow.com/questions/73019348/component-cannot-be-used-as-a-jsx-component-its-element-type-reactelementan
       "react": ["./node_modules/@types/react"]
     },
-    "target": "es6",
+    "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "strictNullChecks": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -28,19 +28,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "types": ["vite/client"]
   },
-  "include": [
-    "src/index.d.ts",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
   "exclude": ["node_modules"]
 }
