@@ -1,0 +1,25 @@
+# Ben McCormick
+
+> Design engineer. Personal site for selected work across React, WebGL, interface design, and animation.
+
+## Work
+
+- [Artifice](https://artifice.sh/): An instrument for exploring generative art.
+- [Fragments](https://fragments.supply/): Learn creative coding with shaders using Three.js and TSL.
+- [Gravitics](https://gravitics.app/): Audio stimulation given visual form.
+- [The Studio](https://thestudiophysio.com/): Website for a boutique physiotherapy and pilates studio.
+- [Shadercraft](https://shadercraft.phobon.io/): Curated shader art, learning, and the people who make it.
+- [Formation](https://formation.phobon.io/): Generative shader experiences.
+
+## Site
+
+- [Home](https://phobon.io/): Portfolio and selected projects.
+- [Email](mailto:hello@phobon.io): hello@phobon.io
+
+## Elsewhere
+
+- [X](https://www.x.com/thenoumenon)
+- [Bluesky](https://bsky.app/profile/phobon.io)
+- [GitHub](https://github.com/phobon)
+- [LinkedIn](https://www.linkedin.com/in/ben-mccormick-a373304/)
+- [OKAYDEV](https://okaydev.co/u/phobon/social?#profile-bottom)

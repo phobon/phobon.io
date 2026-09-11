@@ -1,8 +1,8 @@
-import { cn } from '@/utils/cn'
-import { css } from '@/design/css'
-import { gridStyles } from '../common'
 import { anchorStyles } from '@/components/primitives/anchor'
 import { socialLinks } from '@/data/links'
+import { css } from '@/design/css'
+import { cn } from '@/utils/cn'
+import { gridStyles } from '../common'
 
 export const Footer = ({ ...props }) => {
   return (
@@ -26,7 +26,6 @@ export const Footer = ({ ...props }) => {
       {...props}
     >
       <div
-        suppressHydrationWarning
         className={css({
           gridColumn: '1 / span 2',
           fontSize: '$2',
@@ -35,7 +34,7 @@ export const Footer = ({ ...props }) => {
           pl: '$5',
         })}
       >
-        © {new Date().getFullYear()}
+        © {__SITE_YEAR__}
       </div>
 
       <nav

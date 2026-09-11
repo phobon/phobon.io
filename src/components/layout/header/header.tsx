@@ -1,12 +1,10 @@
 import { Link } from '@tanstack/react-router'
-
-import { cn } from '@/utils/cn'
-import { css } from '@/design/css'
 import Identity from '@/components/identity'
-import { gridStyles } from '../common'
-
-import { socialLinks } from '@/data/links'
 import { anchorStyles } from '@/components/primitives/anchor'
+import { socialLinks } from '@/data/links'
+import { css } from '@/design/css'
+import { cn } from '@/utils/cn'
+import { gridStyles } from '../common'
 
 export const Header = ({ ...props }) => {
   return (

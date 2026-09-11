@@ -1,12 +1,32 @@
 [
   {
+    "key": "project--artifice",
+    "status": "Dev",
+    "title": "Artifice",
+    "description": "An instrument for exploring generative art.",
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/artifice.webp",
+    "priority": true,
+    "href": "https://artifice.sh/",
+    "active": true
+  },
+  {
     "key": "project--fragmentssupply",
     "status": "Live",
     "title": "Fragments",
-    "description": "Learn creative coding with shaders.",
+    "description": "Learn creative coding with shaders using Three.js and TSL.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/fragments.webp",
-    "priority": true,
+    "priority": false,
     "href": "https://fragments.supply/",
+    "active": true
+  },
+  {
+    "key": "project--gravitics",
+    "status": "Dev",
+    "title": "Gravitics",
+    "description": "Audio stimulation given visual form.",
+    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/gravitics.webp",
+    "priority": false,
+    "href": "https://gravitics.app/",
     "active": true
   },
   {
@@ -15,7 +35,7 @@
     "title": "The Studio",
     "description": "Website for a boutique physiotherapy and pilates studio.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/thestudio.webp",
-    "priority": true,
+    "priority": false,
     "href": "https://thestudiophysio.com/",
     "active": true
   },
@@ -25,7 +45,7 @@
     "title": "Shadercraft°",
     "description": "Curated shader art, learning, inspiration and the people that make it happen.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/shadercraft-e.webp",
-    "priority": true,
+    "priority": false,
     "href": "https://shadercraft.phobon.io/",
     "active": true
   },
@@ -35,20 +55,9 @@
     "title": "Formation°",
     "description": "A collection of generative, algorithmic shader experiences coalesced from the void.",
     "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/formation.webp",
-    "priority": true,
+    "priority": false,
     "href": "https://formation.phobon.io",
     "active": true
-  },
-  {
-    "key": "project--gigas",
-    "status": "Dev",
-    "title": "Codename: GIGAS",
-    "description": "Audio stimulation given visual form.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/gigas.webp",
-    "videoSrc": "https://d1zi50u3vxu38i.cloudfront.net/gigas.mp4",
-    "priority": false,
-    "href": "https://gigas.phobon.io/",
-    "active": false
   },
   {
     "key": "project--mdslabs",

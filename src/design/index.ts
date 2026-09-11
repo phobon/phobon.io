@@ -1,85 +1,19 @@
-import {
-  slate,
-  slateDark,
-  purple,
-  purpleDark,
-  // green,
-  // greenDark,
-  // blue,
-  // blueDark,
-  // red,
-  // redDark
-} from '@radix-ui/colors'
-
-const transformColorPrimitive = (primitive: { [index: string]: string }, transformKey: string) => {
-  const transformed: { [index: string]: any } = {}
-  let index = 1
-  for (const key in primitive) {
-    const transformedKey = `${transformKey}${index}`
-    transformed[transformedKey] = { value: primitive[key] }
-    index += 1
-  }
-
-  return transformed
-}
-
-const transformThemedColorPrimitive = (
-  primitive: { [index: string]: { value: string } },
-  baseKey: string,
-  darkKey: string,
-  count: number,
-) => {
-  const transformed: { [index: string]: any } = {}
-  for (let i = 1; i < count + 1; i++) {
-    // console.log(primitive)
-    transformed[`${baseKey}${i}`] = {
-      value: {
-        // TODO: The docs here say that we can just use the colors collection key, but looking at the generated css
-        // it seems as though this key turns into a css custom property, so effectively it creates an infinite loop
-        // ie: `colors-slate1: var(--colors-slate1);`
-        base: primitive[`${baseKey}${i}`].value,
-        // base: `{colors.${baseKey}${i}}`,
-        _dark: `{colors.${darkKey}${i}}`,
-      },
-    }
-  }
-
-  return transformed
-}
-
-const _slate = transformColorPrimitive(slate, '$slate')
-const _slateDark = transformColorPrimitive(slateDark, '$slateDark')
-const _purple = transformColorPrimitive(purple, '$purple')
-const _purpleDark = transformColorPrimitive(purpleDark, '$purpleDark')
-// const _blue = transformColorPrimitive(blue, '$blue')
-// const _blueDark = transformColorPrimitive(blueDark, '$blueDark')
-// const _green = transformColorPrimitive(green, '$green')
-// const _greenDark = transformColorPrimitive(greenDark, '$greenDark')
-// const _red = transformColorPrimitive(red, '$red')
-// const _redDark = transformColorPrimitive(redDark, '$redDark')
-
-const slateLightDark = transformThemedColorPrimitive(_slate, '$slate', '$slateDark', Object.keys(slate).length)
-const purpleLightDark = transformThemedColorPrimitive(_purple, '$purple', '$purpleDark', Object.keys(purple).length)
-// const blueLightDark = transformThemedColorPrimitive(_blue, '$blue', '$blueDark', Object.keys(blue).length)
-// const greenLightDark = transformThemedColorPrimitive(_green, '$green', '$greenDark', Object.keys(green).length)
-// const redLightDark = transformThemedColorPrimitive(_red, '$red', '$redDark', Object.keys(red).length)
-
-const colors = {
-  ..._slate,
-  ..._slateDark,
-  ..._purple,
-  ..._purpleDark,
-  // ..._blue,
-  // ..._blueDark,
-  // ..._green,
-  // ..._greenDark,
-  // ..._red,
-  // ..._redDark,
-}
-
 export const theme = {
   tokens: {
-    colors,
+    colors: {
+      $slate1: { value: '#fcfcfd' },
+      $slate2: { value: '#f9f9fb' },
+      $slate3: { value: '#f0f0f3' },
+      $slate4: { value: '#e8e8ec' },
+      $slate5: { value: '#e0e1e6' },
+      $slate6: { value: '#d9d9e0' },
+      $slate7: { value: '#cdced6' },
+      $slate8: { value: '#b9bbc6' },
+      $slate9: { value: '#8b8d98' },
+      $slate10: { value: '#80838d' },
+      $slate11: { value: '#60646c' },
+      $slate12: { value: '#1c2024' },
+    },
     spacing: {
       $0: { value: '0px' },
       $1: { value: '4px' },
@@ -141,14 +75,6 @@ export const theme = {
       $normal: { value: 'normal' },
       $caps: { value: '0.25em' },
     },
-    sizes: {},
-    opacity: {},
-    borders: {},
-    durations: {},
-    easings: {},
-    animations: {},
-    blurs: {},
-    gradients: {},
     breakpoints: {
       sm: { value: '640px' },
       md: { value: '768px' },
@@ -156,7 +82,6 @@ export const theme = {
       xl: { value: '1280px' },
       '2xl': { value: '1536px' },
     },
-    assets: {},
     radii: {
       $0: { value: '0px' },
       $1: { value: '2px' },
@@ -179,15 +104,6 @@ export const theme = {
       $3: { value: 30 },
       $4: { value: 40 },
       $max: { value: 99999 },
-    },
-  },
-  semanticTokens: {
-    colors: {
-      ...slateLightDark,
-      ...purpleLightDark,
-      // ...blueLightDark,
-      // ...greenLightDark,
-      // ...redLightDark,
     },
   },
 }
