@@ -10,61 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WritingThreeShadingLanguageRouteImport } from './routes/writing/three-shading-language'
-import { Route as WritingHowThisSiteWorksRouteImport } from './routes/writing/how-this-site-works'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WritingThreeShadingLanguageRoute =
-  WritingThreeShadingLanguageRouteImport.update({
-    id: '/writing/three-shading-language',
-    path: '/writing/three-shading-language',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const WritingHowThisSiteWorksRoute = WritingHowThisSiteWorksRouteImport.update({
-  id: '/writing/how-this-site-works',
-  path: '/writing/how-this-site-works',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/writing/how-this-site-works': typeof WritingHowThisSiteWorksRoute
-  '/writing/three-shading-language': typeof WritingThreeShadingLanguageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/writing/how-this-site-works': typeof WritingHowThisSiteWorksRoute
-  '/writing/three-shading-language': typeof WritingThreeShadingLanguageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/writing/how-this-site-works': typeof WritingHowThisSiteWorksRoute
-  '/writing/three-shading-language': typeof WritingThreeShadingLanguageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/writing/how-this-site-works'
-    | '/writing/three-shading-language'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/writing/how-this-site-works' | '/writing/three-shading-language'
-  id:
-    | '__root__'
-    | '/'
-    | '/writing/how-this-site-works'
-    | '/writing/three-shading-language'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  WritingHowThisSiteWorksRoute: typeof WritingHowThisSiteWorksRoute
-  WritingThreeShadingLanguageRoute: typeof WritingThreeShadingLanguageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,37 +48,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/writing/three-shading-language': {
-      id: '/writing/three-shading-language'
-      path: '/writing/three-shading-language'
-      fullPath: '/writing/three-shading-language'
-      preLoaderRoute: typeof WritingThreeShadingLanguageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/writing/how-this-site-works': {
-      id: '/writing/how-this-site-works'
-      path: '/writing/how-this-site-works'
-      fullPath: '/writing/how-this-site-works'
-      preLoaderRoute: typeof WritingHowThisSiteWorksRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  WritingHowThisSiteWorksRoute: WritingHowThisSiteWorksRoute,
-  WritingThreeShadingLanguageRoute: WritingThreeShadingLanguageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

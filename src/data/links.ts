@@ -4,12 +4,6 @@ export interface INavigationLink {
   label: string
 }
 
-export const navigationLinks: INavigationLink[] = [
-  { id: 'navlink__home', href: '/', label: 'Home' },
-  { id: 'navlink__writing', href: '/writing', label: 'Writing' },
-  { id: 'navlink__about', href: '/about', label: 'About' },
-]
-
 export const socialLinks: INavigationLink[] = [
   {
     id: 'social__x',

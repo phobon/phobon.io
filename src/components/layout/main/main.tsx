@@ -1,40 +1,30 @@
-import { useRef } from 'react'
+import type { ReactNode } from 'react'
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
 
-import { ReactLenis } from 'lenis/react'
 import { gridStyles } from '../common'
 
 export type MainProps = {
-  debug?: boolean
-} & any
+  className?: string
+  children: ReactNode
+}
 
 export const Main = ({ className, children }: MainProps) => {
-  const ref = useRef(null)
-
   return (
-    <ReactLenis
-      root
-      options={{
-        syncTouch: true,
-      }}
+    <main
+      className={cn(
+        css({
+          width: '100%',
+          position: 'relative',
+          overflow: 'auto',
+          touchAction: 'auto',
+        }),
+        className,
+        gridStyles,
+        'phbn__main',
+      )}
     >
-      <main
-        ref={ref}
-        className={cn(
-          css({
-            width: '100%',
-            position: 'relative',
-            overflow: 'auto',
-            touchAction: 'auto',
-          }),
-          className,
-          gridStyles,
-          'phbn__main',
-        )}
-      >
-        {children}
-      </main>
-    </ReactLenis>
+      {children}
+    </main>
   )
 }

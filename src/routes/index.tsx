@@ -2,17 +2,14 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
-import { Link } from '@/utils/navigation_helpers'
 
 import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
-import allWriting from '@/data/all_writing.json'
 import workProjects from '@/data/work_projects.json'
 import now from '@/data/now.json'
 
 import CreativeProject from '@/components/creative_project'
 import SideStack from '@/components/side_stack'
-import { anchorStyles } from '@/components/primitives/anchor'
 import MiniProject from '@/components/mini_project'
 
 export const Route = createFileRoute('/')({
@@ -21,7 +18,7 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   type Creative = (typeof creativeProjects)[number]
-  const filteredProjects: Array<Omit<Creative, 'active'> & { index: string }> = []
+  const filteredProjects: Array<Omit<Creative, 'active'> & { index: string; priority: boolean }> = []
 
   let i = 0
   for (const project of creativeProjects) {
@@ -33,9 +30,12 @@ function HomePage() {
     i += 1
     filteredProjects.push({
       ...rest,
-      index: new String(i).padStart(2, '0'),
+      index: String(i).padStart(2, '0'),
+      priority: i === 1,
     })
   }
+
+  const years = new Date().getFullYear() - 2005
 
   return (
     <section
@@ -83,7 +83,7 @@ function HomePage() {
                   }),
                 )}
               >
-                <CreativeProject className={css({})} index={index} {...rest}>
+                <CreativeProject index={index} {...rest}>
                   {description}
                 </CreativeProject>
               </li>
@@ -107,7 +107,6 @@ function HomePage() {
         )}
       >
         <p
-          suppressHydrationWarning
           className={css({
             position: 'relative',
             gridColumn: {
@@ -127,9 +126,8 @@ function HomePage() {
             textWrap: 'pretty',
           })}
         >
-          I am a design engineer with over {`${new Date().getFullYear() - 2005}`} years of experience, focused on the
-          entire frontend stack including React, WebGL development, interface and interaction design; as well as
-          creative direction and animation.
+          I am a design engineer with over {years} years of experience, focused on the entire frontend stack including
+          React, WebGL development, interface and interaction design; as well as creative direction and animation.
         </p>
 
         <aside
@@ -140,7 +138,7 @@ function HomePage() {
             gridColumn: {
               base: '1 / -1',
               md: '5 / -1',
-              lg: 'span 3',
+              lg: 'span 6',
             },
             gridRow: {
               base: 'initial',
@@ -163,7 +161,7 @@ function HomePage() {
           </SideStack>
 
           <SideStack title='Previous Experience'>
-            {experiences.map(({ key, employ, href, title }) => {
+            {experiences.map(({ key, employ, title }) => {
               return (
                 <li key={key}>
                   <span
@@ -173,49 +171,6 @@ function HomePage() {
                   >
                     {employ} - {title}
                   </span>
-                </li>
-              )
-            })}
-          </SideStack>
-        </aside>
-
-        <aside
-          className={css({
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '$8',
-            gridColumn: {
-              base: '1 / -1',
-              md: '5 / -1',
-              lg: 'span 3',
-            },
-            gridRow: {
-              base: 'initial',
-              md: '2 / span 1',
-              lg: '1 / span 1',
-            },
-            fontSize: '$2',
-          })}
-        >
-          <SideStack title='Writing'>
-            {allWriting.map(({ key, title, href, published, external }) => {
-              if (!published) {
-                return null
-              }
-
-              return (
-                <li key={key}>
-                  {external ? (
-                    <a href={href} target='_blank' title={title} className={anchorStyles}>{`↱  ${title}`}</a>
-                  ) : (
-                    <Link href={href} title={title}>
-                      <span
-                        className={css({
-                          color: '$slate10',
-                        })}
-                      >{`↱  ${title}`}</span>
-                    </Link>
-                  )}
                 </li>
               )
             })}

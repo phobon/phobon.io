@@ -1,17 +1,8 @@
 {
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/stores/*": ["./src/stores/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/design/*": ["./src/design/*"],
-      "@/data/*": ["./src/data/*"],
-      "@/content/*": ["./src/content/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "react": ["./node_modules/@types/react"]
+      "@/*": ["./src/*"]
     },
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],

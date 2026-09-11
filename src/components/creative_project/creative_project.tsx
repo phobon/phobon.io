@@ -37,6 +37,11 @@ export const CreativeProject = ({ ref, ...props }: any) => {
               objectFit: { base: 'cover', md: 'contain', lg: objectFit || 'cover' },
             })}
             src={videoSrc}
+            poster={imageSrc}
+            muted
+            loop
+            playsInline
+            preload='none'
           />
         ) : (
           <img
@@ -50,7 +55,7 @@ export const CreativeProject = ({ ref, ...props }: any) => {
               objectFit: { base: 'cover', md: 'contain', lg: objectFit || 'cover' },
             })}
             loading={priority ? 'eager' : 'lazy'}
-            fetchPriority={priority ? 'high' : undefined}
+            fetchPriority={priority ? 'high' : 'low'}
           />
         )}
       </section>

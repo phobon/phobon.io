@@ -26,7 +26,6 @@ export const Footer = ({ ...props }) => {
       {...props}
     >
       <div
-        suppressHydrationWarning
         className={css({
           gridColumn: '1 / span 2',
           fontSize: '$2',

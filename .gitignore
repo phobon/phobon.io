@@ -4,13 +4,9 @@
 # testing
 /coverage
 
-# TanStack Start / Nitro / Vite
-/output
-/.output/
-/.nitro
+# Vite
 /dist/
 .tanstack/
-.vercel/output
 
 # production
 /build
