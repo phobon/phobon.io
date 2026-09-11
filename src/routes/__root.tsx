@@ -1,9 +1,8 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router'
+import { ClientOnly, createRootRoute, Outlet } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
-
+import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
-import Footer from '@/components/layout/footer'
 import { NotFoundPage } from '@/components/not_found'
 
 export const Route = createRootRoute({
@@ -19,7 +18,9 @@ function RootComponent() {
         <Outlet />
       </Main>
       <Footer />
-      <Analytics />
+      <ClientOnly>
+        <Analytics />
+      </ClientOnly>
     </>
   )
 }

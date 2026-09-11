@@ -1,16 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
-
-import { css } from '@/design/css'
-import { cn } from '@/utils/cn'
-
+import CreativeProject from '@/components/creative_project'
+import MiniProject from '@/components/mini_project'
+import SideStack from '@/components/side_stack'
 import creativeProjects from '@/data/creative_projects.json'
 import experiences from '@/data/experiences.json'
-import workProjects from '@/data/work_projects.json'
 import now from '@/data/now.json'
-
-import CreativeProject from '@/components/creative_project'
-import SideStack from '@/components/side_stack'
-import MiniProject from '@/components/mini_project'
+import workProjects from '@/data/work_projects.json'
+import { css } from '@/design/css'
+import { cn } from '@/utils/cn'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -35,7 +32,7 @@ function HomePage() {
     })
   }
 
-  const years = new Date().getFullYear() - 2005
+  const years = __SITE_YEAR__ - 2005
 
   return (
     <section
