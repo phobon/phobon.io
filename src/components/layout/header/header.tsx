@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import Identity from '@/components/identity'
-import { anchorStyles } from '@/components/primitives/anchor'
+import { anchorGpuProps, anchorStyles } from '@/components/primitives/anchor'
 import { socialLinks } from '@/data/links'
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
@@ -82,7 +82,7 @@ export const Header = ({ ...props }) => {
           },
         })}
       >
-        <a href='mailto:hello@phobon.io' className={anchorStyles}>
+        <a href='mailto:hello@phobon.io' className={anchorStyles} {...anchorGpuProps}>
           hello@phobon.io
         </a>
       </div>

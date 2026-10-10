@@ -1,17 +1,24 @@
 import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
 import type { Compositor } from 'compositor-gpu'
 import type * as FxLib from 'compositor-gpu/fx'
-import type { Effects } from 'compositor-gpu/fx'
+import type { Effects, Trail } from 'compositor-gpu/fx'
 
 /** `lib` is the dynamically imported `compositor-gpu/fx` module (presets
- * etc.), so nothing from the library lands in the main bundle. */
-export type Gpu = { compositor: Compositor; fx: Effects; lib: typeof FxLib }
+ * etc.), so nothing from the library lands in the main bundle. `trail` is
+ * the page's one pointer-trail field, shared by every trail effect. */
+export type Gpu = {
+  compositor: Compositor
+  fx: Effects
+  lib: typeof FxLib
+  trail: Trail
+}
 
 const GpuContext = createContext<Gpu | null>(null)
 
 declare global {
   interface Window {
     __gpu?: Compositor
+    __trail?: Trail
   }
 }
 
@@ -51,12 +58,16 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
           return
         }
         fx = lib.createEffects(compositor)
+        const trail = fx.trail({ cell: 16, radius: 120, decay: 0.9, speed: 1800 })
+        // Touch moves are scrolls: only a mouse or trackpad paints the trail.
+        trail.pointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
         compositor.start()
         window.__gpu = compositor
+        window.__trail = trail
         if (query.get('stats') === '1') {
           compositor.profile.hud()
         }
-        setGpu({ compositor, fx, lib })
+        setGpu({ compositor, fx, lib, trail })
       })
       .catch((error: unknown) => {
         console.warn('compositor-gpu failed to start', error)
@@ -68,6 +79,7 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
       compositor?.destroy()
       if (window.__gpu === compositor) {
         delete window.__gpu
+        delete window.__trail
       }
       setGpu(null)
     }
@@ -85,6 +97,11 @@ export function useFx(): Effects | null {
 /** The `compositor-gpu/fx` module (presets such as `blur`), once loaded. */
 export function useFxLib(): typeof FxLib | null {
   return useContext(GpuContext)?.lib ?? null
+}
+
+/** The page's pointer trail (see `fx.trail`), once running. */
+export function useTrail(): Trail | null {
+  return useContext(GpuContext)?.trail ?? null
 }
 
 export function useCompositor(): Compositor | null {

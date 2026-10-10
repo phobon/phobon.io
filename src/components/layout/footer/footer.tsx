@@ -1,4 +1,4 @@
-import { anchorStyles } from '@/components/primitives/anchor'
+import { anchorGpuProps, anchorStyles } from '@/components/primitives/anchor'
 import { socialLinks } from '@/data/links'
 import { css } from '@/design/css'
 import { cn } from '@/utils/cn'
@@ -54,7 +54,7 @@ export const Footer = ({ ...props }) => {
         })}
       >
         {socialLinks.map(({ id, label, href }) => (
-          <a key={id} target='_blank' href={href} className={anchorStyles}>
+          <a key={id} target='_blank' href={href} className={anchorStyles} {...anchorGpuProps}>
             {label}
           </a>
         ))}

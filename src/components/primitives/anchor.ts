@@ -1,5 +1,13 @@
 import { css } from '@/design/css'
 
+/**
+ * Spread onto elements using `anchorStyles`. compositor-gpu can't mirror the
+ * hover wipe (an `::after` using `scale` and `mix-blend-mode: difference`; it
+ * would draw as a solid white box), so these keep their own DOM paint and the
+ * mirror leaves a hole for them.
+ */
+export const anchorGpuProps = { 'data-gpu-ignore': '' } as const
+
 export const anchorStyles = css({
   color: '$slate11',
   fontSize: '$2',

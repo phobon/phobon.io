@@ -1,5 +1,6 @@
-export { CompositorProvider, useCompositor, useFx, useFxLib } from './compositor_provider'
-export { useCursorLight } from './use_cursor_light'
+export { CompositorProvider, useCompositor, useFx, useFxLib, useTrail } from './compositor_provider'
 export { useHoverTilt } from './use_hover_tilt'
 export { useReveal } from './use_reveal'
 export { useTextStagger } from './use_text_stagger'
+export { useTrailImage } from './use_trail_image'
+export { useTrailPass } from './use_trail_pass'

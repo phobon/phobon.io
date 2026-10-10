@@ -61,6 +61,25 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    // Same-origin image paths (see vercel.json): WebGPU can only upload
+    // CORS-clean images, and CloudFront drops its CORS header on requests
+    // that carry Chrome's `priority` header.
+    proxy: {
+      '/cdn': {
+        target: 'https://d1zi50u3vxu38i.cloudfront.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/cdn/, ''),
+      },
+    },
+  },
+  preview: {
+    proxy: {
+      '/cdn': {
+        target: 'https://d1zi50u3vxu38i.cloudfront.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/cdn/, ''),
+      },
+    },
   },
   optimizeDeps: {
     // Don't crawl compositor-gpu's playground pages for dependencies.

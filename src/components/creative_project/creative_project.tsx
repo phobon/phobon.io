@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { css } from '@/design/css'
-import { useCursorLight, useHoverTilt } from '@/fx'
+import { useHoverTilt, useTrailImage } from '@/fx'
 
 export const CreativeProject = ({ ref, ...props }: any) => {
   const { index, imageSrc, videoSrc, title, children, status, priority, href, objectFit } = props
   const mediaRef = useRef<HTMLElement>(null)
   useHoverTilt(mediaRef)
-  useCursorLight(mediaRef)
+  useTrailImage(mediaRef)
 
   return (
     <a

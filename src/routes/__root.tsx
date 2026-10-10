@@ -4,7 +4,7 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
 import { NotFoundPage } from '@/components/not_found'
-import { CompositorProvider } from '@/fx'
+import { CompositorProvider, useTrailPass } from '@/fx'
 
 export const Route = createRootRoute({
   notFoundComponent: NotFoundPage,
@@ -14,6 +14,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <CompositorProvider>
+      <TrailPass />
       <Header />
       <Main>
         <Outlet />
@@ -24,4 +25,10 @@ function RootComponent() {
       </ClientOnly>
     </CompositorProvider>
   )
+}
+
+/** The page-wide pointer-trail pass (needs the provider above it). */
+function TrailPass() {
+  useTrailPass('pixel')
+  return null
 }
