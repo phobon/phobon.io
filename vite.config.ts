@@ -62,6 +62,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  optimizeDeps: {
+    // Don't crawl compositor-gpu's playground pages for dependencies.
+    entries: ['index.html'],
+  },
   resolve: {
     tsconfigPaths: true,
   },

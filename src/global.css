@@ -4,7 +4,11 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url('/fonts/Geist-Variable.woff2') format('woff2');
+    /* The TTF is for compositor-gpu's Slug text (opentype.js can't parse
+       woff2); browsers stop at the woff2. */
+    src:
+      url('/fonts/Geist-Variable.woff2') format('woff2'),
+      url('/fonts/Geist-Variable.ttf') format('truetype');
   }
 
   :root {
