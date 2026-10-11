@@ -89,9 +89,21 @@ export function mountDials(): () => void {
       },
       { id: 'fx-stagger', persist: true, defaultCollapsed: true, onAction: () => replay('stagger') },
     ),
+    createDialKit(
+      'Transition',
+      {
+        block: [t.transition.block, 4, 160, 1],
+        width: [t.transition.width, 0.01, 2, 0.01],
+        jitter: [t.transition.jitter, 0, 0.9, 0.01],
+        exit: { type: 'easing', ...t.transition.exit },
+        enter: { type: 'easing', ...t.transition.enter },
+        replay: { type: 'action', label: 'Sweep' },
+      },
+      { id: 'fx-transition', persist: true, defaultCollapsed: true, onAction: () => replay('transition') },
+    ),
   ] as const
 
-  const [trail, trailPass, trailImage, reveal, tilt, stagger] = kits
+  const [trail, trailPass, trailImage, reveal, tilt, stagger, transition] = kits
   const offs = [
     trail.subscribe((v) => setTuning('trail', v)),
     trailPass.subscribe((v) => setTuning('trailPass', v)),
@@ -104,6 +116,15 @@ export function mountDials(): () => void {
       setTuning('tilt', { ...v, transition: transition as typeof tuning.tilt.transition })
     }),
     stagger.subscribe(({ replay: _, ...v }) => setTuning('stagger', v)),
+    transition.subscribe(({ exit, enter, replay: _, ...v }) => {
+      const x = exit as unknown as Easing
+      const n = enter as unknown as Easing
+      setTuning('transition', {
+        ...v,
+        exit: { duration: x.duration, ease: x.ease },
+        enter: { duration: n.duration, ease: n.ease },
+      })
+    }),
   ]
 
   return () => {

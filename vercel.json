@@ -3,10 +3,6 @@
     {
       "source": "/cdn/:path*",
       "destination": "https://d1zi50u3vxu38i.cloudfront.net/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }

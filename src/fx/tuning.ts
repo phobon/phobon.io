@@ -40,6 +40,16 @@ export const tuning = {
   },
   /** The intro paragraph's letters (useTextStagger). */
   stagger: { duration: 1.4, spread: 2, rise: 14 },
+  /** Pixel-grid page transitions (usePageTransition). `block`: the largest
+   * cell, px; `width`: the wave's depth behind its front (0..1 of the
+   * distance to the farthest corner); `jitter`: how ragged its edge is. */
+  transition: {
+    block: 48,
+    width: 0.35,
+    jitter: 0.12,
+    exit: { duration: 0.55, ease: [0.55, 0, 0.75, 0.2] } as Easing,
+    enter: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as Easing,
+  },
 }
 
 export type Tuning = typeof tuning

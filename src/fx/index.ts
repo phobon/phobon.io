@@ -1,5 +1,6 @@
 export { CompositorProvider, useCompositor, useFx, useFxLib, useTrail } from './compositor_provider'
 export { useHoverTilt } from './use_hover_tilt'
+export { usePageTransition } from './use_page_transition'
 export { useReveal } from './use_reveal'
 export { useTextStagger } from './use_text_stagger'
 export { useTrailImage } from './use_trail_image'
