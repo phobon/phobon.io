@@ -3,26 +3,14 @@ import { type RefObject, useEffect } from 'react'
 
 import { useFx } from './compositor_provider'
 import { canHover, prefersReducedMotion } from './dom'
-
-export type HoverTiltOptions = {
-  /** CSS px the element drifts toward the pointer at its edge. */
-  shift?: number
-  /** Degrees it leans at its edge. */
-  lean?: number
-  /** Scale while hovered. */
-  lift?: number
-}
-
-const SPRING = { type: 'spring', stiffness: 260, damping: 24, mass: 0.6 } as const
+import { tuning } from './tuning'
 
 /**
  * Lift the element and lean it toward the pointer, on the GPU only: the
- * DOM never moves, so layout and hit-testing stay put.
+ * DOM never moves, so layout and hit-testing stay put. Values come from
+ * `tuning.tilt`, read on every move.
  */
-export function useHoverTilt(
-  ref: RefObject<HTMLElement | null>,
-  { shift = 10, lean = 1.2, lift = 1.025 }: HoverTiltOptions = {},
-) {
+export function useHoverTilt(ref: RefObject<HTMLElement | null>) {
   const fx = useFx()
 
   useEffect(() => {
@@ -35,13 +23,14 @@ export function useHoverTilt(
     let anim: { stop: () => void } | null = null
     const to = (values: { x: number; y: number; rotate: number; scale: number }) => {
       anim?.stop()
-      anim = animate(t, values, SPRING)
+      anim = animate(t, values, tuning.tilt.transition)
     }
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') {
         return
       }
+      const { shift, lean, lift } = tuning.tilt
       const r = el.getBoundingClientRect()
       const nx = (e.clientX - r.left) / r.width - 0.5
       const ny = (e.clientY - r.top) / r.height - 0.5
@@ -57,5 +46,5 @@ export function useHoverTilt(
       anim?.stop()
       t.destroy()
     }
-  }, [fx, ref, shift, lean, lift])
+  }, [fx, ref])
 }

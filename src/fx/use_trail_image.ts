@@ -1,13 +1,7 @@
 import { type RefObject, useEffect } from 'react'
 
 import { useFx, useTrail } from './compositor_provider'
-
-export type TrailImageOptions = {
-  /** CSS px the image is dragged per unit of trail. */
-  warp?: number
-  /** Peak brightening where the trail is strongest, 0..1. */
-  light?: number
-}
+import { bindLive } from './tuning'
 
 // The element's images, warped along the trail and lit by it: a streak
 // that follows the pointer's path and fades with the field.
@@ -25,8 +19,9 @@ const schema = {
   light: { type: 'f32', default: 0.18, min: 0, max: 1 },
 } as const
 
-/** Warp and light the element's images along the page's pointer trail. */
-export function useTrailImage(ref: RefObject<HTMLElement | null>, { warp = 14, light = 0.18 }: TrailImageOptions = {}) {
+/** Warp and light the element's images along the page's pointer trail
+ * (`tuning.trailImage`). */
+export function useTrailImage(ref: RefObject<HTMLElement | null>) {
   const fx = useFx()
   const trail = useTrail()
 
@@ -43,8 +38,10 @@ export function useTrailImage(ref: RefObject<HTMLElement | null>, { warp = 14, l
       params: schema,
       fragment: FRAGMENT,
     })
-    mat.params.warp = warp
-    mat.params.light = light
-    return () => mat.destroy()
-  }, [fx, trail, ref, warp, light])
+    const unbind = bindLive('trailImage', mat.params)
+    return () => {
+      unbind()
+      mat.destroy()
+    }
+  }, [fx, trail, ref])
 }

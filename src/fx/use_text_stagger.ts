@@ -1,17 +1,10 @@
+import type { Material } from 'compositor-gpu/fx'
 import { animate, inView } from 'motion'
 import { type RefObject, useEffect } from 'react'
 
 import { useFx } from './compositor_provider'
 import { isInViewport, prefersReducedMotion } from './dom'
-
-export type TextStaggerOptions = {
-  /** Seconds for the whole run, first letter to last settled. */
-  duration?: number
-  /** Share of the run spent staggering (0: all at once, 1: one by one). */
-  spread?: number
-  /** CSS px each letter rises from. */
-  rise?: number
-}
+import { bindLive, onReplay, tuning } from './tuning'
 
 // Each glyph k of n arrives over its own window of `progress`, offset by
 // k / n * spread. mat_index numbers the target's glyphs in DOM order.
@@ -33,62 +26,95 @@ const schema = {
 /**
  * Letters rise and fade in one after another the first time the element
  * scrolls into view (a glyph material; the DOM text is untouched).
- * Already-visible text is left alone.
+ * Already-visible text is left alone. Values come from `tuning.stagger`;
+ * the dials' Replay re-runs it.
  */
-export function useTextStagger(
-  ref: RefObject<Element | null>,
-  { duration = 1.4, spread = 2, rise = 14 }: TextStaggerOptions = {},
-) {
+export function useTextStagger(ref: RefObject<Element | null>) {
   const fx = useFx()
 
   useEffect(() => {
     const el = ref.current
-    if (!fx || !el || prefersReducedMotion() || isInViewport(el)) {
+    if (!fx || !el || prefersReducedMotion()) {
       return
     }
 
-    const stagger = fx.material({
-      name: 'text-stagger',
-      target: el,
-      kinds: ['glyph'],
-      params: schema,
-      // Hidden until compiled, so letters never flash in at rest first.
-      hold: true,
-      vertex: /* wgsl */ `${ARRIVE}
-        fn vertex(local : vec2f, size : vec2f, uv : vec2f, record : u32) -> vec2f {
-          let t = arrive(record);
-          return local + vec2f(0.0, (1.0 - t) * params.rise);
-        }`,
-      fragment: /* wgsl */ `
-        fn fragment(m : MatIn) -> vec4f {
-          return m.color * arrive(m.record);
-        }`,
-    })
-    stagger.params.spread = spread
-    stagger.params.rise = rise
-
+    let mat: Material<typeof schema> | null = null
+    let unbind = () => {}
     let anim: { stop: () => void } | null = null
-    let done = false
-    const stopInView = inView(
-      el,
-      () => {
-        const run = animate(stagger.params, { progress: 1 }, { duration, ease: 'linear' })
-        anim = run
-        run.then(() => {
-          done = true
-          stagger.destroy()
-        })
-        stopInView()
-      },
-      { amount: 0.3 },
-    )
+    let run = 0
+    let stopInView = () => {}
+
+    const release = () => {
+      anim?.stop()
+      anim = null
+      unbind()
+      mat?.destroy()
+      mat = null
+    }
+    const prepare = () => {
+      release()
+      mat = fx.material({
+        name: 'text-stagger',
+        target: el,
+        kinds: ['glyph'],
+        params: schema,
+        // Hidden until compiled, so letters never flash in at rest first.
+        hold: true,
+        vertex: /* wgsl */ `${ARRIVE}
+          fn vertex(local : vec2f, size : vec2f, uv : vec2f, record : u32) -> vec2f {
+            let t = arrive(record);
+            return local + vec2f(0.0, (1.0 - t) * params.rise);
+          }`,
+        fragment: /* wgsl */ `
+          fn fragment(m : MatIn) -> vec4f {
+            return m.color * arrive(m.record);
+          }`,
+      })
+      unbind = bindLive('stagger', mat.params)
+    }
+    const play = () => {
+      if (!mat) {
+        return
+      }
+      const id = ++run
+      const a = animate(mat.params, { progress: 1 }, { duration: tuning.stagger.duration, ease: 'linear' })
+      anim = a
+      a.then(() => {
+        if (id === run) {
+          release()
+        }
+      })
+    }
+    const whenInView = () => {
+      stopInView = inView(
+        el,
+        () => {
+          play()
+          stopInView()
+        },
+        { amount: 0.3 },
+      )
+    }
+
+    if (!isInViewport(el)) {
+      prepare()
+      whenInView()
+    }
+    const offReplay = onReplay('stagger', () => {
+      stopInView()
+      prepare()
+      if (isInViewport(el)) {
+        play()
+      } else {
+        whenInView()
+      }
+    })
 
     return () => {
+      run++
       stopInView()
-      anim?.stop()
-      if (!done) {
-        stagger.destroy()
-      }
+      offReplay()
+      release()
     }
-  }, [fx, ref, duration, spread, rise])
+  }, [fx, ref])
 }

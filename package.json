@@ -10,6 +10,7 @@
   "dependencies": {
     "@tanstack/react-router": "^1.170.41",
     "@vercel/analytics": "^2.0.1",
+    "dialkit": "^2.0.2",
     "motion": "^14.0.0",
     "opentype.js": "^2.0.0",
     "react": "19.3.0",

@@ -74,7 +74,7 @@ function HomePage() {
             return (
               <RevealItem
                 key={key}
-                delay={(Number(index) - 1) % 2 === 0 ? 0 : 0.12}
+                order={(Number(index) - 1) % 2}
                 className={cn(
                   css({
                     display: 'grid',
@@ -222,9 +222,9 @@ function HomePage() {
 }
 
 /** A list item that reveals on the GPU when it first scrolls into view. */
-function RevealItem({ delay, className, children }: { delay: number; className?: string; children: ReactNode }) {
+function RevealItem({ order, className, children }: { order: number; className?: string; children: ReactNode }) {
   const ref = useRef<HTMLLIElement>(null)
-  useReveal(ref, { delay })
+  useReveal(ref, { order })
   return (
     <li ref={ref} className={className}>
       {children}

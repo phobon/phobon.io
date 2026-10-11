@@ -3,6 +3,8 @@ import type { Compositor } from 'compositor-gpu'
 import type * as FxLib from 'compositor-gpu/fx'
 import type { Effects, Trail } from 'compositor-gpu/fx'
 
+import { bindLive, tuning } from './tuning'
+
 /** `lib` is the dynamically imported `compositor-gpu/fx` module (presets
  * etc.), so nothing from the library lands in the main bundle. `trail` is
  * the page's one pointer-trail field, shared by every trail effect. */
@@ -29,7 +31,8 @@ declare global {
  * browsers without WebGPU get the plain page.
  *
  * Query flags: `?gpu=0` disables it, `?gpu=overlay` paints over the DOM
- * instead of replacing it, `?stats=1` shows the frame profiler HUD.
+ * instead of replacing it, `?stats=1` shows the frame profiler HUD,
+ * `?dials=1` the effects' tuning panel (dials.ts).
  */
 export function CompositorProvider({ children }: { children: ReactNode }) {
   const [gpu, setGpu] = useState<Gpu | null>(null)
@@ -44,6 +47,8 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
     let cancelled = false
     let compositor: Compositor | null = null
     let fx: Effects | null = null
+    let unbindTrail = () => {}
+    let unmountDials = () => {}
 
     Promise.all([import('compositor-gpu'), import('compositor-gpu/fx')])
       .then(async ([{ createCompositor }, lib]) => {
@@ -58,14 +63,22 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
           return
         }
         fx = lib.createEffects(compositor)
-        const trail = fx.trail({ cell: 16, radius: 120, decay: 0.9, speed: 1800 })
+        const trail = fx.trail({ cell: 16, ...tuning.trail })
         // Touch moves are scrolls: only a mouse or trackpad paints the trail.
         trail.pointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
         compositor.start()
         window.__gpu = compositor
         window.__trail = trail
+        unbindTrail = bindLive('trail', trail.params)
         if (query.get('stats') === '1') {
           compositor.profile.hud()
+        }
+        if (query.get('dials') === '1') {
+          import('./dials').then(({ mountDials }) => {
+            if (!cancelled) {
+              unmountDials = mountDials()
+            }
+          })
         }
         setGpu({ compositor, fx, lib, trail })
       })
@@ -75,6 +88,8 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
 
     return () => {
       cancelled = true
+      unmountDials()
+      unbindTrail()
       fx?.release()
       compositor?.destroy()
       if (window.__gpu === compositor) {

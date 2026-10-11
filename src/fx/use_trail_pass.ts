@@ -2,10 +2,9 @@ import { useEffect } from 'react'
 
 import { useFx, useTrail } from './compositor_provider'
 import { prefersReducedMotion } from './dom'
+import { bindLive, setTuning } from './tuning'
 
-export type TrailPassMode = 'pixel' | 'displace'
-
-const MODES: Record<TrailPassMode, { pixel: number; push: number }> = {
+const MODES: Record<string, { pixel: number; push: number }> = {
   // Blocks along the trail, with a small push so they feel dragged.
   pixel: { pixel: 1, push: 4 },
   // Content pushed back along the stroke, no blocks.
@@ -43,12 +42,12 @@ const schema = {
 } as const
 
 /**
- * A page-wide pass driven by the pointer trail. It's only enabled while
- * the trail holds something, so an idle page renders straight to the
- * canvas with no offscreen chain. `?trail=pixel|displace|off` overrides
- * the mode.
+ * A page-wide pass driven by the pointer trail (`tuning.trailPass`). It's
+ * only enabled while the trail holds something, so an idle page renders
+ * straight to the canvas with no offscreen chain. `?trail=pixel|displace`
+ * applies a preset; `?trail=off` turns it off.
  */
-export function useTrailPass(mode: TrailPassMode = 'pixel') {
+export function useTrailPass() {
   const fx = useFx()
   const trail = useTrail()
 
@@ -57,7 +56,6 @@ export function useTrailPass(mode: TrailPassMode = 'pixel') {
     if (!fx || !trail || flag === 'off' || prefersReducedMotion()) {
       return
     }
-    const m = MODES[flag === 'pixel' || flag === 'displace' ? flag : mode]
     const pass = fx.pass({
       name: 'trail-page',
       trail,
@@ -67,8 +65,11 @@ export function useTrailPass(mode: TrailPassMode = 'pixel') {
       fragment: FRAGMENT,
       enabled: false,
     })
-    pass.params.pixel = m.pixel
-    pass.params.push = m.push
+    const preset = flag ? MODES[flag] : undefined
+    if (preset) {
+      setTuning('trailPass', preset)
+    }
+    const unbind = bindLive('trailPass', pass.params)
 
     // Follow the trail's lifetime: on with the first move, off once it has
     // been empty for a moment (the field fills on the compositor's next frame).
@@ -98,7 +99,8 @@ export function useTrailPass(mode: TrailPassMode = 'pixel') {
     return () => {
       window.removeEventListener('pointermove', onMove)
       cancelAnimationFrame(raf)
+      unbind()
       pass.destroy()
     }
-  }, [fx, trail, mode])
+  }, [fx, trail])
 }

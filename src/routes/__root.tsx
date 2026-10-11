@@ -29,6 +29,6 @@ function RootComponent() {
 
 /** The page-wide pointer-trail pass (needs the provider above it). */
 function TrailPass() {
-  useTrailPass('pixel')
+  useTrailPass()
   return null
 }
