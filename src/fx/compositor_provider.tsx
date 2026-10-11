@@ -56,6 +56,10 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
           root: document.body,
           mode: flag === 'overlay' ? 'overlay' : 'replace',
           fonts: 'auto',
+          // The edge lens (useScrollFx) is fixed to the viewport: a
+          // viewport-pinned canvas keeps it locked to the edges while
+          // scrolling. Without it the page-anchored canvas never lags.
+          canvasPin: query.get('scroll') === 'off' ? 'page' : 'viewport',
         })
         if (cancelled || !compositor.active) {
           compositor.destroy()

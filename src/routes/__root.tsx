@@ -4,7 +4,7 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
 import { NotFoundPage } from '@/components/not_found'
-import { CompositorProvider, usePageTransition, useTrailPass } from '@/fx'
+import { CompositorProvider, usePageTransition, useScrollFx, useTouchTrail, useTrailPass } from '@/fx'
 
 export const Route = createRootRoute({
   notFoundComponent: NotFoundPage,
@@ -16,6 +16,7 @@ function RootComponent() {
     <CompositorProvider>
       <TrailPass />
       <PageTransition />
+      <ScrollFx />
       <Header />
       <Main>
         <Outlet />
@@ -28,14 +29,22 @@ function RootComponent() {
   )
 }
 
+/** Edge lenses on the viewport (needs the provider above it). */
+function ScrollFx() {
+  useScrollFx()
+  return null
+}
+
 /** Pixel-grid page transitions (needs the provider above it). */
 function PageTransition() {
   usePageTransition()
   return null
 }
 
-/** The page-wide pointer-trail pass (needs the provider above it). */
+/** The page-wide pointer-trail pass, fed by touch too (needs the provider
+ * above it). */
 function TrailPass() {
   useTrailPass()
+  useTouchTrail()
   return null
 }

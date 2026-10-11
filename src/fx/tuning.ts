@@ -40,6 +40,31 @@ export const tuning = {
   },
   /** The intro paragraph's letters (useTextStagger). */
   stagger: { duration: 1.4, spread: 2, rise: 14 },
+  /** Touch input into the trail (useTouchTrail): `drag` scales a finger's
+   * speed; a tap (under `tapMs`, < 10 px of movement) leaves `spokes`
+   * strokes `tap` px long at `tapSpeed` px/s. */
+  touch: { drag: 1, tap: 56, tapSpeed: 2400, spokes: 6, tapMs: 250 },
+  /** Edge lenses on the viewport (useScrollFx). `top` / `bottom`: how
+   * much each magnifies at its edge; `topBand` / `bottomBand`: its height,
+   * × the viewport's. */
+  scroll: { top: 0.15, topBand: 0.2, bottom: 0.15, bottomBand: 0.2 },
+  /** Projects list rows scrolling in (useProjectRow). `stagger`: seconds
+   * between rows that enter together. */
+  rows: {
+    y: 14,
+    stagger: 0.05,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } as Easing,
+  },
+  /** Projects list rows under the pointer (useProjectRow): the title's
+   * letter ripple (`lift` px, `spread`, `duration` s) and the arrow's
+   * `nudge` px (past ~3 it pokes out of the row's hover fill). */
+  rowHover: {
+    lift: 4,
+    spread: 1.5,
+    duration: 0.45,
+    nudge: 3,
+    spring: { type: 'spring', visualDuration: 0.3, bounce: 0.35 } as Spring,
+  },
   /** Pixel-grid page transitions (usePageTransition). `block`: the largest
    * cell, px; `width`: the wave's depth behind its front (0..1 of the
    * distance to the farthest corner); `jitter`: how ragged its edge is. */

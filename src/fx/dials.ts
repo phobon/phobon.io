@@ -38,6 +38,16 @@ export function mountDials(): () => void {
       { id: 'fx-trail', persist: true },
     ),
     createDialKit(
+      'Touch',
+      {
+        drag: [t.touch.drag, 0, 4, 0.05],
+        tap: [t.touch.tap, 0, 200, 1],
+        tapSpeed: [t.touch.tapSpeed, 100, 6000, 50],
+        spokes: [t.touch.spokes, 0, 16, 1],
+      },
+      { id: 'fx-touch', persist: true, defaultCollapsed: true },
+    ),
+    createDialKit(
       'Trail pass',
       {
         pixel: [t.trailPass.pixel, 0, 1, 1],
@@ -90,6 +100,37 @@ export function mountDials(): () => void {
       { id: 'fx-stagger', persist: true, defaultCollapsed: true, onAction: () => replay('stagger') },
     ),
     createDialKit(
+      'Edge lens',
+      {
+        top: [t.scroll.top, 0, 0.9, 0.01],
+        topBand: [t.scroll.topBand, 0.05, 0.5, 0.01],
+        bottom: [t.scroll.bottom, 0, 0.9, 0.01],
+        bottomBand: [t.scroll.bottomBand, 0.05, 0.5, 0.01],
+      },
+      { id: 'fx-edge-lens', persist: true, defaultCollapsed: true },
+    ),
+    createDialKit(
+      'Rows',
+      {
+        y: [t.rows.y, 0, 80, 1],
+        stagger: [t.rows.stagger, 0, 0.3, 0.005],
+        transition: { type: 'easing', ...t.rows.transition },
+        replay: { type: 'action', label: 'Replay' },
+      },
+      { id: 'fx-rows', persist: true, defaultCollapsed: true, onAction: () => replay('rows') },
+    ),
+    createDialKit(
+      'Row hover',
+      {
+        lift: [t.rowHover.lift, 0, 24, 0.5],
+        spread: [t.rowHover.spread, 0, 8, 0.1],
+        duration: [t.rowHover.duration, 0.1, 2, 0.05],
+        nudge: [t.rowHover.nudge, 0, 32, 0.5],
+        spring: t.rowHover.spring,
+      },
+      { id: 'fx-row-hover', persist: true, defaultCollapsed: true },
+    ),
+    createDialKit(
       'Transition',
       {
         block: [t.transition.block, 4, 160, 1],
@@ -103,9 +144,10 @@ export function mountDials(): () => void {
     ),
   ] as const
 
-  const [trail, trailPass, trailImage, reveal, tilt, stagger, transition] = kits
+  const [trail, touch, trailPass, trailImage, reveal, tilt, stagger, scroll, rows, rowHover, transition] = kits
   const offs = [
     trail.subscribe((v) => setTuning('trail', v)),
+    touch.subscribe((v) => setTuning('touch', v)),
     trailPass.subscribe((v) => setTuning('trailPass', v)),
     trailImage.subscribe((v) => setTuning('trailImage', v)),
     reveal.subscribe(({ transition, replay: _, ...v }) => {
@@ -116,6 +158,14 @@ export function mountDials(): () => void {
       setTuning('tilt', { ...v, transition: transition as typeof tuning.tilt.transition })
     }),
     stagger.subscribe(({ replay: _, ...v }) => setTuning('stagger', v)),
+    scroll.subscribe((v) => setTuning('scroll', v)),
+    rows.subscribe(({ transition, replay: _, ...v }) => {
+      const e = transition as unknown as Easing
+      setTuning('rows', { ...v, transition: { duration: e.duration, ease: e.ease } })
+    }),
+    rowHover.subscribe(({ spring, ...v }) => {
+      setTuning('rowHover', { ...v, spring: spring as typeof tuning.rowHover.spring })
+    }),
     transition.subscribe(({ exit, enter, replay: _, ...v }) => {
       const x = exit as unknown as Easing
       const n = enter as unknown as Easing

@@ -87,17 +87,24 @@ export function useTrailPass() {
       }
       raf = requestAnimationFrame(tick)
     }
-    const onMove = () => {
-      if (!trail.pointer) {
-        return
-      }
+    const wake = () => {
       pass.enabled = true
       idleSince = 0
       raf ||= requestAnimationFrame(tick)
     }
+    const onMove = () => {
+      if (trail.pointer) {
+        wake()
+      }
+    }
+    // Touch input reaches the trail through useTouchTrail's strokes.
     window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('touchstart', wake, { passive: true })
+    window.addEventListener('touchmove', wake, { passive: true })
     return () => {
       window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('touchstart', wake)
+      window.removeEventListener('touchmove', wake)
       cancelAnimationFrame(raf)
       unbind()
       pass.destroy()
