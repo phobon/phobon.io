@@ -80,12 +80,12 @@ export const tuning = {
 export type Tuning = typeof tuning
 export type Group = keyof Tuning
 
-const live = new Map<Group, Set<Record<string, unknown>>>()
+const live = new Map<Group, Set<object>>()
 const replays = new Map<Group, Set<() => void>>()
 
 /** Copy `group`'s numeric values into `target` (an effect's params) now
  * and on every change, until the returned function is called. */
-export function bindLive(group: Group, target: Record<string, unknown>): () => void {
+export function bindLive(group: Group, target: object): () => void {
   apply(target, tuning[group])
   let set = live.get(group)
   if (!set) {
@@ -121,10 +121,10 @@ export function replay(group: Group): void {
   }
 }
 
-function apply(target: Record<string, unknown>, values: object): void {
+function apply(target: object, values: object): void {
   for (const [k, v] of Object.entries(values)) {
     if (typeof v === 'number' && k in target) {
-      target[k] = v
+      ;(target as Record<string, unknown>)[k] = v
     }
   }
 }

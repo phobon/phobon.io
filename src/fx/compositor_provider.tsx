@@ -1,33 +1,23 @@
-import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
-import type { Compositor } from 'compositor-gpu'
-import type * as FxLib from 'compositor-gpu/fx'
-import type { Effects, Trail } from 'compositor-gpu/fx'
+import type { Trail } from 'compositor-gpu/fx'
+import { type Gpu, CompositorProvider as GpuProvider } from 'compositor-gpu/react'
+import { type ReactNode, useRef } from 'react'
 
 import { bindLive, tuning } from './tuning'
 
-/** `lib` is the dynamically imported `compositor-gpu/fx` module (presets
- * etc.), so nothing from the library lands in the main bundle. `trail` is
- * the page's one pointer-trail field, shared by every trail effect. */
-export type Gpu = {
-  compositor: Compositor
-  fx: Effects
-  lib: typeof FxLib
-  trail: Trail
-}
-
-const GpuContext = createContext<Gpu | null>(null)
+export { useCompositor, useFx, useFxLib, useGpu, useTrail } from 'compositor-gpu/react'
 
 declare global {
   interface Window {
-    __gpu?: Compositor
     __trail?: Trail
   }
 }
 
+const query = () => new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search)
+
 /**
  * Mirrors the page onto WebGPU with compositor-gpu (replace mode: the DOM
- * keeps layout, hit-testing and a11y, the GPU paints). Client-only: the
- * library is imported dynamically after hydration, so SSR/prerender and
+ * keeps layout, hit-testing and a11y, the GPU paints), with one pointer
+ * trail shared by the trail effects. Client-only: SSR/prerender and
  * browsers without WebGPU get the plain page.
  *
  * Query flags: `?gpu=0` disables it, `?gpu=overlay` paints over the DOM
@@ -36,97 +26,54 @@ declare global {
  * `?dials=1` the effects' tuning panel (dials.ts).
  */
 export function CompositorProvider({ children }: { children: ReactNode }) {
-  const [gpu, setGpu] = useState<Gpu | null>(null)
+  const q = query()
+  const flag = q.get('gpu')
+  const undo = useRef(() => {})
 
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search)
-    const flag = query.get('gpu')
-    if (flag === '0' || !('gpu' in navigator)) {
+  const onReady = (gpu: Gpu | null) => {
+    undo.current()
+    undo.current = () => {}
+    if (!gpu?.trail) {
       return
     }
-
-    let cancelled = false
-    let compositor: Compositor | null = null
-    let fx: Effects | null = null
-    let unbindTrail = () => {}
+    let gone = false
     let unmountDials = () => {}
-
-    Promise.all([import('compositor-gpu'), import('compositor-gpu/fx')])
-      .then(async ([{ createCompositor }, lib]) => {
-        compositor = await createCompositor({
-          root: document.body,
-          mode: flag === 'overlay' ? 'overlay' : 'replace',
-          fonts: 'auto',
-          // The edge lens (useScrollFx) is fixed to the viewport: a
-          // viewport-pinned canvas keeps it locked to the edges while
-          // scrolling. Without it the page-anchored canvas never lags.
-          canvasPin: query.get('scroll') === 'off' ? 'page' : 'viewport',
-          // `?reuse=0`: redraw the scene every frame, for comparing (the
-          // stats HUD's R key switches it live).
-          sceneReuse: query.get('reuse') !== '0',
-        })
-        if (cancelled || !compositor.active) {
-          compositor.destroy()
-          compositor = null
-          return
+    window.__trail = gpu.trail
+    const unbindTrail = bindLive('trail', gpu.trail.params)
+    if (q.get('dials') === '1') {
+      import('./dials').then(({ mountDials }) => {
+        if (!gone) {
+          unmountDials = mountDials()
         }
-        fx = lib.createEffects(compositor)
-        const trail = fx.trail({ cell: 16, ...tuning.trail })
-        // Touch moves are scrolls: only a mouse or trackpad paints the trail.
-        trail.pointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-        compositor.start()
-        window.__gpu = compositor
-        window.__trail = trail
-        unbindTrail = bindLive('trail', trail.params)
-        if (query.get('stats') === '1') {
-          compositor.profile.hud()
-        }
-        if (query.get('dials') === '1') {
-          import('./dials').then(({ mountDials }) => {
-            if (!cancelled) {
-              unmountDials = mountDials()
-            }
-          })
-        }
-        setGpu({ compositor, fx, lib, trail })
       })
-      .catch((error: unknown) => {
-        console.warn('compositor-gpu failed to start', error)
-      })
-
-    return () => {
-      cancelled = true
+    }
+    undo.current = () => {
+      gone = true
       unmountDials()
       unbindTrail()
-      fx?.release()
-      compositor?.destroy()
-      if (window.__gpu === compositor) {
-        delete window.__gpu
-        delete window.__trail
-      }
-      setGpu(null)
+      delete window.__trail
     }
-  }, [])
+  }
 
-  return <GpuContext value={gpu}>{children}</GpuContext>
-}
-
-/** The effects runtime once the compositor is running; null before that,
- * during SSR and without WebGPU. */
-export function useFx(): Effects | null {
-  return useContext(GpuContext)?.fx ?? null
-}
-
-/** The `compositor-gpu/fx` module (presets such as `blur`), once loaded. */
-export function useFxLib(): typeof FxLib | null {
-  return useContext(GpuContext)?.lib ?? null
-}
-
-/** The page's pointer trail (see `fx.trail`), once running. */
-export function useTrail(): Trail | null {
-  return useContext(GpuContext)?.trail ?? null
-}
-
-export function useCompositor(): Compositor | null {
-  return useContext(GpuContext)?.compositor ?? null
+  return (
+    <GpuProvider
+      enabled={flag !== '0'}
+      options={{
+        mode: flag === 'overlay' ? 'overlay' : 'replace',
+        fonts: 'auto',
+        // The edge lens (useScrollFx) is fixed to the viewport: a
+        // viewport-pinned canvas keeps it locked to the edges while
+        // scrolling. Without it the page-anchored canvas never lags.
+        canvasPin: q.get('scroll') === 'off' ? 'page' : 'viewport',
+        // `?reuse=0`: redraw the scene every frame, for comparing (the
+        // stats HUD's R key switches it live).
+        sceneReuse: q.get('reuse') !== '0',
+      }}
+      trail={{ cell: 16, ...tuning.trail }}
+      hud={q.get('stats') === '1'}
+      onReady={onReady}
+    >
+      {children}
+    </GpuProvider>
+  )
 }

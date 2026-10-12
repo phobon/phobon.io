@@ -20,7 +20,9 @@ function enqueue(start: (delay: number) => void) {
   flushing = true
   requestAnimationFrame(() => {
     flushing = false
-    queue.splice(0).forEach((fn, i) => fn(i * tuning.rows.stagger))
+    queue.splice(0).forEach((fn, i) => {
+      fn(i * tuning.rows.stagger)
+    })
   })
 }
 

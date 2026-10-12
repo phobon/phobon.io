@@ -118,6 +118,9 @@ export default defineConfig({
   },
   resolve: {
     tsconfigPaths: true,
+    // compositor-gpu/react imports react from the submodule's source: one
+    // copy even if the submodule has its own node_modules.
+    dedupe: ['react', 'react-dom'],
   },
   build: {
     rollupOptions: {
