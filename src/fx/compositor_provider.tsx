@@ -31,7 +31,8 @@ declare global {
  * browsers without WebGPU get the plain page.
  *
  * Query flags: `?gpu=0` disables it, `?gpu=overlay` paints over the DOM
- * instead of replacing it, `?stats=1` shows the frame profiler HUD,
+ * instead of replacing it, `?reuse=0` turns off scene reuse, `?stats=1`
+ * shows the frame profiler HUD (B baseline, R reuse on/off),
  * `?dials=1` the effects' tuning panel (dials.ts).
  */
 export function CompositorProvider({ children }: { children: ReactNode }) {
@@ -60,6 +61,9 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
           // viewport-pinned canvas keeps it locked to the edges while
           // scrolling. Without it the page-anchored canvas never lags.
           canvasPin: query.get('scroll') === 'off' ? 'page' : 'viewport',
+          // `?reuse=0`: redraw the scene every frame, for comparing (the
+          // stats HUD's R key switches it live).
+          sceneReuse: query.get('reuse') !== '0',
         })
         if (cancelled || !compositor.active) {
           compositor.destroy()
