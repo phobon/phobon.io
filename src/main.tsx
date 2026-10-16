@@ -10,14 +10,16 @@ if (!rootElement) {
   throw new Error('Root element not found')
 }
 
+const router = createAppRouter()
 const app = (
   <StrictMode>
-    <RouterProvider router={createAppRouter()} />
+    <RouterProvider router={router} />
   </StrictMode>
 )
 
 if (rootElement.hasChildNodes()) {
-  hydrateRoot(rootElement, app)
+  router.ssr = { manifest: undefined }
+  router.load().then(() => hydrateRoot(rootElement, app))
 } else {
   createRoot(rootElement).render(app)
 }
