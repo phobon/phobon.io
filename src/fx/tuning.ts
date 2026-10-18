@@ -27,6 +27,15 @@ export const tuning = {
     y: 56,
     scale: 0.94,
     blur: 12,
+    /** Red/blue split and slice shift the tile starts from, px
+     * (lib.reveal), and the slices' height and share. */
+    split: 8,
+    glitch: 24,
+    height: 10,
+    density: 0.35,
+    /** How washed-out and grey the images start (lib.develop). */
+    wash: 0.6,
+    desaturate: 1,
     /** Seconds between the two columns. */
     stagger: 0.12,
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } as Easing,
@@ -64,6 +73,25 @@ export const tuning = {
     duration: 0.45,
     nudge: 3,
     spring: { type: 'spring', visualDuration: 0.3, bounce: 0.35 } as Spring,
+  },
+  /** In-site navigation (usePageTransition): the new page revealed in a
+   * circle from the click (lib.radialReveal). `soft`: edge width px;
+   * `band`, `warp`, `fringe`: the bend and colour split around the edge. */
+  navReveal: {
+    soft: 48,
+    band: 120,
+    warp: 24,
+    fringe: 6,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } as Easing,
+  },
+  /** The page settling in once the GPU takes over (useLoadIntro): slices
+   * shifted up to `glitch` px and red/blue split `split` px, falling to 0. */
+  intro: {
+    glitch: 36,
+    split: 10,
+    height: 12,
+    density: 0.35,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as Easing,
   },
   /** Pixel-grid page transitions (usePageTransition). `block`: the largest
    * cell, px; `width`: the wave's depth behind its front (0..1 of the

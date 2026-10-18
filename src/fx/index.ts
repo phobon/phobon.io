@@ -1,6 +1,7 @@
 export { CompositorProvider, useCompositor, useFx, useFxLib, useTrail } from './compositor_provider'
 export { type Group, setTuning, tuning } from './tuning'
 export { useHoverTilt } from './use_hover_tilt'
+export { useLoadIntro } from './use_load_intro'
 export { usePageTransition } from './use_page_transition'
 export { useProjectRow } from './use_project_row'
 export { useReveal } from './use_reveal'

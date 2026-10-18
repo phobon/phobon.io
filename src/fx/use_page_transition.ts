@@ -2,7 +2,7 @@ import { useRouter } from '@tanstack/react-router'
 import { animate } from 'motion'
 import { useEffect } from 'react'
 
-import { useFx } from './compositor_provider'
+import { useFx, useFxLib } from './compositor_provider'
 import { prefersReducedMotion } from './dom'
 import { bindLive, type Easing, onReplay, tuning } from './tuning'
 
@@ -106,8 +106,12 @@ function clickPoint(e: MouseEvent, a: Element): Point {
 }
 
 /**
- * Pixel-grid page transitions (`tuning.transition`):
- * - in-site links (index ↔ 404) cover from the click, navigate, uncover;
+ * Page transitions:
+ * - in-site links (index ↔ 404) hold a snapshot of the page, navigate, and
+ *   reveal the new page in a circle growing from the click, its edge bent
+ *   and colour-split (lib.radialReveal, `tuning.navReveal`); with
+ *   `?transition=grid` they cover from the click, navigate and uncover in
+ *   the pixel grid instead;
  * - same-tab external links cover, then leave; new-tab links (the project
  *   cards) get a sweep from the click and open at once, since a delayed
  *   window open is blocked as a popup.
@@ -118,13 +122,16 @@ function clickPoint(e: MouseEvent, a: Element): Point {
  */
 export function usePageTransition() {
   const fx = useFx()
+  const lib = useFxLib()
   const router = useRouter()
 
   useEffect(() => {
     const flag = new URLSearchParams(window.location.search).get('transition')
-    if (!fx || flag === 'off' || prefersReducedMotion()) {
+    if (!fx || !lib || flag === 'off' || prefersReducedMotion()) {
       return
     }
+    const nav = flag === 'grid' ? null : lib.radialReveal(fx, { fromPointer: false })
+    const unbindNav = nav ? bindLive('navReveal', nav.params) : () => {}
     const pass = fx.pass({
       name: 'page-transition',
       params: schema,
@@ -190,6 +197,30 @@ export function usePageTransition() {
       e.preventDefault()
       e.stopPropagation()
       busy = true
+      if (nav && url.origin === here.origin) {
+        void (async () => {
+          try {
+            nav.params.center = [at.x / window.innerWidth, at.y / window.innerHeight]
+            await nav.capture()
+            if (disposed) {
+              return
+            }
+            await router.navigate({ href: url.pathname + url.search + url.hash })
+            // Shows only the snapshot until the new page's mirror is complete.
+            await nav.settled()
+            if (disposed) {
+              return
+            }
+            await animate(nav.params, { progress: [0, 1] }, tuning.navReveal.transition)
+          } finally {
+            if (!disposed) {
+              nav.end()
+            }
+            busy = false
+          }
+        })()
+        return
+      }
       const t = tuning.transition
       void run(COVER, 0, 1, at, t.exit).then(async () => {
         if (disposed) {
@@ -242,7 +273,9 @@ export function usePageTransition() {
       offReplay()
       running?.stop()
       unbind()
+      unbindNav()
       pass.destroy()
+      nav?.destroy()
     }
-  }, [fx, router])
+  }, [fx, lib, router])
 }

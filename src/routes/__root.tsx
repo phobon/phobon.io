@@ -4,7 +4,7 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
 import { NotFoundPage } from '@/components/not_found'
-import { CompositorProvider, usePageTransition, useScrollFx, useTouchTrail, useTrailPass } from '@/fx'
+import { CompositorProvider, useLoadIntro, usePageTransition, useScrollFx, useTouchTrail, useTrailPass } from '@/fx'
 
 export const Route = createRootRoute({
   notFoundComponent: NotFoundPage,
@@ -16,6 +16,7 @@ function RootComponent() {
     <CompositorProvider>
       <TrailPass />
       <PageTransition />
+      <LoadIntro />
       <ScrollFx />
       <Header />
       <Main>
@@ -35,7 +36,14 @@ function ScrollFx() {
   return null
 }
 
-/** Pixel-grid page transitions (needs the provider above it). */
+/** The page resolving from glitch slices once the GPU takes over (needs the
+ * provider above it). */
+function LoadIntro() {
+  useLoadIntro()
+  return null
+}
+
+/** Page transitions (needs the provider above it). */
 function PageTransition() {
   usePageTransition()
   return null
