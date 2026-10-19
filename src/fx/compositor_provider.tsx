@@ -21,9 +21,13 @@ const query = () => new URLSearchParams(typeof window === 'undefined' ? '' : win
  * browsers without WebGPU get the plain page.
  *
  * Query flags: `?gpu=0` disables it, `?gpu=overlay` paints over the DOM
- * instead of replacing it, `?reuse=0` turns off scene reuse, `?stats=1`
- * shows the frame profiler HUD (B baseline, R reuse on/off),
- * `?dials=1` the effects' tuning panel (dials.ts).
+ * instead of replacing it, `?reuse=0` turns off scene reuse.
+ *
+ * Debug panel (compositor-gpu/debug, bottom-right GPU button): in dev, or
+ * with `?debug` in production. It toggles the frame profiler HUD (B
+ * baseline, R reuse on/off), the effects' tuning panels (dials.ts) and
+ * the skeleton view; toggles persist in localStorage, and `?stats=1`,
+ * `?dials=1`, `?skeleton=1` (or `=0`) override them.
  */
 export function CompositorProvider({ children }: { children: ReactNode }) {
   const q = query()
@@ -33,25 +37,38 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
   const onReady = (gpu: Gpu | null) => {
     undo.current()
     undo.current = () => {}
-    if (!gpu?.trail) {
+    if (!gpu) {
       return
     }
     let gone = false
-    let unmountDials = () => {}
-    window.__trail = gpu.trail
-    const unbindTrail = bindLive('trail', gpu.trail.params)
-    if (q.get('dials') === '1') {
-      import('./dials').then(({ mountDials }) => {
-        if (!gone) {
-          unmountDials = mountDials()
+    let unmountDebug = () => {}
+    if (import.meta.env.DEV || q.has('debug')) {
+      // Dials register always; the panel's toggle decides whether they show
+      // (DialKit loads only then).
+      Promise.all([import('compositor-gpu/debug'), import('./dials')]).then(([{ mountDebugPanel }, { mountDials }]) => {
+        if (gone) {
+          return
+        }
+        const unmountDials = mountDials()
+        const panel = mountDebugPanel(gpu.compositor)
+        unmountDebug = () => {
+          panel.destroy()
+          unmountDials()
         }
       })
     }
+    const trail = gpu.trail
+    if (trail) {
+      window.__trail = trail
+    }
+    const unbindTrail = trail ? bindLive('trail', trail.params) : () => {}
     undo.current = () => {
       gone = true
-      unmountDials()
+      unmountDebug()
       unbindTrail()
-      delete window.__trail
+      if (trail) {
+        delete window.__trail
+      }
     }
   }
 
@@ -70,7 +87,6 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
         sceneReuse: q.get('reuse') !== '0',
       }}
       trail={{ cell: 16, ...tuning.trail }}
-      hud={q.get('stats') === '1'}
       onReady={onReady}
     >
       {children}
