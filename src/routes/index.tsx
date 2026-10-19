@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { type ReactNode, useRef } from 'react'
 import CreativeProject from '@/components/creative_project'
 import MiniProject from '@/components/mini_project'
 import SideStack from '@/components/side_stack'
@@ -7,6 +8,7 @@ import experiences from '@/data/experiences.json'
 import now from '@/data/now.json'
 import workProjects from '@/data/work_projects.json'
 import { css } from '@/design/css'
+import { useReveal, useTextStagger } from '@/fx'
 import { cn } from '@/utils/cn'
 
 export const Route = createFileRoute('/')({
@@ -33,6 +35,8 @@ function HomePage() {
   }
 
   const years = __SITE_YEAR__ - 2005
+  const introRef = useRef<HTMLParagraphElement>(null)
+  useTextStagger(introRef)
 
   return (
     <section
@@ -68,8 +72,9 @@ function HomePage() {
             const { key, index, description, ...rest } = project
 
             return (
-              <li
+              <RevealItem
                 key={key}
+                order={(Number(index) - 1) % 2}
                 className={cn(
                   css({
                     display: 'grid',
@@ -83,7 +88,7 @@ function HomePage() {
                 <CreativeProject index={index} {...rest}>
                   {description}
                 </CreativeProject>
-              </li>
+              </RevealItem>
             )
           })}
         </ul>
@@ -104,6 +109,7 @@ function HomePage() {
         )}
       >
         <p
+          ref={introRef}
           className={css({
             position: 'relative',
             gridColumn: {
@@ -212,6 +218,17 @@ function HomePage() {
         </ul>
       </section>
     </section>
+  )
+}
+
+/** A list item that reveals on the GPU when it first scrolls into view. */
+function RevealItem({ order, className, children }: { order: number; className?: string; children: ReactNode }) {
+  const ref = useRef<HTMLLIElement>(null)
+  useReveal(ref, { order })
+  return (
+    <li ref={ref} className={className}>
+      {children}
+    </li>
   )
 }
 

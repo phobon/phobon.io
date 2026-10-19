@@ -1,0 +1,3 @@
+[submodule "compositor-gpu"]
+	path = compositor-gpu
+	url = https://github.com/phobon/compositor-gpu.git

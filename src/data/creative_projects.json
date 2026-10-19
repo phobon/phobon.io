@@ -4,7 +4,7 @@
     "status": "Dev",
     "title": "Artifice",
     "description": "An instrument for exploring generative art.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/artifice.webp",
+    "imageSrc": "/cdn/artifice.webp",
     "priority": true,
     "href": "https://artifice.sh/",
     "active": true
@@ -14,7 +14,7 @@
     "status": "Live",
     "title": "Fragments",
     "description": "Learn creative coding with shaders using Three.js and TSL.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/fragments.webp",
+    "imageSrc": "/cdn/fragments.webp",
     "priority": false,
     "href": "https://fragments.supply/",
     "active": true
@@ -24,7 +24,7 @@
     "status": "Dev",
     "title": "Gravitics",
     "description": "Audio stimulation given visual form.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/gravitics.webp",
+    "imageSrc": "/cdn/gravitics.webp",
     "priority": false,
     "href": "https://gravitics.app/",
     "active": true
@@ -34,7 +34,7 @@
     "status": "Live",
     "title": "The Studio",
     "description": "Website for a boutique physiotherapy and pilates studio.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/thestudio.webp",
+    "imageSrc": "/cdn/thestudio.webp",
     "priority": false,
     "href": "https://thestudiophysio.com/",
     "active": true
@@ -44,7 +44,7 @@
     "status": "Live",
     "title": "Shadercraft°",
     "description": "Curated shader art, learning, inspiration and the people that make it happen.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/shadercraft-e.webp",
+    "imageSrc": "/cdn/shadercraft-e.webp",
     "priority": false,
     "href": "https://shadercraft.phobon.io/",
     "active": true
@@ -54,7 +54,7 @@
     "status": "Live",
     "title": "Formation°",
     "description": "A collection of generative, algorithmic shader experiences coalesced from the void.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/formation.webp",
+    "imageSrc": "/cdn/formation.webp",
     "priority": false,
     "href": "https://formation.phobon.io",
     "active": true
@@ -64,7 +64,7 @@
     "status": "Live",
     "title": "Moleskine Design Studio Labs",
     "description": "Experimental technology and design for Moleskine Design Studio.",
-    "imageSrc": "https://d1zi50u3vxu38i.cloudfront.net/mds_labs.webp",
+    "imageSrc": "/cdn/mds_labs.webp",
     "priority": false,
     "href": "https://moleskinestudio.com/lab/landing/",
     "active": false

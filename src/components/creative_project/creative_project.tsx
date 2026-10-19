@@ -1,7 +1,12 @@
+import { useRef } from 'react'
 import { css } from '@/design/css'
+import { useHoverTilt, useTrailImage } from '@/fx'
 
 export const CreativeProject = ({ ref, ...props }: any) => {
   const { index, imageSrc, videoSrc, title, children, status, priority, href, objectFit } = props
+  const mediaRef = useRef<HTMLElement>(null)
+  useHoverTilt(mediaRef)
+  useTrailImage(mediaRef)
 
   return (
     <a
@@ -19,6 +24,7 @@ export const CreativeProject = ({ ref, ...props }: any) => {
       target='_blank'
     >
       <section
+        ref={mediaRef}
         className={css({
           width: '100%',
           aspectRatio: '1 / 1',
