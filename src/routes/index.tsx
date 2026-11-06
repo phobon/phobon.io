@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { type ReactNode, useRef } from 'react'
+import type { ReactNode } from 'react'
 import CreativeProject from '@/components/creative_project'
 import MiniProject from '@/components/mini_project'
 import SideStack from '@/components/side_stack'
@@ -8,7 +8,6 @@ import experiences from '@/data/experiences.json'
 import now from '@/data/now.json'
 import workProjects from '@/data/work_projects.json'
 import { css } from '@/design/css'
-import { useReveal, useTextStagger } from '@/fx'
 import { cn } from '@/utils/cn'
 
 export const Route = createFileRoute('/')({
@@ -35,8 +34,6 @@ function HomePage() {
   }
 
   const years = __SITE_YEAR__ - 2005
-  const introRef = useRef<HTMLParagraphElement>(null)
-  useTextStagger(introRef)
 
   return (
     <section
@@ -109,7 +106,7 @@ function HomePage() {
         )}
       >
         <p
-          ref={introRef}
+          data-fx='intro'
           className={css({
             position: 'relative',
             gridColumn: {
@@ -221,12 +218,11 @@ function HomePage() {
   )
 }
 
-/** A list item that reveals on the GPU when it first scrolls into view. */
+/** A list item that reveals on the GPU when it first scrolls into view
+ * (fx.config.json: the second column's `project-tile-b` starts later). */
 function RevealItem({ order, className, children }: { order: number; className?: string; children: ReactNode }) {
-  const ref = useRef<HTMLLIElement>(null)
-  useReveal(ref, { order })
   return (
-    <li ref={ref} className={className}>
+    <li data-fx={order === 0 ? 'project-tile-a' : 'project-tile-b'} className={className}>
       {children}
     </li>
   )

@@ -2,8 +2,6 @@ import type { Trail } from 'compositor-gpu/fx'
 import { type Gpu, CompositorProvider as GpuProvider } from 'compositor-gpu/react'
 import { type ReactNode, useRef } from 'react'
 
-import { bindLive, tuning } from './tuning'
-
 export { useCompositor, useFx, useFxLib, useGpu, useTrail } from 'compositor-gpu/react'
 
 declare global {
@@ -17,17 +15,22 @@ const query = () => new URLSearchParams(typeof window === 'undefined' ? '' : win
 /**
  * Mirrors the page onto WebGPU with compositor-gpu (replace mode: the DOM
  * keeps layout, hit-testing and a11y, the GPU paints), with one pointer
- * trail shared by the trail effects. Client-only: SSR/prerender and
- * browsers without WebGPU get the plain page.
+ * trail shared by the trail effects. The effects themselves come from
+ * fx.config.json (useSiteConfig). Client-only: SSR/prerender and browsers
+ * without WebGPU get the plain page.
  *
  * Query flags: `?gpu=0` disables it, `?gpu=overlay` paints over the DOM
- * instead of replacing it, `?reuse=0` turns off scene reuse.
+ * instead of replacing it, `?scroll=off` anchors the canvas to the page
+ * instead of the viewport, `?reuse=0` turns off scene reuse.
  *
  * Debug panel (compositor-gpu/debug, bottom-right GPU button): in dev, or
  * with `?debug` in production. It toggles the frame profiler HUD (B
- * baseline, R reuse on/off), the effects' tuning panels (dials.ts) and
- * the skeleton view; toggles persist in localStorage, and `?stats=1`,
- * `?dials=1`, `?skeleton=1` (or `=0`) override them.
+ * baseline, R reuse on/off) and the skeleton view; toggles persist in
+ * localStorage, and `?stats=1`, `?skeleton=1` (or `=0`) override them.
+ *
+ * Editor (compositor-gpu/editor): in dev, or with `?edit` in production.
+ * Alt+E or `?edit` opens it; it tunes every effect and saves
+ * src/fx/fx.config.json.
  */
 export function CompositorProvider({ children }: { children: ReactNode }) {
   const q = query()
@@ -43,29 +46,21 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
     let gone = false
     let unmountDebug = () => {}
     if (import.meta.env.DEV || q.has('debug')) {
-      // Dials register always; the panel's toggle decides whether they show
-      // (DialKit loads only then).
-      Promise.all([import('compositor-gpu/debug'), import('./dials')]).then(([{ mountDebugPanel }, { mountDials }]) => {
+      void import('compositor-gpu/debug').then(({ mountDebugPanel }) => {
         if (gone) {
           return
         }
-        const unmountDials = mountDials()
         const panel = mountDebugPanel(gpu.compositor)
-        unmountDebug = () => {
-          panel.destroy()
-          unmountDials()
-        }
+        unmountDebug = () => panel.destroy()
       })
     }
     const trail = gpu.trail
     if (trail) {
       window.__trail = trail
     }
-    const unbindTrail = trail ? bindLive('trail', trail.params) : () => {}
     undo.current = () => {
       gone = true
       unmountDebug()
-      unbindTrail()
       if (trail) {
         delete window.__trail
       }
@@ -78,7 +73,7 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
       options={{
         mode: flag === 'overlay' ? 'overlay' : 'replace',
         fonts: 'auto',
-        // The edge lens (useScrollFx) is fixed to the viewport: a
+        // The edge lens (fx.config.json) is fixed to the viewport: a
         // viewport-pinned canvas keeps it locked to the edges while
         // scrolling. Without it the page-anchored canvas never lags.
         canvasPin: q.get('scroll') === 'off' ? 'page' : 'viewport',
@@ -86,7 +81,9 @@ export function CompositorProvider({ children }: { children: ReactNode }) {
         // stats HUD's R key switches it live).
         sceneReuse: q.get('reuse') !== '0',
       }}
-      trail={{ cell: 16, ...tuning.trail }}
+      // The field's params come from the config's `trail` effect.
+      trail={{ cell: 16 }}
+      editor={import.meta.env.DEV || q.has('edit')}
       onReady={onReady}
     >
       {children}

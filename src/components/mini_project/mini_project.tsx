@@ -1,6 +1,4 @@
-import { useRef } from 'react'
 import { css } from '@/design/css'
-import { useProjectRow } from '@/fx'
 import { cn } from '@/utils/cn'
 import { anchorStyles } from '../primitives/anchor'
 
@@ -13,12 +11,9 @@ export type MiniProjectProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const MiniProject = ({ index, href, title, children, client, as: Tag = 'div', ...props }: MiniProjectProps) => {
-  const rowRef = useRef<HTMLElement>(null)
-  useProjectRow(rowRef)
-
   return (
     <Tag
-      ref={rowRef}
+      data-fx='project-row'
       className={css({
         display: 'grid',
         gridTemplateColumns: 'subgrid',

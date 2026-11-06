@@ -4,7 +4,7 @@ import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import Main from '@/components/layout/main'
 import { NotFoundPage } from '@/components/not_found'
-import { CompositorProvider, useLoadIntro, usePageTransition, useScrollFx, useTouchTrail, useTrailPass } from '@/fx'
+import { CompositorProvider, useSiteConfig } from '@/fx'
 
 export const Route = createRootRoute({
   notFoundComponent: NotFoundPage,
@@ -14,10 +14,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <CompositorProvider>
-      <TrailPass />
-      <PageTransition />
-      <LoadIntro />
-      <ScrollFx />
+      <SiteConfig />
       <Header />
       <Main>
         <Outlet />
@@ -30,29 +27,9 @@ function RootComponent() {
   )
 }
 
-/** Edge lenses on the viewport (needs the provider above it). */
-function ScrollFx() {
-  useScrollFx()
-  return null
-}
-
-/** The page resolving from glitch slices once the GPU takes over (needs the
- * provider above it). */
-function LoadIntro() {
-  useLoadIntro()
-  return null
-}
-
-/** Page transitions (needs the provider above it). */
-function PageTransition() {
-  usePageTransition()
-  return null
-}
-
-/** The page-wide pointer-trail pass, fed by touch too (needs the provider
- * above it). */
-function TrailPass() {
-  useTrailPass()
-  useTouchTrail()
+/** Every GPU effect, from src/fx/fx.config.json (needs the provider above
+ * it). The on-page editor (Alt+E in dev, `?edit`) edits that file. */
+function SiteConfig() {
+  useSiteConfig()
   return null
 }

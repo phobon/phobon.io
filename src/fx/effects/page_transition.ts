@@ -1,15 +1,11 @@
-import { useRouter } from '@tanstack/react-router'
 import { animate } from 'motion'
-import { useEffect } from 'react'
 
-import { useFx, useFxLib } from './compositor_provider'
-import { prefersReducedMotion } from './dom'
-import { bindLive, type Easing, onReplay, tuning } from './tuning'
+import { bezier, defaults, forward, type SiteEffect } from './context'
 
-// Page transitions as one fullscreen pass: a wave travels out from an
-// origin (the click, or the top-left corner) and pixellates the
-// page in a grid. The front advances one `block`-px cell at a time, with a
-// per-cell jitter so its edge is ragged. Behind the front:
+// The grid transition as one fullscreen pass: a wave travels out from an
+// origin (the click, or the top-left corner) and pixellates the page in a
+// grid. The front advances one `block`-px cell at a time, with a per-cell
+// jitter so its edge is ragged. Behind the front:
 //   cover (mode 0)  cells grow to `block` px and then switch to the page
 //                   background one by one: the page is gone (exit).
 //   sweep (mode 1)  cells grow and shrink back: the page resolves behind
@@ -52,7 +48,7 @@ fn effect(uv : vec2f, src : texture_2d<f32>, smp : sampler) -> vec4f {
 }
 `
 
-const schema = {
+const passSchema = {
   progress: { type: 'f32', default: 0, min: 0, max: 1 },
   mode: { type: 'f32', default: 0, min: 0, max: 1 },
   ox: { type: 'f32', default: 0, min: -1e5, max: 1e5 },
@@ -61,6 +57,31 @@ const schema = {
   width: { type: 'f32', default: 0.35, min: 0.01, max: 2 },
   jitter: { type: 'f32', default: 0.12, min: 0, max: 0.9 },
   bg: { type: 'color', default: '#ffffff' },
+} as const
+
+const GRID = ['block', 'width', 'jitter'] as const
+const RADIAL = ['soft', 'band', 'warp', 'fringe'] as const
+
+const schema = {
+  /** 1: in-site links reveal the new page in a circle from the click
+   * (lib.radialReveal); 0: they cover and uncover in the grid. */
+  radial: { type: 'f32', default: 1, min: 0, max: 1 },
+  /** Radial: edge width px; the bend and colour split around the edge. */
+  soft: { type: 'f32', default: 48, min: 0, max: 400 },
+  band: { type: 'f32', default: 120, min: 1, max: 600 },
+  warp: { type: 'f32', default: 24, min: 0, max: 200 },
+  fringe: { type: 'f32', default: 6, min: 0, max: 60 },
+  revealDuration: { type: 'f32', default: 0.9, min: 0.1, max: 3 },
+  revealEase: { type: 'vec4', default: [0.22, 1, 0.36, 1] },
+  /** Grid: the largest cell, px; the wave's depth behind its front (0..1
+   * of the distance to the farthest corner); how ragged its edge is. */
+  block: { type: 'f32', default: 48, min: 4, max: 160 },
+  width: { type: 'f32', default: 0.35, min: 0.01, max: 2 },
+  jitter: { type: 'f32', default: 0.12, min: 0, max: 0.9 },
+  exitDuration: { type: 'f32', default: 0.55, min: 0.1, max: 3 },
+  exitEase: { type: 'vec4', default: [0.55, 0, 0.75, 0.2] },
+  enterDuration: { type: 'f32', default: 0.8, min: 0.1, max: 3 },
+  enterEase: { type: 'vec4', default: [0.22, 1, 0.36, 1] },
 } as const
 
 const COVER = 0
@@ -106,48 +127,52 @@ function clickPoint(e: MouseEvent, a: Element): Point {
 }
 
 /**
- * Page transitions:
+ * Page transitions, page scope:
  * - in-site links (index ↔ 404) hold a snapshot of the page, navigate, and
  *   reveal the new page in a circle growing from the click, its edge bent
- *   and colour-split (lib.radialReveal, `tuning.navReveal`); with
- *   `?transition=grid` they cover from the click, navigate and uncover in
- *   the pixel grid instead;
+ *   and colour-split; with `radial` 0 they cover from the click, navigate
+ *   and uncover in the pixel grid instead;
  * - same-tab external links cover, then leave; new-tab links (the project
  *   cards) get a sweep from the click and open at once, since a delayed
- *   window open is blocked as a popup.
+ *   window open is blocked as a popup;
+ * - back/forward between routes sweeps the new page in.
  * Modified clicks, downloads, mailto:/tel: and `data-no-transition` links
- * are left alone. `?transition=off` disables it. Nothing plays on load:
- * the prerendered page is on screen well before the compositor takes over,
- * so an entry would read as a pulse over a page that had already loaded.
+ * are left alone. Nothing plays on load: the prerendered page is on screen
+ * well before the compositor takes over.
  */
-export function usePageTransition() {
-  const fx = useFx()
-  const lib = useFxLib()
-  const router = useRouter()
-
-  useEffect(() => {
-    const flag = new URLSearchParams(window.location.search).get('transition')
-    if (!fx || !lib || flag === 'off' || prefersReducedMotion()) {
-      return
-    }
-    const nav = flag === 'grid' ? null : lib.radialReveal(fx, { fromPointer: false })
-    const unbindNav = nav ? bindLive('navReveal', nav.params) : () => {}
+export const pageTransition: SiteEffect = ({ lib, router }) => ({
+  id: 'pageTransition',
+  label: 'Page transition',
+  scopes: ['page'],
+  schema,
+  impulse: true,
+  create(fx) {
+    const nav = lib.radialReveal(fx, { fromPointer: false })
     const pass = fx.pass({
       name: 'page-transition',
-      params: schema,
+      params: passSchema,
       // Cells sample their centre, up to block / 2 px away.
       radius: (p) => p.block,
       fragment: FRAGMENT,
       enabled: false,
     })
-    const unbind = bindLive('transition', pass.params)
     pass.params.bg = pageBackground()
 
+    const own = defaults(schema)
+    const params: Record<string, unknown> = { ...own }
+    forward(params, pass.params as Record<string, unknown>, GRID)
+    forward(params, nav.params as Record<string, unknown>, RADIAL)
+    for (const k of [...GRID, ...RADIAL]) {
+      params[k] = own[k]
+    }
+    const num = (k: keyof typeof schema) => params[k] as number
+
+    let on = true
     let running: ReturnType<typeof animate> | null = null
     let busy = false
     let disposed = false
 
-    const run = (mode: number, from: number, to: number, at: Point, t: Easing): Promise<void> => {
+    const run = (mode: number, from: number, to: number, at: Point, phase: 'exit' | 'enter'): Promise<void> => {
       running?.stop()
       pass.params.mode = mode
       pass.params.ox = at.x
@@ -156,7 +181,11 @@ export function usePageTransition() {
       pass.enabled = true
       // Explicit keyframes: Motion keeps its own copy of the last value it
       // animated each key to and wouldn't see the write above.
-      const a = animate(pass.params, { progress: [from, to] }, t)
+      const a = animate(
+        pass.params,
+        { progress: [from, to] },
+        { duration: num(`${phase}Duration`), ease: bezier(params[`${phase}Ease`]) },
+      )
       running = a
       return a.then(() => {
         if (running !== a) {
@@ -169,10 +198,10 @@ export function usePageTransition() {
         }
       })
     }
-    const sweep = (at: Point) => run(SWEEP, 0, 1, at, tuning.transition.enter)
+    const sweep = (at: Point) => run(SWEEP, 0, 1, at, 'enter')
 
     const onClick = (e: MouseEvent) => {
-      if (busy || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      if (!on || busy || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
         return
       }
       const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null
@@ -197,7 +226,7 @@ export function usePageTransition() {
       e.preventDefault()
       e.stopPropagation()
       busy = true
-      if (nav && url.origin === here.origin) {
+      if (num('radial') >= 0.5 && url.origin === here.origin) {
         void (async () => {
           try {
             nav.params.center = [at.x / window.innerWidth, at.y / window.innerHeight]
@@ -211,7 +240,11 @@ export function usePageTransition() {
             if (disposed) {
               return
             }
-            await animate(nav.params, { progress: [0, 1] }, tuning.navReveal.transition)
+            await animate(
+              nav.params,
+              { progress: [0, 1] },
+              { duration: num('revealDuration'), ease: bezier(params.revealEase) },
+            )
           } finally {
             if (!disposed) {
               nav.end()
@@ -221,8 +254,7 @@ export function usePageTransition() {
         })()
         return
       }
-      const t = tuning.transition
-      void run(COVER, 0, 1, at, t.exit).then(async () => {
+      void run(COVER, 0, 1, at, 'exit').then(async () => {
         if (disposed) {
           return
         }
@@ -238,14 +270,14 @@ export function usePageTransition() {
           busy = false
         }
         if (!disposed) {
-          await run(COVER, 1, 0, at, t.enter)
+          await run(COVER, 1, 0, at, 'enter')
         }
       })
     }
 
     // Back/forward between routes: no exit to play, sweep the new page in.
     const offResolved = router.subscribe('onResolved', (e) => {
-      if (!busy && e.pathChanged && e.fromLocation) {
+      if (on && !busy && e.pathChanged && e.fromLocation) {
         void frames(3).then(() => sweep({ x: 0, y: 0 }))
       }
     })
@@ -260,22 +292,29 @@ export function usePageTransition() {
         pass.enabled = false
       }
     }
-    const offReplay = onReplay('transition', () => void sweep({ x: 0, y: 0 }))
 
     window.addEventListener('click', onClick, true)
     window.addEventListener('pageshow', onShow)
 
-    return () => {
-      disposed = true
-      window.removeEventListener('click', onClick, true)
-      window.removeEventListener('pageshow', onShow)
-      offResolved()
-      offReplay()
-      running?.stop()
-      unbind()
-      unbindNav()
-      pass.destroy()
-      nav?.destroy()
+    return {
+      params,
+      get enabled() {
+        return on
+      },
+      set enabled(v: boolean) {
+        on = v
+      },
+      // `play` sweeps from the top-left corner (an editor preview).
+      play: () => void sweep({ x: 0, y: 0 }),
+      destroy() {
+        disposed = true
+        window.removeEventListener('click', onClick, true)
+        window.removeEventListener('pageshow', onShow)
+        offResolved()
+        running?.stop()
+        pass.destroy()
+        nav.destroy()
+      },
     }
-  }, [fx, lib, router])
-}
+  },
+})
