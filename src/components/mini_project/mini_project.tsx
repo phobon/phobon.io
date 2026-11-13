@@ -13,6 +13,7 @@ export type MiniProjectProps = {
 export const MiniProject = ({ index, href, title, children, client, as: Tag = 'div', ...props }: MiniProjectProps) => {
   return (
     <Tag
+      data-fx='project-row'
       className={css({
         display: 'grid',
         gridTemplateColumns: 'subgrid',
@@ -63,6 +64,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
         </span>
 
         <span
+          data-row-title
           className={css({
             gridColumn: {
               base: '1 / -2',
@@ -93,6 +95,7 @@ export const MiniProject = ({ index, href, title, children, client, as: Tag = 'd
           {children}
         </span>
         <span
+          data-row-arrow
           className={css({
             gridColumn: {
               base: '-2 / -1',

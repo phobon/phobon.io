@@ -2,7 +2,12 @@
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "compositor-gpu": ["./compositor-gpu/src/index.ts"],
+      "compositor-gpu/fx": ["./compositor-gpu/src/fx/index.ts"],
+      "compositor-gpu/react": ["./compositor-gpu/src/react/index.ts"],
+      "compositor-gpu/dials": ["./compositor-gpu/src/dials/index.ts"],
+      "compositor-gpu/debug": ["./compositor-gpu/src/debug/index.ts"]
     },
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -19,7 +24,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "node", "@webgpu/types"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
   "exclude": ["node_modules"]

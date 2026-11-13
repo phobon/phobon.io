@@ -1,0 +1,467 @@
+{
+  "version": 1,
+  "page": [
+    {
+      "id": "trail",
+      "effect": "trail",
+      "params": {
+        "radius": 120,
+        "decay": 0.9,
+        "strength": 1,
+        "speed": 1800,
+        "gamma": 1
+      }
+    },
+    {
+      "id": "touch-trail",
+      "effect": "touchTrail",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "drag": 1,
+        "tap": 56,
+        "tapSpeed": 2400,
+        "spokes": 6,
+        "tapMs": 250
+      }
+    },
+    {
+      "id": "trail-page",
+      "effect": "trailPage",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "pixel": 1,
+        "push": 4,
+        "block": 14,
+        "lo": 0.08,
+        "hi": 0.4,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "edge-lens",
+      "effect": "edgeLens",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "top": 0.15,
+        "topBand": 0.2,
+        "bottom": 0.15,
+        "bottomBand": 0.2
+      }
+    },
+    {
+      "id": "intro-slices",
+      "effect": "glitchSlices",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "amount": 36,
+        "split": 10,
+        "height": 12,
+        "density": 0.35,
+        "rate": 20
+      },
+      "triggers": [
+        {
+          "on": "load",
+          "to": {
+            "amount": 0,
+            "split": 0
+          },
+          "enabled": false,
+          "duration": 0.8,
+          "ease": [
+            0.22,
+            1,
+            0.36,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-split",
+      "effect": "rgbSplit",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "amount": 10,
+        "reach": 600
+      },
+      "triggers": [
+        {
+          "on": "load",
+          "to": {
+            "amount": 0
+          },
+          "enabled": false,
+          "duration": 0.8,
+          "ease": [
+            0.22,
+            1,
+            0.36,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page-transition",
+      "effect": "pageTransition",
+      "media": "(prefers-reduced-motion: no-preference)",
+      "params": {
+        "radial": 1,
+        "soft": 48,
+        "band": 120,
+        "warp": 24,
+        "fringe": 6,
+        "revealDuration": 0.9,
+        "revealEase": [
+          0.22,
+          1,
+          0.36,
+          1
+        ],
+        "block": 48,
+        "width": 0.35,
+        "jitter": 0.12,
+        "exitDuration": 0.55,
+        "exitEase": [
+          0.55,
+          0,
+          0.75,
+          0.2
+        ],
+        "enterDuration": 0.8,
+        "enterEase": [
+          0.22,
+          1,
+          0.36,
+          1
+        ]
+      }
+    }
+  ],
+  "elements": [
+    {
+      "match": {
+        "fx": "intro"
+      },
+      "effects": [
+        {
+          "id": "intro-stagger",
+          "effect": "textStagger",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "spread": 2,
+            "rise": 14
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.3,
+              "play": "forward",
+              "enabled": false,
+              "duration": 1.4,
+              "ease": [
+                0,
+                0,
+                1,
+                1
+              ],
+              "once": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": {
+        "fx": "project-tile-a"
+      },
+      "effects": [
+        {
+          "id": "project-tile-a-motion",
+          "effect": "motion",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "from.y": 56,
+            "from.scale": 0.94,
+            "from.opacity": 0
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true
+            }
+          ]
+        },
+        {
+          "id": "project-tile-a-develop",
+          "effect": "develop",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "wash": 0.6,
+            "desaturate": 1,
+            "fade": 0.02
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": {
+        "selector": "[data-fx=\"project-tile-a\"] > :first-child"
+      },
+      "effects": [
+        {
+          "id": "project-tile-a-reveal",
+          "effect": "reveal",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "blur": 12,
+            "split": 8,
+            "glitch": 24,
+            "height": 10,
+            "density": 0.35,
+            "fade": 0.02,
+            "seed": 317
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": {
+        "fx": "project-tile-b"
+      },
+      "effects": [
+        {
+          "id": "project-tile-b-motion",
+          "effect": "motion",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "from.y": 56,
+            "from.scale": 0.94,
+            "from.opacity": 0
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true,
+              "delay": 0.12
+            }
+          ]
+        },
+        {
+          "id": "project-tile-b-develop",
+          "effect": "develop",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "wash": 0.6,
+            "desaturate": 1,
+            "fade": 0.02
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true,
+              "delay": 0.12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": {
+        "selector": "[data-fx=\"project-tile-b\"] > :first-child"
+      },
+      "effects": [
+        {
+          "id": "project-tile-b-reveal",
+          "effect": "reveal",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "blur": 12,
+            "split": 8,
+            "glitch": 24,
+            "height": 10,
+            "density": 0.35,
+            "fade": 0.02,
+            "seed": 741
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.15,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.9,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true,
+              "delay": 0.12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": {
+        "fx": "project-media"
+      },
+      "effects": [
+        {
+          "id": "project-media-tilt",
+          "effect": "hoverTilt",
+          "media": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+          "params": {
+            "shift": 10,
+            "lean": 1.2,
+            "lift": 1.025,
+            "settle": 0.35,
+            "bounce": 0.25
+          }
+        },
+        {
+          "id": "project-media-trail",
+          "effect": "trailImage",
+          "params": {
+            "warp": 14,
+            "light": 0.18
+          }
+        }
+      ]
+    },
+    {
+      "match": {
+        "fx": "project-row"
+      },
+      "effects": [
+        {
+          "id": "project-row-motion",
+          "effect": "motion",
+          "media": "(prefers-reduced-motion: no-preference)",
+          "params": {
+            "from.y": 14,
+            "from.opacity": 0
+          },
+          "triggers": [
+            {
+              "on": "enter",
+              "threshold": 0.5,
+              "play": "forward",
+              "enabled": false,
+              "duration": 0.6,
+              "ease": [
+                0.22,
+                1,
+                0.36,
+                1
+              ],
+              "once": true
+            }
+          ]
+        },
+        {
+          "id": "project-row-hover",
+          "effect": "rowHover",
+          "media": "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+          "params": {
+            "lift": 4,
+            "spread": 1.5,
+            "duration": 0.45
+          },
+          "triggers": [
+            {
+              "on": "pointerenter",
+              "to": {
+                "nudge": 3
+              },
+              "play": "forward",
+              "ease": {
+                "spring": {
+                  "visualDuration": 0.3,
+                  "bounce": 0.35
+                }
+              }
+            },
+            {
+              "on": "pointerleave",
+              "to": {
+                "nudge": 0
+              },
+              "ease": {
+                "spring": {
+                  "visualDuration": 0.3,
+                  "bounce": 0.35
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

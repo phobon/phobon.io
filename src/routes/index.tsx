@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 import CreativeProject from '@/components/creative_project'
 import MiniProject from '@/components/mini_project'
 import SideStack from '@/components/side_stack'
@@ -68,8 +69,9 @@ function HomePage() {
             const { key, index, description, ...rest } = project
 
             return (
-              <li
+              <RevealItem
                 key={key}
+                order={(Number(index) - 1) % 2}
                 className={cn(
                   css({
                     display: 'grid',
@@ -83,7 +85,7 @@ function HomePage() {
                 <CreativeProject index={index} {...rest}>
                   {description}
                 </CreativeProject>
-              </li>
+              </RevealItem>
             )
           })}
         </ul>
@@ -104,6 +106,7 @@ function HomePage() {
         )}
       >
         <p
+          data-fx='intro'
           className={css({
             position: 'relative',
             gridColumn: {
@@ -212,6 +215,16 @@ function HomePage() {
         </ul>
       </section>
     </section>
+  )
+}
+
+/** A list item that reveals on the GPU when it first scrolls into view
+ * (fx.config.json: the second column's `project-tile-b` starts later). */
+function RevealItem({ order, className, children }: { order: number; className?: string; children: ReactNode }) {
+  return (
+    <li data-fx={order === 0 ? 'project-tile-a' : 'project-tile-b'} className={className}>
+      {children}
+    </li>
   )
 }
 

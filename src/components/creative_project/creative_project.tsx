@@ -2,7 +2,6 @@ import { css } from '@/design/css'
 
 export const CreativeProject = ({ ref, ...props }: any) => {
   const { index, imageSrc, videoSrc, title, children, status, priority, href, objectFit } = props
-
   return (
     <a
       className={css({
@@ -19,6 +18,7 @@ export const CreativeProject = ({ ref, ...props }: any) => {
       target='_blank'
     >
       <section
+        data-fx='project-media'
         className={css({
           width: '100%',
           aspectRatio: '1 / 1',

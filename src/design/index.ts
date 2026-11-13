@@ -1,4 +1,11 @@
 export const theme = {
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
+  },
   tokens: {
     colors: {
       $slate1: { value: '#fcfcfd' },
@@ -74,13 +81,6 @@ export const theme = {
     letterSpacings: {
       $normal: { value: 'normal' },
       $caps: { value: '0.25em' },
-    },
-    breakpoints: {
-      sm: { value: '640px' },
-      md: { value: '768px' },
-      lg: { value: '1024px' },
-      xl: { value: '1280px' },
-      '2xl': { value: '1536px' },
     },
     radii: {
       $0: { value: '0px' },
